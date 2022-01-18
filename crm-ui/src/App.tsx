@@ -10,6 +10,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="*" element={<ASideBar />} />
+      </Routes>
+      <Routes>
         <Route path="*" element={<HeaderBar />} />
       </Routes>
     </BrowserRouter>

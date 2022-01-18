@@ -7,6 +7,8 @@ import {
   WorkOutlined,
   EmailRounded,
   MessageRounded,
+  PeopleAltRounded,
+  Settings,
 } from "@mui/icons-material";
 
 type color =
@@ -24,6 +26,7 @@ const asidemenu = [
   {
     id: 1,
     title: "Dashboard",
+    type: "user",
     path: "/",
     icon: Dashboard,
     color: "primary" as color,
@@ -32,6 +35,7 @@ const asidemenu = [
   {
     id: 2,
     title: "Candidates",
+    type: "user",
     path: "/candidates",
     icon: People,
     color: "secondary" as color,
@@ -40,6 +44,7 @@ const asidemenu = [
   {
     id: 3,
     title: "Companies",
+    type: "user",
     path: "/companies",
     icon: Apartment,
     color: "info" as color,
@@ -48,6 +53,7 @@ const asidemenu = [
   {
     id: 4,
     title: "Tasks",
+    type: "user",
     path: "/tasks",
     icon: ListAlt,
     color: "success" as color,
@@ -56,6 +62,7 @@ const asidemenu = [
   {
     id: 5,
     title: "Jobs",
+    type: "user",
     path: "/jobs",
     icon: WorkOutlined,
     color: "warning" as color,
@@ -64,6 +71,7 @@ const asidemenu = [
   {
     id: 6,
     title: "E-Mail Service",
+    type: "user",
     path: "/e-mail-service",
     icon: EmailRounded,
     color: "primary" as color,
@@ -72,10 +80,29 @@ const asidemenu = [
   {
     id: 7,
     title: "SMS Service",
+    type: "user",
     path: "/sms-service",
     icon: MessageRounded,
     color: "secondary" as color,
     page: lazy(() => import("./Pages/SMSService")),
+  },
+  {
+    id: 8,
+    title: "HR Members",
+    type: "admin",
+    path: "/hr-members",
+    icon: PeopleAltRounded,
+    color: "secondary" as color,
+    page: lazy(() => import("./Pages/HRMembers")),
+  },
+  {
+    id: 9,
+    title: "Settings",
+    type: "admin",
+    path: "/settings",
+    icon: Settings,
+    color: "default" as color,
+    page: lazy(() => import("./Pages/Settings")),
   },
 ];
 

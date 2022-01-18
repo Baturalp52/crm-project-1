@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
+import CandidatesTable from "./CandidatesTable";
 
 const Candidates = () => {
-  return <></>;
+  useEffect(() => {
+    document.title = "Candidates || CRM";
+  });
+
+  return (
+    <>
+      <CandidatesTable />
+    </>
+  );
 };
 
 export default Candidates;

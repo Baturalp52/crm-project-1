@@ -8,8 +8,9 @@ import {
   ListItem,
   Tooltip,
 } from "@mui/material";
-import menuItems from "../asidemenu";
 import { Settings, PeopleAltRounded } from "@mui/icons-material";
+import menuItems from "../asidemenu";
+import { Link } from "react-router-dom";
 
 const ASideBar = () => {
   return (
@@ -20,9 +21,11 @@ const ASideBar = () => {
           {menuItems.map((item, index) => (
             <ListItem key={index} disableGutters>
               <Tooltip title={item.title} placement="right" arrow>
-                <IconButton color={item.color} size="medium">
-                  <item.icon />
-                </IconButton>
+                <Link to={item.path}>
+                  <IconButton color={item.color} size="medium">
+                    <item.icon />
+                  </IconButton>
+                </Link>
               </Tooltip>
             </ListItem>
           ))}
@@ -31,16 +34,20 @@ const ASideBar = () => {
         <List sx={{ marginTop: "auto" }}>
           <ListItem disableGutters>
             <Tooltip title="HR Members" placement="right" arrow>
-              <IconButton size="medium" color="success">
-                <PeopleAltRounded />
-              </IconButton>
+              <Link to="/hr-members">
+                <IconButton size="medium" color="success">
+                  <PeopleAltRounded />
+                </IconButton>
+              </Link>
             </Tooltip>
           </ListItem>
           <ListItem disableGutters>
             <Tooltip title="Settings" placement="right" arrow>
-              <IconButton size="medium">
-                <Settings />
-              </IconButton>
+              <Link to="/settings">
+                <IconButton size="medium">
+                  <Settings />
+                </IconButton>
+              </Link>
             </Tooltip>
           </ListItem>
         </List>

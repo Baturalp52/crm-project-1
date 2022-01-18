@@ -1,22 +1,17 @@
 import React from "react";
 
-import {
-  Drawer,
-  List,
-  Divider,
-  IconButton,
-  ListItem,
-  Tooltip,
-} from "@mui/material";
+import { Drawer, List, IconButton, ListItem, Tooltip } from "@mui/material";
 import { Settings, PeopleAltRounded } from "@mui/icons-material";
-import menuItems from "../asidemenu";
+import menuItems from "../../asidemenu";
 import { Link } from "react-router-dom";
 
 const ASideBar = () => {
   return (
     <>
-      <Drawer variant="permanent">
-        <Divider />
+      <Drawer
+        variant="permanent"
+        PaperProps={{ sx: { borderRight: "none !important" } }}
+      >
         <List>
           {menuItems.map((item, index) => (
             <ListItem key={index} disableGutters>
@@ -30,7 +25,7 @@ const ASideBar = () => {
             </ListItem>
           ))}
         </List>
-        <Divider />
+
         <List sx={{ marginTop: "auto" }}>
           <ListItem disableGutters>
             <Tooltip title="HR Members" placement="right" arrow>

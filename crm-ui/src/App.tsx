@@ -7,6 +7,7 @@ import HeaderBar from "./layouts/HeaderBar";
 
 import asidemenu from "./asidemenu";
 import Loading from "./components/Loading";
+import { Toolbar } from "@mui/material";
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
         <Route path="*" element={<HeaderBar />} />
       </Routes>
       {/* BEGIN :: Page Contents Routes */}
+      <Routes>
+        <Route path="*" element={<Toolbar />} />
+      </Routes>
       <Routes>
         {asidemenu.map((item, index) => (
           <Route

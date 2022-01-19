@@ -1,5 +1,4 @@
 import { ICandidate } from "./interfaces/Candidate";
-import { IHRMember } from "./interfaces/HRMember";
 
 const candidates: ICandidate[] = [
   { id: 1, name: "Example", surname: "Candidate", city: "Ankara" },

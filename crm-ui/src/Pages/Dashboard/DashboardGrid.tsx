@@ -6,6 +6,7 @@ import candidates from "../../mockData/candidates";
 import companies from "../../mockData/companies";
 import tasks from "../../mockData/tasks";
 import jobs from "../../mockData/jobs";
+import hrmembers from "../../mockData/hrmembers";
 
 const DashboardGrid = () => {
   return (
@@ -43,6 +44,13 @@ const DashboardGrid = () => {
         data={jobs.length}
         color="#ed6c02"
         link="/jobs"
+      />
+      <GridItem
+        title="HR Members"
+        icon={<People />}
+        data={hrmembers.length}
+        color="#9c27b0"
+        link="/hr-members"
       />
     </Grid>
   );

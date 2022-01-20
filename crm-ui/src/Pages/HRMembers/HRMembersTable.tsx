@@ -1,0 +1,161 @@
+import React, { useState } from "react";
+import {
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TablePagination,
+  TableRow,
+  Checkbox,
+  ButtonGroup,
+  Button,
+  Stack,
+} from "@mui/material";
+
+import hrmembers from "../../mockData/hrmembers";
+import { Add, BorderColor, DeleteForeverRounded } from "@mui/icons-material";
+import RightBar from "./RightBar";
+import { IHRMember } from "../../mockData/interfaces/HRMember";
+
+const HRMembersTable = () => {
+  const [currentPage, setCurrentPage] = useState<number>(0);
+  const [rowPerPage, setRowPerPage] = useState<number>(10);
+  const [selectedHRMembersId, setSelectedHRMembersId] = useState<number[]>([]);
+  const [isRightBarOpen, setIsRightBarOpen] = useState<boolean>(false);
+  const [rightBarHRMember, setRightBarHRMember] = useState<
+    IHRMember | undefined
+  >(undefined);
+
+  return (
+    <>
+      <RightBar
+        hrmember={rightBarHRMember}
+        isOpen={isRightBarOpen}
+        setIsOpen={setIsRightBarOpen}
+      />
+      <Paper
+        sx={{
+          width: "calc(100% - 40px)",
+          marginLeft: "auto",
+          overflow: "hidden",
+          boxShadow: "none",
+        }}
+      >
+        <TableContainer sx={{ maxHeight: "500px" }}>
+          <Table stickyHeader aria-label="sticky table">
+            <TableHead>
+              <TableRow>
+                <TableCell>
+                  <Checkbox
+                    value="all"
+                    checked={hrmembers.length === selectedHRMembersId.length}
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setSelectedHRMembersId(hrmembers.map((c) => c.id));
+                      } else setSelectedHRMembersId([]);
+                    }}
+                  />
+                </TableCell>
+                <TableCell>id</TableCell>
+                <TableCell>Name</TableCell>
+                <TableCell>Surname</TableCell>
+                <TableCell />
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {hrmembers
+                .slice(currentPage * rowPerPage, (currentPage + 1) * rowPerPage)
+                .map((item, index) => (
+                  <TableRow key={index}>
+                    <TableCell>
+                      <Checkbox
+                        value={item.id}
+                        checked={selectedHRMembersId.includes(item.id)}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            const _selectedHRMembersId = [
+                              ...selectedHRMembersId,
+                            ];
+                            _selectedHRMembersId.push(item.id);
+                            setSelectedHRMembersId(_selectedHRMembersId);
+                          } else {
+                            const _selectedHRMembersId = [
+                              ...selectedHRMembersId,
+                            ];
+                            _selectedHRMembersId.splice(
+                              _selectedHRMembersId.indexOf(item.id),
+                              1
+                            );
+                            setSelectedHRMembersId(_selectedHRMembersId);
+                          }
+                        }}
+                      />
+                    </TableCell>
+                    <TableCell>{item.id}</TableCell>
+                    <TableCell>{item.name}</TableCell>
+                    <TableCell>{item.surname}</TableCell>
+                    <TableCell>
+                      <Button
+                        sx={{ border: "none !important" }}
+                        color="warning"
+                        variant="contained"
+                        onClick={() => {
+                          setRightBarHRMember(item);
+                          setIsRightBarOpen(true);
+                        }}
+                      >
+                        <BorderColor />
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[10, 25, 100]}
+          component="div"
+          count={hrmembers.length}
+          rowsPerPage={rowPerPage}
+          page={currentPage}
+          onPageChange={(e: unknown, newPage: number) => {
+            setCurrentPage(newPage);
+          }}
+          onRowsPerPageChange={(e) => {
+            setRowPerPage(+e.target.value);
+            setCurrentPage(0);
+          }}
+        />
+        <Stack padding={"1rem"}>
+          <ButtonGroup
+            sx={{ marginLeft: "auto" }}
+            aria-label="medium button group contained"
+            variant="contained"
+          >
+            <Button
+              sx={{ border: "none !important" }}
+              startIcon={<Add />}
+              color="success"
+              onClick={() => {
+                setRightBarHRMember(undefined);
+                setIsRightBarOpen(true);
+              }}
+            >
+              Add New
+            </Button>
+            <Button
+              sx={{ border: "none !important" }}
+              startIcon={<DeleteForeverRounded />}
+              color="error"
+            >
+              Delete
+            </Button>
+          </ButtonGroup>
+        </Stack>
+      </Paper>
+    </>
+  );
+};
+export default HRMembersTable;

@@ -3,6 +3,7 @@ import { AppBar, Avatar, Toolbar, Tooltip } from "@mui/material";
 import SearchInput from "../../components/SearchInput";
 import { stringAvatar } from "./helpers";
 import { useNavigate } from "react-router-dom";
+import HeaderTitle from "./HeaderTitle";
 
 const HeaderBar = () => {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ const HeaderBar = () => {
     >
       <Toolbar>
         <SearchInput />
-
+        <HeaderTitle />
         <Tooltip
           title="Profile Settings"
           arrow

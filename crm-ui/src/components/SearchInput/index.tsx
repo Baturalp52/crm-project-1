@@ -12,7 +12,7 @@ const SearchInput = () => {
         </InputAdornment>
       }
       placeholder="Search"
-      sx={{ width: "30%" }}
+      sx={{ width: "20rem" }}
     ></Input>
   );
 };

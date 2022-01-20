@@ -1,10 +1,19 @@
 import React from "react";
-import { Box, Button, Drawer, List, ListItem, Stack } from "@mui/material";
+import {
+  Box,
+  Button,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { useFormik } from "formik";
 import { ICandidate } from "../../mockData/interfaces/Candidate";
 import { emptyCandidate } from "./emptyCandidate";
 import FormInput from "./FormInput";
-import { SaveRounded } from "@mui/icons-material";
+import { CloseRounded, SaveRounded } from "@mui/icons-material";
 
 interface IRightBarProps {
   candidate?: ICandidate;
@@ -23,6 +32,18 @@ const RightBar = (props: IRightBarProps) => {
   return (
     <Drawer anchor="right" open={isOpen} onClose={() => setIsOpen(false)}>
       <Box sx={{ width: 400, overflow: "auto" }} role="presentation">
+        <Typography variant="h6" display="flex" padding={2}>
+          {form.values.id ? "Edit Candidate" : "Add New"}
+          <IconButton
+            sx={{ marginLeft: "auto", display: "inline" }}
+            onClick={() => {
+              setIsOpen(false);
+            }}
+          >
+            <CloseRounded />
+          </IconButton>
+        </Typography>
+
         <form onSubmit={form.handleSubmit}>
           <List>
             <ListItem>

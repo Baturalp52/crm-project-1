@@ -13,6 +13,7 @@ const DashboardGrid = () => {
       rowSpacing={3}
       columnSpacing={2}
       sx={{ width: "calc(100% - 40px)", marginLeft: "auto" }}
+      padding={2}
     >
       <GridItem
         title="Candidates"

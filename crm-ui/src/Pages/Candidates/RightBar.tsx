@@ -12,7 +12,7 @@ import {
 import { useFormik } from "formik";
 import { ICandidate } from "../../mockData/interfaces/Candidate";
 import { emptyCandidate } from "./emptyCandidate";
-import FormInput from "./FormInput";
+import FormInput from "../../components/FormInput";
 import { CloseRounded, SaveRounded } from "@mui/icons-material";
 
 interface IRightBarProps {

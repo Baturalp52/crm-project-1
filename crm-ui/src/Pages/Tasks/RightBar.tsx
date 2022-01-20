@@ -10,22 +10,22 @@ import {
   Typography,
 } from "@mui/material";
 import { useFormik } from "formik";
-import { emptyCompany } from "./emptyCompany";
+import { emptyTask } from "./emptyTask";
 import FormInput from "../../components/FormInput";
 import { CloseRounded, SaveRounded } from "@mui/icons-material";
-import { ICompany } from "../../mockData/interfaces/Company";
+import { ITask } from "../../mockData/interfaces/Task";
 
 interface IRightBarProps {
-  company?: ICompany;
+  task?: ITask;
   isOpen: boolean;
   setIsOpen(isOpen: boolean): any;
 }
 
 const RightBar = (props: IRightBarProps) => {
-  const { company, isOpen, setIsOpen } = props;
+  const { task, isOpen, setIsOpen } = props;
 
   let form = useFormik({
-    initialValues: company ? { ...company } : { ...emptyCompany },
+    initialValues: task ? { ...task } : { ...emptyTask },
     onSubmit: () => {},
     enableReinitialize: true,
   });
@@ -33,7 +33,7 @@ const RightBar = (props: IRightBarProps) => {
     <Drawer anchor="right" open={isOpen} onClose={() => setIsOpen(false)}>
       <Box sx={{ width: 400, overflow: "auto" }} role="presentation">
         <Typography variant="h6" display="flex" padding={2}>
-          {form.values.id ? "Edit Company" : "Add New"}
+          {form.values.id ? "Edit Task" : "Add New"}
           <IconButton
             sx={{ marginLeft: "auto", display: "inline" }}
             onClick={() => {
@@ -67,28 +67,10 @@ const RightBar = (props: IRightBarProps) => {
             </ListItem>
             <ListItem>
               <FormInput
-                label="Address"
+                label="Description"
                 type="text"
-                value={form.values.address}
-                name="address"
-                onChange={form.handleChange}
-              />
-            </ListItem>
-            <ListItem>
-              <FormInput
-                label="City"
-                type="text"
-                value={form.values.city}
-                name="city"
-                onChange={form.handleChange}
-              />
-            </ListItem>
-            <ListItem>
-              <FormInput
-                label="Sector"
-                type="text"
-                value={form.values.sector}
-                name="sector"
+                value={form.values.description}
+                name="description"
                 onChange={form.handleChange}
               />
             </ListItem>

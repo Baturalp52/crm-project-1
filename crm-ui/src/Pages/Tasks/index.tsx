@@ -1,7 +1,12 @@
 import React from "react";
+import TasksTable from "./TasksTable";
 
 const Dashboard = () => {
-  return <></>;
+  return (
+    <>
+      <TasksTable />
+    </>
+  );
 };
 
 export default Dashboard;

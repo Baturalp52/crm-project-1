@@ -5,7 +5,7 @@ const tasks: ITask[] = [
     id: 1,
     name: "Example Task",
     description: "Example Task Description",
-    situation: "in-progress",
+    situation: "on-progress",
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ const tasks: ITask[] = [
     id: 4,
     name: "Example Task",
     description: "Example Task Description",
-    situation: "in-progress",
+    situation: "on-progress",
   },
   {
     id: 5,
@@ -41,7 +41,7 @@ const tasks: ITask[] = [
     id: 7,
     name: "Example Task",
     description: "Example Task Description",
-    situation: "in-progress",
+    situation: "on-progress",
   },
   {
     id: 8,
@@ -59,7 +59,7 @@ const tasks: ITask[] = [
     id: 10,
     name: "Example Task",
     description: "Example Task Description",
-    situation: "in-progress",
+    situation: "on-progress",
   },
   {
     id: 11,
@@ -77,7 +77,7 @@ const tasks: ITask[] = [
     id: 13,
     name: "Example Task",
     description: "Example Task Description",
-    situation: "in-progress",
+    situation: "on-progress",
   },
   {
     id: 14,
@@ -95,7 +95,7 @@ const tasks: ITask[] = [
     id: 16,
     name: "Example Task",
     description: "Example Task Description",
-    situation: "in-progress",
+    situation: "on-progress",
   },
   {
     id: 17,
@@ -113,7 +113,7 @@ const tasks: ITask[] = [
     id: 19,
     name: "Example Task",
     description: "Example Task Description",
-    situation: "in-progress",
+    situation: "on-progress",
   },
 ];
 

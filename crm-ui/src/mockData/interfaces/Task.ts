@@ -5,5 +5,5 @@ export interface ITask {
   name: string;
   description?: string;
   assignedMember?: IHRMember;
-  situation: "in-progress" | "completed" | "closed" | "open";
+  situation: "on-progress" | "completed" | "closed" | "open";
 }

@@ -1,9 +1,10 @@
 import React from "react";
 import { Grid } from "@mui/material";
 import GridItem from "./GridItem";
-import { Apartment, People } from "@mui/icons-material";
+import { Apartment, ListAlt, People } from "@mui/icons-material";
 import candidates from "../../mockData/candidates";
 import companies from "../../mockData/companies";
+import tasks from "../../mockData/tasks";
 
 const DashboardGrid = () => {
   return (
@@ -24,6 +25,12 @@ const DashboardGrid = () => {
         icon={<Apartment />}
         data={companies.length}
         color="#0288d1"
+      />
+      <GridItem
+        title="Tasks"
+        icon={<ListAlt />}
+        data={tasks.length}
+        color="#2e7d32"
       />
     </Grid>
   );

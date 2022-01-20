@@ -20,18 +20,21 @@ const DashboardGrid = () => {
         icon={<People />}
         data={candidates.length}
         color="#9c27b0"
+        link="/candidates"
       />
       <GridItem
         title="Companies"
         icon={<Apartment />}
         data={companies.length}
         color="#0288d1"
+        link="/companies"
       />
       <GridItem
         title="Tasks"
         icon={<ListAlt />}
         data={tasks.length}
         color="#2e7d32"
+        link="/tasks"
       />
     </Grid>
   );

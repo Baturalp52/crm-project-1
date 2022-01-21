@@ -7,6 +7,7 @@ import {
   WorkOutlined,
   EmailRounded,
   MessageRounded,
+  CalendarToday,
   PeopleAltRounded,
   Settings,
 } from "@mui/icons-material";
@@ -88,6 +89,15 @@ const asidemenu = [
   },
   {
     id: 8,
+    title: "Calendar",
+    type: "user",
+    path: "/calendar",
+    icon: CalendarToday,
+    color: "info" as color,
+    page: lazy(() => import("./Pages/Calendar")),
+  },
+  {
+    id: 9,
     title: "HR Members",
     type: "admin",
     path: "/hr-members",
@@ -96,7 +106,7 @@ const asidemenu = [
     page: lazy(() => import("./Pages/HRMembers")),
   },
   {
-    id: 9,
+    id: 10,
     title: "Settings",
     type: "admin",
     path: "/settings",

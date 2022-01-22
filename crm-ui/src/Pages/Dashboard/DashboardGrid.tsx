@@ -1,12 +1,19 @@
 import React from "react";
 import { Grid } from "@mui/material";
 import GridItem from "./GridItem";
-import { Apartment, ListAlt, People, WorkOutlined } from "@mui/icons-material";
+import {
+  Apartment,
+  CalendarToday,
+  ListAlt,
+  People,
+  WorkOutlined,
+} from "@mui/icons-material";
 import candidates from "../../mockData/candidates";
 import companies from "../../mockData/companies";
 import tasks from "../../mockData/tasks";
 import jobs from "../../mockData/jobs";
 import hrmembers from "../../mockData/hrmembers";
+import { events } from "../../mockData/events";
 
 const DashboardGrid = () => {
   return (
@@ -51,6 +58,13 @@ const DashboardGrid = () => {
         data={hrmembers.length}
         color="#9c27b0"
         link="/hr-members"
+      />
+      <GridItem
+        title="Events"
+        icon={<CalendarToday />}
+        data={events.length}
+        color="#0288d1"
+        link="/calendar"
       />
     </Grid>
   );

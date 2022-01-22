@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
 import "./App.css";
+import "react-big-calendar/lib/css/react-big-calendar.css";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ASideBar from "./layouts/ASideBar";

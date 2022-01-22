@@ -49,11 +49,10 @@ const Calendar = () => {
             popup
             localizer={localizer}
             events={events}
-            step={15}
-            timeslots={8}
             defaultView={Views.MONTH}
             startAccessor="start"
             endAccessor="end"
+            toolbar={false}
             style={{ height: 500 }}
             views={{
               month: true,

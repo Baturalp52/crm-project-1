@@ -4,11 +4,11 @@ import HRMembersTable from "./HRMembersTable";
 
 const HRMembers = () => {
   useEffect(() => {
-    document.title = "HR Members || CRM";
     pageRedux.dispatch({
       type: "CHANGE_TITLE",
       payload: {
-        title: "HR Members",
+        headerTitle: "HR Members",
+        pageTitle: "HR Members || CRM",
       },
     });
   });

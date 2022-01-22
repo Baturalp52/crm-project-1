@@ -3,13 +3,14 @@ import { Typography } from "@mui/material";
 import { pageRedux } from "../../redux";
 
 const HeaderTitle = () => {
-  const [title, setTitle] = useState(document.title.split("||")[0]);
+  const [headerTitle, setHeaderTitle] = useState(document.title.split("||")[0]);
   pageRedux.subscribe(() => {
-    setTitle(pageRedux.getState().title);
+    setHeaderTitle(pageRedux.getState().headerTitle);
+    document.title = pageRedux.getState().pageTitle;
   });
   return (
     <Typography color="darkblue" variant="h6" mx="auto">
-      {title}
+      {headerTitle}
     </Typography>
   );
 };

@@ -3,11 +3,11 @@ import { pageRedux } from "../../redux";
 
 const Calendar = () => {
   useEffect(() => {
-    document.title = "Calendar || CRM";
     pageRedux.dispatch({
       type: "CHANGE_TITLE",
       payload: {
-        title: "Calendar",
+        headerTitle: "Calendar",
+        pageTitle: "Calendar || CRM",
       },
     });
   });

@@ -4,11 +4,11 @@ import CompaniesTable from "./CompaniesTable";
 
 const Companies = () => {
   useEffect(() => {
-    document.title = "Companies || CRM";
     pageRedux.dispatch({
       type: "CHANGE_TITLE",
       payload: {
-        title: "Companies",
+        headerTitle: "Companies",
+        pageTitle: "Companies || CRM",
       },
     });
   });

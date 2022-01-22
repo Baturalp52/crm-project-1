@@ -4,11 +4,11 @@ import DashboardGrid from "./DashboardGrid";
 
 const Dashboard = () => {
   useEffect(() => {
-    document.title = "Dashboard || CRM";
     pageRedux.dispatch({
       type: "CHANGE_TITLE",
       payload: {
-        title: "Dashboard",
+        headerTitle: "Dashboard",
+        pageTitle: "Dashboard || CRM",
       },
     });
   });

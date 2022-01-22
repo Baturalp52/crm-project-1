@@ -4,11 +4,11 @@ import TasksTable from "./TasksTable";
 
 const Tasks = () => {
   useEffect(() => {
-    document.title = "Tasks || CRM";
     pageRedux.dispatch({
       type: "CHANGE_TITLE",
       payload: {
-        title: "Tasks",
+        headerTitle: "Tasks",
+        pageTitle: "Tasks || CRM",
       },
     });
   });

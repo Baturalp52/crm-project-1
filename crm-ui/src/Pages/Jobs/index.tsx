@@ -4,11 +4,11 @@ import JobsTable from "./JobsTable";
 
 const Jobs = () => {
   useEffect(() => {
-    document.title = "Jobs || CRM";
     pageRedux.dispatch({
       type: "CHANGE_TITLE",
       payload: {
-        title: "Jobs",
+        headerTitle: "Jobs",
+        pageTitle: "Jobs || CRM",
       },
     });
   });

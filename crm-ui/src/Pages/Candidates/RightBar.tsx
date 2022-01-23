@@ -14,12 +14,17 @@ import { ICandidate } from "../../mockData/interfaces/Candidate";
 import { emptyCandidate } from "./emptyCandidate";
 import FormInput from "../../components/FormInput";
 import { CloseRounded, SaveRounded } from "@mui/icons-material";
+import FormMultiTextInput from "../../components/FormMultiTextInput";
 
 interface IRightBarProps {
   candidate?: ICandidate;
   isOpen: boolean;
   setIsOpen(isOpen: boolean): any;
 }
+
+const mockPhones = ["05000000050", "05000000051"];
+
+const mockEmails = ["example@example.com", "example@example.com"];
 
 const RightBar = (props: IRightBarProps) => {
   const { candidate, isOpen, setIsOpen } = props;
@@ -72,6 +77,20 @@ const RightBar = (props: IRightBarProps) => {
                 value={form.values.surname}
                 name="surname"
                 onChange={form.handleChange}
+              />
+            </ListItem>
+            <ListItem>
+              <FormMultiTextInput
+                label="Phone Numbers:"
+                id="phone-numbers"
+                data={mockPhones}
+              />
+            </ListItem>
+            <ListItem>
+              <FormMultiTextInput
+                label="E-mail Addresses:"
+                id="email-addresses"
+                data={mockEmails}
               />
             </ListItem>
             <ListItem>

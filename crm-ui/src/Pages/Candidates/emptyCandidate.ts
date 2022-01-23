@@ -10,7 +10,7 @@ export const emptyCandidate = {
   zipCode: "",
   city: "",
   country: "",
-  googleMapsCoord: "",
+  mapsCoord: "",
   creatorMember: {},
   previousJobs: [],
   skills: [],

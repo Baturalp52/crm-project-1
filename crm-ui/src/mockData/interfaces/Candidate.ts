@@ -16,7 +16,7 @@ export interface ICandidate {
   zipCode?: string;
   city?: string;
   country?: string;
-  googleMapsCoord?: string;
+  mapsCoord?: string;
   creatorMember?: IHRMember;
   previousJobs?: IJob[];
   skills?: ISkill[];

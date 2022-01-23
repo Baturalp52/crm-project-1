@@ -13,7 +13,7 @@ import { useFormik } from "formik";
 import { ICandidate } from "../../mockData/interfaces/Candidate";
 import { emptyCandidate } from "./emptyCandidate";
 import FormInput from "../../components/FormInput";
-import { CloseRounded, SaveRounded } from "@mui/icons-material";
+import { CloseRounded, FileUpload, SaveRounded } from "@mui/icons-material";
 import FormMultiTextInput from "../../components/FormMultiTextInput";
 
 interface IRightBarProps {
@@ -78,6 +78,22 @@ const RightBar = (props: IRightBarProps) => {
                 name="surname"
                 onChange={form.handleChange}
               />
+            </ListItem>
+            <ListItem>
+              {form.values.id ? (
+                <Stack direction="row" spacing={1}>
+                  <Button variant="contained" color="success">
+                    <SaveRounded /> Download CV
+                  </Button>
+                  <Button variant="contained" color="secondary">
+                    <FileUpload /> Upload New CV
+                  </Button>
+                </Stack>
+              ) : (
+                <Button variant="contained" color="secondary">
+                  <FileUpload /> Upload CV
+                </Button>
+              )}
             </ListItem>
             <ListItem>
               <FormMultiTextInput

@@ -15,6 +15,8 @@ import { emptyCandidate } from "./emptyCandidate";
 import FormInput from "../../components/FormInput";
 import { CloseRounded, FileUpload, SaveRounded } from "@mui/icons-material";
 import FormMultiTextInput from "../../components/FormMultiTextInput";
+import MapsInput from "../../components/MapsInput";
+import mainCoord from "../../mockData/coords";
 
 interface IRightBarProps {
   candidate?: ICandidate;
@@ -144,6 +146,9 @@ const RightBar = (props: IRightBarProps) => {
                 name="city"
                 onChange={form.handleChange}
               />
+            </ListItem>
+            <ListItem>
+              <MapsInput mainCoords={mainCoord} />
             </ListItem>
             <ListItem>
               <FormInput

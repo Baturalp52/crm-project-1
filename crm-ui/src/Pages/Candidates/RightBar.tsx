@@ -28,6 +28,12 @@ const mockPhones = ["05000000050", "05000000051"];
 
 const mockEmails = ["example@example.com", "example@example.com"];
 
+const mockPreviousJobs = ["Job 1", "Job 2"];
+
+const mockDepartments = ["Department 1", "Department 2"];
+
+const mockKeywords = ["Keyword 1", "Keyword 2"];
+
 const RightBar = (props: IRightBarProps) => {
   const { candidate, isOpen, setIsOpen } = props;
 
@@ -151,6 +157,13 @@ const RightBar = (props: IRightBarProps) => {
               <MapsInput mainCoords={mainCoord} />
             </ListItem>
             <ListItem>
+              <FormMultiTextInput
+                label="Previous Jobs"
+                id="previousJobs"
+                data={mockPreviousJobs}
+              />
+            </ListItem>
+            <ListItem>
               <FormInput
                 label="Country"
                 type="text"
@@ -175,6 +188,20 @@ const RightBar = (props: IRightBarProps) => {
                 value={form.values.salaryExpectation}
                 name="salaryExpectation"
                 onChange={form.handleChange}
+              />
+            </ListItem>
+            <ListItem>
+              <FormMultiTextInput
+                label="Departments:"
+                id="departments"
+                data={mockDepartments}
+              />
+            </ListItem>
+            <ListItem>
+              <FormMultiTextInput
+                label="Key Words:"
+                id="keywords"
+                data={mockKeywords}
               />
             </ListItem>
           </List>

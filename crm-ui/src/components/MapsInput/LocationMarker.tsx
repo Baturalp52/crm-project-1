@@ -20,7 +20,7 @@ const LocationMarker = (props: any) => {
         }
       },
     }),
-    []
+    [setPosition]
   );
   return (
     <>

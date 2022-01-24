@@ -1,7 +1,5 @@
-import { IDepartment } from "./Department";
 import { IHRMember } from "./HRMember";
 import { IJob } from "./Job";
-import { IKeyword } from "./Keyword";
 import { ISkill } from "./Skills";
 
 export interface ICandidate {
@@ -18,11 +16,12 @@ export interface ICandidate {
   country?: string;
   mapsCoord?: string;
   creatorMember?: IHRMember;
-  previousJobs?: IJob[];
+  previousJobs?: string[];
+  requestedJob?: IJob[];
   skills?: ISkill[];
   comment?: string;
   salaryExpectation?: number;
-  departments?: IDepartment[];
-  keywords?: IKeyword[];
+  departments?: string[];
+  keywords?: string[];
   situation?: "full-time" | "part-time" | "freelance" | "free";
 }

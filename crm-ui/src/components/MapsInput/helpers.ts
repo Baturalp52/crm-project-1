@@ -17,7 +17,6 @@ export const getDistanceBetween2Coords = async (
   await defaultAxiosInstance.get(requestUrl).then((e) => {
     distance = e.data.routes[0].distance;
   });
-  console.log(distance);
 
   return distance;
 };

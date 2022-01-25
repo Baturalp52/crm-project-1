@@ -18,8 +18,12 @@ import candidates from "../../mockData/candidates";
 import { Add, BorderColor, DeleteForeverRounded } from "@mui/icons-material";
 import ActionModal from "./ActionModal";
 import { ICandidate } from "../../mockData/interfaces/Candidate";
+import { useTranslation } from "react-i18next";
 
 const CandidatesTable = () => {
+  const [tTable] = useTranslation("candidates", { keyPrefix: "table" });
+  const [tModal] = useTranslation("candidates", { keyPrefix: "modal" });
+
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [rowPerPage, setRowPerPage] = useState<number>(10);
   const [selectedCandidatesId, setSelectedCandidatesId] = useState<number[]>(
@@ -36,6 +40,7 @@ const CandidatesTable = () => {
         candidate={actionModalCandidate}
         isOpen={isActionModalOpen}
         setIsOpen={setIsActionModalOpen}
+        t={tModal}
       />
       <Paper
         sx={{
@@ -60,10 +65,10 @@ const CandidatesTable = () => {
                     }}
                   />
                 </TableCell>
-                <TableCell>id</TableCell>
-                <TableCell>Name</TableCell>
-                <TableCell>Surname</TableCell>
-                <TableCell>City</TableCell>
+                <TableCell>{tTable("id")}</TableCell>
+                <TableCell>{tTable("name")}</TableCell>
+                <TableCell>{tTable("surname")}</TableCell>
+                <TableCell>{tTable("city")}</TableCell>
                 <TableCell />
               </TableRow>
             </TableHead>
@@ -147,14 +152,14 @@ const CandidatesTable = () => {
                 setIsActionModalOpen(true);
               }}
             >
-              Add New
+              {tTable("add")}
             </Button>
             <Button
               sx={{ border: "none !important" }}
               startIcon={<DeleteForeverRounded />}
               color="error"
             >
-              Delete
+              {tTable("delete")}
             </Button>
           </ButtonGroup>
         </Stack>

@@ -1,0 +1,21 @@
+{
+  "table": {
+    "id": "id",
+    "name": "Name",
+    "city": "City",
+    "add": "Add New",
+    "delete": "Delete"
+  },
+  "modal": {
+    "edit": "Edit Company",
+    "add": "Add New",
+    "form": {
+      "id": "id",
+      "name": "Name",
+      "address": "Address",
+      "city": "City",
+      "sector": "Sector",
+      "save": "Save"
+    }
+  }
+}

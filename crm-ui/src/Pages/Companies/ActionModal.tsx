@@ -19,10 +19,11 @@ interface IActionModalProps {
   company?: ICompany;
   isOpen: boolean;
   setIsOpen(isOpen: boolean): any;
+  t: (key: string) => string;
 }
 
 const ActionModal = (props: IActionModalProps) => {
-  const { company, isOpen, setIsOpen } = props;
+  const { company, isOpen, setIsOpen, t } = props;
 
   let form = useFormik({
     initialValues: company ? { ...company } : { ...emptyCompany },
@@ -44,9 +45,9 @@ const ActionModal = (props: IActionModalProps) => {
         }}
       >
         <Typography variant="h6" display="flex" padding={2}>
-          {form.values.id ? "Edit Company" : "Add New"}
+          {form.values.id ? t("edit") : t("add")}
           <IconButton
-            sx={{ marginLeft: "auto", display: "inline" }}
+            sx={{ marginLeft: "auto" }}
             onClick={() => {
               setIsOpen(false);
             }}
@@ -54,57 +55,55 @@ const ActionModal = (props: IActionModalProps) => {
             <CloseRounded />
           </IconButton>
         </Typography>
+        <List>
+          <ListItem>
+            <FormInput
+              label={t("form.id")}
+              type="number"
+              value={form.values.id}
+              name="id"
+              onChange={form.handleChange}
+              disabled
+            />
+          </ListItem>
+          <ListItem>
+            <FormInput
+              label={t("form.name")}
+              type="text"
+              value={form.values.name}
+              name="name"
+              onChange={form.handleChange}
+            />
+          </ListItem>
+          <ListItem>
+            <FormInput
+              label={t("form.address")}
+              type="text"
+              value={form.values.address}
+              name="address"
+              onChange={form.handleChange}
+            />
+          </ListItem>
+          <ListItem>
+            <FormInput
+              label={t("form.city")}
+              type="text"
+              value={form.values.city}
+              name="city"
+              onChange={form.handleChange}
+            />
+          </ListItem>
+          <ListItem>
+            <FormInput
+              label={t("form.sector")}
+              type="text"
+              value={form.values.sector}
+              name="sector"
+              onChange={form.handleChange}
+            />
+          </ListItem>
+        </List>
 
-        <form onSubmit={form.handleSubmit}>
-          <List>
-            <ListItem>
-              <FormInput
-                label="id"
-                type="number"
-                value={form.values.id}
-                name="id"
-                onChange={form.handleChange}
-                disabled
-              />
-            </ListItem>
-            <ListItem>
-              <FormInput
-                label="Name"
-                type="text"
-                value={form.values.name}
-                name="name"
-                onChange={form.handleChange}
-              />
-            </ListItem>
-            <ListItem>
-              <FormInput
-                label="Address"
-                type="text"
-                value={form.values.address}
-                name="address"
-                onChange={form.handleChange}
-              />
-            </ListItem>
-            <ListItem>
-              <FormInput
-                label="City"
-                type="text"
-                value={form.values.city}
-                name="city"
-                onChange={form.handleChange}
-              />
-            </ListItem>
-            <ListItem>
-              <FormInput
-                label="Sector"
-                type="text"
-                value={form.values.sector}
-                name="sector"
-                onChange={form.handleChange}
-              />
-            </ListItem>
-          </List>
-        </form>
         <Stack padding={2}>
           <Button
             sx={{ border: "none !important", marginLeft: "auto" }}
@@ -115,7 +114,7 @@ const ActionModal = (props: IActionModalProps) => {
               setIsOpen(false);
             }}
           >
-            Save
+            {t("form.save")}
           </Button>
         </Stack>
       </Box>

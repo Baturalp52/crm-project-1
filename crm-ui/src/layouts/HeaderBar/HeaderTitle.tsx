@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 const HeaderTitle = () => {
   const [headerTitle, setHeaderTitle] = useState(document.title.split("||")[0]);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   pageRedux.subscribe(() => {
     const title = t(pageRedux.getState().title);
     setHeaderTitle(title);

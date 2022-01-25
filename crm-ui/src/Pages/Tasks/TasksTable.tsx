@@ -16,7 +16,7 @@ import {
 
 import tasks from "../../mockData/tasks";
 import { Add, BorderColor, DeleteForeverRounded } from "@mui/icons-material";
-import RightBar from "./RightBar";
+import TaskModal from "./TaskModal";
 import { ITask } from "../../mockData/interfaces/Task";
 import { getChipOfSituation } from "./helpers";
 
@@ -24,17 +24,17 @@ const TasksTable = () => {
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [rowPerPage, setRowPerPage] = useState<number>(10);
   const [selectedTasksId, setSelectedTasksId] = useState<number[]>([]);
-  const [isRightBarOpen, setIsRightBarOpen] = useState<boolean>(false);
-  const [rightBarTask, setRightBarTask] = useState<ITask | undefined>(
+  const [isTaskModalOpen, setIsTaskModalOpen] = useState<boolean>(false);
+  const [taskModalTask, setTaskModalTask] = useState<ITask | undefined>(
     undefined
   );
 
   return (
     <>
-      <RightBar
-        task={rightBarTask}
-        isOpen={isRightBarOpen}
-        setIsOpen={setIsRightBarOpen}
+      <TaskModal
+        task={taskModalTask}
+        isOpen={isTaskModalOpen}
+        setIsOpen={setIsTaskModalOpen}
       />
       <Paper
         sx={{
@@ -101,8 +101,8 @@ const TasksTable = () => {
                         color="warning"
                         variant="contained"
                         onClick={() => {
-                          setRightBarTask(item);
-                          setIsRightBarOpen(true);
+                          setTaskModalTask(item);
+                          setIsTaskModalOpen(true);
                         }}
                       >
                         <BorderColor />
@@ -138,8 +138,8 @@ const TasksTable = () => {
               startIcon={<Add />}
               color="success"
               onClick={() => {
-                setRightBarTask(undefined);
-                setIsRightBarOpen(true);
+                setTaskModalTask(undefined);
+                setIsTaskModalOpen(true);
               }}
             >
               Add New

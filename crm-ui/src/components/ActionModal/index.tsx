@@ -31,7 +31,7 @@ const ActionModal = (props: IActionModalProps) => {
           left: "50%",
           transform: "translate(-50%, -50%)",
           width: "95%",
-          height: "80%",
+          height: "85%",
           bgcolor: "background.paper",
           border: "none",
         }}
@@ -49,7 +49,7 @@ const ActionModal = (props: IActionModalProps) => {
             </IconButton>
           }
         />
-        <CardContent sx={{ height: "74%", overflow: "auto" }}>
+        <CardContent sx={{ height: "76%", overflow: "auto" }}>
           {children}
         </CardContent>
         <CardActions>

@@ -28,11 +28,14 @@ const FormMultiTextInput = (props: IFormMultiTextInputProps) => {
         <Grid container spacing={2} mx="auto">
           {data.map((item, index) => {
             return (
-              <Grid item>
+              <Grid item xs={12}>
                 <Button
                   key={index}
                   variant="outlined"
                   color={hovered[index] ? "error" : "inherit"}
+                  sx={{
+                    width: "100%",
+                  }}
                   onMouseOut={() => {
                     let cHovered = [...hovered];
                     cHovered[index] = 0;

@@ -16,7 +16,7 @@ import {
 
 import candidates from "../../mockData/candidates";
 import { Add, BorderColor, DeleteForeverRounded } from "@mui/icons-material";
-import EditCandidate from "./EditCandidate";
+import CandidateModal from "./CandidateModal";
 import { ICandidate } from "../../mockData/interfaces/Candidate";
 import { useTranslation } from "react-i18next";
 
@@ -29,18 +29,18 @@ const CandidatesTable = () => {
   const [selectedCandidatesId, setSelectedCandidatesId] = useState<number[]>(
     []
   );
-  const [isEditCandidateOpen, setIsEditCandidateOpen] =
+  const [isCandidateModalOpen, setIsCandidateModalOpen] =
     useState<boolean>(false);
-  const [editCandidateCandidate, setEditCandidateCandidate] = useState<
+  const [candidateModalCandidate, setCandidateModalCandidate] = useState<
     ICandidate | undefined
   >(undefined);
 
   return (
     <>
-      <EditCandidate
-        candidate={editCandidateCandidate}
-        isOpen={isEditCandidateOpen}
-        setIsOpen={setIsEditCandidateOpen}
+      <CandidateModal
+        candidate={candidateModalCandidate}
+        isOpen={isCandidateModalOpen}
+        setIsOpen={setIsCandidateModalOpen}
         t={tModal}
       />
       <Paper
@@ -112,8 +112,8 @@ const CandidatesTable = () => {
                         color="warning"
                         variant="contained"
                         onClick={() => {
-                          setEditCandidateCandidate(item);
-                          setIsEditCandidateOpen(true);
+                          setCandidateModalCandidate(item);
+                          setIsCandidateModalOpen(true);
                         }}
                       >
                         <BorderColor />
@@ -149,8 +149,8 @@ const CandidatesTable = () => {
               startIcon={<Add />}
               color="success"
               onClick={() => {
-                setEditCandidateCandidate(undefined);
-                setIsEditCandidateOpen(true);
+                setCandidateModalCandidate(undefined);
+                setIsCandidateModalOpen(true);
               }}
             >
               {tTable("add")}

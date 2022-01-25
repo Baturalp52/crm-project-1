@@ -7,8 +7,7 @@ const Companies = () => {
     pageRedux.dispatch({
       type: "CHANGE_TITLE",
       payload: {
-        headerTitle: "Companies",
-        pageTitle: "Companies || CRM",
+        title: "companies",
       },
     });
   });

@@ -7,8 +7,7 @@ export const pageReducer = (state: any = initialState, action?: any) => {
     case "CHANGE_TITLE":
       return {
         ...state,
-        headerTitle: action.payload.headerTitle,
-        pageTitle: action.payload.pageTitle,
+        title: action.payload.title,
       };
     default:
       return state;

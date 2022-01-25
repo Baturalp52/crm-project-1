@@ -23,8 +23,7 @@ const Calendar = () => {
     pageRedux.dispatch({
       type: "CHANGE_TITLE",
       payload: {
-        headerTitle: "Calendar",
-        pageTitle: "Calendar || CRM",
+        title: "calendar",
       },
     });
   });

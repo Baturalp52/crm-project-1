@@ -38,6 +38,7 @@ const mockKeywords = ["Keyword 1", "Keyword 2"];
 
 const ActionModal = (props: IActionModalProps) => {
   const { candidate, isOpen, setIsOpen } = props;
+  const { t } = useTranslation("candidates");
 
   let form = useFormik({
     initialValues: candidate ? { ...candidate } : { ...emptyCandidate },
@@ -60,7 +61,7 @@ const ActionModal = (props: IActionModalProps) => {
       >
         <CardHeader
           sx={{ p: 2, bgcolor: "success.dark", color: "white" }}
-          title={form.values.id ? "Edit Candidate" : "Add New"}
+          title={form.values.id ? t("edit") : t("add")}
           action={
             <IconButton
               onClick={() => {
@@ -75,7 +76,7 @@ const ActionModal = (props: IActionModalProps) => {
           <Grid container spacing={2} padding={2}>
             <Grid item xs={12} md={4}>
               <FormInput
-                label="id"
+                label={t("form.id")}
                 type="number"
                 value={form.values.id}
                 name="id"
@@ -83,63 +84,63 @@ const ActionModal = (props: IActionModalProps) => {
                 disabled
               />
               <FormInput
-                label="Name"
+                label={t("form.name")}
                 type="text"
                 value={form.values.name}
                 name="name"
                 onChange={form.handleChange}
               />
               <FormInput
-                label="Surname"
+                label={t("form.surname")}
                 type="text"
                 value={form.values.surname}
                 name="surname"
                 onChange={form.handleChange}
               />
               <FormInput
-                label="Address"
+                label={t("form.address")}
                 type="text"
                 value={form.values.address}
                 name="address"
                 onChange={form.handleChange}
               />
               <FormInput
-                label="Extra Address"
+                label={t("form.extraAddress")}
                 type="text"
                 value={form.values.extraAddress}
                 name="extraAddress"
                 onChange={form.handleChange}
               />
               <FormInput
-                label="Zip Code"
+                label={t("form.zipCode")}
                 type="text"
                 value={form.values.zipCode}
                 name="zipCode"
                 onChange={form.handleChange}
               />
               <FormInput
-                label="City"
+                label={t("form.city")}
                 type="text"
                 value={form.values.city}
                 name="city"
                 onChange={form.handleChange}
               />
               <FormInput
-                label="Country"
+                label={t("form.country")}
                 type="text"
                 value={form.values.country}
                 name="country"
                 onChange={form.handleChange}
               />
               <FormInput
-                label="Comment"
+                label={t("form.comment")}
                 type="text"
                 value={form.values.comment}
                 name="comment"
                 onChange={form.handleChange}
               />
               <FormInput
-                label="Salary Expectation"
+                label={t("form.salaryExpectation")}
                 type="number"
                 value={form.values.salaryExpectation}
                 name="salaryExpectation"
@@ -148,27 +149,27 @@ const ActionModal = (props: IActionModalProps) => {
             </Grid>
             <Grid item xs={12} md={4}>
               <FormMultiTextInput
-                label="Phone Numbers:"
+                label={t("form.phoneNumbers")}
                 id="phone-numbers"
                 data={mockPhones}
               />
               <FormMultiTextInput
-                label="E-mail Addresses:"
+                label={t("form.emailAddresses")}
                 id="email-addresses"
                 data={mockEmails}
               />
               <FormMultiTextInput
-                label="Previous Jobs"
-                id="previousJobs"
+                label={t("form.previousJobs")}
+                id="previous-jobs"
                 data={mockPreviousJobs}
               />
               <FormMultiTextInput
-                label="Departments:"
+                label={t("form.departments")}
                 id="departments"
                 data={mockDepartments}
               />
               <FormMultiTextInput
-                label="Key Words:"
+                label={t("form.keywords")}
                 id="keywords"
                 data={mockKeywords}
               />
@@ -178,15 +179,15 @@ const ActionModal = (props: IActionModalProps) => {
               {form.values.id ? (
                 <Stack sx={{ m: 1 }} direction="row" spacing={1}>
                   <Button variant="contained" color="success">
-                    <SaveRounded /> Download CV
+                    <SaveRounded /> {t("form.cv.download")}
                   </Button>
                   <Button variant="contained" color="secondary">
-                    <FileUpload /> Upload New CV
+                    <FileUpload /> {t("form.cv.upload-new")}
                   </Button>
                 </Stack>
               ) : (
                 <Button sx={{ m: 1 }} variant="contained" color="secondary">
-                  <FileUpload /> Upload CV
+                  <FileUpload /> {t("form.cv.upload")}
                 </Button>
               )}
             </Grid>
@@ -203,7 +204,7 @@ const ActionModal = (props: IActionModalProps) => {
               form.submitForm();
             }}
           >
-            Save
+            {t("form.save")}
           </Button>
         </CardActions>
       </Card>

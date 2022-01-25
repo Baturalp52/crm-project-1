@@ -1,0 +1,27 @@
+{
+  "edit": "Edit Candidate",
+  "add": "Add New Candidate",
+  "form": {
+    "id": "id",
+    "name": "Name",
+    "surname": "Surname",
+    "address": "Address",
+    "extraAddress": "Extra Address",
+    "zipCode": "Zip Code",
+    "city": "City",
+    "country": "Country",
+    "comment": "Comment",
+    "salaryExpectation": "Salary Expectation",
+    "phoneNumbers": "Phone Numbers:",
+    "emailAddresses": "E-mail Addresses:",
+    "previousJobs": "Previous Jobs",
+    "departments": "Departments:",
+    "keywords": "Key Words:",
+    "cv": {
+      "download": "Download CV",
+      "upload-new": "Upload New CV",
+      "upload": "Upload CV"
+    },
+    "save": "Save"
+  }
+}

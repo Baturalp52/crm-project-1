@@ -11,28 +11,28 @@ import {
   Views,
 } from "react-big-calendar";
 import { Box, Paper } from "@mui/material";
-import RightBar from "./RightBar";
+import ActionModal from "./ActionModal";
 
 const localizer = momentLocalizer(moment);
 const Calendar = () => {
-  const [isRightBarOpen, setIsRightBarOpen] = useState<boolean>(false);
-  const [rightBarEvent, setRightBarEvent] = useState<IEvent | undefined>(
+  const [isActionModalOpen, setIsActionModalOpen] = useState<boolean>(false);
+  const [actionModalEvent, setActionModalEvent] = useState<IEvent | undefined>(
     undefined
   );
   useEffect(() => {
     pageRedux.dispatch({
       type: "CHANGE_TITLE",
       payload: {
-        title: "calendar",
+        title: "calendar.title",
       },
     });
   });
   return (
     <>
-      <RightBar
-        event={rightBarEvent}
-        isOpen={isRightBarOpen}
-        setIsOpen={setIsRightBarOpen}
+      <ActionModal
+        event={actionModalEvent}
+        isOpen={isActionModalOpen}
+        setIsOpen={setIsActionModalOpen}
       />
       <Paper
         sx={{
@@ -57,8 +57,8 @@ const Calendar = () => {
               month: true,
             }}
             onSelectEvent={(event) => {
-              setRightBarEvent(event);
-              setIsRightBarOpen(true);
+              setActionModalEvent(event);
+              setIsActionModalOpen(true);
             }}
             onSelectSlot={(event) => {
               const newEvent = {
@@ -69,8 +69,8 @@ const Calendar = () => {
                 start: new Date(event.start),
                 end: new Date(event.end),
               };
-              setRightBarEvent(newEvent);
-              setIsRightBarOpen(true);
+              setActionModalEvent(newEvent);
+              setIsActionModalOpen(true);
             }}
           />
         </Box>

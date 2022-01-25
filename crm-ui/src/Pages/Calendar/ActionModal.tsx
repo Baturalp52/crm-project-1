@@ -2,7 +2,7 @@ import React from "react";
 import {
   Box,
   Button,
-  Drawer,
+  Modal,
   IconButton,
   List,
   ListItem,
@@ -14,15 +14,17 @@ import { IEvent } from "../../mockData/interfaces/Event";
 import { emptyEvent } from "./emptyEvent";
 import FormInput from "../../components/FormInput";
 import { CloseRounded, SaveRounded } from "@mui/icons-material";
+import { useTranslation } from "react-i18next";
 
-interface IRightBarProps {
+interface IActionModalProps {
   event?: IEvent;
   isOpen: boolean;
   setIsOpen(isOpen: boolean): any;
 }
 
-const RightBar = (props: IRightBarProps) => {
+const ActionModal = (props: IActionModalProps) => {
   const { event, isOpen, setIsOpen } = props;
+  const { t } = useTranslation("calendar");
 
   let form = useFormik({
     initialValues: event ? { ...event } : { ...emptyEvent },
@@ -30,10 +32,21 @@ const RightBar = (props: IRightBarProps) => {
     enableReinitialize: true,
   });
   return (
-    <Drawer anchor="right" open={isOpen} onClose={() => setIsOpen(false)}>
-      <Box sx={{ width: 400, overflow: "auto" }} role="presentation">
-        <Typography variant="h6" display="flex" padding={2}>
-          {form.values.id ? "Edit Event" : "Add New"}
+    <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+      <Box
+        sx={{
+          position: "absolute" as "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: 400,
+          bgcolor: "background.paper",
+          p: 2,
+          border: "none",
+        }}
+        role="presentation"
+      >
+        <Stack>
           <IconButton
             sx={{ marginLeft: "auto", display: "inline" }}
             onClick={() => {
@@ -42,13 +55,16 @@ const RightBar = (props: IRightBarProps) => {
           >
             <CloseRounded />
           </IconButton>
+        </Stack>
+        <Typography variant="h6" display="flex" padding={2}>
+          {form.values.id ? t("editEvent") : t("addEvent")}
         </Typography>
 
         <form onSubmit={form.handleSubmit}>
           <List>
             <ListItem>
               <FormInput
-                label="id"
+                label={t("form.id")}
                 type="number"
                 value={form.values.id}
                 name="id"
@@ -58,7 +74,7 @@ const RightBar = (props: IRightBarProps) => {
             </ListItem>
             <ListItem>
               <FormInput
-                label="Title"
+                label={t("form.title")}
                 type="text"
                 value={form.values.title}
                 name="title"
@@ -67,7 +83,7 @@ const RightBar = (props: IRightBarProps) => {
             </ListItem>
             <ListItem>
               <FormInput
-                label="Description"
+                label={t("form.description")}
                 type="text"
                 value={form.values.desc}
                 name="desc"
@@ -86,12 +102,12 @@ const RightBar = (props: IRightBarProps) => {
               setIsOpen(false);
             }}
           >
-            Save
+            {t("form.save")}
           </Button>
         </Stack>
       </Box>
-    </Drawer>
+    </Modal>
   );
 };
 
-export default RightBar;
+export default ActionModal;

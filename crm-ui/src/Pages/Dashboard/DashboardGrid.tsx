@@ -14,8 +14,10 @@ import tasks from "../../mockData/tasks";
 import jobs from "../../mockData/jobs";
 import hrmembers from "../../mockData/hrmembers";
 import { events } from "../../mockData/events";
+import { useTranslation } from "react-i18next";
 
 const DashboardGrid = () => {
+  const { t } = useTranslation();
   return (
     <Grid
       container
@@ -25,42 +27,42 @@ const DashboardGrid = () => {
       padding={2}
     >
       <GridItem
-        title="Candidates"
+        title={t("candidates")}
         icon={<People />}
         data={candidates.length}
         color="#9c27b0"
         link="/candidates"
       />
       <GridItem
-        title="Companies"
+        title={t("companies")}
         icon={<Apartment />}
         data={companies.length}
         color="#0288d1"
         link="/companies"
       />
       <GridItem
-        title="Tasks"
+        title={t("tasks")}
         icon={<ListAlt />}
         data={tasks.length}
         color="#2e7d32"
         link="/tasks"
       />
       <GridItem
-        title="Jobs"
+        title={t("jobs")}
         icon={<WorkOutlined />}
         data={jobs.length}
         color="#ed6c02"
         link="/jobs"
       />
       <GridItem
-        title="HR Members"
+        title={t("hrMembers")}
         icon={<People />}
         data={hrmembers.length}
         color="#9c27b0"
         link="/hr-members"
       />
       <GridItem
-        title="Events"
+        title={t("events")}
         icon={<CalendarToday />}
         data={events.length}
         color="#0288d1"

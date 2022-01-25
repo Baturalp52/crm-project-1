@@ -16,24 +16,24 @@ import {
 
 import companies from "../../mockData/companies";
 import { Add, BorderColor, DeleteForeverRounded } from "@mui/icons-material";
-import RightBar from "./RightBar";
+import ActionModal from "./ActionModal";
 import { ICompany } from "../../mockData/interfaces/Company";
 
 const CompanysTable = () => {
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [rowPerPage, setRowPerPage] = useState<number>(10);
   const [selectedCompanysId, setSelectedCompanysId] = useState<number[]>([]);
-  const [isRightBarOpen, setIsRightBarOpen] = useState<boolean>(false);
-  const [rightBarCompany, setRightBarCompany] = useState<ICompany | undefined>(
-    undefined
-  );
+  const [isActionModalOpen, setIsActionModalOpen] = useState<boolean>(false);
+  const [actionModalCompany, setActionModalCompany] = useState<
+    ICompany | undefined
+  >(undefined);
 
   return (
     <>
-      <RightBar
-        company={rightBarCompany}
-        isOpen={isRightBarOpen}
-        setIsOpen={setIsRightBarOpen}
+      <ActionModal
+        company={actionModalCompany}
+        isOpen={isActionModalOpen}
+        setIsOpen={setIsActionModalOpen}
       />
       <Paper
         sx={{
@@ -98,8 +98,8 @@ const CompanysTable = () => {
                         color="warning"
                         variant="contained"
                         onClick={() => {
-                          setRightBarCompany(item);
-                          setIsRightBarOpen(true);
+                          setActionModalCompany(item);
+                          setIsActionModalOpen(true);
                         }}
                       >
                         <BorderColor />
@@ -135,8 +135,8 @@ const CompanysTable = () => {
               startIcon={<Add />}
               color="success"
               onClick={() => {
-                setRightBarCompany(undefined);
-                setIsRightBarOpen(true);
+                setActionModalCompany(undefined);
+                setIsActionModalOpen(true);
               }}
             >
               Add New

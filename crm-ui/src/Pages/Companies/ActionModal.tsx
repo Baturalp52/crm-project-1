@@ -2,7 +2,7 @@ import React from "react";
 import {
   Box,
   Button,
-  Drawer,
+  Modal,
   IconButton,
   List,
   ListItem,
@@ -15,13 +15,13 @@ import FormInput from "../../components/FormInput";
 import { CloseRounded, SaveRounded } from "@mui/icons-material";
 import { ICompany } from "../../mockData/interfaces/Company";
 
-interface IRightBarProps {
+interface IActionModalProps {
   company?: ICompany;
   isOpen: boolean;
   setIsOpen(isOpen: boolean): any;
 }
 
-const RightBar = (props: IRightBarProps) => {
+const ActionModal = (props: IActionModalProps) => {
   const { company, isOpen, setIsOpen } = props;
 
   let form = useFormik({
@@ -30,8 +30,19 @@ const RightBar = (props: IRightBarProps) => {
     enableReinitialize: true,
   });
   return (
-    <Drawer anchor="right" open={isOpen} onClose={() => setIsOpen(false)}>
-      <Box sx={{ width: 400, overflow: "auto" }} role="presentation">
+    <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+      <Box
+        sx={{
+          position: "absolute" as "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: "95%",
+          height: "80%",
+          bgcolor: "background.paper",
+          border: "none",
+        }}
+      >
         <Typography variant="h6" display="flex" padding={2}>
           {form.values.id ? "Edit Company" : "Add New"}
           <IconButton
@@ -108,8 +119,8 @@ const RightBar = (props: IRightBarProps) => {
           </Button>
         </Stack>
       </Box>
-    </Drawer>
+    </Modal>
   );
 };
 
-export default RightBar;
+export default ActionModal;

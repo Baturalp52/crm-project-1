@@ -1,6 +1,6 @@
 {
-  "editEvent": "Edit Event",
-  "addEvent": " Add New",
+  "edit": "Edit Event",
+  "add": " Add New",
   "form": {
     "id": "id",
     "title": "Title",

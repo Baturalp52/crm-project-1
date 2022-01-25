@@ -57,7 +57,7 @@ const ActionModal = (props: IActionModalProps) => {
           </IconButton>
         </Stack>
         <Typography variant="h6" display="flex" padding={2}>
-          {form.values.id ? t("editEvent") : t("addEvent")}
+          {form.values.id ? t("edit") : t("add")}
         </Typography>
 
         <form onSubmit={form.handleSubmit}>

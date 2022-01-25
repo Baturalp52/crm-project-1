@@ -16,24 +16,24 @@ import {
 
 import hrmembers from "../../mockData/hrmembers";
 import { Add, BorderColor, DeleteForeverRounded } from "@mui/icons-material";
-import RightBar from "./RightBar";
+import ActionModal from "./ActionModal";
 import { IHRMember } from "../../mockData/interfaces/HRMember";
 
 const HRMembersTable = () => {
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [rowPerPage, setRowPerPage] = useState<number>(10);
   const [selectedHRMembersId, setSelectedHRMembersId] = useState<number[]>([]);
-  const [isRightBarOpen, setIsRightBarOpen] = useState<boolean>(false);
-  const [rightBarHRMember, setRightBarHRMember] = useState<
+  const [isActionModalOpen, setIsActionModalOpen] = useState<boolean>(false);
+  const [actionModalrHRMember, setActionModalHRMember] = useState<
     IHRMember | undefined
   >(undefined);
 
   return (
     <>
-      <RightBar
-        hrmember={rightBarHRMember}
-        isOpen={isRightBarOpen}
-        setIsOpen={setIsRightBarOpen}
+      <ActionModal
+        hrmember={actionModalrHRMember}
+        isOpen={isActionModalOpen}
+        setIsOpen={setIsActionModalOpen}
       />
       <Paper
         sx={{
@@ -102,8 +102,8 @@ const HRMembersTable = () => {
                         color="warning"
                         variant="contained"
                         onClick={() => {
-                          setRightBarHRMember(item);
-                          setIsRightBarOpen(true);
+                          setActionModalHRMember(item);
+                          setIsActionModalOpen(true);
                         }}
                       >
                         <BorderColor />
@@ -139,8 +139,8 @@ const HRMembersTable = () => {
               startIcon={<Add />}
               color="success"
               onClick={() => {
-                setRightBarHRMember(undefined);
-                setIsRightBarOpen(true);
+                setActionModalHRMember(undefined);
+                setIsActionModalOpen(true);
               }}
             >
               Add New

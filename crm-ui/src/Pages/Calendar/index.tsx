@@ -11,12 +11,12 @@ import {
   Views,
 } from "react-big-calendar";
 import { Box, Paper } from "@mui/material";
-import ActionModal from "./ActionModal";
+import EventModal from "./EventModal";
 
 const localizer = momentLocalizer(moment);
 const Calendar = () => {
-  const [isActionModalOpen, setIsActionModalOpen] = useState<boolean>(false);
-  const [actionModalEvent, setActionModalEvent] = useState<IEvent | undefined>(
+  const [isEventModalOpen, setIsEventModalOpen] = useState<boolean>(false);
+  const [eventModalEvent, setEventModalEvent] = useState<IEvent | undefined>(
     undefined
   );
   useEffect(() => {
@@ -29,10 +29,10 @@ const Calendar = () => {
   });
   return (
     <>
-      <ActionModal
-        event={actionModalEvent}
-        isOpen={isActionModalOpen}
-        setIsOpen={setIsActionModalOpen}
+      <EventModal
+        event={eventModalEvent}
+        isOpen={isEventModalOpen}
+        setIsOpen={setIsEventModalOpen}
       />
       <Paper
         sx={{
@@ -57,8 +57,8 @@ const Calendar = () => {
               month: true,
             }}
             onSelectEvent={(event) => {
-              setActionModalEvent(event);
-              setIsActionModalOpen(true);
+              setEventModalEvent(event);
+              setIsEventModalOpen(true);
             }}
             onSelectSlot={(event) => {
               const newEvent = {
@@ -69,8 +69,8 @@ const Calendar = () => {
                 start: new Date(event.start),
                 end: new Date(event.end),
               };
-              setActionModalEvent(newEvent);
-              setIsActionModalOpen(true);
+              setEventModalEvent(newEvent);
+              setIsEventModalOpen(true);
             }}
           />
         </Box>

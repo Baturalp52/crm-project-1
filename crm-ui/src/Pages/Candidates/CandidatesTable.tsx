@@ -16,7 +16,7 @@ import {
 
 import candidates from "../../mockData/candidates";
 import { Add, BorderColor, DeleteForeverRounded } from "@mui/icons-material";
-import RightBar from "./RightBar";
+import ActionModal from "./ActionModal";
 import { ICandidate } from "../../mockData/interfaces/Candidate";
 
 const CandidatesTable = () => {
@@ -25,17 +25,17 @@ const CandidatesTable = () => {
   const [selectedCandidatesId, setSelectedCandidatesId] = useState<number[]>(
     []
   );
-  const [isRightBarOpen, setIsRightBarOpen] = useState<boolean>(false);
-  const [rightBarCandidate, setRightBarCandidate] = useState<
+  const [isActionModalOpen, setIsActionModalOpen] = useState<boolean>(false);
+  const [actionModalCandidate, setActionModalCandidate] = useState<
     ICandidate | undefined
   >(undefined);
 
   return (
     <>
-      <RightBar
-        candidate={rightBarCandidate}
-        isOpen={isRightBarOpen}
-        setIsOpen={setIsRightBarOpen}
+      <ActionModal
+        candidate={actionModalCandidate}
+        isOpen={isActionModalOpen}
+        setIsOpen={setIsActionModalOpen}
       />
       <Paper
         sx={{
@@ -106,8 +106,8 @@ const CandidatesTable = () => {
                         color="warning"
                         variant="contained"
                         onClick={() => {
-                          setRightBarCandidate(item);
-                          setIsRightBarOpen(true);
+                          setActionModalCandidate(item);
+                          setIsActionModalOpen(true);
                         }}
                       >
                         <BorderColor />
@@ -143,8 +143,8 @@ const CandidatesTable = () => {
               startIcon={<Add />}
               color="success"
               onClick={() => {
-                setRightBarCandidate(undefined);
-                setIsRightBarOpen(true);
+                setActionModalCandidate(undefined);
+                setIsActionModalOpen(true);
               }}
             >
               Add New

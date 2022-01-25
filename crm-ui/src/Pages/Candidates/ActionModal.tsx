@@ -1,13 +1,14 @@
 import React from "react";
 import {
-  Box,
+  Card,
+  Grid,
   Button,
-  Drawer,
+  Modal,
   IconButton,
-  List,
-  ListItem,
   Stack,
-  Typography,
+  CardHeader,
+  CardContent,
+  CardActions,
 } from "@mui/material";
 import { useFormik } from "formik";
 import { ICandidate } from "../../mockData/interfaces/Candidate";
@@ -17,8 +18,9 @@ import { CloseRounded, FileUpload, SaveRounded } from "@mui/icons-material";
 import FormMultiTextInput from "../../components/FormMultiTextInput";
 import MapsInput from "../../components/MapsInput";
 import mainCoord from "../../mockData/coords";
+import { useTranslation } from "react-i18next";
 
-interface IRightBarProps {
+interface IActionModalProps {
   candidate?: ICandidate;
   isOpen: boolean;
   setIsOpen(isOpen: boolean): any;
@@ -34,7 +36,7 @@ const mockDepartments = ["Department 1", "Department 2"];
 
 const mockKeywords = ["Keyword 1", "Keyword 2"];
 
-const RightBar = (props: IRightBarProps) => {
+const ActionModal = (props: IActionModalProps) => {
   const { candidate, isOpen, setIsOpen } = props;
 
   let form = useFormik({
@@ -43,23 +45,35 @@ const RightBar = (props: IRightBarProps) => {
     enableReinitialize: true,
   });
   return (
-    <Drawer anchor="right" open={isOpen} onClose={() => setIsOpen(false)}>
-      <Box sx={{ width: 400, overflow: "auto" }} role="presentation">
-        <Typography variant="h6" display="flex" padding={2}>
-          {form.values.id ? "Edit Candidate" : "Add New"}
-          <IconButton
-            sx={{ marginLeft: "auto", display: "inline" }}
-            onClick={() => {
-              setIsOpen(false);
-            }}
-          >
-            <CloseRounded />
-          </IconButton>
-        </Typography>
-
-        <form onSubmit={form.handleSubmit}>
-          <List>
-            <ListItem>
+    <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+      <Card
+        sx={{
+          position: "absolute" as "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: "95%",
+          height: "80%",
+          bgcolor: "background.paper",
+          border: "none",
+        }}
+      >
+        <CardHeader
+          sx={{ p: 2, bgcolor: "success.dark", color: "white" }}
+          title={form.values.id ? "Edit Candidate" : "Add New"}
+          action={
+            <IconButton
+              onClick={() => {
+                setIsOpen(false);
+              }}
+            >
+              <CloseRounded htmlColor="white" />
+            </IconButton>
+          }
+        />
+        <CardContent sx={{ height: "74%", overflow: "auto" }}>
+          <Grid container spacing={2} padding={2}>
+            <Grid item xs={12} md={4}>
               <FormInput
                 label="id"
                 type="number"
@@ -68,8 +82,6 @@ const RightBar = (props: IRightBarProps) => {
                 onChange={form.handleChange}
                 disabled
               />
-            </ListItem>
-            <ListItem>
               <FormInput
                 label="Name"
                 type="text"
@@ -77,8 +89,6 @@ const RightBar = (props: IRightBarProps) => {
                 name="name"
                 onChange={form.handleChange}
               />
-            </ListItem>
-            <ListItem>
               <FormInput
                 label="Surname"
                 type="text"
@@ -86,10 +96,87 @@ const RightBar = (props: IRightBarProps) => {
                 name="surname"
                 onChange={form.handleChange}
               />
-            </ListItem>
-            <ListItem>
+              <FormInput
+                label="Address"
+                type="text"
+                value={form.values.address}
+                name="address"
+                onChange={form.handleChange}
+              />
+              <FormInput
+                label="Extra Address"
+                type="text"
+                value={form.values.extraAddress}
+                name="extraAddress"
+                onChange={form.handleChange}
+              />
+              <FormInput
+                label="Zip Code"
+                type="text"
+                value={form.values.zipCode}
+                name="zipCode"
+                onChange={form.handleChange}
+              />
+              <FormInput
+                label="City"
+                type="text"
+                value={form.values.city}
+                name="city"
+                onChange={form.handleChange}
+              />
+              <FormInput
+                label="Country"
+                type="text"
+                value={form.values.country}
+                name="country"
+                onChange={form.handleChange}
+              />
+              <FormInput
+                label="Comment"
+                type="text"
+                value={form.values.comment}
+                name="comment"
+                onChange={form.handleChange}
+              />
+              <FormInput
+                label="Salary Expectation"
+                type="number"
+                value={form.values.salaryExpectation}
+                name="salaryExpectation"
+                onChange={form.handleChange}
+              />
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <FormMultiTextInput
+                label="Phone Numbers:"
+                id="phone-numbers"
+                data={mockPhones}
+              />
+              <FormMultiTextInput
+                label="E-mail Addresses:"
+                id="email-addresses"
+                data={mockEmails}
+              />
+              <FormMultiTextInput
+                label="Previous Jobs"
+                id="previousJobs"
+                data={mockPreviousJobs}
+              />
+              <FormMultiTextInput
+                label="Departments:"
+                id="departments"
+                data={mockDepartments}
+              />
+              <FormMultiTextInput
+                label="Key Words:"
+                id="keywords"
+                data={mockKeywords}
+              />
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <MapsInput mainCoords={mainCoord} />
               {form.values.id ? (
-                <Stack direction="row" spacing={1}>
+                <Stack sx={{ m: 1 }} direction="row" spacing={1}>
                   <Button variant="contained" color="success">
                     <SaveRounded /> Download CV
                   </Button>
@@ -98,115 +185,14 @@ const RightBar = (props: IRightBarProps) => {
                   </Button>
                 </Stack>
               ) : (
-                <Button variant="contained" color="secondary">
+                <Button sx={{ m: 1 }} variant="contained" color="secondary">
                   <FileUpload /> Upload CV
                 </Button>
               )}
-            </ListItem>
-            <ListItem>
-              <FormMultiTextInput
-                label="Phone Numbers:"
-                id="phone-numbers"
-                data={mockPhones}
-              />
-            </ListItem>
-            <ListItem>
-              <FormMultiTextInput
-                label="E-mail Addresses:"
-                id="email-addresses"
-                data={mockEmails}
-              />
-            </ListItem>
-            <ListItem>
-              <FormInput
-                label="Address"
-                type="text"
-                value={form.values.address}
-                name="address"
-                onChange={form.handleChange}
-              />
-            </ListItem>
-            <ListItem>
-              <FormInput
-                label="Extra Address"
-                type="text"
-                value={form.values.extraAddress}
-                name="extraAddress"
-                onChange={form.handleChange}
-              />
-            </ListItem>
-            <ListItem>
-              <FormInput
-                label="Zip Code"
-                type="text"
-                value={form.values.zipCode}
-                name="zipCode"
-                onChange={form.handleChange}
-              />
-            </ListItem>
-            <ListItem>
-              <FormInput
-                label="City"
-                type="text"
-                value={form.values.city}
-                name="city"
-                onChange={form.handleChange}
-              />
-            </ListItem>
-            <ListItem>
-              <MapsInput mainCoords={mainCoord} />
-            </ListItem>
-            <ListItem>
-              <FormMultiTextInput
-                label="Previous Jobs"
-                id="previousJobs"
-                data={mockPreviousJobs}
-              />
-            </ListItem>
-            <ListItem>
-              <FormInput
-                label="Country"
-                type="text"
-                value={form.values.country}
-                name="country"
-                onChange={form.handleChange}
-              />
-            </ListItem>
-            <ListItem>
-              <FormInput
-                label="Comment"
-                type="text"
-                value={form.values.comment}
-                name="comment"
-                onChange={form.handleChange}
-              />
-            </ListItem>
-            <ListItem>
-              <FormInput
-                label="Salary Expectation"
-                type="number"
-                value={form.values.salaryExpectation}
-                name="salaryExpectation"
-                onChange={form.handleChange}
-              />
-            </ListItem>
-            <ListItem>
-              <FormMultiTextInput
-                label="Departments:"
-                id="departments"
-                data={mockDepartments}
-              />
-            </ListItem>
-            <ListItem>
-              <FormMultiTextInput
-                label="Key Words:"
-                id="keywords"
-                data={mockKeywords}
-              />
-            </ListItem>
-          </List>
-        </form>
-        <Stack padding={2}>
+            </Grid>
+          </Grid>
+        </CardContent>
+        <CardActions>
           <Button
             sx={{ border: "none !important", marginLeft: "auto" }}
             startIcon={<SaveRounded />}
@@ -214,14 +200,15 @@ const RightBar = (props: IRightBarProps) => {
             variant="contained"
             onClick={() => {
               setIsOpen(false);
+              form.submitForm();
             }}
           >
             Save
           </Button>
-        </Stack>
-      </Box>
-    </Drawer>
+        </CardActions>
+      </Card>
+    </Modal>
   );
 };
 
-export default RightBar;
+export default ActionModal;

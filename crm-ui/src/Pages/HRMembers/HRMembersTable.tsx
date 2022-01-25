@@ -16,24 +16,25 @@ import {
 
 import hrmembers from "../../mockData/hrmembers";
 import { Add, BorderColor, DeleteForeverRounded } from "@mui/icons-material";
-import ActionModal from "./ActionModal";
+import HRMemberModal from "./HRMemberModal";
 import { IHRMember } from "../../mockData/interfaces/HRMember";
 
 const HRMembersTable = () => {
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [rowPerPage, setRowPerPage] = useState<number>(10);
   const [selectedHRMembersId, setSelectedHRMembersId] = useState<number[]>([]);
-  const [isActionModalOpen, setIsActionModalOpen] = useState<boolean>(false);
-  const [actionModalrHRMember, setActionModalHRMember] = useState<
+  const [isHRMemberModalOpen, setIsHRMemberModalOpen] =
+    useState<boolean>(false);
+  const [hrMemberModalrHRMember, setHRMemberModalHRMember] = useState<
     IHRMember | undefined
   >(undefined);
 
   return (
     <>
-      <ActionModal
-        hrmember={actionModalrHRMember}
-        isOpen={isActionModalOpen}
-        setIsOpen={setIsActionModalOpen}
+      <HRMemberModal
+        hrmember={hrMemberModalrHRMember}
+        isOpen={isHRMemberModalOpen}
+        setIsOpen={setIsHRMemberModalOpen}
       />
       <Paper
         sx={{
@@ -102,8 +103,8 @@ const HRMembersTable = () => {
                         color="warning"
                         variant="contained"
                         onClick={() => {
-                          setActionModalHRMember(item);
-                          setIsActionModalOpen(true);
+                          setHRMemberModalHRMember(item);
+                          setIsHRMemberModalOpen(true);
                         }}
                       >
                         <BorderColor />
@@ -139,8 +140,8 @@ const HRMembersTable = () => {
               startIcon={<Add />}
               color="success"
               onClick={() => {
-                setActionModalHRMember(undefined);
-                setIsActionModalOpen(true);
+                setHRMemberModalHRMember(undefined);
+                setIsHRMemberModalOpen(true);
               }}
             >
               Add New

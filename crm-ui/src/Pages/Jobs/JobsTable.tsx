@@ -16,22 +16,22 @@ import {
 
 import jobs from "../../mockData/jobs";
 import { Add, BorderColor, DeleteForeverRounded } from "@mui/icons-material";
-import RightBar from "./RightBar";
+import JobModal from "./JobModal";
 import { IJob } from "../../mockData/interfaces/Job";
 
 const JobsTable = () => {
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [rowPerPage, setRowPerPage] = useState<number>(10);
   const [selectedJobsId, setSelectedJobsId] = useState<number[]>([]);
-  const [isRightBarOpen, setIsRightBarOpen] = useState<boolean>(false);
-  const [rightBarJob, setRightBarJob] = useState<IJob | undefined>(undefined);
+  const [isJobModalOpen, setIsJobModalOpen] = useState<boolean>(false);
+  const [jobModalJob, setJobModalJob] = useState<IJob | undefined>(undefined);
 
   return (
     <>
-      <RightBar
-        job={rightBarJob}
-        isOpen={isRightBarOpen}
-        setIsOpen={setIsRightBarOpen}
+      <JobModal
+        job={jobModalJob}
+        isOpen={isJobModalOpen}
+        setIsOpen={setIsJobModalOpen}
       />
       <Paper
         sx={{
@@ -98,8 +98,8 @@ const JobsTable = () => {
                         color="warning"
                         variant="contained"
                         onClick={() => {
-                          setRightBarJob(item);
-                          setIsRightBarOpen(true);
+                          setJobModalJob(item);
+                          setIsJobModalOpen(true);
                         }}
                       >
                         <BorderColor />
@@ -135,8 +135,8 @@ const JobsTable = () => {
               startIcon={<Add />}
               color="success"
               onClick={() => {
-                setRightBarJob(undefined);
-                setIsRightBarOpen(true);
+                setJobModalJob(undefined);
+                setIsJobModalOpen(true);
               }}
             >
               Add New

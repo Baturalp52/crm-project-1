@@ -13,7 +13,7 @@ interface IFormInputProps {
 const FormInput = (props: IFormInputProps) => {
   const { label, type, value, name, onChange, disabled } = props;
   return (
-    <FormControl error={!Boolean(value)} sx={{ width: "100%" }}>
+    <FormControl error={!Boolean(value)} sx={{ width: "100%", m: 1 }}>
       <InputLabel htmlFor={name}>{label}</InputLabel>
       <Input
         id={name}

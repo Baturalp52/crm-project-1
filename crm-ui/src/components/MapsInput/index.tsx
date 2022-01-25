@@ -23,7 +23,7 @@ const MapsInput = (props: IMapsInput) => {
   }, [selectionCoords, mainCoords, setDistance]);
 
   return (
-    <Card>
+    <Card sx={{ m: 1 }}>
       <CardHeader title={`${distance} km(s) between the point.`} />
       <CardContent>
         <MapContainer

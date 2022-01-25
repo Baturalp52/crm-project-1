@@ -16,7 +16,7 @@ import {
 
 import companies from "../../mockData/companies";
 import { Add, BorderColor, DeleteForeverRounded } from "@mui/icons-material";
-import ActionModal from "./ActionModal";
+import CompanyModal from "./CompanyModal";
 import { ICompany } from "../../mockData/interfaces/Company";
 import { useTranslation } from "react-i18next";
 
@@ -27,17 +27,17 @@ const CompanysTable = () => {
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [rowPerPage, setRowPerPage] = useState<number>(10);
   const [selectedCompanysId, setSelectedCompanysId] = useState<number[]>([]);
-  const [isActionModalOpen, setIsActionModalOpen] = useState<boolean>(false);
-  const [actionModalCompany, setActionModalCompany] = useState<
+  const [isCompanyModalOpen, setIsCompanyModalOpen] = useState<boolean>(false);
+  const [companyModalCompany, setCompanyModalCompany] = useState<
     ICompany | undefined
   >(undefined);
 
   return (
     <>
-      <ActionModal
-        company={actionModalCompany}
-        isOpen={isActionModalOpen}
-        setIsOpen={setIsActionModalOpen}
+      <CompanyModal
+        company={companyModalCompany}
+        isOpen={isCompanyModalOpen}
+        setIsOpen={setIsCompanyModalOpen}
         t={tModal}
       />
       <Paper
@@ -103,8 +103,8 @@ const CompanysTable = () => {
                         color="warning"
                         variant="contained"
                         onClick={() => {
-                          setActionModalCompany(item);
-                          setIsActionModalOpen(true);
+                          setCompanyModalCompany(item);
+                          setIsCompanyModalOpen(true);
                         }}
                       >
                         <BorderColor />
@@ -140,8 +140,8 @@ const CompanysTable = () => {
               startIcon={<Add />}
               color="success"
               onClick={() => {
-                setActionModalCompany(undefined);
-                setIsActionModalOpen(true);
+                setCompanyModalCompany(undefined);
+                setIsCompanyModalOpen(true);
               }}
             >
               {tTable("add")}

@@ -11,9 +11,7 @@
     "id": "id",
     "name": "Name",
     "description": "Description",
-    "situation": "Situation",
-    "add": "Add New",
-    "delete": "Delete"
+    "situation": "Situation"
   },
   "modal": {
     "edit": "Edit Task",

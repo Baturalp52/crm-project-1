@@ -1,0 +1,27 @@
+{
+  "helpers": {
+    "chip-text": {
+      "on-progress": "On Progress",
+      "completed": "Completed",
+      "open": "Open",
+      "closed": "Closed"
+    }
+  },
+  "table": {
+    "id": "id",
+    "name": "Name",
+    "description": "Description",
+    "situation": "Situation",
+    "add": "Add New",
+    "delete": "Delete"
+  },
+  "modal": {
+    "edit": "Edit Task",
+    "add": "Add New",
+    "form": {
+      "id": "id",
+      "name": "Name",
+      "description": "Description"
+    }
+  }
+}

@@ -5,6 +5,7 @@ import { emptyTask } from "./emptyTask";
 import FormInput from "../../components/FormInput";
 import { ITask } from "../../mockData/interfaces/Task";
 import ActionModal from "../../components/ActionModal";
+import { useTranslation } from "react-i18next";
 
 interface ITaskModalProps {
   task?: ITask;
@@ -14,6 +15,7 @@ interface ITaskModalProps {
 
 const TaskModal = (props: ITaskModalProps) => {
   const { task, isOpen, setIsOpen } = props;
+  const { t } = useTranslation("pages", { keyPrefix: "tasks.modal" });
 
   let form = useFormik({
     initialValues: task ? { ...task } : { ...emptyTask },
@@ -22,7 +24,7 @@ const TaskModal = (props: ITaskModalProps) => {
   });
   return (
     <ActionModal
-      title={form.values.id ? "Edit Task" : "Add New"}
+      title={form.values.id ? t("edit") : t("add")}
       isOpen={isOpen}
       setIsOpen={setIsOpen}
       saveFunction={() => {}}
@@ -30,7 +32,7 @@ const TaskModal = (props: ITaskModalProps) => {
       <List>
         <ListItem>
           <FormInput
-            label="id"
+            label={t("form.id")}
             type="number"
             value={form.values.id}
             name="id"
@@ -40,7 +42,7 @@ const TaskModal = (props: ITaskModalProps) => {
         </ListItem>
         <ListItem>
           <FormInput
-            label="Name"
+            label={t("form.name")}
             type="text"
             value={form.values.name}
             name="name"
@@ -49,7 +51,7 @@ const TaskModal = (props: ITaskModalProps) => {
         </ListItem>
         <ListItem>
           <FormInput
-            label="Description"
+            label={t("form.description")}
             type="text"
             value={form.values.description}
             name="description"

@@ -19,6 +19,7 @@ import { Add, BorderColor, DeleteForeverRounded } from "@mui/icons-material";
 import TaskModal from "./TaskModal";
 import { ITask } from "../../mockData/interfaces/Task";
 import { getChipOfSituation } from "./helpers";
+import { useTranslation } from "react-i18next";
 
 const TasksTable = () => {
   const [currentPage, setCurrentPage] = useState<number>(0);
@@ -28,6 +29,8 @@ const TasksTable = () => {
   const [taskModalTask, setTaskModalTask] = useState<ITask | undefined>(
     undefined
   );
+
+  const { t } = useTranslation("pages", { keyPrefix: "tasks.table" });
 
   return (
     <>
@@ -59,10 +62,10 @@ const TasksTable = () => {
                     }}
                   />
                 </TableCell>
-                <TableCell>id</TableCell>
-                <TableCell>Name</TableCell>
-                <TableCell>Description</TableCell>
-                <TableCell>Situation</TableCell>
+                <TableCell>{t("id")}</TableCell>
+                <TableCell>{t("name")}</TableCell>
+                <TableCell>{t("description")}</TableCell>
+                <TableCell>{t("situation")}</TableCell>
                 <TableCell />
               </TableRow>
             </TableHead>
@@ -142,14 +145,14 @@ const TasksTable = () => {
                 setIsTaskModalOpen(true);
               }}
             >
-              Add New
+              {t("add")}
             </Button>
             <Button
               sx={{ border: "none !important" }}
               startIcon={<DeleteForeverRounded />}
               color="error"
             >
-              Delete
+              {t("delete")}
             </Button>
           </ButtonGroup>
         </Stack>

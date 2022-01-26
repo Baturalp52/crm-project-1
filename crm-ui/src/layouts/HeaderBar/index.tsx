@@ -5,6 +5,8 @@ import { stringAvatar } from "./helpers";
 import { useNavigate } from "react-router-dom";
 import HeaderTitle from "./HeaderTitle";
 
+const personnelName = "Example Personnel";
+
 const HeaderBar = () => {
   const navigate = useNavigate();
   return (
@@ -21,14 +23,14 @@ const HeaderBar = () => {
         <SearchInput />
         <HeaderTitle />
         <Tooltip
-          title="Profile Settings"
+          title={personnelName}
           arrow
           placement="bottom"
           onClick={() => {
             navigate("profile");
           }}
         >
-          <Avatar {...stringAvatar("Example Personnel")} />
+          <Avatar {...stringAvatar(personnelName)} />
         </Tooltip>
       </Toolbar>
     </AppBar>

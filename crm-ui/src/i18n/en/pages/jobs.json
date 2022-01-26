@@ -3,9 +3,7 @@
     "id": "id",
     "name": "Name",
     "experience": "Experience",
-    "salary-expectation": "Salary Expectation",
-    "add": "Add New",
-    "delete": "Delete"
+    "salary-expectation": "Salary Expectation"
   },
   "modal": {
     "edit": "Edit Job",

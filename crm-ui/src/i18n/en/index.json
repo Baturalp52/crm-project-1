@@ -9,5 +9,6 @@
   "events": "Events",
   "emailService": "E-Mail Service",
   "smsService": "SMS Service",
-  "settings": "Settings"
+  "settings": "Settings",
+  "profile": "Profile"
 }

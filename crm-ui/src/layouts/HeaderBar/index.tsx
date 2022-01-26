@@ -4,11 +4,13 @@ import SearchInput from "../../components/SearchInput";
 import { stringAvatar } from "./helpers";
 import { useNavigate } from "react-router-dom";
 import HeaderTitle from "./HeaderTitle";
+import { useTranslation } from "react-i18next";
 
 const personnelName = "Example Personnel";
 
 const HeaderBar = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   return (
     <AppBar
       position="fixed"
@@ -23,7 +25,7 @@ const HeaderBar = () => {
         <SearchInput />
         <HeaderTitle />
         <Tooltip
-          title={personnelName}
+          title={t("profile") as React.ReactChild}
           arrow
           placement="bottom"
           onClick={() => {

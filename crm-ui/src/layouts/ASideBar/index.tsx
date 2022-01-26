@@ -3,8 +3,10 @@ import React from "react";
 import { Drawer, List, IconButton, ListItem, Tooltip } from "@mui/material";
 import menuItems from "../../asidemenu";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const ASideBar = () => {
+  const { t } = useTranslation();
   return (
     <>
       <Drawer
@@ -16,7 +18,11 @@ const ASideBar = () => {
             (item, index) =>
               item.type === "user" && (
                 <ListItem key={index} disableGutters>
-                  <Tooltip title={item.title} placement="right" arrow>
+                  <Tooltip
+                    title={t(item.title) as React.ReactChild}
+                    placement="right"
+                    arrow
+                  >
                     <Link to={item.path}>
                       <IconButton color={item.color} size="medium">
                         <item.icon />
@@ -33,7 +39,11 @@ const ASideBar = () => {
             (item, index) =>
               item.type === "admin" && (
                 <ListItem key={index} disableGutters>
-                  <Tooltip title={item.title} placement="right" arrow>
+                  <Tooltip
+                    title={t(item.title) as React.ReactChild}
+                    placement="right"
+                    arrow
+                  >
                     <Link to={item.path}>
                       <IconButton color={item.color} size="medium">
                         <item.icon />

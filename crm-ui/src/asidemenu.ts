@@ -10,6 +10,7 @@ import {
   CalendarToday,
   PeopleAltRounded,
   Settings,
+  Person,
 } from "@mui/icons-material";
 
 type color =
@@ -26,7 +27,7 @@ type color =
 const asidemenu = [
   {
     id: 1,
-    title: "Dashboard",
+    title: "dashboard",
     type: "user",
     path: "/",
     icon: Dashboard,
@@ -35,7 +36,7 @@ const asidemenu = [
   },
   {
     id: 2,
-    title: "Candidates",
+    title: "candidates",
     type: "user",
     path: "/candidates",
     icon: People,
@@ -44,7 +45,7 @@ const asidemenu = [
   },
   {
     id: 3,
-    title: "Companies",
+    title: "companies",
     type: "user",
     path: "/companies",
     icon: Apartment,
@@ -53,7 +54,7 @@ const asidemenu = [
   },
   {
     id: 4,
-    title: "Tasks",
+    title: "tasks",
     type: "user",
     path: "/tasks",
     icon: ListAlt,
@@ -62,7 +63,7 @@ const asidemenu = [
   },
   {
     id: 5,
-    title: "Jobs",
+    title: "jobs",
     type: "user",
     path: "/jobs",
     icon: WorkOutlined,
@@ -71,7 +72,7 @@ const asidemenu = [
   },
   {
     id: 6,
-    title: "E-Mail Service",
+    title: "emailService",
     type: "user",
     path: "/e-mail-service",
     icon: EmailRounded,
@@ -80,7 +81,7 @@ const asidemenu = [
   },
   {
     id: 7,
-    title: "SMS Service",
+    title: "smsService",
     type: "user",
     path: "/sms-service",
     icon: MessageRounded,
@@ -89,7 +90,7 @@ const asidemenu = [
   },
   {
     id: 8,
-    title: "Calendar",
+    title: "calendar",
     type: "user",
     path: "/calendar",
     icon: CalendarToday,
@@ -98,7 +99,16 @@ const asidemenu = [
   },
   {
     id: 9,
-    title: "HR Members",
+    title: "profile",
+    type: "tool-bar",
+    path: "/profile",
+    icon: Person,
+    color: "default" as color,
+    page: lazy(() => import("./Pages/Profile")),
+  },
+  {
+    id: 10,
+    title: "hrMembers",
     type: "admin",
     path: "/hr-members",
     icon: PeopleAltRounded,
@@ -106,8 +116,8 @@ const asidemenu = [
     page: lazy(() => import("./Pages/HRMembers")),
   },
   {
-    id: 10,
-    title: "Settings",
+    id: 11,
+    title: "settings",
     type: "admin",
     path: "/settings",
     icon: Settings,

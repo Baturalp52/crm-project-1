@@ -6,5 +6,8 @@
   "hrMembers": "HR Members",
   "jobs": "Jobs",
   "tasks": "Tasks",
-  "events": "Events"
+  "events": "Events",
+  "emailService": "E-Mail Service",
+  "smsService": "SMS Service",
+  "settings": "Settings"
 }

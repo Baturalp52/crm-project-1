@@ -2,9 +2,7 @@
   "table": {
     "id": "id",
     "name": "Name",
-    "city": "City",
-    "add": "Add New",
-    "delete": "Delete"
+    "city": "City"
   },
   "modal": {
     "edit": "Edit Company",

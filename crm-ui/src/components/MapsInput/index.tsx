@@ -4,6 +4,7 @@ import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import LocationMarker from "./LocationMarker";
 import { coord, getDistanceBetween2Coords } from "./helpers";
 import { Card, CardContent, CardHeader } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 interface IMapsInput {
   mainCoords: LatLngExpression;
@@ -11,6 +12,7 @@ interface IMapsInput {
 
 const MapsInput = (props: IMapsInput) => {
   const { mainCoords } = props;
+  const { t } = useTranslation("mapsInput");
   const [selectionCoords, setSelectionCoords] = useState<any>(null);
   const [distance, setDistance] = useState<number | string>(0);
   useEffect(() => {
@@ -24,7 +26,7 @@ const MapsInput = (props: IMapsInput) => {
 
   return (
     <Card sx={{ m: 1 }}>
-      <CardHeader title={`${distance} km(s) between the point.`} />
+      <CardHeader title={`${distance} ${t("title")}`} />
       <CardContent>
         <MapContainer
           center={mainCoords}

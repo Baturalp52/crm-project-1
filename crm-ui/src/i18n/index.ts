@@ -5,7 +5,9 @@ import index from "./en/index.json";
 import calendar from "./en/pages/calendar.json";
 import candidates from "./en/pages/candidates.json";
 import companies from "./en/pages/companies.json";
+
 import actionModal from "./en/components/actionModal.json";
+import mapsInput from "./en/components/mapsInput.json";
 
 const resources = {
   en: {
@@ -15,6 +17,7 @@ const resources = {
     companies: companies,
 
     actionModal: actionModal,
+    mapsInput: mapsInput,
   },
 };
 

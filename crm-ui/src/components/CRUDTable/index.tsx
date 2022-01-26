@@ -22,13 +22,21 @@ interface ICRUDTableProps<DataType> {
   keysToShow: string[];
   setModalData: (data: DataType | undefined) => void;
   setIsDataModalOpen: (value: boolean) => void;
+  customDataComponent?: any;
 }
 
 const CRUDTable = <DataType extends { id: number }>(
   props: ICRUDTableProps<DataType>
 ) => {
-  const { data, cellNames, setModalData, keysToShow, setIsDataModalOpen } =
-    props;
+  const {
+    data,
+    cellNames,
+    setModalData,
+    keysToShow,
+    setIsDataModalOpen,
+    customDataComponent,
+  } = props;
+  let customComponent = customDataComponent ? customDataComponent : [];
 
   const { t } = useTranslation("components", { keyPrefix: "crudTable" });
 
@@ -92,7 +100,11 @@ const CRUDTable = <DataType extends { id: number }>(
                   </TableCell>
                   {keysToShow.map((key) => (
                     <>
-                      <TableCell>{item[key as keyof typeof item]}</TableCell>
+                      <TableCell>
+                        {Object.keys(customComponent).includes(key)
+                          ? customComponent[key](item[key as keyof typeof item])
+                          : item[key as keyof typeof item]}
+                      </TableCell>
                     </>
                   ))}
 

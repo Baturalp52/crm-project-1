@@ -3,9 +3,7 @@
     "id": "id",
     "name": "Name",
     "surname": "Surname",
-    "city": "City",
-    "add": "Add New",
-    "delete": "Delete"
+    "city": "City"
   },
   "modal": {
     "edit": "Edit Candidate",

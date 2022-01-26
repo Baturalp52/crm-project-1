@@ -15,7 +15,7 @@ interface IEventModalProps {
 
 const EventModal = (props: IEventModalProps) => {
   const { event, isOpen, setIsOpen } = props;
-  const { t } = useTranslation("calendar");
+  const { t } = useTranslation("pages", { keyPrefix: "calendar" });
 
   let form = useFormik({
     initialValues: event ? { ...event } : { ...emptyEvent },

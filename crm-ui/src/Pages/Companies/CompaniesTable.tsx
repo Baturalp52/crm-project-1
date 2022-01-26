@@ -21,8 +21,8 @@ import { ICompany } from "../../mockData/interfaces/Company";
 import { useTranslation } from "react-i18next";
 
 const CompanysTable = () => {
-  const [tTable] = useTranslation("companies", { keyPrefix: "table" });
-  const [tModal] = useTranslation("companies", { keyPrefix: "modal" });
+  const [tTable] = useTranslation("pages", { keyPrefix: "companies.table" });
+  const [tModal] = useTranslation("pages", { keyPrefix: "companies.modal" });
 
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [rowPerPage, setRowPerPage] = useState<number>(10);

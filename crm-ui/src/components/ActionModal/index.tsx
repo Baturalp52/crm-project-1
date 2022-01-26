@@ -21,7 +21,7 @@ interface IActionModalProps {
 
 const ActionModal = (props: IActionModalProps) => {
   const { isOpen, setIsOpen, title, saveFunction, children } = props;
-  const { t } = useTranslation("actionModal");
+  const { t } = useTranslation("components", { keyPrefix: "actionModal" });
   return (
     <Modal open={isOpen} onClose={() => setIsOpen(false)}>
       <Card

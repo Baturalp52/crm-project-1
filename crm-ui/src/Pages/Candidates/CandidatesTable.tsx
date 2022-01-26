@@ -21,8 +21,8 @@ import { ICandidate } from "../../mockData/interfaces/Candidate";
 import { useTranslation } from "react-i18next";
 
 const CandidatesTable = () => {
-  const [tTable] = useTranslation("candidates", { keyPrefix: "table" });
-  const [tModal] = useTranslation("candidates", { keyPrefix: "modal" });
+  const [tTable] = useTranslation("pages", { keyPrefix: "candidates.table" });
+  const [tModal] = useTranslation("pages", { keyPrefix: "candidates.modal" });
 
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [rowPerPage, setRowPerPage] = useState<number>(10);

@@ -12,7 +12,7 @@ interface IMapsInput {
 
 const MapsInput = (props: IMapsInput) => {
   const { mainCoords } = props;
-  const { t } = useTranslation("mapsInput");
+  const { t } = useTranslation("components", { keyPrefix: "mapsInput" });
   const [selectionCoords, setSelectionCoords] = useState<any>(null);
   const [distance, setDistance] = useState<number | string>(0);
   useEffect(() => {

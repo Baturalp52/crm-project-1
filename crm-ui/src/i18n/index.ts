@@ -2,24 +2,17 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
 import index from "./en/index.json";
-import calendar from "./en/pages/calendar.json";
-import candidates from "./en/pages/candidates.json";
-import companies from "./en/pages/companies.json";
-
-import actionModal from "./en/components/actionModal.json";
-import mapsInput from "./en/components/mapsInput.json";
+import pages from "./en/pages";
+import components from "./en/components";
 
 const resources = {
   en: {
     index: index,
-    calendar: calendar,
-    candidates: candidates,
-    companies: companies,
-
-    actionModal: actionModal,
-    mapsInput: mapsInput,
+    pages,
+    components,
   },
 };
+console.log(resources);
 
 i18n.use(initReactI18next).init({
   resources,

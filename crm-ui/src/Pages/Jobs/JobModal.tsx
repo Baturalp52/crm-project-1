@@ -5,6 +5,7 @@ import { emptyJob } from "./emptyJob";
 import FormInput from "../../components/FormInput";
 import { IJob } from "../../mockData/interfaces/Job";
 import ActionModal from "../../components/ActionModal";
+import { useTranslation } from "react-i18next";
 
 interface IJobModalProps {
   job?: IJob;
@@ -14,6 +15,7 @@ interface IJobModalProps {
 
 const JobModal = (props: IJobModalProps) => {
   const { job, isOpen, setIsOpen } = props;
+  const { t } = useTranslation("pages", { keyPrefix: "jobs.modal" });
 
   let form = useFormik({
     initialValues: job ? { ...job } : { ...emptyJob },
@@ -22,7 +24,7 @@ const JobModal = (props: IJobModalProps) => {
   });
   return (
     <ActionModal
-      title={form.values.id ? "Edit Job" : "Add New"}
+      title={form.values.id ? t("edit") : t("add")}
       isOpen={isOpen}
       setIsOpen={setIsOpen}
       saveFunction={() => {}}
@@ -30,7 +32,7 @@ const JobModal = (props: IJobModalProps) => {
       <List>
         <ListItem>
           <FormInput
-            label="id"
+            label={t("form.id")}
             type="number"
             value={form.values.id}
             name="id"
@@ -40,7 +42,7 @@ const JobModal = (props: IJobModalProps) => {
         </ListItem>
         <ListItem>
           <FormInput
-            label="Name"
+            label={t("form.name")}
             type="text"
             value={form.values.name}
             name="name"
@@ -49,7 +51,7 @@ const JobModal = (props: IJobModalProps) => {
         </ListItem>
         <ListItem>
           <FormInput
-            label="Experience"
+            label={t("form.experience")}
             type="number"
             value={form.values.experience}
             name="experience"
@@ -58,7 +60,7 @@ const JobModal = (props: IJobModalProps) => {
         </ListItem>
         <ListItem>
           <FormInput
-            label="Salary Expectation"
+            label={t("form.salary-expectation")}
             type="number"
             value={form.values.salaryExpectation}
             name="salaryExpectation"

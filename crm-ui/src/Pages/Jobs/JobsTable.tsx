@@ -18,6 +18,7 @@ import jobs from "../../mockData/jobs";
 import { Add, BorderColor, DeleteForeverRounded } from "@mui/icons-material";
 import JobModal from "./JobModal";
 import { IJob } from "../../mockData/interfaces/Job";
+import { useTranslation } from "react-i18next";
 
 const JobsTable = () => {
   const [currentPage, setCurrentPage] = useState<number>(0);
@@ -25,6 +26,7 @@ const JobsTable = () => {
   const [selectedJobsId, setSelectedJobsId] = useState<number[]>([]);
   const [isJobModalOpen, setIsJobModalOpen] = useState<boolean>(false);
   const [jobModalJob, setJobModalJob] = useState<IJob | undefined>(undefined);
+  const { t } = useTranslation("pages", { keyPrefix: "jobs.table" });
 
   return (
     <>
@@ -56,10 +58,10 @@ const JobsTable = () => {
                     }}
                   />
                 </TableCell>
-                <TableCell>id</TableCell>
-                <TableCell>Name</TableCell>
-                <TableCell>Experience</TableCell>
-                <TableCell>Salary Expectation</TableCell>
+                <TableCell>{t("id")}</TableCell>
+                <TableCell>{t("name")}</TableCell>
+                <TableCell>{t("experience")}</TableCell>
+                <TableCell>{t("salary-expectation")}</TableCell>
                 <TableCell />
               </TableRow>
             </TableHead>
@@ -139,14 +141,14 @@ const JobsTable = () => {
                 setIsJobModalOpen(true);
               }}
             >
-              Add New
+              {t("add")}
             </Button>
             <Button
               sx={{ border: "none !important" }}
               startIcon={<DeleteForeverRounded />}
               color="error"
             >
-              Delete
+              {t("delete")}
             </Button>
           </ButtonGroup>
         </Stack>

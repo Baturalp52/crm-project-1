@@ -1,0 +1,20 @@
+{
+  "table": {
+    "id": "id",
+    "name": "Name",
+    "experience": "Experience",
+    "salary-expectation": "Salary Expectation",
+    "add": "Add New",
+    "delete": "Delete"
+  },
+  "modal": {
+    "edit": "Edit Job",
+    "add": "Add New",
+    "form": {
+      "id": "id",
+      "name": "Name",
+      "experience": "Experience",
+      "salary-expectation": "Salary Expectation"
+    }
+  }
+}

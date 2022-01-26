@@ -1,4 +1,4 @@
-import { IJob } from "./interfaces/Job";
+import { IJob } from "../interfaces/Job";
 
 const jobs: IJob[] = [
   { id: 1, name: "Example", experience: 5, salaryExpectation: 5000 },

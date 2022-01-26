@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Button, Stack } from "@mui/material";
 import { useFormik } from "formik";
-import { ICandidate } from "../../mockData/interfaces/Candidate";
+import { ICandidate } from "../../interfaces/Candidate";
 import { emptyCandidate } from "./emptyCandidate";
 import FormInput from "../../components/FormInput";
 import { FileUpload, SaveRounded } from "@mui/icons-material";

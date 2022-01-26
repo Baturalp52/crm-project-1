@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import hrmembers from "../../mockData/hrmembers";
 import HRMemberModal from "./HRMemberModal";
-import { IHRMember } from "../../mockData/interfaces/HRMember";
+import { IHRMember } from "../../interfaces/HRMember";
 import { useTranslation } from "react-i18next";
 import CRUDTable from "../../components/CRUDTable";
 

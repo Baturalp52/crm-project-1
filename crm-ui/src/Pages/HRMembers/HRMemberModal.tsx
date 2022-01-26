@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import { emptyHRMember } from "./emptyHRMember";
 import FormInput from "../../components/FormInput";
 
-import { IHRMember } from "../../mockData/interfaces/HRMember";
+import { IHRMember } from "../../interfaces/HRMember";
 import ActionModal from "../../components/ActionModal";
 import { useTranslation } from "react-i18next";
 

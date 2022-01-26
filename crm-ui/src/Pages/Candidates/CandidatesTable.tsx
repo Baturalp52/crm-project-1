@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import candidates from "../../mockData/candidates";
 import CandidateModal from "./CandidateModal";
-import { ICandidate } from "../../mockData/interfaces/Candidate";
+import { ICandidate } from "../../interfaces/Candidate";
 import { useTranslation } from "react-i18next";
 import CRUDTable from "../../components/CRUDTable";
 

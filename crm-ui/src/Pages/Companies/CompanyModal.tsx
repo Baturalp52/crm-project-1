@@ -3,7 +3,7 @@ import { List, ListItem } from "@mui/material";
 import { useFormik } from "formik";
 import { emptyCompany } from "./emptyCompany";
 import FormInput from "../../components/FormInput";
-import { ICompany } from "../../mockData/interfaces/Company";
+import { ICompany } from "../../interfaces/Company";
 import ActionModal from "../../components/ActionModal";
 import { useTranslation } from "react-i18next";
 

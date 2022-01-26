@@ -3,7 +3,7 @@ import { List, ListItem } from "@mui/material";
 import { useFormik } from "formik";
 import { emptyJob } from "./emptyJob";
 import FormInput from "../../components/FormInput";
-import { IJob } from "../../mockData/interfaces/Job";
+import { IJob } from "../../interfaces/Job";
 import ActionModal from "../../components/ActionModal";
 import { useTranslation } from "react-i18next";
 

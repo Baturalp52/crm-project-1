@@ -1,4 +1,4 @@
-import { ITask } from "./interfaces/Task";
+import { ITask } from "../interfaces/Task";
 
 const tasks: ITask[] = [
   {

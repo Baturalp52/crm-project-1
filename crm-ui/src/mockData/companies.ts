@@ -1,4 +1,4 @@
-import { ICompany } from "./interfaces/Company";
+import { ICompany } from "../interfaces/Company";
 
 const companies: ICompany[] = [
   { id: 1, name: "Example Company", city: "Ankara" },

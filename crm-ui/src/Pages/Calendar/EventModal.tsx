@@ -1,7 +1,7 @@
 import React from "react";
 import { List, ListItem } from "@mui/material";
 import { useFormik } from "formik";
-import { IEvent } from "../../mockData/interfaces/Event";
+import { IEvent } from "../../interfaces/Event";
 import { emptyEvent } from "./emptyEvent";
 import FormInput from "../../components/FormInput";
 import { useTranslation } from "react-i18next";

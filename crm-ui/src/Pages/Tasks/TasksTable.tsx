@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import tasks from "../../mockData/tasks";
 import TaskModal from "./TaskModal";
-import { ITask } from "../../mockData/interfaces/Task";
+import { ITask } from "../../interfaces/Task";
 import { getChipOfSituation } from "./helpers";
 import { useTranslation } from "react-i18next";
 import CRUDTable from "../../components/CRUDTable";

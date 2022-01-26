@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import jobs from "../../mockData/jobs";
 import JobModal from "./JobModal";
-import { IJob } from "../../mockData/interfaces/Job";
+import { IJob } from "../../interfaces/Job";
 import { useTranslation } from "react-i18next";
 import CRUDTable from "../../components/CRUDTable";
 

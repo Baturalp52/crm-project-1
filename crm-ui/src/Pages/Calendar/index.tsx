@@ -3,7 +3,7 @@ import { pageRedux } from "../../redux";
 import moment from "moment";
 
 import { events } from "../../mockData/events";
-import { IEvent } from "../../mockData/interfaces/Event";
+import { IEvent } from "../../interfaces/Event";
 
 import {
   Calendar as CalendarComponent,

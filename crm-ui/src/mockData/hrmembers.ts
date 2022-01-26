@@ -1,4 +1,4 @@
-import { IHRMember } from "./interfaces/HRMember";
+import { IHRMember } from "../interfaces/HRMember";
 
 const hrmembers: IHRMember[] = [
   { id: 1, name: "Example", surname: "Candidate" },

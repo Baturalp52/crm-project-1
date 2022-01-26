@@ -1,4 +1,4 @@
-import { IEvent } from "./interfaces/Event";
+import { IEvent } from "../interfaces/Event";
 
 const now = new Date();
 

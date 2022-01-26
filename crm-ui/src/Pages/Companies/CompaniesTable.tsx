@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import companies from "../../mockData/companies";
 import CompanyModal from "./CompanyModal";
-import { ICompany } from "../../mockData/interfaces/Company";
+import { ICompany } from "../../interfaces/Company";
 import { useTranslation } from "react-i18next";
 import CRUDTable from "../../components/CRUDTable";
 

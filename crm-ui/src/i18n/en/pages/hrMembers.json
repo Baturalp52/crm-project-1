@@ -2,9 +2,7 @@
   "table": {
     "id": "id",
     "name": "Name",
-    "surname": "Surname",
-    "add": "Add New",
-    "delete": "Delete"
+    "surname": "Surname"
   },
   "modal": {
     "edit": "Edit HRMember",

@@ -37,7 +37,7 @@ const MapsInput = (props: IMapsInput) => {
             attribution=""
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Marker position={mainCoords}></Marker>
+          <Marker position={mainCoords} />
           <LocationMarker
             position={selectionCoords}
             setPosition={setSelectionCoords}

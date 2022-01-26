@@ -9,12 +9,12 @@ import FormMultiTextInput from "../../components/FormMultiTextInput";
 import MapsInput from "../../components/MapsInput";
 import mainCoord from "../../mockData/coords";
 import ActionModal from "../../components/ActionModal";
+import { useTranslation } from "react-i18next";
 
 interface ICandidateModalProps {
   candidate?: ICandidate;
   isOpen: boolean;
   setIsOpen(isOpen: boolean): any;
-  t: (key: string) => string;
 }
 
 const mockPhones = ["05000000050", "05000000051"];
@@ -28,8 +28,8 @@ const mockDepartments = ["Department 1", "Department 2"];
 const mockKeywords = ["Keyword 1", "Keyword 2"];
 
 const CandidateModal = (props: ICandidateModalProps) => {
-  const { candidate, isOpen, setIsOpen, t } = props;
-
+  const { candidate, isOpen, setIsOpen } = props;
+  const { t } = useTranslation("pages", { keyPrefix: "candidates.modal" });
   let form = useFormik({
     initialValues: candidate ? { ...candidate } : { ...emptyCandidate },
     onSubmit: () => {},

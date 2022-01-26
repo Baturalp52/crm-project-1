@@ -21,8 +21,7 @@ import { ICandidate } from "../../mockData/interfaces/Candidate";
 import { useTranslation } from "react-i18next";
 
 const CandidatesTable = () => {
-  const [tTable] = useTranslation("pages", { keyPrefix: "candidates.table" });
-  const [tModal] = useTranslation("pages", { keyPrefix: "candidates.modal" });
+  const { t } = useTranslation("pages", { keyPrefix: "candidates.table" });
 
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [rowPerPage, setRowPerPage] = useState<number>(10);
@@ -41,7 +40,6 @@ const CandidatesTable = () => {
         candidate={candidateModalCandidate}
         isOpen={isCandidateModalOpen}
         setIsOpen={setIsCandidateModalOpen}
-        t={tModal}
       />
       <Paper
         sx={{
@@ -66,10 +64,10 @@ const CandidatesTable = () => {
                     }}
                   />
                 </TableCell>
-                <TableCell>{tTable("id")}</TableCell>
-                <TableCell>{tTable("name")}</TableCell>
-                <TableCell>{tTable("surname")}</TableCell>
-                <TableCell>{tTable("city")}</TableCell>
+                <TableCell>{t("id")}</TableCell>
+                <TableCell>{t("name")}</TableCell>
+                <TableCell>{t("surname")}</TableCell>
+                <TableCell>{t("city")}</TableCell>
                 <TableCell />
               </TableRow>
             </TableHead>
@@ -153,14 +151,14 @@ const CandidatesTable = () => {
                 setIsCandidateModalOpen(true);
               }}
             >
-              {tTable("add")}
+              {t("add")}
             </Button>
             <Button
               sx={{ border: "none !important" }}
               startIcon={<DeleteForeverRounded />}
               color="error"
             >
-              {tTable("delete")}
+              {t("delete")}
             </Button>
           </ButtonGroup>
         </Stack>

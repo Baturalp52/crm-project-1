@@ -5,16 +5,17 @@ import { emptyCompany } from "./emptyCompany";
 import FormInput from "../../components/FormInput";
 import { ICompany } from "../../mockData/interfaces/Company";
 import ActionModal from "../../components/ActionModal";
+import { useTranslation } from "react-i18next";
 
 interface ICompanyModalProps {
   company?: ICompany;
   isOpen: boolean;
   setIsOpen(isOpen: boolean): any;
-  t: (key: string) => string;
 }
 
 const CompanyModal = (props: ICompanyModalProps) => {
-  const { company, isOpen, setIsOpen, t } = props;
+  const { company, isOpen, setIsOpen } = props;
+  const { t } = useTranslation("pages", { keyPrefix: "companies.modal" });
 
   let form = useFormik({
     initialValues: company ? { ...company } : { ...emptyCompany },

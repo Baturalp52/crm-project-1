@@ -21,8 +21,7 @@ import { ICompany } from "../../mockData/interfaces/Company";
 import { useTranslation } from "react-i18next";
 
 const CompanysTable = () => {
-  const [tTable] = useTranslation("pages", { keyPrefix: "companies.table" });
-  const [tModal] = useTranslation("pages", { keyPrefix: "companies.modal" });
+  const { t } = useTranslation("pages", { keyPrefix: "companies.table" });
 
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [rowPerPage, setRowPerPage] = useState<number>(10);
@@ -38,7 +37,6 @@ const CompanysTable = () => {
         company={companyModalCompany}
         isOpen={isCompanyModalOpen}
         setIsOpen={setIsCompanyModalOpen}
-        t={tModal}
       />
       <Paper
         sx={{
@@ -63,9 +61,9 @@ const CompanysTable = () => {
                     }}
                   />
                 </TableCell>
-                <TableCell>{tTable("id")}</TableCell>
-                <TableCell>{tTable("name")}</TableCell>
-                <TableCell>{tTable("city")}</TableCell>
+                <TableCell>{t("id")}</TableCell>
+                <TableCell>{t("name")}</TableCell>
+                <TableCell>{t("city")}</TableCell>
                 <TableCell />
               </TableRow>
             </TableHead>
@@ -144,14 +142,14 @@ const CompanysTable = () => {
                 setIsCompanyModalOpen(true);
               }}
             >
-              {tTable("add")}
+              {t("add")}
             </Button>
             <Button
               sx={{ border: "none !important" }}
               startIcon={<DeleteForeverRounded />}
               color="error"
             >
-              {tTable("delete")}
+              {t("delete")}
             </Button>
           </ButtonGroup>
         </Stack>

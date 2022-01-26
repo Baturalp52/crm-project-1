@@ -6,6 +6,7 @@ import FormInput from "../../components/FormInput";
 
 import { IHRMember } from "../../mockData/interfaces/HRMember";
 import ActionModal from "../../components/ActionModal";
+import { useTranslation } from "react-i18next";
 
 interface IHRMemberModalProps {
   hrmember?: IHRMember;
@@ -15,6 +16,7 @@ interface IHRMemberModalProps {
 
 const HRMemberModal = (props: IHRMemberModalProps) => {
   const { hrmember, isOpen, setIsOpen } = props;
+  const { t } = useTranslation("pages", { keyPrefix: "hrMembers.modal" });
 
   let form = useFormik({
     initialValues: hrmember ? { ...hrmember } : { ...emptyHRMember },
@@ -23,7 +25,7 @@ const HRMemberModal = (props: IHRMemberModalProps) => {
   });
   return (
     <ActionModal
-      title={form.values.id ? "Edit HRMember" : "Add New"}
+      title={form.values.id ? t("edit") : t("add")}
       isOpen={isOpen}
       setIsOpen={setIsOpen}
       saveFunction={() => {}}
@@ -31,7 +33,7 @@ const HRMemberModal = (props: IHRMemberModalProps) => {
       <List>
         <ListItem>
           <FormInput
-            label="id"
+            label={t("form.id")}
             type="number"
             value={form.values.id}
             name="id"
@@ -41,7 +43,7 @@ const HRMemberModal = (props: IHRMemberModalProps) => {
         </ListItem>
         <ListItem>
           <FormInput
-            label="Name"
+            label={t("form.name")}
             type="text"
             value={form.values.name}
             name="name"
@@ -50,7 +52,7 @@ const HRMemberModal = (props: IHRMemberModalProps) => {
         </ListItem>
         <ListItem>
           <FormInput
-            label="Address"
+            label={t("form.address")}
             type="text"
             value={form.values.surname}
             name="address"

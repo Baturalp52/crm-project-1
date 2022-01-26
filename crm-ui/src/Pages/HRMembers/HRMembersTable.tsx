@@ -18,6 +18,7 @@ import hrmembers from "../../mockData/hrmembers";
 import { Add, BorderColor, DeleteForeverRounded } from "@mui/icons-material";
 import HRMemberModal from "./HRMemberModal";
 import { IHRMember } from "../../mockData/interfaces/HRMember";
+import { useTranslation } from "react-i18next";
 
 const HRMembersTable = () => {
   const [currentPage, setCurrentPage] = useState<number>(0);
@@ -28,6 +29,8 @@ const HRMembersTable = () => {
   const [hrMemberModalrHRMember, setHRMemberModalHRMember] = useState<
     IHRMember | undefined
   >(undefined);
+
+  const { t } = useTranslation("pages", { keyPrefix: "hrMembers.table" });
 
   return (
     <>
@@ -59,9 +62,9 @@ const HRMembersTable = () => {
                     }}
                   />
                 </TableCell>
-                <TableCell>id</TableCell>
-                <TableCell>Name</TableCell>
-                <TableCell>Surname</TableCell>
+                <TableCell>{t("id")}</TableCell>
+                <TableCell>{t("name")}</TableCell>
+                <TableCell>{t("surname")}</TableCell>
                 <TableCell />
               </TableRow>
             </TableHead>
@@ -144,14 +147,14 @@ const HRMembersTable = () => {
                 setIsHRMemberModalOpen(true);
               }}
             >
-              Add New
+              {t("add")}
             </Button>
             <Button
               sx={{ border: "none !important" }}
               startIcon={<DeleteForeverRounded />}
               color="error"
             >
-              Delete
+              {t("delete")}
             </Button>
           </ButtonGroup>
         </Stack>

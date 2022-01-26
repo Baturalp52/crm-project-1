@@ -1,0 +1,18 @@
+{
+  "table": {
+    "id": "id",
+    "name": "Name",
+    "surname": "Surname",
+    "add": "Add New",
+    "delete": "Delete"
+  },
+  "modal": {
+    "edit": "Edit HRMember",
+    "add": "Add New",
+    "form": {
+      "id": "id",
+      "name": "Name",
+      "address": "Address"
+    }
+  }
+}

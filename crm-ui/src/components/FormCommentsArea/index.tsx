@@ -7,22 +7,37 @@ import {
   TextField,
   IconButton,
   InputAdornment,
+  Paper,
 } from "@mui/material";
 import { Add } from "@mui/icons-material";
+import { useTranslation } from "react-i18next";
 
 interface IFormCommentsAreaProps {
   title: string;
   onChange: (e: any) => void;
-  values: string[];
+  values: string[] | never[] | undefined;
 }
 
 const FormCommentsArea = (props: IFormCommentsAreaProps) => {
-  const { title, onChange } = props;
+  const { title, onChange, values } = props;
   const [commentArea, setCommentArea] = useState<string>();
+  const { t } = useTranslation("components", { keyPrefix: "formCommentsArea" });
   return (
-    <Card>
+    <Card sx={{ width: "100%" }}>
       <CardHeader title={title} />
-      <CardContent></CardContent>
+      <CardContent>
+        {values && values?.length > 0 ? (
+          values.map((value) => (
+            <Paper sx={{ m: 2, p: 2 }} elevation={10}>
+              {value}
+            </Paper>
+          ))
+        ) : (
+          <Paper sx={{ m: 2, p: 2 }} elevation={10}>
+            {t("no-comment")}
+          </Paper>
+        )}
+      </CardContent>
       <CardActions>
         <TextField
           multiline

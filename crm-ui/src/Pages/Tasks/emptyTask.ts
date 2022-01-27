@@ -3,5 +3,7 @@ export const emptyTask = {
   name: "",
   description: "",
   assignedMember: {},
+  assignedCandidate: {},
   situation: "on-progress",
+  comments: [],
 };

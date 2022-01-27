@@ -11,11 +11,14 @@ import {
 } from "@mui/material";
 import { Add } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
+import { IComment } from "../../interfaces/Comment";
+
+import CommentCard from "./CommentCard";
 
 interface IFormCommentsAreaProps {
   title: string;
   onChange: (e: any) => void;
-  values: string[] | never[] | undefined;
+  values: IComment[] | never[] | undefined;
 }
 
 const FormCommentsArea = (props: IFormCommentsAreaProps) => {
@@ -27,9 +30,9 @@ const FormCommentsArea = (props: IFormCommentsAreaProps) => {
       <CardHeader title={title} />
       <CardContent>
         {values && values?.length > 0 ? (
-          values.map((value) => (
+          values.map((comment) => (
             <Paper sx={{ m: 2, p: 2 }} elevation={10}>
-              {value}
+              <CommentCard comment={comment} />
             </Paper>
           ))
         ) : (
@@ -49,7 +52,16 @@ const FormCommentsArea = (props: IFormCommentsAreaProps) => {
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <IconButton onClick={() => onChange(commentArea)}>
+                <IconButton
+                  onClick={() => {
+                    const comment = {
+                      id: 0,
+                      content: commentArea,
+                      createdDate: new Date(),
+                    };
+                    onChange(comment);
+                  }}
+                >
                   <Add />
                 </IconButton>
               </InputAdornment>

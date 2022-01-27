@@ -19,7 +19,8 @@
     "form": {
       "id": "id",
       "name": "Name",
-      "description": "Description"
+      "description": "Description",
+      "comments": "Comments"
     }
   }
 }

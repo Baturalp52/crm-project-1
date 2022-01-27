@@ -1,4 +1,5 @@
 import { ICandidate } from "./Candidate";
+import { IComment } from "./Comment";
 import { ITask } from "./Task";
 
 export interface IHRMember {
@@ -7,4 +8,5 @@ export interface IHRMember {
   surname: string;
   tasks?: ITask[];
   candidatesCreated?: ICandidate[];
+  comments?: IComment[];
 }

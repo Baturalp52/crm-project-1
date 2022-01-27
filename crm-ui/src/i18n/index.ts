@@ -12,8 +12,6 @@ const resources = {
     components,
   },
 };
-console.log(resources);
-
 i18n.use(initReactI18next).init({
   resources,
   defaultNS: "index",

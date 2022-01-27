@@ -69,7 +69,9 @@ const TaskModal = (props: ITaskModalProps) => {
             title={t("form.comments")}
             values={form.values.comments}
             onChange={(data) => {
-              const comments = [...(form.values.comments as Array<IComment>)];
+              const comments = form.values.comments
+                ? [...(form.values.comments as Array<IComment>)]
+                : [];
               comments.push(data);
               form.setFieldValue("comments", comments);
             }}

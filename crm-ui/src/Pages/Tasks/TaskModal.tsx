@@ -20,6 +20,7 @@ import { emptyTask } from "./emptyTask";
 
 import hrmembers from "../../mockData/hrmembers";
 import candidates from "../../mockData/candidates";
+import ChangeSituation from "./ChangeSituation";
 interface ITaskModalProps {
   task?: ITask;
   isOpen: boolean;
@@ -145,6 +146,11 @@ const TaskModal = (props: ITaskModalProps) => {
               comments.push(data);
               form.setFieldValue("comments", comments);
             }}
+          />
+          <ChangeSituation
+            title={t("form.change-situation")}
+            situation={form.values.situation}
+            setFieldValue={form.setFieldValue}
           />
         </Grid>
       </Grid>

@@ -99,9 +99,9 @@ const CRUDTable = <DataType extends { id: number }>(
                       }}
                     />
                   </TableCell>
-                  {keysToShow.map((key) => (
+                  {keysToShow.map((key, index) => (
                     <>
-                      <TableCell>
+                      <TableCell key={index}>
                         {Object.keys(customComponent).includes(key)
                           ? customComponent[key](item[key as keyof typeof item])
                           : key.includes(".")

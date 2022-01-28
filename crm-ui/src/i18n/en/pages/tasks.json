@@ -11,7 +11,8 @@
     "id": "id",
     "name": "Name",
     "description": "Description",
-    "situation": "Situation"
+    "situation": "Situation",
+    "assigned-candidate": "Assigned Candidate"
   },
   "modal": {
     "edit": "Edit Task",

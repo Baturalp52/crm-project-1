@@ -24,8 +24,20 @@ const TasksTable = () => {
       />
       <CRUDTable<ITask>
         data={tasks}
-        cellNames={[t("id"), t("name"), t("description"), t("situation")]}
-        keysToShow={["id", "name", "description", "situation"]}
+        cellNames={[
+          t("id"),
+          t("name"),
+          t("description"),
+          t("assigned-candidate"),
+          t("situation"),
+        ]}
+        keysToShow={[
+          "id",
+          "name",
+          "description",
+          "assignedCandidate.name",
+          "situation",
+        ]}
         setModalData={setTaskModalTask}
         setIsDataModalOpen={setIsTaskModalOpen}
         customDataComponent={{

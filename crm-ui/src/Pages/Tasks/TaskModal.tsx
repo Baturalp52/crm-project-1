@@ -1,17 +1,25 @@
 import React from "react";
-import { Grid, List, ListItem } from "@mui/material";
-import { useFormik } from "formik";
-import { emptyTask } from "./emptyTask";
+import { Grid, List, ListItem, TextField } from "@mui/material";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import { DatePicker } from "@mui/lab";
 import FormInput from "../../components/FormInput";
-import { ITask } from "../../interfaces/Task";
 import ActionModal from "../../components/ActionModal";
-import { useTranslation } from "react-i18next";
 import FormCommentsArea from "../../components/FormCommentsArea";
-import { IComment } from "../../interfaces/Comment";
 import FormDropdown from "../../components/FormDropdown";
-import candidates from "../../mockData/candidates";
-import hrmembers from "../../mockData/hrmembers";
 
+import frLocale from "date-fns/locale/fr";
+
+import { useTranslation } from "react-i18next";
+import { useFormik } from "formik";
+
+import { IComment } from "../../interfaces/Comment";
+import { ITask } from "../../interfaces/Task";
+
+import { emptyTask } from "./emptyTask";
+
+import hrmembers from "../../mockData/hrmembers";
+import candidates from "../../mockData/candidates";
 interface ITaskModalProps {
   task?: ITask;
   isOpen: boolean;
@@ -108,6 +116,21 @@ const TaskModal = (props: ITaskModalProps) => {
                   form.values.assignedMember ? form.values.assignedMember.id : 0
                 }
               />
+            </ListItem>
+            <ListItem>
+              <LocalizationProvider
+                dateAdapter={AdapterDateFns}
+                locale={frLocale}
+              >
+                <DatePicker
+                  label={t("form.end-date")}
+                  value={form.values.endDate}
+                  onChange={(date) => {
+                    form.setFieldValue("endDate", date);
+                  }}
+                  renderInput={(params) => <TextField {...params} />}
+                />
+              </LocalizationProvider>
             </ListItem>
           </List>
         </Grid>

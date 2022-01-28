@@ -25,7 +25,8 @@
       "assigned-candidate": "Assigned Candidate",
       "assigned-member": "Assigned Member",
       "dropdown-global": "Global",
-      "dropdown-no-candidate": "No Candidate"
+      "dropdown-no-candidate": "No Candidate",
+      "end-date": "End of Task"
     }
   }
 }

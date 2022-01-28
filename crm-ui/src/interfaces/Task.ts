@@ -11,5 +11,5 @@ export interface ITask {
   comments?: IComment[];
   situation: "on-progress" | "completed" | "closed" | "open";
   createdDate?: Date;
-  endDate?: Date | undefined;
+  endDate?: Date | null;
 }

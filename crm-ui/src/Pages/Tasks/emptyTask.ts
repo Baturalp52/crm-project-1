@@ -10,4 +10,5 @@ export const emptyTask = {
   },
   situation: "on-progress",
   comments: [],
+  endDate: null,
 };

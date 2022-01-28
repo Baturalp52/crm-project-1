@@ -12,7 +12,7 @@ const HeaderTitle = () => {
     document.title = `${title} || CRM`;
   });
   return (
-    <Typography color="darkblue" variant="h6" mx="auto">
+    <Typography color="darkblue" variant="h6" ml="auto">
       {headerTitle}
     </Typography>
   );

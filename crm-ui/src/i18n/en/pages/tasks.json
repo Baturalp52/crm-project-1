@@ -23,7 +23,9 @@
       "description": "Description",
       "comments": "Comments",
       "assigned-candidate": "Assigned Candidate",
-      "dropdown-global": "Global"
+      "assigned-member": "Assigned Member",
+      "dropdown-global": "Global",
+      "dropdown-no-candidate": "No Candidate"
     }
   }
 }

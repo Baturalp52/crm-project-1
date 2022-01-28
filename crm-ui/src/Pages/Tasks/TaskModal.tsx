@@ -10,6 +10,7 @@ import FormCommentsArea from "../../components/FormCommentsArea";
 import { IComment } from "../../interfaces/Comment";
 import FormDropdown from "../../components/FormDropdown";
 import candidates from "../../mockData/candidates";
+import hrmembers from "../../mockData/hrmembers";
 
 interface ITaskModalProps {
   task?: ITask;
@@ -76,7 +77,7 @@ const TaskModal = (props: ITaskModalProps) => {
                   );
                 }}
                 datas={candidates}
-                defaultValue={t("form.dropdown-global")}
+                defaultValue={t("form.dropdown-no-candidate")}
                 dataToValue={(data) =>
                   data.id + " - " + data.name + " " + data.surname
                 }
@@ -84,6 +85,27 @@ const TaskModal = (props: ITaskModalProps) => {
                   form.values.assignedCandidate
                     ? form.values.assignedCandidate.id
                     : 0
+                }
+              />
+            </ListItem>
+            <ListItem>
+              <FormDropdown
+                label={t("form.assigned-member")}
+                handleChange={(e) => {
+                  form.setFieldValue(
+                    "assignedMember",
+                    hrmembers.filter(
+                      (member) => member.id === e.target.value
+                    )[0]
+                  );
+                }}
+                datas={hrmembers}
+                defaultValue={t("form.dropdown-global")}
+                dataToValue={(data) =>
+                  data.id + " - " + data.name + " " + data.surname
+                }
+                selectedId={
+                  form.values.assignedMember ? form.values.assignedMember.id : 0
                 }
               />
             </ListItem>

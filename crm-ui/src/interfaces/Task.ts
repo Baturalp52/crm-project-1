@@ -6,7 +6,7 @@ export interface ITask {
   id: number;
   name: string;
   description?: string;
-  assignedMember?: IHRMember | "global";
+  assignedMember?: IHRMember;
   assignedCandidate?: ICandidate;
   comments?: IComment[];
   situation: "on-progress" | "completed" | "closed" | "open";

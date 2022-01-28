@@ -2,7 +2,9 @@ export const emptyTask = {
   id: 0,
   name: "",
   description: "",
-  assignedMember: {},
+  assignedMember: {
+    id: 0,
+  },
   assignedCandidate: {
     id: 0,
   },

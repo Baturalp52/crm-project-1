@@ -8,6 +8,8 @@ import ActionModal from "../../components/ActionModal";
 import { useTranslation } from "react-i18next";
 import FormCommentsArea from "../../components/FormCommentsArea";
 import { IComment } from "../../interfaces/Comment";
+import FormDropdown from "../../components/FormDropdown";
+import candidates from "../../mockData/candidates";
 
 interface ITaskModalProps {
   task?: ITask;
@@ -60,6 +62,29 @@ const TaskModal = (props: ITaskModalProps) => {
                 value={form.values.description}
                 name="description"
                 onChange={form.handleChange}
+              />
+            </ListItem>
+            <ListItem>
+              <FormDropdown
+                label={t("form.assigned-candidate")}
+                handleChange={(e) => {
+                  form.setFieldValue(
+                    "assignedCandidate",
+                    candidates.filter(
+                      (candidate) => candidate.id === e.target.value
+                    )[0]
+                  );
+                }}
+                datas={candidates}
+                defaultValue={t("form.dropdown-global")}
+                dataToValue={(data) =>
+                  data.id + " - " + data.name + " " + data.surname
+                }
+                selectedId={
+                  form.values.assignedCandidate
+                    ? form.values.assignedCandidate.id
+                    : 0
+                }
               />
             </ListItem>
           </List>

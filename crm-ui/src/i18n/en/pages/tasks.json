@@ -21,7 +21,9 @@
       "id": "id",
       "name": "Name",
       "description": "Description",
-      "comments": "Comments"
+      "comments": "Comments",
+      "assigned-candidate": "Assigned Candidate",
+      "dropdown-global": "Global"
     }
   }
 }

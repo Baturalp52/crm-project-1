@@ -11,6 +11,11 @@ const tasks: ITask[] = [
       name: "Candidate",
       surname: "1",
     },
+    assignedMember: {
+      id: 1,
+      name: "Member",
+      surname: "1",
+    },
   },
   {
     id: 2,
@@ -20,6 +25,11 @@ const tasks: ITask[] = [
     assignedCandidate: {
       id: 1,
       name: "Candidate",
+      surname: "1",
+    },
+    assignedMember: {
+      id: 1,
+      name: "Member",
       surname: "1",
     },
   },
@@ -33,6 +43,11 @@ const tasks: ITask[] = [
       name: "Candidate",
       surname: "1",
     },
+    assignedMember: {
+      id: 1,
+      name: "Member",
+      surname: "1",
+    },
   },
   {
     id: 4,
@@ -42,6 +57,11 @@ const tasks: ITask[] = [
     assignedCandidate: {
       id: 1,
       name: "Candidate",
+      surname: "1",
+    },
+    assignedMember: {
+      id: 1,
+      name: "Member",
       surname: "1",
     },
   },
@@ -55,6 +75,11 @@ const tasks: ITask[] = [
       name: "Candidate",
       surname: "1",
     },
+    assignedMember: {
+      id: 1,
+      name: "Member",
+      surname: "1",
+    },
   },
   {
     id: 6,
@@ -64,6 +89,11 @@ const tasks: ITask[] = [
     assignedCandidate: {
       id: 1,
       name: "Candidate",
+      surname: "1",
+    },
+    assignedMember: {
+      id: 1,
+      name: "Member",
       surname: "1",
     },
   },
@@ -77,6 +107,11 @@ const tasks: ITask[] = [
       name: "Candidate",
       surname: "1",
     },
+    assignedMember: {
+      id: 1,
+      name: "Member",
+      surname: "1",
+    },
   },
   {
     id: 8,
@@ -86,6 +121,11 @@ const tasks: ITask[] = [
     assignedCandidate: {
       id: 1,
       name: "Candidate",
+      surname: "1",
+    },
+    assignedMember: {
+      id: 1,
+      name: "Member",
       surname: "1",
     },
   },
@@ -99,6 +139,11 @@ const tasks: ITask[] = [
       name: "Candidate",
       surname: "1",
     },
+    assignedMember: {
+      id: 1,
+      name: "Member",
+      surname: "1",
+    },
   },
   {
     id: 10,
@@ -108,6 +153,11 @@ const tasks: ITask[] = [
     assignedCandidate: {
       id: 1,
       name: "Candidate",
+      surname: "1",
+    },
+    assignedMember: {
+      id: 1,
+      name: "Member",
       surname: "1",
     },
   },
@@ -121,6 +171,11 @@ const tasks: ITask[] = [
       name: "Candidate",
       surname: "1",
     },
+    assignedMember: {
+      id: 1,
+      name: "Member",
+      surname: "1",
+    },
   },
   {
     id: 12,
@@ -130,6 +185,11 @@ const tasks: ITask[] = [
     assignedCandidate: {
       id: 1,
       name: "Candidate",
+      surname: "1",
+    },
+    assignedMember: {
+      id: 1,
+      name: "Member",
       surname: "1",
     },
   },
@@ -143,6 +203,11 @@ const tasks: ITask[] = [
       name: "Candidate",
       surname: "1",
     },
+    assignedMember: {
+      id: 1,
+      name: "Member",
+      surname: "1",
+    },
   },
   {
     id: 14,
@@ -152,6 +217,11 @@ const tasks: ITask[] = [
     assignedCandidate: {
       id: 1,
       name: "Candidate",
+      surname: "1",
+    },
+    assignedMember: {
+      id: 1,
+      name: "Member",
       surname: "1",
     },
   },
@@ -165,6 +235,11 @@ const tasks: ITask[] = [
       name: "Candidate",
       surname: "1",
     },
+    assignedMember: {
+      id: 1,
+      name: "Member",
+      surname: "1",
+    },
   },
   {
     id: 16,
@@ -174,6 +249,11 @@ const tasks: ITask[] = [
     assignedCandidate: {
       id: 1,
       name: "Candidate",
+      surname: "1",
+    },
+    assignedMember: {
+      id: 1,
+      name: "Member",
       surname: "1",
     },
   },
@@ -187,6 +267,11 @@ const tasks: ITask[] = [
       name: "Candidate",
       surname: "1",
     },
+    assignedMember: {
+      id: 1,
+      name: "Member",
+      surname: "1",
+    },
   },
   {
     id: 18,
@@ -198,6 +283,11 @@ const tasks: ITask[] = [
       name: "Candidate",
       surname: "1",
     },
+    assignedMember: {
+      id: 1,
+      name: "Member",
+      surname: "1",
+    },
   },
   {
     id: 19,
@@ -207,6 +297,11 @@ const tasks: ITask[] = [
     assignedCandidate: {
       id: 1,
       name: "Candidate",
+      surname: "1",
+    },
+    assignedMember: {
+      id: 1,
+      name: "Member",
       surname: "1",
     },
   },

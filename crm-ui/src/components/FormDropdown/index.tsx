@@ -8,15 +8,25 @@ interface IFormDropdownProps<DataType> {
   defaultValue: string;
   dataToValue: (data: DataType) => string;
   selectedId: number;
+  disabled?: boolean;
+  width?: string;
 }
 
 const FormDropdown = <DataType extends { id: number }>(
   props: IFormDropdownProps<DataType>
 ) => {
-  const { label, handleChange, defaultValue, datas, dataToValue, selectedId } =
-    props;
+  const {
+    label,
+    handleChange,
+    defaultValue,
+    datas,
+    dataToValue,
+    selectedId,
+    disabled,
+    width,
+  } = props;
   return (
-    <FormControl sx={{ width: "100%" }}>
+    <FormControl disabled={disabled} sx={{ width: "100%" || width, m: 1 }}>
       <InputLabel>{label}</InputLabel>
 
       <Select value={selectedId} label={label} onChange={handleChange}>

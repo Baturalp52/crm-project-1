@@ -14,7 +14,7 @@ const SearchInput = () => {
         </InputAdornment>
       }
       placeholder={t("placeholder")}
-      sx={{ width: "20rem" }}
+      sx={{ width: "40em", mx: "auto" }}
     ></Input>
   );
 };

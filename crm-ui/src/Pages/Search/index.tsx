@@ -1,11 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Paper, Box } from "@mui/material";
 
 import { pageRedux } from "../../redux";
 import SearchBar from "./SearchBar";
 import { useFormik } from "formik";
+import ResultsTable from "../../components/ResultsTable";
 
 const Search = () => {
+  const [isDataModalOpen, setIsDataModalOpen] = useState<boolean>(false);
+  const [modalData, setModalData] = useState({});
   let form = useFormik({
     initialValues: {
       searchKey: "",
@@ -35,6 +38,19 @@ const Search = () => {
     >
       <Box padding={2}>
         <SearchBar searchForm={form} />
+        {form.values.searchKey.length > 0 &&
+          Boolean(form.values.filter) &&
+          Boolean(form.values.page) && (
+            <>
+              <ResultsTable<any>
+                data={[]}
+                cellNames={["id", "Name", "Surname"]}
+                keysToShow={["id", "name", "surname"]}
+                setIsDataModalOpen={setIsDataModalOpen}
+                setModalData={setModalData}
+              />
+            </>
+          )}
       </Box>
     </Paper>
   );

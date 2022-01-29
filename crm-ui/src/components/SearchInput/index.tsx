@@ -3,11 +3,13 @@ import { Search } from "@mui/icons-material";
 import { Input, InputAdornment } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
-const SearchInput = () => {
+const SearchInput = (props: { onChange: (e: any) => void }) => {
   const { t } = useTranslation("components", { keyPrefix: "searchInput" });
+  const { onChange } = props;
   return (
     <Input
       type="search"
+      onChange={onChange}
       startAdornment={
         <InputAdornment position="start">
           <Search />

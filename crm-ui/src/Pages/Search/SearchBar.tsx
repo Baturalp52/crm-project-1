@@ -11,12 +11,17 @@ const SearchBar = (props: { searchForm: any }) => {
 
   useEffect(() => {
     searchForm.setFieldValue("filter", 0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchForm.values.page]);
 
   return (
     <Grid container padding={2} spacing={2}>
       <Grid item xs={6} sx={{ display: "flex", alignItems: "center" }}>
-        <SearchInput />
+        <SearchInput
+          onChange={(e) => {
+            searchForm.setFieldValue("searchKey", e.target.value);
+          }}
+        />
       </Grid>
       <Grid item xs={6} sx={{ display: "flex" }}>
         <FormDropdown<{ id: number; pageName: string; filters: Object[] }>

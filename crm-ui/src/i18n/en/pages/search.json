@@ -1,0 +1,14 @@
+{
+  "filters": {
+    "mapsCoord": "Distance Between",
+    "requestedJob": "Requested Job",
+    "diploma": "Diploma",
+    "keywords": "Keywords",
+    "name": "Name",
+    "sector": "Sector"
+  },
+  "search-bar": {
+    "select-page": "Select Page",
+    "select-filter": "Select Filter"
+  }
+}

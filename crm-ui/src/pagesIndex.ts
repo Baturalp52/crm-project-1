@@ -124,6 +124,15 @@ const asidemenu = [
     color: "default" as color,
     page: lazy(() => import("./Pages/Settings")),
   },
+  {
+    id: 12,
+    title: "search",
+    type: "user",
+    path: "/search",
+    icon: Settings,
+    color: "default" as color,
+    page: lazy(() => import("./Pages/Search")),
+  },
 ];
 
 export default asidemenu;

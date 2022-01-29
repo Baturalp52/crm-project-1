@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Drawer, List, IconButton, ListItem, Tooltip } from "@mui/material";
-import menuItems from "../../asidemenu";
+import pages from "../../pagesIndex";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -14,7 +14,7 @@ const ASideBar = () => {
         PaperProps={{ sx: { borderRight: "none !important" } }}
       >
         <List>
-          {menuItems.map(
+          {pages.map(
             (item, index) =>
               item.type === "user" && (
                 <ListItem key={index} disableGutters>
@@ -35,7 +35,7 @@ const ASideBar = () => {
         </List>
 
         <List sx={{ marginTop: "auto" }}>
-          {menuItems.map(
+          {pages.map(
             (item, index) =>
               item.type === "admin" && (
                 <ListItem key={index} disableGutters>

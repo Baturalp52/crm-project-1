@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ASideBar from "./layouts/ASideBar";
 import HeaderBar from "./layouts/HeaderBar";
 
-import asidemenu from "./asidemenu";
+import pages from "./pagesIndex";
 import Loading from "./components/Loading";
 import { Toolbar } from "@mui/material";
 
@@ -24,7 +24,7 @@ function App() {
         <Route path="*" element={<Toolbar />} />
       </Routes>
       <Routes>
-        {asidemenu.map((item, index) => (
+        {pages.map((item, index) => (
           <Route
             key={index}
             path={item.path}

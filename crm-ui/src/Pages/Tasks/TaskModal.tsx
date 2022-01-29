@@ -129,7 +129,9 @@ const TaskModal = (props: ITaskModalProps) => {
                   onChange={(date) => {
                     form.setFieldValue("endDate", date);
                   }}
-                  renderInput={(params) => <TextField {...params} />}
+                  renderInput={(params) => (
+                    <TextField sx={{ m: 1 }} {...params} />
+                  )}
                 />
               </LocalizationProvider>
             </ListItem>

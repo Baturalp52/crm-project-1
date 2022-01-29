@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { Grid } from "@mui/material";
 import SearchInput from "../../components/SearchInput";
 import FormDropdown from "../../components/FormDropdown";
 import { useTranslation } from "react-i18next";
 import filters from "./filters";
 
-const SearchBar = () => {
+const SearchBar = (props: { searchForm: any }) => {
   const { t } = useTranslation();
-  const [selectedPage, setSelectedPage] = useState<number>(0);
-  const [selectedFilter, setSelectedFilter] = useState<number>(0);
+  const { searchForm } = props;
+
+  useEffect(() => {
+    searchForm.setFieldValue("filter", 0);
+  }, [searchForm.values.page]);
 
   return (
     <Grid container padding={2} spacing={2}>
@@ -19,27 +22,29 @@ const SearchBar = () => {
         <FormDropdown<{ id: number; pageName: string; filters: Object[] }>
           label={t("pages:search.search-bar.select-page")}
           handleChange={(e) => {
-            setSelectedPage(e.target.value);
+            searchForm.setFieldValue("page", e.target.value);
           }}
           datas={filters}
           defaultValue={t("pages:search.search-bar.select-page")}
           dataToValue={(item) => t(item.pageName)}
-          selectedId={selectedPage}
+          selectedId={searchForm.values.page}
           width="45%"
         />
 
         <FormDropdown<{ id: number; filterName: string }>
           label={t("pages:search.search-bar.select-filter")}
           handleChange={(e) => {
-            setSelectedFilter(e.target.value);
+            searchForm.setFieldValue("filter", e.target.value);
           }}
           datas={
-            filters[selectedPage - 1] ? filters[selectedPage - 1].filters : []
+            filters[searchForm.values.page - 1]
+              ? filters[searchForm.values.page - 1].filters
+              : []
           }
           defaultValue={t("pages:search.search-bar.select-filter")}
           dataToValue={(item) => t("pages:search.filters." + item.filterName)}
-          selectedId={selectedFilter}
-          disabled={!Boolean(selectedPage)}
+          selectedId={searchForm.values.filter}
+          disabled={!Boolean(searchForm.values.page)}
           width="45%"
         />
       </Grid>

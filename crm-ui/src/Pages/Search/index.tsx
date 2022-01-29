@@ -9,8 +9,8 @@ const Search = () => {
   let form = useFormik({
     initialValues: {
       searchKey: "",
-      page: "",
-      filter: "",
+      page: 0,
+      filter: 0,
     },
     onSubmit: () => {},
     enableReinitialize: true,
@@ -34,7 +34,7 @@ const Search = () => {
       }}
     >
       <Box padding={2}>
-        <SearchBar />
+        <SearchBar searchForm={form} />
       </Box>
     </Paper>
   );

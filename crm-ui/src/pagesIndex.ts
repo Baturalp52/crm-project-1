@@ -11,6 +11,7 @@ import {
   PeopleAltRounded,
   Settings,
   Person,
+  Search,
 } from "@mui/icons-material";
 
 type color =
@@ -129,7 +130,7 @@ const asidemenu = [
     title: "search",
     type: "user",
     path: "/search",
-    icon: Settings,
+    icon: Search,
     color: "default" as color,
     page: lazy(() => import("./Pages/Search")),
   },

@@ -14,7 +14,7 @@ export interface ICandidate {
   zipCode?: string;
   city?: string;
   country?: string;
-  mapsCoord?: string;
+  mapsCoord?: number[];
   creatorMember?: IHRMember;
   previousJobs?: string[];
   requestedJob?: IJob[];
@@ -24,4 +24,5 @@ export interface ICandidate {
   departments?: string[];
   keywords?: string[];
   situation?: "full-time" | "part-time" | "freelance" | "free";
+  diploma?: string;
 }

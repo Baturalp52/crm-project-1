@@ -4,7 +4,7 @@ import { IJob } from "./Job";
 export interface ICompany {
   id: number;
   name: string;
-  address?: string;
+  mapsCoord?: number[];
   city?: string;
   sector?: string;
   HRMembers?: IHRMember[];

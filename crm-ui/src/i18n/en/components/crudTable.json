@@ -1,4 +1,5 @@
 {
   "add": "Add New",
-  "delete": "Delete"
+  "delete": "Delete",
+  "no-data": "No data!"
 }

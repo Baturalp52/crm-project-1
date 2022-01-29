@@ -75,57 +75,64 @@ const CRUDTable = <DataType extends { id: number }>(
             </TableRow>
           </TableHead>
           <TableBody>
-            {data
-              .slice(currentPage * rowPerPage, (currentPage + 1) * rowPerPage)
-              .map((item, index) => (
-                <TableRow key={index}>
-                  <TableCell>
-                    <Checkbox
-                      value={item.id}
-                      checked={selectedDatasId.includes(item.id)}
-                      onChange={(e) => {
-                        if (e.target.checked) {
-                          const _selectedDatasId = [...selectedDatasId];
-                          _selectedDatasId.push(item.id);
-                          setSelectedDatasId(_selectedDatasId);
-                        } else {
-                          const _selectedDatasId = [...selectedDatasId];
-                          _selectedDatasId.splice(
-                            _selectedDatasId.indexOf(item.id),
-                            1
-                          );
-                          setSelectedDatasId(_selectedDatasId);
-                        }
-                      }}
-                    />
-                  </TableCell>
-                  {keysToShow.map((key, index) => (
-                    <>
-                      <TableCell key={index}>
-                        {Object.keys(customComponent).includes(key)
-                          ? customComponent[key](item[key as keyof typeof item])
-                          : key.includes(".")
-                          ? resolve(key, item)
-                          : item[key as keyof typeof item]}
+            {data.length > 0
+              ? data
+                  .slice(
+                    currentPage * rowPerPage,
+                    (currentPage + 1) * rowPerPage
+                  )
+                  .map((item, index) => (
+                    <TableRow key={index}>
+                      <TableCell>
+                        <Checkbox
+                          value={item.id}
+                          checked={selectedDatasId.includes(item.id)}
+                          onChange={(e) => {
+                            if (e.target.checked) {
+                              const _selectedDatasId = [...selectedDatasId];
+                              _selectedDatasId.push(item.id);
+                              setSelectedDatasId(_selectedDatasId);
+                            } else {
+                              const _selectedDatasId = [...selectedDatasId];
+                              _selectedDatasId.splice(
+                                _selectedDatasId.indexOf(item.id),
+                                1
+                              );
+                              setSelectedDatasId(_selectedDatasId);
+                            }
+                          }}
+                        />
                       </TableCell>
-                    </>
-                  ))}
+                      {keysToShow.map((key, index) => (
+                        <>
+                          <TableCell key={index}>
+                            {Object.keys(customComponent).includes(key)
+                              ? customComponent[key](
+                                  item[key as keyof typeof item]
+                                )
+                              : key.includes(".")
+                              ? resolve(key, item)
+                              : item[key as keyof typeof item]}
+                          </TableCell>
+                        </>
+                      ))}
 
-                  <TableCell>
-                    <Button
-                      sx={{ border: "none !important" }}
-                      color="warning"
-                      variant="contained"
-                      onClick={() => {
-                        setModalData(item);
-                        setIsDataModalOpen(true);
-                      }}
-                    >
-                      <BorderColor />
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
+                      <TableCell>
+                        <Button
+                          sx={{ border: "none !important" }}
+                          color="warning"
+                          variant="contained"
+                          onClick={() => {
+                            setModalData(item);
+                            setIsDataModalOpen(true);
+                          }}
+                        >
+                          <BorderColor />
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  ))
+              : t("no-data")}
           </TableBody>
         </Table>
       </TableContainer>

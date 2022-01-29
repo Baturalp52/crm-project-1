@@ -10,5 +10,6 @@
   "emailService": "E-Mail Service",
   "smsService": "SMS Service",
   "settings": "Settings",
-  "profile": "Profile"
+  "profile": "Profile",
+  "search": "Search"
 }

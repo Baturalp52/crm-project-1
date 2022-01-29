@@ -11,7 +11,7 @@ const ASideBar = () => {
     <>
       <Drawer
         variant="permanent"
-        PaperProps={{ sx: { borderRight: "none !important" } }}
+        PaperProps={{ sx: { borderRight: "none !important", paddingLeft: 1 } }}
       >
         <List>
           {pages.map(

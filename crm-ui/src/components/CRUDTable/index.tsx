@@ -59,15 +59,45 @@ const CRUDTable = <DataType extends { id: number }>(
         boxShadow: "none",
       }}
     >
-      {filters && search && (
-        <SearchBar
-          filter={filter}
-          setFilter={setFilter}
-          filters={filters}
-          search={search}
-        />
-      )}
-
+      <Stack
+        padding={1}
+        direction="row"
+        justifyContent="space-between"
+        alignItems="flex-end"
+      >
+        {filters && search && (
+          <SearchBar
+            filter={filter}
+            setFilter={setFilter}
+            filters={filters}
+            search={search}
+          />
+        )}
+        <ButtonGroup
+          sx={{ marginLeft: "auto" }}
+          aria-label="medium button group contained"
+          variant="contained"
+        >
+          <Button
+            sx={{ border: "none !important" }}
+            startIcon={<Add />}
+            color="success"
+            onClick={() => {
+              setModalData(undefined);
+              setIsDataModalOpen(true);
+            }}
+          >
+            {t("add")}
+          </Button>
+          <Button
+            sx={{ border: "none !important" }}
+            startIcon={<DeleteForeverRounded />}
+            color="error"
+          >
+            {t("delete")}
+          </Button>
+        </ButtonGroup>
+      </Stack>
       <TableContainer sx={{ maxHeight: "500px" }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -168,32 +198,6 @@ const CRUDTable = <DataType extends { id: number }>(
           setCurrentPage(0);
         }}
       />
-      <Stack padding={"1rem"}>
-        <ButtonGroup
-          sx={{ marginLeft: "auto" }}
-          aria-label="medium button group contained"
-          variant="contained"
-        >
-          <Button
-            sx={{ border: "none !important" }}
-            startIcon={<Add />}
-            color="success"
-            onClick={() => {
-              setModalData(undefined);
-              setIsDataModalOpen(true);
-            }}
-          >
-            {t("add")}
-          </Button>
-          <Button
-            sx={{ border: "none !important" }}
-            startIcon={<DeleteForeverRounded />}
-            color="error"
-          >
-            {t("delete")}
-          </Button>
-        </ButtonGroup>
-      </Stack>
     </Paper>
   );
 };

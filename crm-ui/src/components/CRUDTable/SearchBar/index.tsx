@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Paper } from "@mui/material";
+import { Grid } from "@mui/material";
 import SearchInput from "../../SearchInput";
 import FormDropdown from "../../FormDropdown";
 import { useTranslation } from "react-i18next";
@@ -18,31 +18,29 @@ const SearchBar = (props: ISearchBarProps) => {
   });
 
   return (
-    <Paper sx={{ mr: "auto", width: "45%", m: 2 }}>
-      <Grid container padding={2} spacing={2}>
-        <Grid item xs={6} sx={{ display: "flex", alignItems: "center" }}>
-          <SearchInput
-            onChange={(e: any) => {
-              if (Boolean(filter)) search(e);
-            }}
-          />
-        </Grid>
-        <Grid item xs={6} sx={{ display: "flex" }}>
-          <FormDropdown<string>
-            label={t("label")}
-            handleChange={(e) => {
-              setFilter(e.target.value);
-            }}
-            datas={filters}
-            defaultValue={t("select-filter")}
-            dataToValue={(item) => t(`filters.${item}`)}
-            selectedValue={filter}
-            width="45%"
-            getValue={(data) => data}
-          />
-        </Grid>
+    <Grid container spacing={2} sx={{ mr: "auto", width: "45%", ml: 2 }}>
+      <Grid item xs={6} sx={{ display: "flex", alignItems: "center" }}>
+        <SearchInput
+          onChange={(e: any) => {
+            if (Boolean(filter)) search(e);
+          }}
+        />
       </Grid>
-    </Paper>
+      <Grid item xs={6} sx={{ display: "flex" }}>
+        <FormDropdown<string>
+          label={t("label")}
+          handleChange={(e) => {
+            setFilter(e.target.value);
+          }}
+          datas={filters}
+          defaultValue={t("select-filter")}
+          dataToValue={(item) => t(`filters.${item}`)}
+          selectedValue={filter}
+          width="45%"
+          getValue={(data) => data}
+        />
+      </Grid>
+    </Grid>
   );
 };
 

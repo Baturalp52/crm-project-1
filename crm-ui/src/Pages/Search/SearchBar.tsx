@@ -3,14 +3,18 @@ import { Grid } from "@mui/material";
 import SearchInput from "../../components/SearchInput";
 import FormDropdown from "../../components/FormDropdown";
 import { useTranslation } from "react-i18next";
-import filters from "./filters";
+import filters, { IFilter } from "./filters";
 
-const SearchBar = (props: { searchForm: any }) => {
+const SearchBar = (props: {
+  searchForm: any;
+  filterObject: IFilter | undefined;
+  setFilterObject: (obj: IFilter) => void;
+}) => {
   const { t } = useTranslation();
-  const { searchForm } = props;
+  const { searchForm, filterObject, setFilterObject } = props;
 
   useEffect(() => {
-    searchForm.setFieldValue("filter", 0);
+    searchForm.setFieldValue("filter", "");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchForm.values.page]);
 
@@ -28,12 +32,16 @@ const SearchBar = (props: { searchForm: any }) => {
           label={t("pages:search.search-bar.select-page")}
           handleChange={(e) => {
             searchForm.setFieldValue("page", e.target.value);
+            setFilterObject(
+              filters.filter((filter) => filter.pageName === e.target.value)[0]
+            );
           }}
           datas={filters}
           defaultValue={t("pages:search.search-bar.select-page")}
           dataToValue={(item) => t(item.pageName)}
           selectedId={searchForm.values.page}
           width="45%"
+          getValue={(data) => data.pageName}
         />
 
         <FormDropdown<{ id: number; filterName: string }>
@@ -41,16 +49,13 @@ const SearchBar = (props: { searchForm: any }) => {
           handleChange={(e) => {
             searchForm.setFieldValue("filter", e.target.value);
           }}
-          datas={
-            filters[searchForm.values.page - 1]
-              ? filters[searchForm.values.page - 1].filters
-              : []
-          }
+          datas={filterObject ? filterObject.filters : []}
           defaultValue={t("pages:search.search-bar.select-filter")}
           dataToValue={(item) => t("pages:search.filters." + item.filterName)}
           selectedId={searchForm.values.filter}
-          disabled={!Boolean(searchForm.values.page)}
+          disabled={!(searchForm.values.page.length > 0)}
           width="45%"
+          getValue={(data) => data.filterName}
         />
       </Grid>
     </Grid>

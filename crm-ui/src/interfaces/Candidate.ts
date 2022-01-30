@@ -23,6 +23,5 @@ export interface ICandidate {
   salaryExpectation?: number;
   departments?: string[];
   keywords?: string[];
-  situation?: "full-time" | "part-time" | "freelance" | "free";
-  diploma?: string;
+  diplomas?: string[];
 }

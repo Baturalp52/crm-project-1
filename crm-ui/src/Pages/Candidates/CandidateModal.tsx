@@ -10,6 +10,9 @@ import MapsInput from "../../components/MapsInput";
 import mainCoord from "../../mockData/coords";
 import ActionModal from "../../components/ActionModal";
 import { useTranslation } from "react-i18next";
+import FormDropdown from "../../components/FormDropdown";
+import { IJob } from "../../interfaces/Job";
+import jobs from "../../mockData/jobs";
 
 interface ICandidateModalProps {
   candidate?: ICandidate;
@@ -116,6 +119,21 @@ const CandidateModal = (props: ICandidateModalProps) => {
             value={form.values.salaryExpectation}
             name="salaryExpectation"
             onChange={form.handleChange}
+          />
+          <FormDropdown<IJob>
+            label={t("form.requested-job")}
+            handleChange={(e) => {
+              form.setFieldValue(
+                "requestedJob",
+                jobs.filter((job) => job.id === e.target.value)[0]
+              );
+            }}
+            datas={jobs}
+            defaultValue={t("form.requested-job")}
+            dataToValue={(job) => `${job.id} - ${job.name}`}
+            selectedId={
+              form.values.requestedJob ? form.values.requestedJob.id : 0
+            }
           />
         </Grid>
         <Grid item xs={12} md={4}>

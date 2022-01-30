@@ -13,6 +13,7 @@ export const emptyCandidate = {
   mapsCoord: "",
   creatorMember: {},
   previousJobs: [],
+  requestedJob: { id: 0, name: "" },
   skills: [],
   comment: "",
   salaryExpectation: 0,

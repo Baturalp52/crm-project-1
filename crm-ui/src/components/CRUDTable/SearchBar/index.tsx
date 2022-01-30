@@ -8,10 +8,11 @@ interface ISearchBarProps {
   filter: string | number;
   setFilter: (filter: string) => void;
   filters: string[];
+  search: (e: any) => void;
 }
 
 const SearchBar = (props: ISearchBarProps) => {
-  const { filter, setFilter, filters } = props;
+  const { filter, setFilter, filters, search } = props;
   const { t } = useTranslation("components", {
     keyPrefix: "crudTable.search-bar",
   });
@@ -19,7 +20,11 @@ const SearchBar = (props: ISearchBarProps) => {
   return (
     <Grid container padding={2} spacing={2} sx={{ mr: "auto", width: "45%" }}>
       <Grid item xs={6} sx={{ display: "flex", alignItems: "center" }}>
-        <SearchInput onChange={(e) => {}} />
+        <SearchInput
+          onChange={(e: any) => {
+            if (Boolean(filter)) search(e);
+          }}
+        />
       </Grid>
       <Grid item xs={6} sx={{ display: "flex" }}>
         <FormDropdown<string>

@@ -13,6 +13,7 @@ const CandidatesTable = () => {
   const [candidateModalCandidate, setCandidateModalCandidate] = useState<
     ICandidate | undefined
   >(undefined);
+  const [candidatesData, setCandidatesData] = useState(candidates);
 
   return (
     <>
@@ -22,11 +23,15 @@ const CandidatesTable = () => {
         setIsOpen={setIsCandidateModalOpen}
       />
       <CRUDTable<ICandidate>
-        data={candidates}
+        data={candidatesData}
         cellNames={[t("id"), t("name"), t("surname"), t("city")]}
         keysToShow={["id", "name", "surname", "city"]}
         setModalData={setCandidateModalCandidate}
         setIsDataModalOpen={setIsCandidateModalOpen}
+        filters={["distance", "job", "diploma", "keywords"]}
+        search={(e) => {
+          setCandidatesData(e.target.value.length > 0 ? [] : candidates);
+        }}
       />
     </>
   );

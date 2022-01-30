@@ -12,6 +12,7 @@ import {
   TableHead,
   TablePagination,
   TableRow,
+  Typography,
 } from "@mui/material";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -26,6 +27,7 @@ interface ICRUDTableProps<DataType> {
   setIsDataModalOpen: (value: boolean) => void;
   customDataComponent?: any;
   filters?: string[];
+  search?: (e: any) => void;
 }
 
 const CRUDTable = <DataType extends { id: number }>(
@@ -39,6 +41,7 @@ const CRUDTable = <DataType extends { id: number }>(
     setIsDataModalOpen,
     customDataComponent,
     filters,
+    search,
   } = props;
   let customComponent = customDataComponent ? customDataComponent : [];
 
@@ -57,8 +60,13 @@ const CRUDTable = <DataType extends { id: number }>(
         boxShadow: "none",
       }}
     >
-      {filters && (
-        <SearchBar filter={filter} setFilter={setFilter} filters={filters} />
+      {filters && search && (
+        <SearchBar
+          filter={filter}
+          setFilter={setFilter}
+          filters={filters}
+          search={search}
+        />
       )}
 
       <TableContainer sx={{ maxHeight: "500px" }}>
@@ -83,64 +91,67 @@ const CRUDTable = <DataType extends { id: number }>(
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.length > 0
-              ? data
-                  .slice(
-                    currentPage * rowPerPage,
-                    (currentPage + 1) * rowPerPage
-                  )
-                  .map((item, index) => (
-                    <TableRow key={index}>
-                      <TableCell key={index}>
-                        <Checkbox
-                          value={item.id}
-                          checked={selectedDatasId.includes(item.id)}
-                          onChange={(e) => {
-                            if (e.target.checked) {
-                              const _selectedDatasId = [...selectedDatasId];
-                              _selectedDatasId.push(item.id);
-                              setSelectedDatasId(_selectedDatasId);
-                            } else {
-                              const _selectedDatasId = [...selectedDatasId];
-                              _selectedDatasId.splice(
-                                _selectedDatasId.indexOf(item.id),
-                                1
-                              );
-                              setSelectedDatasId(_selectedDatasId);
-                            }
-                          }}
-                        />
-                      </TableCell>
-                      {keysToShow.map((key, index) => (
-                        <>
-                          <TableCell key={index}>
-                            {Object.keys(customComponent).includes(key)
-                              ? customComponent[key](
-                                  item[key as keyof typeof item]
-                                )
-                              : key.includes(".")
-                              ? resolve(key, item)
-                              : item[key as keyof typeof item]}
-                          </TableCell>
-                        </>
-                      ))}
+            {data.length > 0 ? (
+              data
+                .slice(currentPage * rowPerPage, (currentPage + 1) * rowPerPage)
+                .map((item, index) => (
+                  <TableRow key={index}>
+                    <TableCell key={index}>
+                      <Checkbox
+                        value={item.id}
+                        checked={selectedDatasId.includes(item.id)}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            const _selectedDatasId = [...selectedDatasId];
+                            _selectedDatasId.push(item.id);
+                            setSelectedDatasId(_selectedDatasId);
+                          } else {
+                            const _selectedDatasId = [...selectedDatasId];
+                            _selectedDatasId.splice(
+                              _selectedDatasId.indexOf(item.id),
+                              1
+                            );
+                            setSelectedDatasId(_selectedDatasId);
+                          }
+                        }}
+                      />
+                    </TableCell>
+                    {keysToShow.map((key, index) => (
+                      <>
+                        <TableCell key={index}>
+                          {Object.keys(customComponent).includes(key)
+                            ? customComponent[key](
+                                item[key as keyof typeof item]
+                              )
+                            : key.includes(".")
+                            ? resolve(key, item)
+                            : item[key as keyof typeof item]}
+                        </TableCell>
+                      </>
+                    ))}
 
-                      <TableCell>
-                        <Button
-                          sx={{ border: "none !important" }}
-                          color="warning"
-                          variant="contained"
-                          onClick={() => {
-                            setModalData(item);
-                            setIsDataModalOpen(true);
-                          }}
-                        >
-                          <BorderColor />
-                        </Button>
-                      </TableCell>
-                    </TableRow>
-                  ))
-              : t("no-data")}
+                    <TableCell>
+                      <Button
+                        sx={{ border: "none !important" }}
+                        color="warning"
+                        variant="contained"
+                        onClick={() => {
+                          setModalData(item);
+                          setIsDataModalOpen(true);
+                        }}
+                      >
+                        <BorderColor />
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={cellNames.length + 1} align="center">
+                  {t("no-data")}
+                </TableCell>
+              </TableRow>
+            )}
           </TableBody>
         </Table>
       </TableContainer>

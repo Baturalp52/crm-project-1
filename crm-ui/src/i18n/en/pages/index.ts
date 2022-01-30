@@ -4,7 +4,6 @@ import companies from "./companies.json";
 import hrMembers from "./hrMembers.json";
 import jobs from "./jobs.json";
 import tasks from "./tasks.json";
-import search from "./search.json";
 
 const pages = {
   calendar: calendar,
@@ -13,7 +12,6 @@ const pages = {
   hrMembers: hrMembers,
   jobs: jobs,
   tasks: tasks,
-  search: search,
 };
 
 export default pages;

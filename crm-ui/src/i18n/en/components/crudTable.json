@@ -5,6 +5,11 @@
   "search-bar": {
     "label": "Filter",
     "select-filter": "Select Filter",
-    "filters": {}
+    "filters": {
+      "diploma": "Diploma",
+      "keywords": "Keywords",
+      "distance": "Distance",
+      "job": "Job"
+    }
   }
 }

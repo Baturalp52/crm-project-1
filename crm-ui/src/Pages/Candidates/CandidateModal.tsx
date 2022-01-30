@@ -27,6 +27,8 @@ const mockDepartments = ["Department 1", "Department 2"];
 
 const mockKeywords = ["Keyword 1", "Keyword 2"];
 
+const mockDiplomas = ["Diploma 1", "Diploma 2"];
+
 const CandidateModal = (props: ICandidateModalProps) => {
   const { candidate, isOpen, setIsOpen } = props;
   const { t } = useTranslation("pages", { keyPrefix: "candidates.modal" });
@@ -141,6 +143,11 @@ const CandidateModal = (props: ICandidateModalProps) => {
             label={t("form.keywords")}
             id="keywords"
             data={mockKeywords}
+          />
+          <FormMultiTextInput
+            label={t("form.diplomas")}
+            id="diplomas"
+            data={mockDiplomas}
           />
         </Grid>
         <Grid item xs={12} md={4}>

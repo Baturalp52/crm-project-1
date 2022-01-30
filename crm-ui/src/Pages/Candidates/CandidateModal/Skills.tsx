@@ -40,8 +40,8 @@ const Skills = (props: ISkillsProps) => {
           <Grid container>
             {skills.map((skill, index) => (
               <Grid key={index} item xs={12} sx={{ display: "flex" }}>
-                <Tooltip title={t("level") + skill.level}>
-                  <>{skill.name}</>
+                <Tooltip title={t("level") + skill.level} placement="top">
+                  <span>{skill.name}</span>
                 </Tooltip>
                 <IconButton
                   sx={{ ml: "auto" }}
@@ -52,6 +52,7 @@ const Skills = (props: ISkillsProps) => {
                   <Edit />
                 </IconButton>
                 <IconButton
+                  sx={{ ml: 1 }}
                   onClick={() => {
                     removeSkill(skill);
                   }}

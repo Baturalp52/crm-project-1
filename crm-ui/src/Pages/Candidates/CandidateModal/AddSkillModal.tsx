@@ -33,10 +33,10 @@ const AddSkillModal = (props: IAddSkillModalProps) => {
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: "95%",
-          height: "85%",
+          textAlign: "center",
           bgcolor: "background.paper",
           border: "none",
+          padding: 2,
         }}
       >
         <FormInput
@@ -51,7 +51,7 @@ const AddSkillModal = (props: IAddSkillModalProps) => {
           }}
         />
         <FormInput
-          label={t("level")}
+          label={t("skill-level")}
           type="text"
           value={skill.level}
           name="skill-level"

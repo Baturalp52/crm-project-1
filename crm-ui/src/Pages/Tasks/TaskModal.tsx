@@ -77,6 +77,7 @@ const TaskModal = (props: ITaskModalProps) => {
             <ListItem>
               <FormDropdown
                 label={t("form.assigned-candidate")}
+                getValue={(item) => item.id}
                 handleChange={(e) => {
                   form.setFieldValue(
                     "assignedCandidate",
@@ -90,7 +91,7 @@ const TaskModal = (props: ITaskModalProps) => {
                 dataToValue={(data) =>
                   data.id + " - " + data.name + " " + data.surname
                 }
-                selectedId={
+                selectedValue={
                   form.values.assignedCandidate
                     ? form.values.assignedCandidate.id
                     : 0
@@ -100,6 +101,7 @@ const TaskModal = (props: ITaskModalProps) => {
             <ListItem>
               <FormDropdown
                 label={t("form.assigned-member")}
+                getValue={(item) => item.id}
                 handleChange={(e) => {
                   form.setFieldValue(
                     "assignedMember",
@@ -113,7 +115,7 @@ const TaskModal = (props: ITaskModalProps) => {
                 dataToValue={(data) =>
                   data.id + " - " + data.name + " " + data.surname
                 }
-                selectedId={
+                selectedValue={
                   form.values.assignedMember ? form.values.assignedMember.id : 0
                 }
               />

@@ -39,7 +39,7 @@ const SearchBar = (props: {
           datas={filters}
           defaultValue={t("pages:search.search-bar.select-page")}
           dataToValue={(item) => t(item.pageName)}
-          selectedId={searchForm.values.page}
+          selectedValue={searchForm.values.page}
           width="45%"
           getValue={(data) => data.pageName}
         />
@@ -52,7 +52,7 @@ const SearchBar = (props: {
           datas={filterObject ? filterObject.filters : []}
           defaultValue={t("pages:search.search-bar.select-filter")}
           dataToValue={(item) => t("pages:search.filters." + item.filterName)}
-          selectedId={searchForm.values.filter}
+          selectedValue={searchForm.values.filter}
           disabled={!(searchForm.values.page.length > 0)}
           width="45%"
           getValue={(data) => data.filterName}

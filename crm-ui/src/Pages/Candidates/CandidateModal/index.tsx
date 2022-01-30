@@ -124,6 +124,7 @@ const CandidateModal = (props: ICandidateModalProps) => {
           />
           <FormDropdown<IJob>
             label={t("form.requested-job")}
+            getValue={(item) => item.id}
             handleChange={(e) => {
               form.setFieldValue(
                 "requestedJob",
@@ -133,7 +134,7 @@ const CandidateModal = (props: ICandidateModalProps) => {
             datas={jobs}
             defaultValue={t("form.requested-job")}
             dataToValue={(job) => `${job.id} - ${job.name}`}
-            selectedId={
+            selectedValue={
               form.values.requestedJob ? form.values.requestedJob.id : 0
             }
           />

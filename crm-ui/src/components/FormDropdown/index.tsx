@@ -7,13 +7,13 @@ interface IFormDropdownProps<DataType> {
   datas: DataType[];
   defaultValue: string;
   dataToValue: (data: DataType) => string;
-  selectedId: number;
+  selectedValue: number | string;
   disabled?: boolean;
   width?: string;
-  getValue?: (data: DataType) => string | number;
+  getValue: (data: DataType) => string | number;
 }
 
-const FormDropdown = <DataType extends { id: number }>(
+const FormDropdown = <DataType extends { id: number } | string>(
   props: IFormDropdownProps<DataType>
 ) => {
   const {
@@ -22,7 +22,7 @@ const FormDropdown = <DataType extends { id: number }>(
     defaultValue,
     datas,
     dataToValue,
-    selectedId,
+    selectedValue,
     disabled,
     width,
     getValue,
@@ -31,12 +31,12 @@ const FormDropdown = <DataType extends { id: number }>(
     <FormControl disabled={disabled} sx={{ width: "100%" || width, m: 1 }}>
       <InputLabel>{label}</InputLabel>
 
-      <Select value={selectedId} label={label} onChange={handleChange}>
+      <Select value={selectedValue} label={label} onChange={handleChange}>
         <MenuItem value={0}>
           <em>{defaultValue}</em>
         </MenuItem>
-        {datas.map((data: DataType) => (
-          <MenuItem key={data.id} value={getValue ? getValue(data) : data.id}>
+        {datas.map((data: DataType, index) => (
+          <MenuItem key={index} value={getValue(data)}>
             {dataToValue(data)}
           </MenuItem>
         ))}

@@ -6,11 +6,13 @@ import SearchBar from "./SearchBar";
 import { useFormik } from "formik";
 import ResultsTable from "../../components/ResultsTable";
 import { IFilter } from "./filters";
+import DynamicModal from "./DynamicModal";
+import candidates from "../../mockData/candidates";
 
 const Search = () => {
   const [isDataModalOpen, setIsDataModalOpen] = useState<boolean>(false);
   const [modalData, setModalData] = useState({});
-  const [filterObject, setFilterObject] = useState<IFilter | undefined>();
+  const [filterObject, setFilterObject] = useState<IFilter>();
   let form = useFormik({
     initialValues: {
       searchKey: "",
@@ -48,10 +50,16 @@ const Search = () => {
           form.values.filter.length > 0 &&
           form.values.page.length > 0 && (
             <>
+              <DynamicModal
+                title="Candidate"
+                isOpen={isDataModalOpen}
+                setIsOpen={setIsDataModalOpen}
+                data={modalData}
+              />
               <ResultsTable<any>
-                data={[]}
-                cellNames={["id", "Name", "Surname"]}
-                keysToShow={[]}
+                data={form.values.searchKey === "1" ? candidates : []}
+                cellNames={filterObject ? filterObject.cellNames : []}
+                keysToShow={filterObject ? filterObject.keysToShow : []}
                 setIsDataModalOpen={setIsDataModalOpen}
                 setModalData={setModalData}
               />

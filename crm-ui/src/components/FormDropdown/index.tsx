@@ -10,6 +10,7 @@ interface IFormDropdownProps<DataType> {
   selectedId: number;
   disabled?: boolean;
   width?: string;
+  getValue?: (data: DataType) => string | number;
 }
 
 const FormDropdown = <DataType extends { id: number }>(
@@ -24,6 +25,7 @@ const FormDropdown = <DataType extends { id: number }>(
     selectedId,
     disabled,
     width,
+    getValue,
   } = props;
   return (
     <FormControl disabled={disabled} sx={{ width: "100%" || width, m: 1 }}>
@@ -34,7 +36,7 @@ const FormDropdown = <DataType extends { id: number }>(
           <em>{defaultValue}</em>
         </MenuItem>
         {datas.map((data: DataType) => (
-          <MenuItem key={data.id} value={data.id}>
+          <MenuItem key={data.id} value={getValue ? getValue(data) : data.id}>
             {dataToValue(data)}
           </MenuItem>
         ))}

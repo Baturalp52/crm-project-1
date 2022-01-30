@@ -1,18 +1,18 @@
 import React from "react";
 import { Grid, Button, Stack } from "@mui/material";
 import { useFormik } from "formik";
-import { ICandidate } from "../../interfaces/Candidate";
-import { emptyCandidate } from "./emptyCandidate";
-import FormInput from "../../components/FormInput";
+import { ICandidate } from "../../../interfaces/Candidate";
+import { emptyCandidate } from "../emptyCandidate";
+import FormInput from "../../../components/FormInput";
 import { Email, FileUpload, Message, SaveRounded } from "@mui/icons-material";
-import FormMultiTextInput from "../../components/FormMultiTextInput";
-import MapsInput from "../../components/MapsInput";
-import mainCoord from "../../mockData/coords";
-import ActionModal from "../../components/ActionModal";
+import FormMultiTextInput from "../../../components/FormMultiTextInput";
+import MapsInput from "../../../components/MapsInput";
+import mainCoord from "../../../mockData/coords";
+import ActionModal from "../../../components/ActionModal";
 import { useTranslation } from "react-i18next";
-import FormDropdown from "../../components/FormDropdown";
-import { IJob } from "../../interfaces/Job";
-import jobs from "../../mockData/jobs";
+import FormDropdown from "../../../components/FormDropdown";
+import { IJob } from "../../../interfaces/Job";
+import jobs from "../../../mockData/jobs";
 
 interface ICandidateModalProps {
   candidate?: ICandidate;

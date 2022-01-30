@@ -49,7 +49,7 @@ const CRUDTable = <DataType extends { id: number }>(
         boxShadow: "none",
       }}
     >
-      <TableContainer sx={{ maxHeight: "500px" }}>
+      <TableContainer sx={{ maxHeight: "500px", minHeight: "500px" }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>

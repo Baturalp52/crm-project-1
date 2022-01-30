@@ -1,6 +1,6 @@
 import { IHRMember } from "./HRMember";
 import { IJob } from "./Job";
-import { ISkill } from "./Skills";
+import { ISkill } from "./Skill";
 
 export interface ICandidate {
   id: number;

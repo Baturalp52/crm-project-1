@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import { ICandidate } from "../../interfaces/Candidate";
 import { emptyCandidate } from "./emptyCandidate";
 import FormInput from "../../components/FormInput";
-import { FileUpload, SaveRounded } from "@mui/icons-material";
+import { Email, FileUpload, Message, SaveRounded } from "@mui/icons-material";
 import FormMultiTextInput from "../../components/FormMultiTextInput";
 import MapsInput from "../../components/MapsInput";
 import mainCoord from "../../mockData/coords";
@@ -183,6 +183,16 @@ const CandidateModal = (props: ICandidateModalProps) => {
             <Button sx={{ m: 1 }} variant="contained" color="secondary">
               <FileUpload /> {t("form.cv.upload")}
             </Button>
+          )}
+          {Boolean(form.values.id) && (
+            <Stack sx={{ m: 1 }} direction="row" spacing={1}>
+              <Button variant="contained" color="primary">
+                <Email sx={{ mr: 1 }} /> {t("send-mail")}
+              </Button>
+              <Button variant="contained" color="primary">
+                <Message sx={{ mr: 1 }} /> {t("send-sms")}
+              </Button>
+            </Stack>
           )}
         </Grid>
       </Grid>

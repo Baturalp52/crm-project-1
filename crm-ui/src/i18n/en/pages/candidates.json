@@ -8,6 +8,8 @@
   "modal": {
     "edit": "Edit Candidate",
     "add": "Add New Candidate",
+    "send-mail": "Send Mail",
+    "send-sms": "Send SMS",
     "form": {
       "id": "id",
       "name": "Name",

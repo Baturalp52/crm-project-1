@@ -28,7 +28,7 @@ const FormMultiTextInput = (props: IFormMultiTextInputProps) => {
         <Grid container spacing={2} mx="auto">
           {data.map((item, index) => {
             return (
-              <Grid item xs={12}>
+              <Grid key={index} item xs={12}>
                 <Button
                   key={index}
                   variant="outlined"

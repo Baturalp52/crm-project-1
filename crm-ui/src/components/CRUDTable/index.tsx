@@ -68,8 +68,8 @@ const CRUDTable = <DataType extends { id: number }>(
                   }}
                 />
               </TableCell>
-              {cellNames.map((name) => (
-                <TableCell>{name}</TableCell>
+              {cellNames.map((name, index) => (
+                <TableCell key={index}>{name}</TableCell>
               ))}
               <TableCell />
             </TableRow>
@@ -83,7 +83,7 @@ const CRUDTable = <DataType extends { id: number }>(
                   )
                   .map((item, index) => (
                     <TableRow key={index}>
-                      <TableCell>
+                      <TableCell key={index}>
                         <Checkbox
                           value={item.id}
                           checked={selectedDatasId.includes(item.id)}

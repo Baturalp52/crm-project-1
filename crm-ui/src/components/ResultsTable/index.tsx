@@ -1,7 +1,7 @@
-import { BorderColor } from "@mui/icons-material";
+import React, { useState } from "react";
+import { Visibility } from "@mui/icons-material";
 import {
   Button,
-  Checkbox,
   Paper,
   Table,
   TableBody,
@@ -11,7 +11,6 @@ import {
   TablePagination,
   TableRow,
 } from "@mui/material";
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { resolve } from "./helpers";
 
@@ -41,7 +40,6 @@ const CRUDTable = <DataType extends { id: number }>(
 
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [rowPerPage, setRowPerPage] = useState<number>(10);
-  const [selectedDatasId, setSelectedDatasId] = useState<number[]>([]);
   return (
     <Paper
       sx={{
@@ -55,17 +53,6 @@ const CRUDTable = <DataType extends { id: number }>(
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-              <TableCell>
-                <Checkbox
-                  value="all"
-                  checked={data.length === selectedDatasId.length}
-                  onChange={(e) => {
-                    if (e.target.checked) {
-                      setSelectedDatasId(data.map((c: DataType) => c.id));
-                    } else setSelectedDatasId([]);
-                  }}
-                />
-              </TableCell>
               {cellNames.map((name) => (
                 <TableCell>{name}</TableCell>
               ))}
@@ -81,26 +68,6 @@ const CRUDTable = <DataType extends { id: number }>(
                   )
                   .map((item, index) => (
                     <TableRow key={index}>
-                      <TableCell>
-                        <Checkbox
-                          value={item.id}
-                          checked={selectedDatasId.includes(item.id)}
-                          onChange={(e) => {
-                            if (e.target.checked) {
-                              const _selectedDatasId = [...selectedDatasId];
-                              _selectedDatasId.push(item.id);
-                              setSelectedDatasId(_selectedDatasId);
-                            } else {
-                              const _selectedDatasId = [...selectedDatasId];
-                              _selectedDatasId.splice(
-                                _selectedDatasId.indexOf(item.id),
-                                1
-                              );
-                              setSelectedDatasId(_selectedDatasId);
-                            }
-                          }}
-                        />
-                      </TableCell>
                       {keysToShow.map((key, index) => (
                         <>
                           <TableCell key={index}>
@@ -118,14 +85,14 @@ const CRUDTable = <DataType extends { id: number }>(
                       <TableCell>
                         <Button
                           sx={{ border: "none !important" }}
-                          color="warning"
+                          color="info"
                           variant="contained"
                           onClick={() => {
                             setModalData(item);
                             setIsDataModalOpen(true);
                           }}
                         >
-                          <BorderColor />
+                          <Visibility />
                         </Button>
                       </TableCell>
                     </TableRow>

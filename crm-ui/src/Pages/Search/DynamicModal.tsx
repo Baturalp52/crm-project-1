@@ -8,6 +8,7 @@ import {
   Modal,
 } from "@mui/material";
 import { CloseRounded } from "@mui/icons-material";
+import { useTranslation } from "react-i18next";
 
 interface IDynamicModalProps {
   isOpen: boolean;
@@ -18,6 +19,8 @@ interface IDynamicModalProps {
 
 const DynamicModal = (props: IDynamicModalProps) => {
   const { isOpen, setIsOpen, title, data } = props;
+
+  const { t } = useTranslation("pages", { keyPrefix: "search.dynamic-modal" });
   return (
     <Modal open={isOpen} onClose={() => setIsOpen(false)}>
       <Card
@@ -34,7 +37,7 @@ const DynamicModal = (props: IDynamicModalProps) => {
       >
         <CardHeader
           sx={{ p: 2, bgcolor: "success.dark", color: "white" }}
-          title={title}
+          title={t("titles." + title)}
           action={
             <IconButton
               onClick={() => {
@@ -50,7 +53,7 @@ const DynamicModal = (props: IDynamicModalProps) => {
             {Object.keys(data).map((key) => {
               return (
                 <Grid item xs={12} md={4}>
-                  {key}: {data[key]}
+                  {t("keys." + key)}: {data[key]}
                 </Grid>
               );
             })}

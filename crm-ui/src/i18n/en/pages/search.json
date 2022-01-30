@@ -10,5 +10,17 @@
   "search-bar": {
     "select-page": "Select Page",
     "select-filter": "Select Filter"
+  },
+  "dynamic-modal": {
+    "keys": {
+      "id": "id",
+      "name": "Name",
+      "surname": "Surname",
+      "city": "City"
+    },
+    "titles": {
+      "candidates": "Candidate",
+      "companies": "Company"
+    }
   }
 }

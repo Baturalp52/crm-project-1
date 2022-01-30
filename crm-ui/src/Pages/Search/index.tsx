@@ -51,7 +51,7 @@ const Search = () => {
           form.values.page.length > 0 && (
             <>
               <DynamicModal
-                title="Candidate"
+                title={filterObject ? filterObject.pageName : ""}
                 isOpen={isDataModalOpen}
                 setIsOpen={setIsDataModalOpen}
                 data={modalData}

@@ -1,5 +1,10 @@
 {
   "add": "Add New",
   "delete": "Delete",
-  "no-data": "No data!"
+  "no-data": "No data!",
+  "search-bar": {
+    "label": "Filter",
+    "select-filter": "Select Filter",
+    "filters": {}
+  }
 }

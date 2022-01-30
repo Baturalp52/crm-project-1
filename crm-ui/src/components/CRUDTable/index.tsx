@@ -16,6 +16,7 @@ import {
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { resolve } from "./helpers";
+import SearchBar from "./SearchBar";
 
 interface ICRUDTableProps<DataType> {
   data: DataType[];
@@ -24,6 +25,7 @@ interface ICRUDTableProps<DataType> {
   setModalData: (data: DataType | undefined) => void;
   setIsDataModalOpen: (value: boolean) => void;
   customDataComponent?: any;
+  filters?: string[];
 }
 
 const CRUDTable = <DataType extends { id: number }>(
@@ -36,6 +38,7 @@ const CRUDTable = <DataType extends { id: number }>(
     keysToShow,
     setIsDataModalOpen,
     customDataComponent,
+    filters,
   } = props;
   let customComponent = customDataComponent ? customDataComponent : [];
 
@@ -44,6 +47,7 @@ const CRUDTable = <DataType extends { id: number }>(
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [rowPerPage, setRowPerPage] = useState<number>(10);
   const [selectedDatasId, setSelectedDatasId] = useState<number[]>([]);
+  const [filter, setFilter] = useState("");
   return (
     <Paper
       sx={{
@@ -53,6 +57,10 @@ const CRUDTable = <DataType extends { id: number }>(
         boxShadow: "none",
       }}
     >
+      {filters && (
+        <SearchBar filter={filter} setFilter={setFilter} filters={filters} />
+      )}
+
       <TableContainer sx={{ maxHeight: "500px" }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>

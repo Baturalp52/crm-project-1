@@ -1,22 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box, Button, Modal } from "@mui/material";
 import { ISkill } from "../../../interfaces/Skill";
 import { useTranslation } from "react-i18next";
 import FormInput from "../../../components/FormInput";
+import { Save } from "@mui/icons-material";
 
-interface IAddSkillModalProps {
+interface ISkillModalProps {
   isOpen: boolean;
   setIsOpen: (state: boolean) => void;
   addSkill: (skill: ISkill) => void;
+  editSkill: (skill: ISkill) => void;
+  action: "add" | "edit";
+  modalSkill: ISkill;
+  setModalSkill: (skill: ISkill) => void;
 }
 
-const AddSkillModal = (props: IAddSkillModalProps) => {
-  const { isOpen, setIsOpen, addSkill } = props;
-  const [skill, setSkill] = useState<ISkill>({
-    id: 0,
-    name: "",
-    level: "",
-  });
+const SkillModal = (props: ISkillModalProps) => {
+  const {
+    isOpen,
+    setIsOpen,
+    addSkill,
+    editSkill,
+    action,
+    modalSkill,
+    setModalSkill,
+  } = props;
   const { t } = useTranslation("pages", {
     keyPrefix: "candidates.modal.form.skills",
   });
@@ -42,33 +50,34 @@ const AddSkillModal = (props: IAddSkillModalProps) => {
         <FormInput
           label={t("name")}
           type="text"
-          value={skill.name}
+          value={modalSkill.name}
           name="skill-name"
           onChange={(e) => {
-            const prevSkill = { ...skill };
+            const prevSkill = { ...modalSkill };
             prevSkill.name = e.target.value;
-            setSkill(prevSkill);
+            setModalSkill(prevSkill);
           }}
         />
         <FormInput
           label={t("skill-level")}
           type="text"
-          value={skill.level}
+          value={modalSkill.level}
           name="skill-level"
           onChange={(e) => {
-            const prevSkill = { ...skill };
+            const prevSkill = { ...modalSkill };
             prevSkill.level = e.target.value;
-            setSkill(prevSkill);
+            setModalSkill(prevSkill);
           }}
         />
         <Button
           variant="contained"
           color="success"
           onClick={() => {
-            addSkill(skill);
+            action === "add" ? addSkill(modalSkill) : editSkill(modalSkill);
             setIsOpen(false);
           }}
         >
+          <Save sx={{ mr: 1 }} />
           {t("save-skill")}
         </Button>
       </Box>
@@ -76,4 +85,4 @@ const AddSkillModal = (props: IAddSkillModalProps) => {
   );
 };
 
-export default AddSkillModal;
+export default SkillModal;

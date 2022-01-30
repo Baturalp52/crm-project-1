@@ -12,7 +12,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { ISkill } from "../../../interfaces/Skill";
 import { Clear, Edit } from "@mui/icons-material";
-import AddSkillModal from "./AddSkillModal";
+import SkillModal from "./SkillModal";
 
 interface ISkillsProps {
   skills: ISkill[];
@@ -26,13 +26,23 @@ const Skills = (props: ISkillsProps) => {
     keyPrefix: "candidates.modal.form.skills",
   });
   const { skills, removeSkill, editSkill, addSkill } = props;
-  const [isAddModalOpen, setIsAddModalOpen] = useState<boolean>(false);
+  const [isSkillModalOpen, setIsSkillModalOpen] = useState<boolean>(false);
+  const [modalAction, setModalAction] = useState<"add" | "edit">("add");
+  const [modalSkill, setModalSkill] = useState<ISkill>({
+    id: 0,
+    name: "",
+    level: "",
+  });
   return (
     <>
-      <AddSkillModal
-        isOpen={isAddModalOpen}
-        setIsOpen={setIsAddModalOpen}
+      <SkillModal
+        isOpen={isSkillModalOpen}
+        setIsOpen={setIsSkillModalOpen}
         addSkill={addSkill}
+        editSkill={editSkill}
+        action={modalAction}
+        modalSkill={modalSkill}
+        setModalSkill={setModalSkill}
       />
       <Card sx={{ border: "none", width: "100%", m: 1 }}>
         <CardHeader title={t("title")} />
@@ -46,7 +56,9 @@ const Skills = (props: ISkillsProps) => {
                 <IconButton
                   sx={{ ml: "auto" }}
                   onClick={() => {
-                    editSkill(skill);
+                    setModalAction("edit");
+                    setModalSkill(skill);
+                    setIsSkillModalOpen(true);
                   }}
                 >
                   <Edit />
@@ -66,7 +78,13 @@ const Skills = (props: ISkillsProps) => {
         <CardActions>
           <Button
             onClick={() => {
-              setIsAddModalOpen(true);
+              setModalAction("add");
+              setModalSkill({
+                id: 0,
+                name: "",
+                level: "",
+              });
+              setIsSkillModalOpen(true);
             }}
           >
             {t("add-new-skill")}

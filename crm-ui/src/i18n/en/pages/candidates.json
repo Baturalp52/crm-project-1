@@ -33,6 +33,13 @@
         "upload-new": "Upload New CV",
         "upload": "Upload CV"
       },
+      "skills": {
+        "title": "Skills",
+        "name": "Skill Name",
+        "level": "Level: ",
+        "add-new-skill": "Add New Skill",
+        "save-skill": "Save"
+      },
       "save": "Save"
     }
   }

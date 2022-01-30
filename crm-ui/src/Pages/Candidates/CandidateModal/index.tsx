@@ -13,6 +13,8 @@ import { useTranslation } from "react-i18next";
 import FormDropdown from "../../../components/FormDropdown";
 import { IJob } from "../../../interfaces/Job";
 import jobs from "../../../mockData/jobs";
+import Skills from "./Skills";
+import { ISkill } from "../../../interfaces/Skill";
 
 interface ICandidateModalProps {
   candidate?: ICandidate;
@@ -134,6 +136,31 @@ const CandidateModal = (props: ICandidateModalProps) => {
             selectedId={
               form.values.requestedJob ? form.values.requestedJob.id : 0
             }
+          />
+          <Skills
+            skills={form.values.skills || []}
+            addSkill={(skill: ISkill) => {
+              const prevSkills = form.values.skills
+                ? [...form.values.skills]
+                : [];
+              prevSkills.push(skill);
+              form.setFieldValue("skills", prevSkills);
+            }}
+            editSkill={(skill: ISkill) => {
+              let prevSkills = form.values.skills
+                ? [...form.values.skills]
+                : [];
+              prevSkills = prevSkills.filter((item) => item.id !== skill.id);
+              prevSkills.push(skill);
+              form.setFieldValue("skills", prevSkills);
+            }}
+            removeSkill={(skill: ISkill) => {
+              let prevSkills = form.values.skills
+                ? [...form.values.skills]
+                : [];
+              prevSkills = prevSkills.filter((item) => item.id !== skill.id);
+              form.setFieldValue("skills", prevSkills);
+            }}
           />
         </Grid>
         <Grid item xs={12} md={4}>

@@ -5,7 +5,7 @@ import FormDropdown from "../../FormDropdown";
 import { useTranslation } from "react-i18next";
 
 interface ISearchBarProps {
-  filter: string;
+  filter: string | number;
   setFilter: (filter: string) => void;
   filters: string[];
 }
@@ -17,7 +17,7 @@ const SearchBar = (props: ISearchBarProps) => {
   });
 
   return (
-    <Grid container padding={2} spacing={2} sx={{ ml: "auto" }}>
+    <Grid container padding={2} spacing={2} sx={{ mr: "auto", width: "45%" }}>
       <Grid item xs={6} sx={{ display: "flex", alignItems: "center" }}>
         <SearchInput onChange={(e) => {}} />
       </Grid>

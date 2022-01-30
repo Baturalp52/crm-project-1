@@ -47,7 +47,7 @@ const CRUDTable = <DataType extends { id: number }>(
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [rowPerPage, setRowPerPage] = useState<number>(10);
   const [selectedDatasId, setSelectedDatasId] = useState<number[]>([]);
-  const [filter, setFilter] = useState("");
+  const [filter, setFilter] = useState<number | string>(0);
   return (
     <Paper
       sx={{

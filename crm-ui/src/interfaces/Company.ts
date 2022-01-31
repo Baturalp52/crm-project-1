@@ -1,4 +1,3 @@
-import { IHRMember } from "./HRMember";
 import { IJob } from "./Job";
 
 export interface ICompany {
@@ -8,6 +7,5 @@ export interface ICompany {
   address?: string;
   city?: string;
   sector?: string;
-  HRMembers?: IHRMember[];
   jobs?: IJob[];
 }

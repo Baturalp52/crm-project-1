@@ -4,6 +4,6 @@ export const emptyCompany = {
   address: "",
   city: "",
   sector: "",
-  HRMembers: [],
   jobs: [],
+  mapsCoord: [0.0, 0.0],
 };

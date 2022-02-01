@@ -4,15 +4,18 @@ import SearchInput from "../../SearchInput";
 import FormDropdown from "../../FormDropdown";
 import { useTranslation } from "react-i18next";
 
-interface ISearchBarProps {
-  filter: string | number;
-  setFilter: (filter: string) => void;
+export interface ISearchBarObject {
   filters: string[];
   search: (e: any) => void;
 }
+interface ISearchBarProps {
+  filter: string | number;
+  setFilter: (filter: string) => void;
+  object: ISearchBarObject;
+}
 
 const SearchBar = (props: ISearchBarProps) => {
-  const { filter, setFilter, filters, search } = props;
+  const { filter, setFilter, object } = props;
   const { t } = useTranslation("components", {
     keyPrefix: "crudTable.search-bar",
   });
@@ -22,7 +25,7 @@ const SearchBar = (props: ISearchBarProps) => {
       <Grid item xs={6} sx={{ display: "flex", alignItems: "center" }}>
         <SearchInput
           onChange={(e: any) => {
-            if (Boolean(filter)) search(e);
+            if (Boolean(filter)) object.search(e);
           }}
         />
       </Grid>
@@ -32,7 +35,7 @@ const SearchBar = (props: ISearchBarProps) => {
           handleChange={(e) => {
             setFilter(e.target.value);
           }}
-          datas={filters}
+          datas={object.filters}
           defaultValue={t("select-filter")}
           dataToValue={(item) => t(`filters.${item}`)}
           selectedValue={filter}

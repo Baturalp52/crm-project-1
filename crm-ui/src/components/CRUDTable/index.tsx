@@ -16,7 +16,7 @@ import {
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { resolve } from "./helpers";
-import SearchBar from "./SearchBar";
+import SearchBar, { ISearchBarObject } from "./SearchBar";
 
 interface ICRUDTableProps<DataType> {
   data: DataType[];
@@ -25,8 +25,7 @@ interface ICRUDTableProps<DataType> {
   setModalData: (data: DataType | undefined) => void;
   setIsDataModalOpen: (value: boolean) => void;
   customDataComponent?: any;
-  filters?: string[];
-  search?: (e: any) => void;
+  searchBarObject?: ISearchBarObject;
 }
 
 const CRUDTable = <DataType extends { id: number }>(
@@ -39,8 +38,7 @@ const CRUDTable = <DataType extends { id: number }>(
     keysToShow,
     setIsDataModalOpen,
     customDataComponent,
-    filters,
-    search,
+    searchBarObject,
   } = props;
   let customComponent = customDataComponent ? customDataComponent : [];
 
@@ -65,12 +63,11 @@ const CRUDTable = <DataType extends { id: number }>(
         justifyContent="space-between"
         alignItems="flex-end"
       >
-        {filters && search && (
+        {searchBarObject && (
           <SearchBar
             filter={filter}
             setFilter={setFilter}
-            filters={filters}
-            search={search}
+            object={searchBarObject}
           />
         )}
       </Stack>

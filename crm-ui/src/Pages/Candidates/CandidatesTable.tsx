@@ -28,9 +28,11 @@ const CandidatesTable = () => {
         keysToShow={["id", "name", "surname", "city"]}
         setModalData={setCandidateModalCandidate}
         setIsDataModalOpen={setIsCandidateModalOpen}
-        filters={["distance", "job", "diploma", "keywords"]}
-        search={(e) => {
-          setCandidatesData(e.target.value.length > 0 ? [] : candidates);
+        searchBarObject={{
+          filters: ["distance", "job", "diploma", "keywords"],
+          search: (e: any) => {
+            setCandidatesData(e.target.value.length > 0 ? [] : candidates);
+          },
         }}
       />
     </>

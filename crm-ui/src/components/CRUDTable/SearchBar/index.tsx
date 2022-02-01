@@ -9,7 +9,7 @@ export interface ISearchProps {
   searchFields: string[];
   filters: {
     name: string;
-    component: React.ReactNode | React.ReactChild | React.ReactChildren;
+    filterFunction: (data: any) => boolean;
   }[];
 }
 interface ISearchBarProps {

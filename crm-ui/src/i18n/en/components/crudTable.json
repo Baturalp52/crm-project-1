@@ -4,6 +4,7 @@
   "no-data": "No data!",
   "search-bar": {
     "label": "Search Field",
+    "search": "Search",
     "select-search-field": "Select Search Field",
     "search-fields": {
       "diploma": "Diploma",

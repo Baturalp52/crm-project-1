@@ -16,7 +16,7 @@ import {
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { resolve } from "./helpers";
-import SearchBar, { ISearchBarObject } from "./SearchBar";
+import SearchBar from "./SearchBar";
 
 interface ICRUDTableProps<DataType> {
   data: DataType[];
@@ -25,7 +25,14 @@ interface ICRUDTableProps<DataType> {
   setModalData: (data: DataType | undefined) => void;
   setIsDataModalOpen: (value: boolean) => void;
   customDataComponent?: any;
-  searchBarObject?: ISearchBarObject;
+  searchForm?: any;
+  searchProps?: {
+    filters: {
+      name: string;
+      component: React.ReactNode | React.ReactChild | React.ReactChildren;
+    }[];
+    searchFields: string[];
+  };
 }
 
 const CRUDTable = <DataType extends { id: number }>(
@@ -38,7 +45,8 @@ const CRUDTable = <DataType extends { id: number }>(
     keysToShow,
     setIsDataModalOpen,
     customDataComponent,
-    searchBarObject,
+    searchForm,
+    searchProps,
   } = props;
   let customComponent = customDataComponent ? customDataComponent : [];
 
@@ -47,7 +55,6 @@ const CRUDTable = <DataType extends { id: number }>(
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [rowPerPage, setRowPerPage] = useState<number>(10);
   const [selectedDatasId, setSelectedDatasId] = useState<number[]>([]);
-  const [filter, setFilter] = useState<number | string>(0);
   return (
     <Paper
       sx={{
@@ -63,12 +70,8 @@ const CRUDTable = <DataType extends { id: number }>(
         justifyContent="space-between"
         alignItems="flex-end"
       >
-        {searchBarObject && (
-          <SearchBar
-            filter={filter}
-            setFilter={setFilter}
-            object={searchBarObject}
-          />
+        {searchProps && (
+          <SearchBar searchProps={searchProps} searchForm={searchForm} />
         )}
       </Stack>
       <TableContainer sx={{ maxHeight: "500px" }}>

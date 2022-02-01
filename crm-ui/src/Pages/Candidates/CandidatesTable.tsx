@@ -5,6 +5,7 @@ import CandidateModal from "./CandidateModal";
 import { ICandidate } from "../../interfaces/Candidate";
 import { useTranslation } from "react-i18next";
 import CRUDTable from "../../components/CRUDTable";
+import { useFormik } from "formik";
 
 const CandidatesTable = () => {
   const { t } = useTranslation("pages", { keyPrefix: "candidates.table" });
@@ -15,6 +16,17 @@ const CandidatesTable = () => {
   >(undefined);
   const [candidatesData, setCandidatesData] = useState(candidates);
 
+  const searchForm = useFormik({
+    initialValues: {
+      filter: 0,
+      searchKey: "",
+    },
+    onSubmit: (e: any) => {
+      console.log(e);
+      setCandidatesData(candidates);
+    },
+    enableReinitialize: true,
+  });
   return (
     <>
       <CandidateModal
@@ -28,13 +40,11 @@ const CandidatesTable = () => {
         keysToShow={["id", "name", "surname", "city"]}
         setModalData={setCandidateModalCandidate}
         setIsDataModalOpen={setIsCandidateModalOpen}
-        searchBarObject={{
+        searchProps={{
           searchFields: ["distance", "job", "diploma", "keywords"],
           filters: [],
-          search: (e: any) => {
-            setCandidatesData(e.target.value.length > 0 ? [] : candidates);
-          },
         }}
+        searchForm={searchForm}
       />
     </>
   );

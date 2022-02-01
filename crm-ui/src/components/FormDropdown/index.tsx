@@ -28,7 +28,11 @@ const FormDropdown = <DataType extends { id: number } | string>(
     getValue,
   } = props;
   return (
-    <FormControl disabled={disabled} sx={{ width: "100%" || width, m: 1 }}>
+    <FormControl
+      variant="standard"
+      disabled={disabled}
+      sx={{ width: "100%" || width, m: 1 }}
+    >
       <InputLabel>{label}</InputLabel>
 
       <Select value={selectedValue} label={label} onChange={handleChange}>

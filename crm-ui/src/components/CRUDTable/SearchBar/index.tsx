@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 
 export interface ISearchBarObject {
   filters: string[];
+  searchFields: string[];
   search: (e: any) => void;
 }
 interface ISearchBarProps {
@@ -35,7 +36,7 @@ const SearchBar = (props: ISearchBarProps) => {
           handleChange={(e) => {
             setFilter(e.target.value);
           }}
-          datas={object.filters}
+          datas={object.searchFields}
           defaultValue={t("select-filter")}
           dataToValue={(item) => t(`filters.${item}`)}
           selectedValue={filter}

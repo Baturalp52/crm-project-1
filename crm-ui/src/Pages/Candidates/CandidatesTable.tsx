@@ -29,6 +29,7 @@ const CandidatesTable = () => {
         setModalData={setCandidateModalCandidate}
         setIsDataModalOpen={setIsCandidateModalOpen}
         searchBarObject={{
+          searchFields: ["distance", "job", "diploma", "keywords"],
           filters: ["distance", "job", "diploma", "keywords"],
           search: (e: any) => {
             setCandidatesData(e.target.value.length > 0 ? [] : candidates);

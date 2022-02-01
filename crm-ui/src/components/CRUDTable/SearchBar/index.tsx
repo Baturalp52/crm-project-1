@@ -40,8 +40,8 @@ const SearchBar = (props: ISearchBarProps) => {
             setFilter(e.target.value);
           }}
           datas={object.searchFields}
-          defaultValue={t("select-filter")}
-          dataToValue={(item) => t(`filters.${item}`)}
+          defaultValue={t("select-search-field")}
+          dataToValue={(item) => t(`search-fields.${item}`)}
           selectedValue={filter}
           width="45%"
           getValue={(data) => data}

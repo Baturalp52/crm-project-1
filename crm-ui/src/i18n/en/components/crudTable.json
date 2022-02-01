@@ -3,9 +3,9 @@
   "delete": "Delete",
   "no-data": "No data!",
   "search-bar": {
-    "label": "Filter",
-    "select-filter": "Select Filter",
-    "filters": {
+    "label": "Search Field",
+    "select-search-field": "Select Search Field",
+    "search-fields": {
       "diploma": "Diploma",
       "keywords": "Keywords",
       "distance": "Distance",

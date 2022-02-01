@@ -73,30 +73,6 @@ const CRUDTable = <DataType extends { id: number }>(
             search={search}
           />
         )}
-        <ButtonGroup
-          sx={{ marginLeft: "auto" }}
-          aria-label="medium button group contained"
-          variant="contained"
-        >
-          <Button
-            sx={{ border: "none !important" }}
-            startIcon={<Add />}
-            color="success"
-            onClick={() => {
-              setModalData(undefined);
-              setIsDataModalOpen(true);
-            }}
-          >
-            {t("add")}
-          </Button>
-          <Button
-            sx={{ border: "none !important" }}
-            startIcon={<DeleteForeverRounded />}
-            color="error"
-          >
-            {t("delete")}
-          </Button>
-        </ButtonGroup>
       </Stack>
       <TableContainer sx={{ maxHeight: "500px" }}>
         <Table stickyHeader aria-label="sticky table">
@@ -198,6 +174,32 @@ const CRUDTable = <DataType extends { id: number }>(
           setCurrentPage(0);
         }}
       />
+      <Stack padding={1}>
+        <ButtonGroup
+          sx={{ marginLeft: "auto" }}
+          aria-label="medium button group contained"
+          variant="contained"
+        >
+          <Button
+            sx={{ border: "none !important" }}
+            startIcon={<Add />}
+            color="success"
+            onClick={() => {
+              setModalData(undefined);
+              setIsDataModalOpen(true);
+            }}
+          >
+            {t("add")}
+          </Button>
+          <Button
+            sx={{ border: "none !important" }}
+            startIcon={<DeleteForeverRounded />}
+            color="error"
+          >
+            {t("delete")}
+          </Button>
+        </ButtonGroup>
+      </Stack>
     </Paper>
   );
 };

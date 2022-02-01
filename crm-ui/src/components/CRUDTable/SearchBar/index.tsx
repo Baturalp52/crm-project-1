@@ -5,7 +5,10 @@ import FormDropdown from "../../FormDropdown";
 import { useTranslation } from "react-i18next";
 
 export interface ISearchBarObject {
-  filters: string[];
+  filters: {
+    name: string;
+    component: React.ReactNode | React.ReactChild | React.ReactChildren;
+  }[];
   searchFields: string[];
   search: (e: any) => void;
 }

@@ -25,8 +25,12 @@ const SearchBar = (props: ISearchBarProps) => {
   });
 
   return (
-    <Grid container spacing={2} sx={{ mr: "auto", width: "45%", ml: 2 }}>
-      <Grid item xs={6} sx={{ display: "flex", alignItems: "center" }}>
+    <Grid
+      container
+      spacing={2}
+      sx={{ mr: "auto", width: "45%", ml: 2, alignItems: "flex-end" }}
+    >
+      <Grid item xs={6} sx={{ display: "flex" }}>
         <SearchInput
           onChange={(e: any) => {
             if (Boolean(filter)) object.search(e);
@@ -45,6 +49,7 @@ const SearchBar = (props: ISearchBarProps) => {
           selectedValue={filter}
           width="45%"
           getValue={(data) => data}
+          sx={{ m: "0!important" }}
         />
       </Grid>
     </Grid>

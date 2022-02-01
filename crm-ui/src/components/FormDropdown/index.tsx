@@ -1,4 +1,10 @@
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SxProps,
+} from "@mui/material";
 import React from "react";
 
 interface IFormDropdownProps<DataType> {
@@ -10,6 +16,7 @@ interface IFormDropdownProps<DataType> {
   selectedValue: number | string;
   disabled?: boolean;
   width?: string;
+  sx?: SxProps;
   getValue: (data: DataType) => string | number;
 }
 
@@ -26,12 +33,13 @@ const FormDropdown = <DataType extends { id: number } | string>(
     disabled,
     width,
     getValue,
+    sx,
   } = props;
   return (
     <FormControl
       variant="standard"
       disabled={disabled}
-      sx={{ width: "100%" || width, m: 1 }}
+      sx={{ width: "100%" || width, m: 1, ...sx }}
     >
       <InputLabel>{label}</InputLabel>
 

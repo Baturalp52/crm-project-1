@@ -2,7 +2,7 @@ import React from "react";
 import { useFormik } from "formik";
 import { useTranslation } from "react-i18next";
 
-import { Grid, List, ListItem } from "@mui/material";
+import { Box, Grid, List, ListItem, Typography } from "@mui/material";
 import FormInput from "../../../components/FormInput";
 import ActionModal from "../../../components/ActionModal";
 
@@ -81,6 +81,20 @@ const CompanyModal = (props: ICompanyModalProps) => {
               />
             </ListItem>
           </List>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Box m={1}>
+            <Typography variant="subtitle1">{t("form.jobs")}</Typography>
+            <List sx={{ padding: 1 }}>
+              {form.values.jobs && form.values.jobs.length > 0 ? (
+                form.values.jobs?.map((job, index) => (
+                  <ListItem key={index}>{job.name}</ListItem>
+                ))
+              ) : (
+                <ListItem>No Jobs</ListItem>
+              )}
+            </List>
+          </Box>
         </Grid>
       </Grid>
     </ActionModal>

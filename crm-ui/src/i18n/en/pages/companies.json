@@ -13,6 +13,7 @@
       "address": "Address",
       "city": "City",
       "sector": "Sector",
+      "jobs": "Jobs:",
       "save": "Save"
     }
   }

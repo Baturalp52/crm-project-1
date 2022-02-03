@@ -3,7 +3,13 @@
     "id": "id",
     "name": "Name",
     "surname": "Surname",
-    "city": "City"
+    "city": "City",
+    "search-filters": {
+      "diploma": "Diploma",
+      "keywords": "Keywords",
+      "distance": "Distance",
+      "job": "Job"
+    }
   },
   "modal": {
     "edit": "Edit Candidate",

@@ -5,12 +5,7 @@
   "search-bar": {
     "label": "Search Field",
     "search": "Search",
-    "select-search-field": "Select Search Field",
-    "search-fields": {
-      "diploma": "Diploma",
-      "keywords": "Keywords",
-      "distance": "Distance",
-      "job": "Job"
-    }
+    "advanced-search": "Advanced Search",
+    "select-search-field": "Select Search Field"
   }
 }

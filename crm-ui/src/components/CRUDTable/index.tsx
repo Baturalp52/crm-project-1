@@ -26,13 +26,7 @@ interface ICRUDTableProps<DataType> {
   setIsDataModalOpen: (value: boolean) => void;
   customDataComponent?: any;
   searchForm?: any;
-  searchProps?: {
-    filters: {
-      name: string;
-      filterFunction: (data: DataType) => boolean;
-    }[];
-    searchFields: string[];
-  };
+  filters?: any;
 }
 
 const CRUDTable = <DataType extends { id: number }>(
@@ -46,7 +40,7 @@ const CRUDTable = <DataType extends { id: number }>(
     setIsDataModalOpen,
     customDataComponent,
     searchForm,
-    searchProps,
+    filters,
   } = props;
   let customComponent = customDataComponent ? customDataComponent : [];
 
@@ -64,16 +58,9 @@ const CRUDTable = <DataType extends { id: number }>(
         boxShadow: "none",
       }}
     >
-      <Stack
-        padding={1}
-        direction="row"
-        justifyContent="space-between"
-        alignItems="flex-end"
-      >
-        {searchProps && (
-          <SearchBar searchProps={searchProps} searchForm={searchForm} />
-        )}
-      </Stack>
+      {Boolean(searchForm) && (
+        <SearchBar searchForm={searchForm} filters={filters} />
+      )}
       <TableContainer sx={{ maxHeight: "500px" }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>

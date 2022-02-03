@@ -18,8 +18,7 @@ const CandidatesTable = () => {
 
   const searchForm = useFormik({
     initialValues: {
-      filter: 0,
-      searchKey: "",
+      search: {},
     },
     onSubmit: (e: any) => {
       console.log(e);
@@ -40,11 +39,13 @@ const CandidatesTable = () => {
         keysToShow={["id", "name", "surname", "city"]}
         setModalData={setCandidateModalCandidate}
         setIsDataModalOpen={setIsCandidateModalOpen}
-        searchProps={{
-          searchFields: ["distance", "job", "diploma", "keywords"],
-          filters: [],
-        }}
         searchForm={searchForm}
+        filters={[
+          { name: "distance", label: t("search-filters.distance") },
+          { name: "diploma", label: t("search-filters.diploma") },
+          { name: "keywords", label: t("search-filters.keywords") },
+          { name: "job", label: t("search-filters.job") },
+        ]}
       />
     </>
   );

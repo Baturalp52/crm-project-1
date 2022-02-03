@@ -1,5 +1,13 @@
 import React, { useReducer } from "react";
-import { Button, Grid, Modal, Paper, Stack, TextField } from "@mui/material";
+import {
+  Button,
+  Grid,
+  Modal,
+  Paper,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { Search } from "@mui/icons-material";
 
 function searchReducer(state: any, action: any) {
@@ -28,15 +36,21 @@ const AdvancedSearchModal = (props: {
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: "60%",
-          height: "50%",
+          minWidth: "60%",
+          minHeight: "50%",
           bgcolor: "background.paper",
           border: "none",
           padding: 3,
           display: "flex",
+          flexDirection: "column",
         }}
       >
-        <Grid container>
+        <Stack mx="auto">
+          <Typography variant="h5" component="h6">
+            Advanced Search
+          </Typography>
+        </Stack>
+        <Grid container display="flex">
           {filters.map((filter) => (
             <Grid item xs={12} md={4}>
               <TextField

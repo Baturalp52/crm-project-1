@@ -21,8 +21,16 @@ const CandidatesTable = () => {
       search: {},
     },
     onSubmit: (e: any) => {
-      console.log(e);
-      setCandidatesData(candidates);
+      const result = Object.keys(e.search).reduce(
+        (candidates: any, key: string) => {
+          const re = new RegExp(".*" + e.search[key].toLowerCase() + ".*");
+          return candidates.filter((e: any) =>
+            e[key] ? re.test(e[key].toLowerCase()) : false
+          );
+        },
+        candidates
+      );
+      setCandidatesData(result);
     },
     enableReinitialize: true,
   });

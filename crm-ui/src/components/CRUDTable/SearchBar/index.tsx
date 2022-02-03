@@ -44,7 +44,6 @@ const SearchBar = (props: ISearchBarProps) => {
         <Grid item xs={2}>
           <Button
             sx={{ ml: "auto" }}
-            disabled={!Boolean(searchKey)}
             startIcon={<Search />}
             onClick={() => {
               searchForm.setFieldValue("search", { name: searchKey });

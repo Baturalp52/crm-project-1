@@ -80,6 +80,7 @@ const AdvancedSearchModal = (props: {
             onClick={() => {
               setIsOpen(false);
               searchForm.setFieldValue("search", search);
+              searchForm.submitForm();
             }}
             startIcon={<Search />}
           >

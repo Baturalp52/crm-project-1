@@ -109,17 +109,13 @@ const CRUDTable = <DataType extends { id: number }>(
                       />
                     </TableCell>
                     {keysToShow.map((key, index) => (
-                      <>
-                        <TableCell key={index}>
-                          {Object.keys(customComponent).includes(key)
-                            ? customComponent[key](
-                                item[key as keyof typeof item]
-                              )
-                            : key.includes(".")
-                            ? resolve(key, item)
-                            : item[key as keyof typeof item]}
-                        </TableCell>
-                      </>
+                      <TableCell key={index}>
+                        {Object.keys(customComponent).includes(key)
+                          ? customComponent[key](item[key as keyof typeof item])
+                          : key.includes(".")
+                          ? resolve(key, item)
+                          : item[key as keyof typeof item]}
+                      </TableCell>
                     ))}
 
                     <TableCell>

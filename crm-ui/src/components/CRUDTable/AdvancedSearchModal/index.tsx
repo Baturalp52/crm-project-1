@@ -40,8 +40,8 @@ const AdvancedSearchModal = (props: {
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          minWidth: "60%",
-          minHeight: "50%",
+          minWidth: "70%",
+          minHeight: "60%",
           bgcolor: "background.paper",
           border: "none",
           padding: 3,
@@ -54,15 +54,16 @@ const AdvancedSearchModal = (props: {
             {t("title")}
           </Typography>
         </Stack>
-        <Grid container display="flex">
-          {filters.map((filter) => (
-            <Grid item xs={12} md={4}>
+        <Grid container display="flex" width="100%" textAlign="center">
+          {filters.map((filter, index) => (
+            <Grid item xs={12} md={4} key={index}>
               <TextField
                 label={filter.label}
                 type="text"
                 name={filter.name}
                 value={search[filter.name]}
                 variant="standard"
+                margin="dense"
                 onChange={(e) => {
                   searchDispatch({
                     type: "CHANGE_VALUE",

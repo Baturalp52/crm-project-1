@@ -9,6 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Search } from "@mui/icons-material";
+import { useTranslation } from "react-i18next";
 
 function searchReducer(state: any, action: any) {
   switch (action.type) {
@@ -28,6 +29,9 @@ const AdvancedSearchModal = (props: {
 }) => {
   const { isOpen, setIsOpen, filters, searchForm } = props;
   const [search, searchDispatch] = useReducer(searchReducer, {});
+  const { t } = useTranslation("components", {
+    keyPrefix: "crudTable.advanced-search-modal",
+  });
   return (
     <Modal open={isOpen} onClose={() => setIsOpen(false)}>
       <Paper
@@ -47,7 +51,7 @@ const AdvancedSearchModal = (props: {
       >
         <Stack mx="auto">
           <Typography variant="h5" component="h6">
-            Advanced Search
+            {t("title")}
           </Typography>
         </Stack>
         <Grid container display="flex">
@@ -78,7 +82,7 @@ const AdvancedSearchModal = (props: {
             }}
             startIcon={<Search />}
           >
-            Search
+            {t("search")}
           </Button>
         </Stack>
       </Paper>

@@ -7,5 +7,9 @@
     "search": "Search",
     "advanced-search": "Advanced Search",
     "select-search-field": "Select Search Field"
+  },
+  "advanced-search-modal": {
+    "title": "Advanced Search",
+    "search": "Search"
   }
 }

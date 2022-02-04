@@ -217,6 +217,9 @@ const CandidateModal = (props: ICandidateModalProps) => {
           <MapsInput
             mainCoords={form.values.requestedCompany?.mapsCoord}
             secondCoord={form.values.mapsCoord}
+            setCoord={(coord: any) => {
+              form.setFieldValue("mapsCoord", coord);
+            }}
           />
           {form.values.id ? (
             <Stack sx={{ m: 1 }} direction="row" spacing={1}>

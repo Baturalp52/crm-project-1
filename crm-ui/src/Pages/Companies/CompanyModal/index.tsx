@@ -8,6 +8,7 @@ import ActionModal from "../../../components/ActionModal";
 
 import { ICompany } from "../../../interfaces/Company";
 import { emptyCompany } from "../emptyCompany";
+import MapsInput from "../../../components/MapsInput";
 
 interface ICompanyModalProps {
   company?: ICompany;
@@ -95,6 +96,13 @@ const CompanyModal = (props: ICompanyModalProps) => {
               )}
             </List>
           </Box>
+          <MapsInput
+            mainCoords={form.values.mapsCoord}
+            setCoord={(coord: any) => {
+              form.setFieldValue("mapsCoord", coord);
+            }}
+            isMainMoving
+          />
         </Grid>
       </Grid>
     </ActionModal>

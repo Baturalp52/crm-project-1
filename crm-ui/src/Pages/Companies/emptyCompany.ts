@@ -5,5 +5,8 @@ export const emptyCompany = {
   city: "",
   sector: "",
   jobs: [],
-  mapsCoord: [0.0, 0.0],
+  mapsCoord: {
+    lat: 51.509865,
+    lng: -0.118092,
+  },
 };

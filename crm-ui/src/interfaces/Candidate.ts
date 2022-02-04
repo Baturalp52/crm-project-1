@@ -14,7 +14,7 @@ export interface ICandidate {
   zipCode?: string;
   city?: string;
   country?: string;
-  mapsCoord?: number[];
+  mapsCoord?: { lat: number; lng: number };
   creatorMember?: IHRMember;
   previousJobs?: string[];
   requestedJob?: IJob;

@@ -6,6 +6,9 @@ import { ICandidate } from "../../interfaces/Candidate";
 import { useTranslation } from "react-i18next";
 import CRUDTable from "../../components/CRUDTable";
 import { useFormik } from "formik";
+import IFilter from "../../interfaces/Filter";
+import calculateDistance from "../../helpers/calculateDistance";
+import mainCoord from "../../mockData/coords";
 
 const CandidatesTable = () => {
   const { t } = useTranslation("pages", { keyPrefix: "candidates.table" });
@@ -18,15 +21,23 @@ const CandidatesTable = () => {
 
   const searchForm = useFormik({
     initialValues: {
-      search: {},
+      search: {} as any,
     },
     onSubmit: (e: any) => {
       const result = Object.keys(e.search).reduce(
         (candidates: any, key: string) => {
-          const re = new RegExp(".*" + e.search[key].toLowerCase() + ".*");
-          return candidates.filter((e: any) =>
-            e[key] ? re.test(e[key].toLowerCase()) : false
-          );
+          const filterFunc = filters.filter((filter) => filter.name === key)[0]
+            .filterFunc;
+          if (filterFunc) {
+            return candidates.filter(filterFunc);
+          } else {
+            const re = new RegExp(
+              ".*" + e.search[key].value.toLowerCase() + ".*"
+            );
+            return candidates.filter((e: any) =>
+              e[key] ? re.test(e[key].toLowerCase()) : false
+            );
+          }
         },
         candidates
       );
@@ -34,6 +45,23 @@ const CandidatesTable = () => {
     },
     enableReinitialize: true,
   });
+
+  const filters: IFilter[] = [
+    {
+      name: "distance",
+      label: t("search-filters.distance"),
+      filterFunc: (candidate: ICandidate) => {
+        const d = calculateDistance(mainCoord, candidate.mapsCoord!);
+        console.log(d);
+
+        return d < searchForm.values.search.distance;
+      },
+    },
+    { name: "diploma", label: t("search-filters.diploma") },
+    { name: "keywords", label: t("search-filters.keywords") },
+    { name: "job", label: t("search-filters.job") },
+  ];
+
   return (
     <>
       <CandidateModal
@@ -48,12 +76,7 @@ const CandidatesTable = () => {
         setModalData={setCandidateModalCandidate}
         setIsDataModalOpen={setIsCandidateModalOpen}
         searchForm={searchForm}
-        filters={[
-          { name: "distance", label: t("search-filters.distance") },
-          { name: "diploma", label: t("search-filters.diploma") },
-          { name: "keywords", label: t("search-filters.keywords") },
-          { name: "job", label: t("search-filters.job") },
-        ]}
+        filters={filters}
       />
     </>
   );

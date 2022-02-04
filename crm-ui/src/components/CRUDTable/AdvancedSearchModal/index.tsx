@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useState } from "react";
 import {
   Button,
   Grid,
@@ -10,25 +10,16 @@ import {
 } from "@mui/material";
 import { Search } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
-
-function searchReducer(state: any, action: any) {
-  switch (action.type) {
-    case "CHANGE_VALUE":
-      state[action.payload.filterName] = action.payload.value;
-      return state;
-    default:
-      return state;
-  }
-}
+import IFilter from "../../../interfaces/Filter";
 
 const AdvancedSearchModal = (props: {
   isOpen: boolean;
   setIsOpen: (t: boolean) => void;
-  filters: { label: string; name: string }[];
+  filters: IFilter[];
   searchForm: any;
 }) => {
   const { isOpen, setIsOpen, filters, searchForm } = props;
-  const [search, searchDispatch] = useReducer(searchReducer, {});
+  const [search, setSearch] = useState(searchForm.values.search);
   const { t } = useTranslation("components", {
     keyPrefix: "crudTable.advanced-search-modal",
   });
@@ -65,10 +56,9 @@ const AdvancedSearchModal = (props: {
                 variant="standard"
                 margin="dense"
                 onChange={(e) => {
-                  searchDispatch({
-                    type: "CHANGE_VALUE",
-                    payload: { filterName: filter.name, value: e.target.value },
-                  });
+                  const cSearch = { ...search };
+                  cSearch[filter.name] = e.target.value;
+                  setSearch(cSearch);
                 }}
               />
             </Grid>

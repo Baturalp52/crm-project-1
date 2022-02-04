@@ -26,7 +26,7 @@ const MapsInput = (props: IMapsInput) => {
       setDistance(dist.toFixed(3));
       setCoord(selectionCoords);
     }
-  }, [selectionCoords, mainCoords, setDistance]);
+  }, [selectionCoords, mainCoords, setDistance, setCoord]);
 
   return (
     <Card sx={{ m: 1 }}>

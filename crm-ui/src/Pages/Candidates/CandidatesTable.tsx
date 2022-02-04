@@ -52,8 +52,6 @@ const CandidatesTable = () => {
       label: t("search-filters.distance"),
       filterFunc: (candidate: ICandidate) => {
         const d = calculateDistance(mainCoord, candidate.mapsCoord!);
-        console.log(d);
-
         return d < searchForm.values.search.distance;
       },
     },

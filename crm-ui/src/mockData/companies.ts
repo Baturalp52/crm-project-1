@@ -1,25 +1,51 @@
 import { ICompany } from "../interfaces/Company";
 
 const companies: ICompany[] = [
-  { id: 1, name: "Example Company", city: "Ankara" },
-  { id: 2, name: "Example Company", city: "Ankara" },
-  { id: 3, name: "Example Company", city: "Ankara" },
-  { id: 4, name: "Example Company", city: "Ankara" },
-  { id: 5, name: "Example Company", city: "Ankara" },
-  { id: 6, name: "Example Company", city: "Ankara" },
-  { id: 7, name: "Example Company", city: "Ankara" },
-  { id: 8, name: "Example Company", city: "Ankara" },
-  { id: 9, name: "Example Company", city: "Ankara" },
-  { id: 10, name: "Example Company", city: "Ankara" },
-  { id: 11, name: "Example Company", city: "Ankara" },
-  { id: 12, name: "Example Company", city: "Ankara" },
-  { id: 13, name: "Example Company", city: "Ankara" },
-  { id: 14, name: "Example Company", city: "Ankara" },
-  { id: 15, name: "Example Company", city: "Ankara" },
-  { id: 16, name: "Example Company", city: "Ankara" },
-  { id: 17, name: "Example Company", city: "Ankara" },
-  { id: 18, name: "Example Company", city: "Ankara" },
-  { id: 19, name: "Example Company", city: "Ankara" },
+  {
+    id: 1,
+    name: "Company Ankara",
+    city: "Ankara",
+    mapsCoord: {
+      lat: 39.925533,
+      lng: 32.866287,
+    },
+  },
+  {
+    id: 2,
+    name: "Company Paris",
+    city: "Paris",
+    mapsCoord: {
+      lat: 48.864716,
+      lng: 2.349014,
+    },
+  },
+  {
+    id: 3,
+    name: "Company London",
+    city: "London",
+    mapsCoord: {
+      lat: 51.509865,
+      lng: -0.118092,
+    },
+  },
+  {
+    id: 4,
+    name: "Company New York",
+    city: "New York",
+    mapsCoord: {
+      lat: 40.73061,
+      lng: -73.935242,
+    },
+  },
+  {
+    id: 5,
+    name: "Company Berlin",
+    city: "Berlin",
+    mapsCoord: {
+      lat: 52.520008,
+      lng: 13.404954,
+    },
+  },
 ];
 
 export default companies;

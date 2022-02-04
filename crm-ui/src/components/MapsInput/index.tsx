@@ -7,13 +7,14 @@ import { useTranslation } from "react-i18next";
 import calculateDistance from "../../helpers/calculateDistance";
 
 interface IMapsInput {
-  mainCoords: LatLngExpression;
+  mainCoords?: LatLngExpression | { lat: number; lng: number };
+  secondCoord?: LatLngExpression | { lat: number; lng: number };
 }
 
 const MapsInput = (props: IMapsInput) => {
-  const { mainCoords } = props;
+  const { mainCoords, secondCoord } = props;
   const { t } = useTranslation("components", { keyPrefix: "mapsInput" });
-  const [selectionCoords, setSelectionCoords] = useState<any>(null);
+  const [selectionCoords, setSelectionCoords] = useState<any>(secondCoord);
   const [distance, setDistance] = useState<number | string>(0);
   useEffect(() => {
     if (selectionCoords) {
@@ -37,7 +38,7 @@ const MapsInput = (props: IMapsInput) => {
             attribution=""
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Marker position={mainCoords} />
+          {mainCoords && <Marker position={mainCoords} />}
           <LocationMarker
             position={selectionCoords}
             setPosition={setSelectionCoords}

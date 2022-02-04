@@ -17,6 +17,11 @@ const candidates: ICandidate[] = [
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
     requestedJob: { id: 1, name: "Example Job" },
+    requestedCompany: {
+      id: 1,
+      name: "Company",
+      mapsCoord: { lat: 38, lng: 33 },
+    },
     skills: [
       { id: 1, name: "Example", level: "Prof." },
       { id: 2, name: "Example", level: "Prof." },
@@ -43,6 +48,11 @@ const candidates: ICandidate[] = [
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
     requestedJob: { id: 1, name: "Example Job" },
+    requestedCompany: {
+      id: 1,
+      name: "Company",
+      mapsCoord: { lat: 38, lng: 33 },
+    },
     skills: [
       { id: 1, name: "Example", level: "Prof." },
       { id: 2, name: "Example", level: "Prof." },
@@ -69,6 +79,11 @@ const candidates: ICandidate[] = [
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
     requestedJob: { id: 1, name: "Example Job" },
+    requestedCompany: {
+      id: 1,
+      name: "Company",
+      mapsCoord: { lat: 38, lng: 33 },
+    },
     skills: [
       { id: 1, name: "Example", level: "Prof." },
       { id: 2, name: "Example", level: "Prof." },
@@ -95,6 +110,11 @@ const candidates: ICandidate[] = [
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
     requestedJob: { id: 1, name: "Example Job" },
+    requestedCompany: {
+      id: 1,
+      name: "Company",
+      mapsCoord: { lat: 38, lng: 33 },
+    },
     skills: [
       { id: 1, name: "Example", level: "Prof." },
       { id: 2, name: "Example", level: "Prof." },
@@ -121,6 +141,11 @@ const candidates: ICandidate[] = [
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
     requestedJob: { id: 1, name: "Example Job" },
+    requestedCompany: {
+      id: 1,
+      name: "Company",
+      mapsCoord: { lat: 38, lng: 33 },
+    },
     skills: [
       { id: 1, name: "Example", level: "Prof." },
       { id: 2, name: "Example", level: "Prof." },
@@ -147,6 +172,11 @@ const candidates: ICandidate[] = [
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
     requestedJob: { id: 1, name: "Example Job" },
+    requestedCompany: {
+      id: 1,
+      name: "Company",
+      mapsCoord: { lat: 38, lng: 33 },
+    },
     skills: [
       { id: 1, name: "Example", level: "Prof." },
       { id: 2, name: "Example", level: "Prof." },
@@ -173,6 +203,11 @@ const candidates: ICandidate[] = [
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
     requestedJob: { id: 1, name: "Example Job" },
+    requestedCompany: {
+      id: 1,
+      name: "Company",
+      mapsCoord: { lat: 38, lng: 33 },
+    },
     skills: [
       { id: 1, name: "Example", level: "Prof." },
       { id: 2, name: "Example", level: "Prof." },
@@ -199,6 +234,11 @@ const candidates: ICandidate[] = [
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
     requestedJob: { id: 1, name: "Example Job" },
+    requestedCompany: {
+      id: 1,
+      name: "Company",
+      mapsCoord: { lat: 38, lng: 33 },
+    },
     skills: [
       { id: 1, name: "Example", level: "Prof." },
       { id: 2, name: "Example", level: "Prof." },
@@ -225,6 +265,11 @@ const candidates: ICandidate[] = [
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
     requestedJob: { id: 1, name: "Example Job" },
+    requestedCompany: {
+      id: 1,
+      name: "Company",
+      mapsCoord: { lat: 38, lng: 33 },
+    },
     skills: [
       { id: 1, name: "Example", level: "Prof." },
       { id: 2, name: "Example", level: "Prof." },
@@ -251,6 +296,11 @@ const candidates: ICandidate[] = [
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
     requestedJob: { id: 1, name: "Example Job" },
+    requestedCompany: {
+      id: 1,
+      name: "Company",
+      mapsCoord: { lat: 38, lng: 33 },
+    },
     skills: [
       { id: 1, name: "Example", level: "Prof." },
       { id: 2, name: "Example", level: "Prof." },
@@ -277,6 +327,11 @@ const candidates: ICandidate[] = [
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
     requestedJob: { id: 1, name: "Example Job" },
+    requestedCompany: {
+      id: 1,
+      name: "Company",
+      mapsCoord: { lat: 38, lng: 33 },
+    },
     skills: [
       { id: 1, name: "Example", level: "Prof." },
       { id: 2, name: "Example", level: "Prof." },
@@ -303,6 +358,11 @@ const candidates: ICandidate[] = [
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
     requestedJob: { id: 1, name: "Example Job" },
+    requestedCompany: {
+      id: 1,
+      name: "Company",
+      mapsCoord: { lat: 38, lng: 33 },
+    },
     skills: [
       { id: 1, name: "Example", level: "Prof." },
       { id: 2, name: "Example", level: "Prof." },
@@ -329,6 +389,11 @@ const candidates: ICandidate[] = [
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
     requestedJob: { id: 1, name: "Example Job" },
+    requestedCompany: {
+      id: 1,
+      name: "Company",
+      mapsCoord: { lat: 38, lng: 33 },
+    },
     skills: [
       { id: 1, name: "Example", level: "Prof." },
       { id: 2, name: "Example", level: "Prof." },
@@ -355,6 +420,11 @@ const candidates: ICandidate[] = [
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
     requestedJob: { id: 1, name: "Example Job" },
+    requestedCompany: {
+      id: 1,
+      name: "Company",
+      mapsCoord: { lat: 38, lng: 33 },
+    },
     skills: [
       { id: 1, name: "Example", level: "Prof." },
       { id: 2, name: "Example", level: "Prof." },
@@ -381,6 +451,11 @@ const candidates: ICandidate[] = [
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
     requestedJob: { id: 1, name: "Example Job" },
+    requestedCompany: {
+      id: 1,
+      name: "Company",
+      mapsCoord: { lat: 38, lng: 33 },
+    },
     skills: [
       { id: 1, name: "Example", level: "Prof." },
       { id: 2, name: "Example", level: "Prof." },
@@ -407,6 +482,11 @@ const candidates: ICandidate[] = [
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
     requestedJob: { id: 1, name: "Example Job" },
+    requestedCompany: {
+      id: 1,
+      name: "Company",
+      mapsCoord: { lat: 38, lng: 33 },
+    },
     skills: [
       { id: 1, name: "Example", level: "Prof." },
       { id: 2, name: "Example", level: "Prof." },
@@ -433,6 +513,11 @@ const candidates: ICandidate[] = [
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
     requestedJob: { id: 1, name: "Example Job" },
+    requestedCompany: {
+      id: 1,
+      name: "Company",
+      mapsCoord: { lat: 38, lng: 33 },
+    },
     skills: [
       { id: 1, name: "Example", level: "Prof." },
       { id: 2, name: "Example", level: "Prof." },
@@ -459,6 +544,11 @@ const candidates: ICandidate[] = [
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
     requestedJob: { id: 1, name: "Example Job" },
+    requestedCompany: {
+      id: 1,
+      name: "Company",
+      mapsCoord: { lat: 38, lng: 33 },
+    },
     skills: [
       { id: 1, name: "Example", level: "Prof." },
       { id: 2, name: "Example", level: "Prof." },
@@ -485,6 +575,11 @@ const candidates: ICandidate[] = [
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
     requestedJob: { id: 1, name: "Example Job" },
+    requestedCompany: {
+      id: 1,
+      name: "Company",
+      mapsCoord: { lat: 38, lng: 33 },
+    },
     skills: [
       { id: 1, name: "Example", level: "Prof." },
       { id: 2, name: "Example", level: "Prof." },

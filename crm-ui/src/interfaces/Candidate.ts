@@ -1,3 +1,4 @@
+import { ICompany } from "./Company";
 import { IHRMember } from "./HRMember";
 import { IJob } from "./Job";
 import { ISkill } from "./Skill";
@@ -18,6 +19,7 @@ export interface ICandidate {
   creatorMember?: IHRMember;
   previousJobs?: string[];
   requestedJob?: IJob;
+  requestedCompany?: ICompany;
   skills?: ISkill[];
   comment?: string;
   salaryExpectation?: number;

@@ -7,7 +7,6 @@ import FormInput from "../../../components/FormInput";
 import { Email, FileUpload, Message, SaveRounded } from "@mui/icons-material";
 import FormMultiTextInput from "../../../components/FormMultiTextInput";
 import MapsInput from "../../../components/MapsInput";
-import mainCoord from "../../../mockData/coords";
 import ActionModal from "../../../components/ActionModal";
 import { useTranslation } from "react-i18next";
 import FormDropdown from "../../../components/FormDropdown";
@@ -197,7 +196,10 @@ const CandidateModal = (props: ICandidateModalProps) => {
           />
         </Grid>
         <Grid item xs={12} md={4}>
-          <MapsInput mainCoords={mainCoord} />
+          <MapsInput
+            mainCoords={form.values.requestedCompany?.mapsCoord}
+            secondCoord={form.values.mapsCoord}
+          />
           {form.values.id ? (
             <Stack sx={{ m: 1 }} direction="row" spacing={1}>
               <Button variant="contained" color="success">

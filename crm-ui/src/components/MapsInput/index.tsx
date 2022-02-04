@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { LatLngExpression } from "leaflet";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import LocationMarker from "./LocationMarker";
-import { coord, getDistanceBetween2Coords } from "./helpers";
 import { Card, CardContent, CardHeader } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import calculateDistance from "../../helpers/calculateDistance";
 
 interface IMapsInput {
   mainCoords: LatLngExpression;
@@ -16,12 +16,10 @@ const MapsInput = (props: IMapsInput) => {
   const [selectionCoords, setSelectionCoords] = useState<any>(null);
   const [distance, setDistance] = useState<number | string>(0);
   useEffect(() => {
-    if (selectionCoords)
-      getDistanceBetween2Coords(mainCoords as coord, selectionCoords).then(
-        (e) => {
-          setDistance((e / 1000).toFixed(3));
-        }
-      );
+    if (selectionCoords) {
+      const dist = calculateDistance(mainCoords as any, selectionCoords);
+      setDistance(dist.toFixed(3));
+    }
   }, [selectionCoords, mainCoords, setDistance]);
 
   return (

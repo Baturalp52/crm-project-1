@@ -23,18 +23,6 @@ interface ICandidateModalProps {
   setIsOpen(isOpen: boolean): any;
 }
 
-const mockPhones = ["05000000050", "05000000051"];
-
-const mockEmails = ["example@example.com", "example@example.com"];
-
-const mockPreviousJobs = ["Job 1", "Job 2"];
-
-const mockDepartments = ["Department 1", "Department 2"];
-
-const mockKeywords = ["Keyword 1", "Keyword 2"];
-
-const mockDiplomas = ["Diploma 1", "Diploma 2"];
-
 const CandidateModal = (props: ICandidateModalProps) => {
   const { candidate, isOpen, setIsOpen } = props;
   const { t } = useTranslation("pages", { keyPrefix: "candidates.modal" });
@@ -185,32 +173,32 @@ const CandidateModal = (props: ICandidateModalProps) => {
           <FormMultiTextInput
             label={t("form.phoneNumbers")}
             id="phone-numbers"
-            data={mockPhones}
+            data={form.values.phoneNumbers}
           />
           <FormMultiTextInput
             label={t("form.emailAddresses")}
             id="email-addresses"
-            data={mockEmails}
+            data={form.values.emailAdresses}
           />
           <FormMultiTextInput
             label={t("form.previousJobs")}
             id="previous-jobs"
-            data={mockPreviousJobs}
+            data={form.values.previousJobs}
           />
           <FormMultiTextInput
             label={t("form.departments")}
             id="departments"
-            data={mockDepartments}
+            data={form.values.departments}
           />
           <FormMultiTextInput
             label={t("form.keywords")}
             id="keywords"
-            data={mockKeywords}
+            data={form.values.keywords}
           />
           <FormMultiTextInput
             label={t("form.diplomas")}
             id="diplomas"
-            data={mockDiplomas}
+            data={form.values.diplomas}
           />
         </Grid>
         <Grid item xs={12} md={4}>

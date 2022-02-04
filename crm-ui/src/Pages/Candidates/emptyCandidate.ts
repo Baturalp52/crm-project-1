@@ -25,4 +25,5 @@ export const emptyCandidate = {
   departments: [],
   keywords: [],
   situation: "free",
+  diplomas: [],
 };

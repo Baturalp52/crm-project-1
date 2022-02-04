@@ -27,6 +27,7 @@
       "country": "Country",
       "comment": "Comment",
       "requested-job": "Requested Job",
+      "requested-company": "Requested Company",
       "salaryExpectation": "Salary Expectation",
       "phoneNumbers": "Phone Numbers:",
       "emailAddresses": "E-mail Addresses:",

@@ -14,6 +14,8 @@ import { IJob } from "../../../interfaces/Job";
 import jobs from "../../../mockData/jobs";
 import Skills from "./Skills";
 import { ISkill } from "../../../interfaces/Skill";
+import { ICompany } from "../../../interfaces/Company";
+import companies from "../../../mockData/companies";
 
 interface ICandidateModalProps {
   candidate?: ICandidate;
@@ -135,6 +137,22 @@ const CandidateModal = (props: ICandidateModalProps) => {
             dataToValue={(job) => `${job.id} - ${job.name}`}
             selectedValue={
               form.values.requestedJob ? form.values.requestedJob.id : 0
+            }
+          />
+          <FormDropdown<ICompany>
+            label={t("form.requested-company")}
+            getValue={(item) => item.id}
+            handleChange={(e) => {
+              form.setFieldValue(
+                "requestedCompany",
+                companies.filter((company) => company.id === e.target.value)[0]
+              );
+            }}
+            datas={companies}
+            defaultValue={t("form.requested-company")}
+            dataToValue={(company) => `${company.id} - ${company.name}`}
+            selectedValue={
+              form.values.requestedCompany ? form.values.requestedCompany.id : 0
             }
           />
           <Skills

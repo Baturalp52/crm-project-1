@@ -59,7 +59,7 @@ const CandidatesTable = () => {
     },
     { name: "diploma", label: t("search-filters.diploma") },
     { name: "keywords", label: t("search-filters.keywords") },
-    { name: "job", label: t("search-filters.job") },
+    { name: "requestedJob", label: t("search-filters.job") },
   ];
 
   return (

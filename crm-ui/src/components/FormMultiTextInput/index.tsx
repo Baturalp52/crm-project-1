@@ -15,18 +15,18 @@ import { Add, Remove } from "@mui/icons-material";
 interface IFormMultiTextInputProps {
   label: string;
   id: string;
-  data?: string[];
+  data: string[];
 }
 
 const FormMultiTextInput = (props: IFormMultiTextInputProps) => {
   const { label, id, data } = props;
-  const [hovered, setHovered] = useState(Array(data ? data.length : 0).fill(0));
+  const [hovered, setHovered] = useState(Array(data.length).fill(0));
   return (
     <Card sx={{ border: "none", width: "100%", m: 1 }}>
       <CardHeader title={label} />
       <CardContent>
         <Grid container spacing={2} mx="auto">
-          {data
+          {data.length > 0
             ? data.map((item, index) => {
                 return (
                   <Grid key={index} item xs={12}>

@@ -2,10 +2,11 @@ import React, { useMemo, useRef } from "react";
 import { Marker, useMapEvents } from "react-leaflet";
 
 const LocationMarker = (props: any) => {
-  const { position, setPosition } = props;
+  const { position, setPosition, callBackFn } = props;
   const map = useMapEvents({
     click(e) {
       setPosition(e.latlng);
+      callBackFn();
     },
   });
   // ignore this line
@@ -17,10 +18,11 @@ const LocationMarker = (props: any) => {
         const marker = markerRef.current as any;
         if (marker != null) {
           setPosition(marker.getLatLng());
+          callBackFn();
         }
       },
     }),
-    [setPosition]
+    [setPosition, callBackFn]
   );
   return (
     <>

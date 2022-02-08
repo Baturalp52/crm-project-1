@@ -25,16 +25,16 @@ const CandidatesTable = () => {
       search: {} as any,
     },
     onSubmit: (e: any) => {
+      console.log(e);
       const result = Object.keys(e.search).reduce(
         (candidates: any, key: string) => {
           const filterFunc = filters.filter((filter) => filter.name === key)[0]
-            .filterFunc;
+            ? filters.filter((filter) => filter.name === key)[0].filterFunc
+            : undefined;
           if (filterFunc) {
             return candidates.filter(filterFunc);
           } else {
-            const re = new RegExp(
-              ".*" + e.search[key].value.toLowerCase() + ".*"
-            );
+            const re = new RegExp(".*" + e.search[key].toLowerCase() + ".*");
             return candidates.filter((e: any) =>
               e[key] ? re.test(e[key].toLowerCase()) : false
             );

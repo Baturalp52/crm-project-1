@@ -9,6 +9,7 @@ import { useFormik } from "formik";
 import IFilter from "../../interfaces/Filter";
 import calculateDistance from "../../helpers/calculateDistance";
 import mainCoord from "../../mockData/coords";
+import Loading from "../../components/Loading";
 
 const CandidatesTable = () => {
   const { t } = useTranslation("pages", { keyPrefix: "candidates.table" });
@@ -62,11 +63,13 @@ const CandidatesTable = () => {
 
   return (
     <>
-      <CandidateModal
-        candidate={candidateModalCandidate}
-        isOpen={isCandidateModalOpen}
-        setIsOpen={setIsCandidateModalOpen}
-      />
+      <React.Suspense fallback={<Loading />}>
+        <CandidateModal
+          candidate={candidateModalCandidate}
+          isOpen={isCandidateModalOpen}
+          setIsOpen={setIsCandidateModalOpen}
+        />
+      </React.Suspense>
       <CRUDTable<ICandidate>
         data={candidatesData}
         cellNames={[t("id"), t("name"), t("surname"), t("city")]}

@@ -23,6 +23,15 @@ interface ICandidateModalProps {
   setIsOpen(isOpen: boolean): any;
 }
 
+const multiTextInputSections = [
+  "phoneNumbers",
+  "emailAdresses",
+  "previousJobs",
+  "departments",
+  "keywords",
+  "diplomas",
+];
+
 const CandidateModal = (props: ICandidateModalProps) => {
   const { candidate, isOpen, setIsOpen } = props;
   const { t } = useTranslation("pages", { keyPrefix: "candidates.modal" });
@@ -37,6 +46,13 @@ const CandidateModal = (props: ICandidateModalProps) => {
       key as keyof typeof form.values
     ] as string[];
     arr.push(data);
+    form.setFieldValue(key, arr);
+  };
+  const deleteFromArray = (index: number, key: string) => {
+    const arr: string[] = form.values[
+      key as keyof typeof form.values
+    ] as string[];
+    arr.splice(index, 1);
     form.setFieldValue(key, arr);
   };
 
@@ -179,54 +195,19 @@ const CandidateModal = (props: ICandidateModalProps) => {
           />
         </Grid>
         <Grid item xs={12} md={4}>
-          <FormMultiTextInput
-            label={t("form.phoneNumbers")}
-            id="phone-numbers"
-            data={form.values.phoneNumbers}
-            addNew={(data) => {
-              addToFormArray(data, "phoneNumbers");
-            }}
-          />
-          <FormMultiTextInput
-            label={t("form.emailAddresses")}
-            id="email-addresses"
-            data={form.values.emailAdresses}
-            addNew={(data) => {
-              addToFormArray(data, "emailAdresses");
-            }}
-          />
-          <FormMultiTextInput
-            label={t("form.previousJobs")}
-            id="previous-jobs"
-            data={form.values.previousJobs}
-            addNew={(data) => {
-              addToFormArray(data, "previousJobs");
-            }}
-          />
-          <FormMultiTextInput
-            label={t("form.departments")}
-            id="departments"
-            data={form.values.departments}
-            addNew={(data) => {
-              addToFormArray(data, "departments");
-            }}
-          />
-          <FormMultiTextInput
-            label={t("form.keywords")}
-            id="keywords"
-            data={form.values.keywords}
-            addNew={(data) => {
-              addToFormArray(data, "keywords");
-            }}
-          />
-          <FormMultiTextInput
-            label={t("form.diplomas")}
-            id="diplomas"
-            data={form.values.diplomas}
-            addNew={(data) => {
-              addToFormArray(data, "diplomas");
-            }}
-          />
+          {multiTextInputSections.map((item) => (
+            <FormMultiTextInput
+              label={t("form." + item)}
+              id={item}
+              data={form.values[item as keyof typeof form.values] as string[]}
+              addNew={(data) => {
+                addToFormArray(data, item);
+              }}
+              deleteItem={(index) => {
+                deleteFromArray(index, item);
+              }}
+            />
+          ))}
         </Grid>
         <Grid item xs={12} md={4}>
           <MapsInput

@@ -17,10 +17,11 @@ interface IFormMultiTextInputProps {
   id: string;
   data: string[];
   addNew: (data: string) => void;
+  deleteItem: (index: number) => void;
 }
 
 const FormMultiTextInput = (props: IFormMultiTextInputProps) => {
-  const { label, id, data, addNew } = props;
+  const { label, id, data, addNew, deleteItem } = props;
   const [hovered, setHovered] = useState(Array(data.length).fill(0));
   const [addNewValue, setAddNewValue] = useState<string>("");
   return (
@@ -48,6 +49,9 @@ const FormMultiTextInput = (props: IFormMultiTextInputProps) => {
                         let cHovered = [...hovered];
                         cHovered[index] = 1;
                         setHovered(cHovered);
+                      }}
+                      onClick={() => {
+                        deleteItem(index);
                       }}
                     >
                       {hovered[index] ? (

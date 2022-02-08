@@ -1,0 +1,19 @@
+{
+  "fields": [
+    {
+      "title": "Templates",
+      "buttons": [
+        {
+          "label": "Manage SMS Templates",
+          "icon": "message",
+          "component": "manage-sms-modal"
+        },
+        {
+          "label": "Manage Email Templates",
+          "icon": "email",
+          "component": "manage-email-modal"
+        }
+      ]
+    }
+  ]
+}

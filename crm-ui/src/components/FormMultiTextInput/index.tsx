@@ -16,11 +16,13 @@ interface IFormMultiTextInputProps {
   label: string;
   id: string;
   data: string[];
+  addNew: (data: string) => void;
 }
 
 const FormMultiTextInput = (props: IFormMultiTextInputProps) => {
-  const { label, id, data } = props;
+  const { label, id, data, addNew } = props;
   const [hovered, setHovered] = useState(Array(data.length).fill(0));
+  const [addNewValue, setAddNewValue] = useState<string>("");
   return (
     <Card sx={{ border: "none", width: "100%", m: 1 }}>
       <CardHeader title={label} />
@@ -66,11 +68,17 @@ const FormMultiTextInput = (props: IFormMultiTextInputProps) => {
         <TextField
           label=""
           id={id}
+          value={addNewValue}
+          onChange={(e) => setAddNewValue(e.target.value)}
           sx={{ marginLeft: "auto", width: "100%" }}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <IconButton>
+                <IconButton
+                  onClick={() => {
+                    addNew(addNewValue);
+                  }}
+                >
                   <Add />
                 </IconButton>
               </InputAdornment>

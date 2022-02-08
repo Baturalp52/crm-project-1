@@ -15,7 +15,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { resolve } from "./helpers";
+import resolve from "../../helpers/resolve";
 import SearchBar from "./SearchBar";
 
 interface ICRUDTableProps<DataType> {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Grid, Button, Stack } from "@mui/material";
 import { useFormik } from "formik";
 import { ICandidate } from "../../../interfaces/Candidate";
@@ -16,6 +16,7 @@ import Skills from "./Skills";
 import { ISkill } from "../../../interfaces/Skill";
 import { ICompany } from "../../../interfaces/Company";
 import companies from "../../../mockData/companies";
+import SendMessageModal from "./SendMessageModal";
 
 interface ICandidateModalProps {
   candidate?: ICandidate;
@@ -41,6 +42,12 @@ const CandidateModal = (props: ICandidateModalProps) => {
     enableReinitialize: true,
   });
 
+  const [isSendMessageModalOpen, setIsSendMessageModalOpen] =
+    useState<boolean>(false);
+  const [sendMessageModalType, setSendMessageModalType] = useState<
+    "sms" | "email"
+  >("sms");
+
   const addToFormArray = (data: string, key: string) => {
     const arr: string[] = form.values[
       key as keyof typeof form.values
@@ -63,6 +70,12 @@ const CandidateModal = (props: ICandidateModalProps) => {
       title={form.values.id ? t("edit") : t("add")}
       saveFunction={() => {}}
     >
+      <SendMessageModal
+        isOpen={isSendMessageModalOpen}
+        setIsOpen={setIsSendMessageModalOpen}
+        candidate={form.values}
+        messageType={sendMessageModalType}
+      />
       <Grid container spacing={2} padding={2}>
         <Grid item xs={12} md={4}>
           <FormInput
@@ -195,8 +208,9 @@ const CandidateModal = (props: ICandidateModalProps) => {
           />
         </Grid>
         <Grid item xs={12} md={4}>
-          {multiTextInputSections.map((item) => (
+          {multiTextInputSections.map((item, index) => (
             <FormMultiTextInput
+              key={index}
               label={t("form." + item)}
               id={item}
               data={form.values[item as keyof typeof form.values] as string[]}
@@ -233,10 +247,24 @@ const CandidateModal = (props: ICandidateModalProps) => {
           )}
           {Boolean(form.values.id) && (
             <Stack sx={{ m: 1 }} direction="row" spacing={1}>
-              <Button variant="contained" color="primary">
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => {
+                  setSendMessageModalType("email");
+                  setIsSendMessageModalOpen(true);
+                }}
+              >
                 <Email sx={{ mr: 1 }} /> {t("send-mail")}
               </Button>
-              <Button variant="contained" color="primary">
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => {
+                  setSendMessageModalType("sms");
+                  setIsSendMessageModalOpen(true);
+                }}
+              >
                 <Message sx={{ mr: 1 }} /> {t("send-sms")}
               </Button>
             </Stack>

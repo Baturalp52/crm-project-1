@@ -30,7 +30,7 @@
       "requested-company": "Requested Company",
       "salaryExpectation": "Salary Expectation",
       "phoneNumbers": "Phone Numbers:",
-      "emailAddresses": "E-mail Addresses:",
+      "emailAdresses": "E-mail Addresses:",
       "previousJobs": "Previous Jobs",
       "departments": "Departments:",
       "keywords": "Key Words:",
@@ -49,6 +49,11 @@
         "save-skill": "Save"
       },
       "save": "Save"
+    },
+    "send-message": {
+      "template": "Template",
+      "select-template": "Select Template",
+      "send": "Send"
     }
   }
 }

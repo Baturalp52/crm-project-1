@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkcrm_ui=self.webpackChunkcrm_ui||[]).push([[953],{4953:function(u,e,n){n.r(e);n(2791);var r=n(184);e.default=function(){return(0,r.jsx)(r.Fragment,{})}}}]);
-//# sourceMappingURL=953.cecce958.chunk.js.map

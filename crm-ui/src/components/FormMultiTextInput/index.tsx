@@ -74,6 +74,12 @@ const FormMultiTextInput = (props: IFormMultiTextInputProps) => {
           id={id}
           value={addNewValue}
           onChange={(e) => setAddNewValue(e.target.value)}
+          onKeyUpCapture={(e) => {
+            if (e.which === 13) {
+              addNew(addNewValue);
+              setAddNewValue("");
+            }
+          }}
           sx={{ marginLeft: "auto", width: "100%" }}
           InputProps={{
             endAdornment: (
@@ -81,6 +87,7 @@ const FormMultiTextInput = (props: IFormMultiTextInputProps) => {
                 <IconButton
                   onClick={() => {
                     addNew(addNewValue);
+                    setAddNewValue("");
                   }}
                 >
                   <Add />

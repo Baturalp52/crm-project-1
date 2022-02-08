@@ -17,7 +17,7 @@ const MapsInput = (props: IMapsInput) => {
   const { mainCoords, secondCoord, isMainMoving, setCoord } = props;
   const { t } = useTranslation("components", { keyPrefix: "mapsInput" });
   const [selectionCoords, setSelectionCoords] = useState<any>(
-    mainCoords || secondCoord
+    secondCoord || mainCoords
   );
   const [distance, setDistance] = useState<number | string>(0);
 
@@ -41,15 +41,14 @@ const MapsInput = (props: IMapsInput) => {
           )}
           <LocationMarker
             position={selectionCoords}
-            setPosition={setSelectionCoords}
-            callBackFn={() => {
-              if (selectionCoords) {
-                const dist = calculateDistance(
-                  mainCoords as any,
-                  selectionCoords
-                );
+            callBackFn={(coords: any) => {
+              if (coords) {
+                const dist = calculateDistance(mainCoords as any, coords);
+                console.log(coords, mainCoords, dist);
+
                 setDistance(dist.toFixed(3));
-                setCoord(selectionCoords);
+                setSelectionCoords(coords);
+                setCoord(coords);
               }
             }}
           />

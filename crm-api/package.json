@@ -1,0 +1,8 @@
+{
+  "homepage": "http://baturalp52.github.io/crm-project-1/",
+  "name": "crm-api",
+  "version": "0.1.0",
+  "scripts": {
+    "start": "python manage.py runserver 3000"
+  }
+}

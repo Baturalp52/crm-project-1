@@ -12,6 +12,9 @@ import { useTranslation } from "react-i18next";
 import Skills from "./Skills";
 import { ISkill } from "../../../interfaces/Skill";
 import SendMessageModal from "./SendMessageModal";
+import FormDropdown from "../../../components/FormDropdown";
+import { IJob } from "../../../interfaces/Job";
+import jobs from "../../../mockData/jobs";
 
 interface ICandidateModalProps {
   candidate?: ICandidate;
@@ -144,6 +147,21 @@ const CandidateModal = (props: ICandidateModalProps) => {
             name="salaryExpectation"
             onChange={form.handleChange}
           />
+          <FormDropdown<IJob>
+            label={t("form.placed-job")}
+            handleChange={(e) => {
+              form.setFieldValue(
+                "placedJob",
+                jobs.filter((item) => item.id === e.target.value)[0]
+              );
+            }}
+            datas={jobs}
+            defaultValue={t("form.placed-job")}
+            selectedValue={form.values.placedJob ? form.values.placedJob.id : 0}
+            dataToValue={(item) => `${item.id} - ${item.name}`}
+            getValue={(item) => item.id}
+          />
+
           <Skills
             skills={form.values.skills || []}
             addSkill={(skill: ISkill) => {

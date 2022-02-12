@@ -13,7 +13,7 @@ interface IFormDropdownProps<DataType> {
   datas: DataType[];
   defaultValue: string;
   dataToValue: (data: DataType) => string;
-  selectedValue: number | string;
+  selectedValue?: number | string;
   disabled?: boolean;
   width?: string;
   sx?: SxProps;
@@ -43,7 +43,7 @@ const FormDropdown = <DataType extends { id: number } | string>(
     >
       <InputLabel>{label}</InputLabel>
 
-      <Select value={selectedValue} label={label} onChange={handleChange}>
+      <Select value={selectedValue || 0} label={label} onChange={handleChange}>
         <MenuItem value={0}>
           <em>{defaultValue}</em>
         </MenuItem>

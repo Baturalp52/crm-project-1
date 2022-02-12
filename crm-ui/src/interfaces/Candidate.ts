@@ -1,4 +1,5 @@
 import { IHRMember } from "./HRMember";
+import { IJob } from "./Job";
 import { ISkill } from "./Skill";
 
 export interface ICandidate {
@@ -22,4 +23,5 @@ export interface ICandidate {
   departments: string[];
   keywords: string[];
   diplomas: string[];
+  placedJob?: IJob;
 }

@@ -1,17 +1,10 @@
 import React, { useState } from "react";
-import { Grid, Button, Stack, Switch, FormControlLabel } from "@mui/material";
+import { Grid, Button, Stack } from "@mui/material";
 import { useFormik } from "formik";
 import { ICandidate } from "../../../interfaces/Candidate";
 import { emptyCandidate } from "../emptyCandidate";
 import FormInput from "../../../components/FormInput";
-import {
-  Check,
-  Close,
-  Email,
-  FileUpload,
-  Message,
-  SaveRounded,
-} from "@mui/icons-material";
+import { Email, FileUpload, Message, SaveRounded } from "@mui/icons-material";
 import FormMultiTextInput from "../../../components/FormMultiTextInput";
 import MapsInput from "../../../components/MapsInput";
 import ActionModal from "../../../components/ActionModal";
@@ -22,6 +15,7 @@ import SendMessageModal from "./SendMessageModal";
 import FormDropdown from "../../../components/FormDropdown";
 import { IJob } from "../../../interfaces/Job";
 import jobs from "../../../mockData/jobs";
+import SituationSwitch from "./SituationSwitch";
 
 interface ICandidateModalProps {
   candidate?: ICandidate;
@@ -155,38 +149,14 @@ const CandidateModal = (props: ICandidateModalProps) => {
             onChange={form.handleChange}
           />
 
-          <FormControlLabel
-            value="start"
-            control={
-              <Switch
-                disableRipple
-                color="success"
-                checkedIcon={
-                  <Check
-                    sx={{
-                      backgroundColor: "success.main",
-                      color: "white",
-                      borderRadius: "50%",
-                    }}
-                  />
-                }
-                icon={
-                  <Close
-                    sx={{
-                      backgroundColor: "error.main",
-                      color: "white",
-                      borderRadius: "50%",
-                    }}
-                  />
-                }
-                checked={form.values.situation}
-                onChange={() => {
-                  form.setFieldValue("situation", !form.values.situation);
-                }}
-              />
-            }
+          <SituationSwitch
+            disableRipple
+            color="success"
+            checked={form.values.situation}
+            onChange={() => {
+              form.setFieldValue("situation", !form.values.situation);
+            }}
             label={t("form.situation").toString()}
-            labelPlacement="start"
           />
 
           {form.values.situation && (

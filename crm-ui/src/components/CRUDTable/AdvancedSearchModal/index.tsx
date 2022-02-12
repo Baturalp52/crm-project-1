@@ -11,6 +11,7 @@ import {
 import { Search } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
 import IFilter from "../../../interfaces/Filter";
+import SearchDistance from "./SearchDistance";
 
 const AdvancedSearchModal = (props: {
   isOpen: boolean;
@@ -46,23 +47,28 @@ const AdvancedSearchModal = (props: {
           </Typography>
         </Stack>
         <Grid container display="flex" width="100%" textAlign="center">
-          {filters.map((filter, index) => (
-            <Grid item xs={12} md={4} key={index}>
-              <TextField
-                label={filter.label}
-                type="text"
-                name={filter.name}
-                value={search[filter.name]}
-                variant="standard"
-                margin="dense"
-                onChange={(e) => {
-                  const cSearch = { ...search };
-                  cSearch[filter.name] = e.target.value;
-                  setSearch(cSearch);
-                }}
-              />
-            </Grid>
-          ))}
+          <SearchDistance search={search} setSearch={setSearch} />
+          {filters.map((filter, index) => {
+            return (
+              !Boolean(filter.notVisible) && (
+                <Grid item xs={12} md={4} key={index}>
+                  <TextField
+                    label={filter.label}
+                    type="text"
+                    name={filter.name}
+                    value={search[filter.name] || ""}
+                    variant="standard"
+                    margin="dense"
+                    onChange={(e) => {
+                      const cSearch = { ...search };
+                      cSearch[filter.name] = e.target.value;
+                      setSearch(cSearch);
+                    }}
+                  />
+                </Grid>
+              )
+            );
+          })}
         </Grid>
         <Stack mt="auto" ml="auto">
           <Button

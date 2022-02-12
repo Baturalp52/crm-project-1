@@ -8,7 +8,6 @@ import CRUDTable from "../../components/CRUDTable";
 import { useFormik } from "formik";
 import IFilter from "../../interfaces/Filter";
 import calculateDistance from "../../helpers/calculateDistance";
-import mainCoord from "../../mockData/coords";
 import Loading from "../../components/Loading";
 
 const CandidatesTable = () => {
@@ -25,7 +24,6 @@ const CandidatesTable = () => {
       search: {} as any,
     },
     onSubmit: (e: any) => {
-      console.log(e);
       const result = Object.keys(e.search).reduce(
         (candidates: any, key: string) => {
           const filterFunc = filters.filter((filter) => filter.name === key)[0]
@@ -51,14 +49,17 @@ const CandidatesTable = () => {
     {
       name: "distance",
       label: t("search-filters.distance"),
+      notVisible: true,
       filterFunc: (candidate: ICandidate) => {
-        const d = calculateDistance(mainCoord, candidate.mapsCoord!);
-        return d < searchForm.values.search.distance;
+        const d = calculateDistance(
+          searchForm.values.search.distance.company.mapsCoord,
+          candidate.mapsCoord!
+        );
+        return d < searchForm.values.search.distance.value;
       },
     },
     { name: "diploma", label: t("search-filters.diploma") },
     { name: "keywords", label: t("search-filters.keywords") },
-    { name: "requestedJob", label: t("search-filters.job") },
   ];
 
   return (

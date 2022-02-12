@@ -13,7 +13,10 @@ const candidates: ICandidate[] = [
     extraAddress: "Example",
     zipCode: "Example",
     country: "Example",
-    mapsCoord: { lat: 39.62076, lng: 32.55389 },
+    mapsCoord: {
+      lat: 39.925533,
+      lng: 32.866287,
+    },
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
     skills: [
@@ -39,7 +42,10 @@ const candidates: ICandidate[] = [
     extraAddress: "Example",
     zipCode: "Example",
     country: "Example",
-    mapsCoord: { lat: 39.62076, lng: 32.55389 },
+    mapsCoord: {
+      lat: 48.864716,
+      lng: 2.349014,
+    },
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
 
@@ -66,7 +72,10 @@ const candidates: ICandidate[] = [
     extraAddress: "Example",
     zipCode: "Example",
     country: "Example",
-    mapsCoord: { lat: 39.62076, lng: 32.55389 },
+    mapsCoord: {
+      lat: 51.509865,
+      lng: -0.118092,
+    },
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
 
@@ -93,7 +102,10 @@ const candidates: ICandidate[] = [
     extraAddress: "Example",
     zipCode: "Example",
     country: "Example",
-    mapsCoord: { lat: 39.62076, lng: 32.55389 },
+    mapsCoord: {
+      lat: 40.73061,
+      lng: -73.935242,
+    },
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
     skills: [
@@ -119,7 +131,10 @@ const candidates: ICandidate[] = [
     extraAddress: "Example",
     zipCode: "Example",
     country: "Example",
-    mapsCoord: { lat: 39.62076, lng: 32.55389 },
+    mapsCoord: {
+      lat: 52.520008,
+      lng: 13.404954,
+    },
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
 
@@ -146,7 +161,10 @@ const candidates: ICandidate[] = [
     extraAddress: "Example",
     zipCode: "Example",
     country: "Example",
-    mapsCoord: { lat: 39.62076, lng: 32.55389 },
+    mapsCoord: {
+      lat: 39.925533,
+      lng: 32.866287,
+    },
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
     skills: [
@@ -172,7 +190,10 @@ const candidates: ICandidate[] = [
     extraAddress: "Example",
     zipCode: "Example",
     country: "Example",
-    mapsCoord: { lat: 39.62076, lng: 32.55389 },
+    mapsCoord: {
+      lat: 48.864716,
+      lng: 2.349014,
+    },
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
 
@@ -199,7 +220,10 @@ const candidates: ICandidate[] = [
     extraAddress: "Example",
     zipCode: "Example",
     country: "Example",
-    mapsCoord: { lat: 39.62076, lng: 32.55389 },
+    mapsCoord: {
+      lat: 51.509865,
+      lng: -0.118092,
+    },
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
 
@@ -226,7 +250,10 @@ const candidates: ICandidate[] = [
     extraAddress: "Example",
     zipCode: "Example",
     country: "Example",
-    mapsCoord: { lat: 39.62076, lng: 32.55389 },
+    mapsCoord: {
+      lat: 40.73061,
+      lng: -73.935242,
+    },
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
     skills: [
@@ -252,7 +279,10 @@ const candidates: ICandidate[] = [
     extraAddress: "Example",
     zipCode: "Example",
     country: "Example",
-    mapsCoord: { lat: 39.62076, lng: 32.55389 },
+    mapsCoord: {
+      lat: 52.520008,
+      lng: 13.404954,
+    },
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
 

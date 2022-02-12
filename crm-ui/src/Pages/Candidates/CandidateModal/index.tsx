@@ -1,10 +1,17 @@
 import React, { useState } from "react";
-import { Grid, Button, Stack } from "@mui/material";
+import { Grid, Button, Stack, Switch, FormControlLabel } from "@mui/material";
 import { useFormik } from "formik";
 import { ICandidate } from "../../../interfaces/Candidate";
 import { emptyCandidate } from "../emptyCandidate";
 import FormInput from "../../../components/FormInput";
-import { Email, FileUpload, Message, SaveRounded } from "@mui/icons-material";
+import {
+  Check,
+  Close,
+  Email,
+  FileUpload,
+  Message,
+  SaveRounded,
+} from "@mui/icons-material";
 import FormMultiTextInput from "../../../components/FormMultiTextInput";
 import MapsInput from "../../../components/MapsInput";
 import ActionModal from "../../../components/ActionModal";
@@ -147,20 +154,59 @@ const CandidateModal = (props: ICandidateModalProps) => {
             name="salaryExpectation"
             onChange={form.handleChange}
           />
-          <FormDropdown<IJob>
-            label={t("form.placed-job")}
-            handleChange={(e) => {
-              form.setFieldValue(
-                "placedJob",
-                jobs.filter((item) => item.id === e.target.value)[0]
-              );
-            }}
-            datas={jobs}
-            defaultValue={t("form.placed-job")}
-            selectedValue={form.values.placedJob ? form.values.placedJob.id : 0}
-            dataToValue={(item) => `${item.id} - ${item.name}`}
-            getValue={(item) => item.id}
+
+          <FormControlLabel
+            value="start"
+            control={
+              <Switch
+                disableRipple
+                color="success"
+                checkedIcon={
+                  <Check
+                    sx={{
+                      backgroundColor: "success.main",
+                      color: "white",
+                      borderRadius: "50%",
+                    }}
+                  />
+                }
+                icon={
+                  <Close
+                    sx={{
+                      backgroundColor: "error.main",
+                      color: "white",
+                      borderRadius: "50%",
+                    }}
+                  />
+                }
+                checked={form.values.situation}
+                onChange={() => {
+                  form.setFieldValue("situation", !form.values.situation);
+                }}
+              />
+            }
+            label={t("form.situation").toString()}
+            labelPlacement="start"
           />
+
+          {form.values.situation && (
+            <FormDropdown<IJob>
+              label={t("form.placed-job")}
+              handleChange={(e) => {
+                form.setFieldValue(
+                  "placedJob",
+                  jobs.filter((item) => item.id === e.target.value)[0]
+                );
+              }}
+              datas={jobs}
+              defaultValue={t("form.placed-job")}
+              selectedValue={
+                form.values.placedJob ? form.values.placedJob.id : 0
+              }
+              dataToValue={(item) => `${item.id} - ${item.name}`}
+              getValue={(item) => item.id}
+            />
+          )}
 
           <Skills
             skills={form.values.skills || []}

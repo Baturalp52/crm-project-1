@@ -34,6 +34,7 @@
       "departments": "Departments:",
       "keywords": "Key Words:",
       "diplomas": "Diplomas:",
+      "situation": "Situation: ",
       "cv": {
         "download": "Download CV",
         "upload-new": "Upload New CV",

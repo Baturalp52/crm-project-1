@@ -30,6 +30,7 @@ const tasks: ITask[] = [
       departments: ["Example", "Example"],
       keywords: ["Example", "Example"],
       diplomas: ["Example", "Example"],
+      situation: false,
     },
     assignedMember: {
       id: 1,
@@ -66,6 +67,7 @@ const tasks: ITask[] = [
       departments: ["Example", "Example"],
       keywords: ["Example", "Example"],
       diplomas: ["Example", "Example"],
+      situation: false,
     },
     assignedMember: {
       id: 1,
@@ -102,6 +104,7 @@ const tasks: ITask[] = [
       departments: ["Example", "Example"],
       keywords: ["Example", "Example"],
       diplomas: ["Example", "Example"],
+      situation: false,
     },
     assignedMember: {
       id: 1,
@@ -138,6 +141,7 @@ const tasks: ITask[] = [
       departments: ["Example", "Example"],
       keywords: ["Example", "Example"],
       diplomas: ["Example", "Example"],
+      situation: false,
     },
     assignedMember: {
       id: 1,
@@ -174,6 +178,7 @@ const tasks: ITask[] = [
       departments: ["Example", "Example"],
       keywords: ["Example", "Example"],
       diplomas: ["Example", "Example"],
+      situation: false,
     },
     assignedMember: {
       id: 1,
@@ -210,6 +215,7 @@ const tasks: ITask[] = [
       departments: ["Example", "Example"],
       keywords: ["Example", "Example"],
       diplomas: ["Example", "Example"],
+      situation: false,
     },
     assignedMember: {
       id: 1,
@@ -246,6 +252,7 @@ const tasks: ITask[] = [
       departments: ["Example", "Example"],
       keywords: ["Example", "Example"],
       diplomas: ["Example", "Example"],
+      situation: false,
     },
     assignedMember: {
       id: 1,
@@ -282,6 +289,7 @@ const tasks: ITask[] = [
       departments: ["Example", "Example"],
       keywords: ["Example", "Example"],
       diplomas: ["Example", "Example"],
+      situation: false,
     },
     assignedMember: {
       id: 1,
@@ -318,6 +326,7 @@ const tasks: ITask[] = [
       departments: ["Example", "Example"],
       keywords: ["Example", "Example"],
       diplomas: ["Example", "Example"],
+      situation: false,
     },
     assignedMember: {
       id: 1,
@@ -354,6 +363,7 @@ const tasks: ITask[] = [
       departments: ["Example", "Example"],
       keywords: ["Example", "Example"],
       diplomas: ["Example", "Example"],
+      situation: false,
     },
     assignedMember: {
       id: 1,
@@ -390,6 +400,7 @@ const tasks: ITask[] = [
       departments: ["Example", "Example"],
       keywords: ["Example", "Example"],
       diplomas: ["Example", "Example"],
+      situation: false,
     },
     assignedMember: {
       id: 1,
@@ -426,6 +437,7 @@ const tasks: ITask[] = [
       departments: ["Example", "Example"],
       keywords: ["Example", "Example"],
       diplomas: ["Example", "Example"],
+      situation: false,
     },
     assignedMember: {
       id: 1,
@@ -462,6 +474,7 @@ const tasks: ITask[] = [
       departments: ["Example", "Example"],
       keywords: ["Example", "Example"],
       diplomas: ["Example", "Example"],
+      situation: false,
     },
     assignedMember: {
       id: 1,
@@ -498,6 +511,7 @@ const tasks: ITask[] = [
       departments: ["Example", "Example"],
       keywords: ["Example", "Example"],
       diplomas: ["Example", "Example"],
+      situation: false,
     },
     assignedMember: {
       id: 1,
@@ -534,6 +548,7 @@ const tasks: ITask[] = [
       departments: ["Example", "Example"],
       keywords: ["Example", "Example"],
       diplomas: ["Example", "Example"],
+      situation: false,
     },
     assignedMember: {
       id: 1,
@@ -570,6 +585,7 @@ const tasks: ITask[] = [
       departments: ["Example", "Example"],
       keywords: ["Example", "Example"],
       diplomas: ["Example", "Example"],
+      situation: false,
     },
     assignedMember: {
       id: 1,
@@ -606,6 +622,7 @@ const tasks: ITask[] = [
       departments: ["Example", "Example"],
       keywords: ["Example", "Example"],
       diplomas: ["Example", "Example"],
+      situation: false,
     },
     assignedMember: {
       id: 1,
@@ -642,6 +659,7 @@ const tasks: ITask[] = [
       departments: ["Example", "Example"],
       keywords: ["Example", "Example"],
       diplomas: ["Example", "Example"],
+      situation: false,
     },
     assignedMember: {
       id: 1,
@@ -678,6 +696,7 @@ const tasks: ITask[] = [
       departments: ["Example", "Example"],
       keywords: ["Example", "Example"],
       diplomas: ["Example", "Example"],
+      situation: false,
     },
     assignedMember: {
       id: 1,

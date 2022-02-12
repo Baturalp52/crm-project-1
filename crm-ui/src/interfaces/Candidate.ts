@@ -24,4 +24,5 @@ export interface ICandidate {
   keywords: string[];
   diplomas: string[];
   placedJob?: IJob;
+  situation: boolean;
 }

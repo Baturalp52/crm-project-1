@@ -25,6 +25,7 @@ const candidates: ICandidate[] = [
     departments: ["Example", "Example"],
     keywords: ["Example", "Example"],
     diplomas: ["Example", "Example"],
+    situation: false,
   },
   {
     id: 2,
@@ -51,6 +52,7 @@ const candidates: ICandidate[] = [
     departments: ["Example", "Example"],
     keywords: ["Example", "Example"],
     diplomas: ["Example", "Example"],
+    situation: false,
   },
   {
     id: 3,
@@ -77,6 +79,7 @@ const candidates: ICandidate[] = [
     departments: ["Example", "Example"],
     keywords: ["Example", "Example"],
     diplomas: ["Example", "Example"],
+    situation: false,
   },
   {
     id: 4,
@@ -102,6 +105,7 @@ const candidates: ICandidate[] = [
     departments: ["Example", "Example"],
     keywords: ["Example", "Example"],
     diplomas: ["Example", "Example"],
+    situation: false,
   },
   {
     id: 5,
@@ -128,6 +132,7 @@ const candidates: ICandidate[] = [
     departments: ["Example", "Example"],
     keywords: ["Example", "Example"],
     diplomas: ["Example", "Example"],
+    situation: false,
   },
   {
     id: 6,
@@ -153,6 +158,7 @@ const candidates: ICandidate[] = [
     departments: ["Example", "Example"],
     keywords: ["Example", "Example"],
     diplomas: ["Example", "Example"],
+    situation: false,
   },
   {
     id: 7,
@@ -179,6 +185,7 @@ const candidates: ICandidate[] = [
     departments: ["Example", "Example"],
     keywords: ["Example", "Example"],
     diplomas: ["Example", "Example"],
+    situation: false,
   },
   {
     id: 8,
@@ -205,6 +212,7 @@ const candidates: ICandidate[] = [
     departments: ["Example", "Example"],
     keywords: ["Example", "Example"],
     diplomas: ["Example", "Example"],
+    situation: false,
   },
   {
     id: 9,
@@ -230,6 +238,7 @@ const candidates: ICandidate[] = [
     departments: ["Example", "Example"],
     keywords: ["Example", "Example"],
     diplomas: ["Example", "Example"],
+    situation: false,
   },
   {
     id: 10,
@@ -256,6 +265,7 @@ const candidates: ICandidate[] = [
     departments: ["Example", "Example"],
     keywords: ["Example", "Example"],
     diplomas: ["Example", "Example"],
+    situation: false,
   },
 ];
 

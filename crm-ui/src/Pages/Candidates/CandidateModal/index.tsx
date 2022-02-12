@@ -9,13 +9,8 @@ import FormMultiTextInput from "../../../components/FormMultiTextInput";
 import MapsInput from "../../../components/MapsInput";
 import ActionModal from "../../../components/ActionModal";
 import { useTranslation } from "react-i18next";
-import FormDropdown from "../../../components/FormDropdown";
-import { IJob } from "../../../interfaces/Job";
-import jobs from "../../../mockData/jobs";
 import Skills from "./Skills";
 import { ISkill } from "../../../interfaces/Skill";
-import { ICompany } from "../../../interfaces/Company";
-import companies from "../../../mockData/companies";
 import SendMessageModal from "./SendMessageModal";
 
 interface ICandidateModalProps {
@@ -149,38 +144,6 @@ const CandidateModal = (props: ICandidateModalProps) => {
             name="salaryExpectation"
             onChange={form.handleChange}
           />
-          <FormDropdown<IJob>
-            label={t("form.requested-job")}
-            getValue={(item) => item.id}
-            handleChange={(e) => {
-              form.setFieldValue(
-                "requestedJob",
-                jobs.filter((job) => job.id === e.target.value)[0]
-              );
-            }}
-            datas={jobs}
-            defaultValue={t("form.requested-job")}
-            dataToValue={(job) => `${job.id} - ${job.name}`}
-            selectedValue={
-              form.values.requestedJob ? form.values.requestedJob.id : 0
-            }
-          />
-          <FormDropdown<ICompany>
-            label={t("form.requested-company")}
-            getValue={(item) => item.id}
-            handleChange={(e) => {
-              form.setFieldValue(
-                "requestedCompany",
-                companies.filter((company) => company.id === e.target.value)[0]
-              );
-            }}
-            datas={companies}
-            defaultValue={t("form.requested-company")}
-            dataToValue={(company) => `${company.id} - ${company.name}`}
-            selectedValue={
-              form.values.requestedCompany ? form.values.requestedCompany.id : 0
-            }
-          />
           <Skills
             skills={form.values.skills || []}
             addSkill={(skill: ISkill) => {
@@ -225,8 +188,8 @@ const CandidateModal = (props: ICandidateModalProps) => {
         </Grid>
         <Grid item xs={12} md={4}>
           <MapsInput
-            mainCoords={form.values.requestedCompany?.mapsCoord}
-            secondCoord={form.values.mapsCoord}
+            mainCoords={form.values.mapsCoord!}
+            isMainMoving
             setCoord={(coord: any) => {
               form.setFieldValue("mapsCoord", coord);
             }}

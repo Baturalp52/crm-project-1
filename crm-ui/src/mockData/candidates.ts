@@ -16,16 +16,6 @@ const candidates: ICandidate[] = [
     mapsCoord: { lat: 39.62076, lng: 32.55389 },
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
-    requestedJob: { id: 1, name: "Example Job" },
-    requestedCompany: {
-      id: 1,
-      name: "Company Ankara",
-      city: "Ankara",
-      mapsCoord: {
-        lat: 39.925533,
-        lng: 32.866287,
-      },
-    },
     skills: [
       { id: 1, name: "Example", level: "Prof." },
       { id: 2, name: "Example", level: "Prof." },
@@ -51,16 +41,7 @@ const candidates: ICandidate[] = [
     mapsCoord: { lat: 39.62076, lng: 32.55389 },
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
-    requestedJob: { id: 1, name: "Example Job" },
-    requestedCompany: {
-      id: 2,
-      name: "Company Paris",
-      city: "Paris",
-      mapsCoord: {
-        lat: 48.864716,
-        lng: 2.349014,
-      },
-    },
+
     skills: [
       { id: 1, name: "Example", level: "Prof." },
       { id: 2, name: "Example", level: "Prof." },
@@ -86,16 +67,7 @@ const candidates: ICandidate[] = [
     mapsCoord: { lat: 39.62076, lng: 32.55389 },
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
-    requestedJob: { id: 1, name: "Example Job" },
-    requestedCompany: {
-      id: 3,
-      name: "Company London",
-      city: "London",
-      mapsCoord: {
-        lat: 51.509865,
-        lng: -0.118092,
-      },
-    },
+
     skills: [
       { id: 1, name: "Example", level: "Prof." },
       { id: 2, name: "Example", level: "Prof." },
@@ -121,16 +93,6 @@ const candidates: ICandidate[] = [
     mapsCoord: { lat: 39.62076, lng: 32.55389 },
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
-    requestedJob: { id: 1, name: "Example Job" },
-    requestedCompany: {
-      id: 4,
-      name: "Company New York",
-      city: "New York",
-      mapsCoord: {
-        lat: 40.73061,
-        lng: -73.935242,
-      },
-    },
     skills: [
       { id: 1, name: "Example", level: "Prof." },
       { id: 2, name: "Example", level: "Prof." },
@@ -156,16 +118,7 @@ const candidates: ICandidate[] = [
     mapsCoord: { lat: 39.62076, lng: 32.55389 },
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
-    requestedJob: { id: 1, name: "Example Job" },
-    requestedCompany: {
-      id: 5,
-      name: "Company Berlin",
-      city: "Berlin",
-      mapsCoord: {
-        lat: 52.520008,
-        lng: 13.404954,
-      },
-    },
+
     skills: [
       { id: 1, name: "Example", level: "Prof." },
       { id: 2, name: "Example", level: "Prof." },
@@ -191,16 +144,6 @@ const candidates: ICandidate[] = [
     mapsCoord: { lat: 39.62076, lng: 32.55389 },
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
-    requestedJob: { id: 1, name: "Example Job" },
-    requestedCompany: {
-      id: 1,
-      name: "Company Ankara",
-      city: "Ankara",
-      mapsCoord: {
-        lat: 39.925533,
-        lng: 32.866287,
-      },
-    },
     skills: [
       { id: 1, name: "Example", level: "Prof." },
       { id: 2, name: "Example", level: "Prof." },
@@ -226,16 +169,7 @@ const candidates: ICandidate[] = [
     mapsCoord: { lat: 39.62076, lng: 32.55389 },
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
-    requestedJob: { id: 1, name: "Example Job" },
-    requestedCompany: {
-      id: 2,
-      name: "Company Paris",
-      city: "Paris",
-      mapsCoord: {
-        lat: 48.864716,
-        lng: 2.349014,
-      },
-    },
+
     skills: [
       { id: 1, name: "Example", level: "Prof." },
       { id: 2, name: "Example", level: "Prof." },
@@ -261,16 +195,7 @@ const candidates: ICandidate[] = [
     mapsCoord: { lat: 39.62076, lng: 32.55389 },
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
-    requestedJob: { id: 1, name: "Example Job" },
-    requestedCompany: {
-      id: 3,
-      name: "Company London",
-      city: "London",
-      mapsCoord: {
-        lat: 51.509865,
-        lng: -0.118092,
-      },
-    },
+
     skills: [
       { id: 1, name: "Example", level: "Prof." },
       { id: 2, name: "Example", level: "Prof." },
@@ -296,16 +221,6 @@ const candidates: ICandidate[] = [
     mapsCoord: { lat: 39.62076, lng: 32.55389 },
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
-    requestedJob: { id: 1, name: "Example Job" },
-    requestedCompany: {
-      id: 4,
-      name: "Company New York",
-      city: "New York",
-      mapsCoord: {
-        lat: 40.73061,
-        lng: -73.935242,
-      },
-    },
     skills: [
       { id: 1, name: "Example", level: "Prof." },
       { id: 2, name: "Example", level: "Prof." },
@@ -331,16 +246,7 @@ const candidates: ICandidate[] = [
     mapsCoord: { lat: 39.62076, lng: 32.55389 },
     creatorMember: { id: 1, name: "Example", surname: "Member" },
     previousJobs: ["Example", "Example"],
-    requestedJob: { id: 1, name: "Example Job" },
-    requestedCompany: {
-      id: 5,
-      name: "Company Berlin",
-      city: "Berlin",
-      mapsCoord: {
-        lat: 52.520008,
-        lng: 13.404954,
-      },
-    },
+
     skills: [
       { id: 1, name: "Example", level: "Prof." },
       { id: 2, name: "Example", level: "Prof." },

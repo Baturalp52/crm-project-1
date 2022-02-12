@@ -21,16 +21,6 @@ const tasks: ITask[] = [
       mapsCoord: { lat: 39.62076, lng: 32.55389 },
       creatorMember: { id: 1, name: "Example", surname: "Member" },
       previousJobs: ["Example", "Example"],
-      requestedJob: { id: 1, name: "Example Job" },
-      requestedCompany: {
-        id: 1,
-        name: "Company Ankara",
-        city: "Ankara",
-        mapsCoord: {
-          lat: 39.925533,
-          lng: 32.866287,
-        },
-      },
       skills: [
         { id: 1, name: "Example", level: "Prof." },
         { id: 2, name: "Example", level: "Prof." },
@@ -67,16 +57,6 @@ const tasks: ITask[] = [
       mapsCoord: { lat: 39.62076, lng: 32.55389 },
       creatorMember: { id: 1, name: "Example", surname: "Member" },
       previousJobs: ["Example", "Example"],
-      requestedJob: { id: 1, name: "Example Job" },
-      requestedCompany: {
-        id: 1,
-        name: "Company Ankara",
-        city: "Ankara",
-        mapsCoord: {
-          lat: 39.925533,
-          lng: 32.866287,
-        },
-      },
       skills: [
         { id: 1, name: "Example", level: "Prof." },
         { id: 2, name: "Example", level: "Prof." },
@@ -113,16 +93,6 @@ const tasks: ITask[] = [
       mapsCoord: { lat: 39.62076, lng: 32.55389 },
       creatorMember: { id: 1, name: "Example", surname: "Member" },
       previousJobs: ["Example", "Example"],
-      requestedJob: { id: 1, name: "Example Job" },
-      requestedCompany: {
-        id: 1,
-        name: "Company Ankara",
-        city: "Ankara",
-        mapsCoord: {
-          lat: 39.925533,
-          lng: 32.866287,
-        },
-      },
       skills: [
         { id: 1, name: "Example", level: "Prof." },
         { id: 2, name: "Example", level: "Prof." },
@@ -159,16 +129,6 @@ const tasks: ITask[] = [
       mapsCoord: { lat: 39.62076, lng: 32.55389 },
       creatorMember: { id: 1, name: "Example", surname: "Member" },
       previousJobs: ["Example", "Example"],
-      requestedJob: { id: 1, name: "Example Job" },
-      requestedCompany: {
-        id: 1,
-        name: "Company Ankara",
-        city: "Ankara",
-        mapsCoord: {
-          lat: 39.925533,
-          lng: 32.866287,
-        },
-      },
       skills: [
         { id: 1, name: "Example", level: "Prof." },
         { id: 2, name: "Example", level: "Prof." },
@@ -205,16 +165,6 @@ const tasks: ITask[] = [
       mapsCoord: { lat: 39.62076, lng: 32.55389 },
       creatorMember: { id: 1, name: "Example", surname: "Member" },
       previousJobs: ["Example", "Example"],
-      requestedJob: { id: 1, name: "Example Job" },
-      requestedCompany: {
-        id: 1,
-        name: "Company Ankara",
-        city: "Ankara",
-        mapsCoord: {
-          lat: 39.925533,
-          lng: 32.866287,
-        },
-      },
       skills: [
         { id: 1, name: "Example", level: "Prof." },
         { id: 2, name: "Example", level: "Prof." },
@@ -251,16 +201,6 @@ const tasks: ITask[] = [
       mapsCoord: { lat: 39.62076, lng: 32.55389 },
       creatorMember: { id: 1, name: "Example", surname: "Member" },
       previousJobs: ["Example", "Example"],
-      requestedJob: { id: 1, name: "Example Job" },
-      requestedCompany: {
-        id: 1,
-        name: "Company Ankara",
-        city: "Ankara",
-        mapsCoord: {
-          lat: 39.925533,
-          lng: 32.866287,
-        },
-      },
       skills: [
         { id: 1, name: "Example", level: "Prof." },
         { id: 2, name: "Example", level: "Prof." },
@@ -297,16 +237,6 @@ const tasks: ITask[] = [
       mapsCoord: { lat: 39.62076, lng: 32.55389 },
       creatorMember: { id: 1, name: "Example", surname: "Member" },
       previousJobs: ["Example", "Example"],
-      requestedJob: { id: 1, name: "Example Job" },
-      requestedCompany: {
-        id: 1,
-        name: "Company Ankara",
-        city: "Ankara",
-        mapsCoord: {
-          lat: 39.925533,
-          lng: 32.866287,
-        },
-      },
       skills: [
         { id: 1, name: "Example", level: "Prof." },
         { id: 2, name: "Example", level: "Prof." },
@@ -343,16 +273,6 @@ const tasks: ITask[] = [
       mapsCoord: { lat: 39.62076, lng: 32.55389 },
       creatorMember: { id: 1, name: "Example", surname: "Member" },
       previousJobs: ["Example", "Example"],
-      requestedJob: { id: 1, name: "Example Job" },
-      requestedCompany: {
-        id: 1,
-        name: "Company Ankara",
-        city: "Ankara",
-        mapsCoord: {
-          lat: 39.925533,
-          lng: 32.866287,
-        },
-      },
       skills: [
         { id: 1, name: "Example", level: "Prof." },
         { id: 2, name: "Example", level: "Prof." },
@@ -389,16 +309,6 @@ const tasks: ITask[] = [
       mapsCoord: { lat: 39.62076, lng: 32.55389 },
       creatorMember: { id: 1, name: "Example", surname: "Member" },
       previousJobs: ["Example", "Example"],
-      requestedJob: { id: 1, name: "Example Job" },
-      requestedCompany: {
-        id: 1,
-        name: "Company Ankara",
-        city: "Ankara",
-        mapsCoord: {
-          lat: 39.925533,
-          lng: 32.866287,
-        },
-      },
       skills: [
         { id: 1, name: "Example", level: "Prof." },
         { id: 2, name: "Example", level: "Prof." },
@@ -435,16 +345,6 @@ const tasks: ITask[] = [
       mapsCoord: { lat: 39.62076, lng: 32.55389 },
       creatorMember: { id: 1, name: "Example", surname: "Member" },
       previousJobs: ["Example", "Example"],
-      requestedJob: { id: 1, name: "Example Job" },
-      requestedCompany: {
-        id: 1,
-        name: "Company Ankara",
-        city: "Ankara",
-        mapsCoord: {
-          lat: 39.925533,
-          lng: 32.866287,
-        },
-      },
       skills: [
         { id: 1, name: "Example", level: "Prof." },
         { id: 2, name: "Example", level: "Prof." },
@@ -481,16 +381,6 @@ const tasks: ITask[] = [
       mapsCoord: { lat: 39.62076, lng: 32.55389 },
       creatorMember: { id: 1, name: "Example", surname: "Member" },
       previousJobs: ["Example", "Example"],
-      requestedJob: { id: 1, name: "Example Job" },
-      requestedCompany: {
-        id: 1,
-        name: "Company Ankara",
-        city: "Ankara",
-        mapsCoord: {
-          lat: 39.925533,
-          lng: 32.866287,
-        },
-      },
       skills: [
         { id: 1, name: "Example", level: "Prof." },
         { id: 2, name: "Example", level: "Prof." },
@@ -527,16 +417,6 @@ const tasks: ITask[] = [
       mapsCoord: { lat: 39.62076, lng: 32.55389 },
       creatorMember: { id: 1, name: "Example", surname: "Member" },
       previousJobs: ["Example", "Example"],
-      requestedJob: { id: 1, name: "Example Job" },
-      requestedCompany: {
-        id: 1,
-        name: "Company Ankara",
-        city: "Ankara",
-        mapsCoord: {
-          lat: 39.925533,
-          lng: 32.866287,
-        },
-      },
       skills: [
         { id: 1, name: "Example", level: "Prof." },
         { id: 2, name: "Example", level: "Prof." },
@@ -573,16 +453,6 @@ const tasks: ITask[] = [
       mapsCoord: { lat: 39.62076, lng: 32.55389 },
       creatorMember: { id: 1, name: "Example", surname: "Member" },
       previousJobs: ["Example", "Example"],
-      requestedJob: { id: 1, name: "Example Job" },
-      requestedCompany: {
-        id: 1,
-        name: "Company Ankara",
-        city: "Ankara",
-        mapsCoord: {
-          lat: 39.925533,
-          lng: 32.866287,
-        },
-      },
       skills: [
         { id: 1, name: "Example", level: "Prof." },
         { id: 2, name: "Example", level: "Prof." },
@@ -619,16 +489,6 @@ const tasks: ITask[] = [
       mapsCoord: { lat: 39.62076, lng: 32.55389 },
       creatorMember: { id: 1, name: "Example", surname: "Member" },
       previousJobs: ["Example", "Example"],
-      requestedJob: { id: 1, name: "Example Job" },
-      requestedCompany: {
-        id: 1,
-        name: "Company Ankara",
-        city: "Ankara",
-        mapsCoord: {
-          lat: 39.925533,
-          lng: 32.866287,
-        },
-      },
       skills: [
         { id: 1, name: "Example", level: "Prof." },
         { id: 2, name: "Example", level: "Prof." },
@@ -665,16 +525,6 @@ const tasks: ITask[] = [
       mapsCoord: { lat: 39.62076, lng: 32.55389 },
       creatorMember: { id: 1, name: "Example", surname: "Member" },
       previousJobs: ["Example", "Example"],
-      requestedJob: { id: 1, name: "Example Job" },
-      requestedCompany: {
-        id: 1,
-        name: "Company Ankara",
-        city: "Ankara",
-        mapsCoord: {
-          lat: 39.925533,
-          lng: 32.866287,
-        },
-      },
       skills: [
         { id: 1, name: "Example", level: "Prof." },
         { id: 2, name: "Example", level: "Prof." },
@@ -711,16 +561,6 @@ const tasks: ITask[] = [
       mapsCoord: { lat: 39.62076, lng: 32.55389 },
       creatorMember: { id: 1, name: "Example", surname: "Member" },
       previousJobs: ["Example", "Example"],
-      requestedJob: { id: 1, name: "Example Job" },
-      requestedCompany: {
-        id: 1,
-        name: "Company Ankara",
-        city: "Ankara",
-        mapsCoord: {
-          lat: 39.925533,
-          lng: 32.866287,
-        },
-      },
       skills: [
         { id: 1, name: "Example", level: "Prof." },
         { id: 2, name: "Example", level: "Prof." },
@@ -757,16 +597,6 @@ const tasks: ITask[] = [
       mapsCoord: { lat: 39.62076, lng: 32.55389 },
       creatorMember: { id: 1, name: "Example", surname: "Member" },
       previousJobs: ["Example", "Example"],
-      requestedJob: { id: 1, name: "Example Job" },
-      requestedCompany: {
-        id: 1,
-        name: "Company Ankara",
-        city: "Ankara",
-        mapsCoord: {
-          lat: 39.925533,
-          lng: 32.866287,
-        },
-      },
       skills: [
         { id: 1, name: "Example", level: "Prof." },
         { id: 2, name: "Example", level: "Prof." },
@@ -803,16 +633,6 @@ const tasks: ITask[] = [
       mapsCoord: { lat: 39.62076, lng: 32.55389 },
       creatorMember: { id: 1, name: "Example", surname: "Member" },
       previousJobs: ["Example", "Example"],
-      requestedJob: { id: 1, name: "Example Job" },
-      requestedCompany: {
-        id: 1,
-        name: "Company Ankara",
-        city: "Ankara",
-        mapsCoord: {
-          lat: 39.925533,
-          lng: 32.866287,
-        },
-      },
       skills: [
         { id: 1, name: "Example", level: "Prof." },
         { id: 2, name: "Example", level: "Prof." },
@@ -849,16 +669,6 @@ const tasks: ITask[] = [
       mapsCoord: { lat: 39.62076, lng: 32.55389 },
       creatorMember: { id: 1, name: "Example", surname: "Member" },
       previousJobs: ["Example", "Example"],
-      requestedJob: { id: 1, name: "Example Job" },
-      requestedCompany: {
-        id: 1,
-        name: "Company Ankara",
-        city: "Ankara",
-        mapsCoord: {
-          lat: 39.925533,
-          lng: 32.866287,
-        },
-      },
       skills: [
         { id: 1, name: "Example", level: "Prof." },
         { id: 2, name: "Example", level: "Prof." },

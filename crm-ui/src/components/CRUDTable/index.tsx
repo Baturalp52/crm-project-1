@@ -16,6 +16,7 @@ import {
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import resolve from "../../helpers/resolve";
+import DeleteModal from "./DeleteModal";
 import SearchBar from "./SearchBar";
 
 interface ICRUDTableProps<DataType> {
@@ -49,6 +50,8 @@ const CRUDTable = <DataType extends { id: number }>(
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [rowPerPage, setRowPerPage] = useState<number>(10);
   const [selectedDatasId, setSelectedDatasId] = useState<number[]>([]);
+  const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false);
+
   return (
     <Paper
       sx={{
@@ -58,6 +61,7 @@ const CRUDTable = <DataType extends { id: number }>(
         boxShadow: "none",
       }}
     >
+      <DeleteModal open={openDeleteModal} setOpen={setOpenDeleteModal} />
       {Boolean(searchForm) && (
         <SearchBar searchForm={searchForm} filters={filters} />
       )}
@@ -178,6 +182,9 @@ const CRUDTable = <DataType extends { id: number }>(
             sx={{ border: "none !important" }}
             startIcon={<DeleteForeverRounded />}
             color="error"
+            onClick={() => {
+              setOpenDeleteModal(true);
+            }}
           >
             {t("delete")}
           </Button>

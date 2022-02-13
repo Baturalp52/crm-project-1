@@ -11,5 +11,10 @@
   "advanced-search-modal": {
     "title": "Advanced Search",
     "search": "Search"
+  },
+  "delete-modal": {
+    "are-you-sure": "Are you sure you want to delete?",
+    "cancel": "Cancel",
+    "delete": "Delete"
   }
 }

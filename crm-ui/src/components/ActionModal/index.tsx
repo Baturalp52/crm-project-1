@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { CloseRounded, SaveRounded } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
+import useSuccessSnackbar from "../../hooks/useSuccessSnackbar";
 
 interface IActionModalProps {
   isOpen: boolean;
@@ -22,52 +23,59 @@ interface IActionModalProps {
 const ActionModal = (props: IActionModalProps) => {
   const { isOpen, setIsOpen, title, saveFunction, children } = props;
   const { t } = useTranslation("components", { keyPrefix: "actionModal" });
+  const { setOpen: setSuccessbar, snackbar: SuccessSnack } = useSuccessSnackbar(
+    t("success-snack-label")
+  );
   return (
-    <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-      <Card
-        sx={{
-          position: "absolute" as "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          width: "95%",
-          height: "85%",
-          bgcolor: "background.paper",
-          border: "none",
-        }}
-      >
-        <CardHeader
-          sx={{ p: 2, bgcolor: "success.dark", color: "white" }}
-          title={title}
-          action={
-            <IconButton
+    <>
+      {SuccessSnack}
+      <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+        <Card
+          sx={{
+            position: "absolute" as "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "95%",
+            height: "85%",
+            bgcolor: "background.paper",
+            border: "none",
+          }}
+        >
+          <CardHeader
+            sx={{ p: 2, bgcolor: "success.dark", color: "white" }}
+            title={title}
+            action={
+              <IconButton
+                onClick={() => {
+                  setIsOpen(false);
+                }}
+              >
+                <CloseRounded htmlColor="white" />
+              </IconButton>
+            }
+          />
+          <CardContent sx={{ height: "76%", overflow: "auto" }}>
+            {children}
+          </CardContent>
+          <CardActions>
+            <Button
+              sx={{ border: "none !important", marginLeft: "auto" }}
+              startIcon={<SaveRounded />}
+              color="success"
+              variant="contained"
               onClick={() => {
                 setIsOpen(false);
+                setSuccessbar(true);
+                saveFunction();
               }}
             >
-              <CloseRounded htmlColor="white" />
-            </IconButton>
-          }
-        />
-        <CardContent sx={{ height: "76%", overflow: "auto" }}>
-          {children}
-        </CardContent>
-        <CardActions>
-          <Button
-            sx={{ border: "none !important", marginLeft: "auto" }}
-            startIcon={<SaveRounded />}
-            color="success"
-            variant="contained"
-            onClick={() => {
-              setIsOpen(false);
-              saveFunction();
-            }}
-          >
-            {t("save")}
-          </Button>
-        </CardActions>
-      </Card>
-    </Modal>
+              {t("save")}
+            </Button>
+          </CardActions>
+        </Card>
+      </Modal>
+    </>
   );
 };
 

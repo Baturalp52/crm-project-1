@@ -1,14 +1,13 @@
 from django.db import models
 
-from v1.candidates.models import Candidate
-from v1.comments.models import Comment
-from v1.hr_members.models import HRMember
+import v1.candidates.models as CandidatesModels
+import v1.hr_members.models as HRModels
 
 class Task(models.Model):
     name = models.CharField(max_length=255)
-    description = models.TextField(blank=True)
-    assignedMember = models.ForeignKey(HRMember,blank=True)
-    assignedCandidate = models.ForeignKey(Candidate,blank=True)
+    description = models.TextField(null=True)
+    assignedMember = models.ForeignKey(HRModels.HRMember,on_delete=models.SET_NULL,null=True)
+    assignedCandidate = models.ForeignKey(CandidatesModels.Candidate,on_delete=models.SET_NULL,null=True)
     situation = models.CharField(max_length=255)
-    createdDate = models.DateField(auto_now_add=True,blank=True)
-    endDate = models.DateField(blank=True)
+    createdDate = models.DateField(auto_now_add=True,null=True)
+    endDate = models.DateField(null=True)

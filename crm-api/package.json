@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "scripts": {
     "start": "python manage.py runserver 3000",
-    "migrate": "python manage.py migrate"
+    "migrate": "python manage.py migrate",
+    "makemigrations": "python manage.py makemigrations"
   }
 }

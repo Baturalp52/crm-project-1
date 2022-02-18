@@ -31,15 +31,15 @@ def update_or_delete(request, id):
     if request.method == "PUT":
         companies = Company.objects.filter(id=id)
         if len(companies) > 0:
-            candidate = companies[0]
+            company = companies[0]
             for key, value in loads(request.body).items():
                 if type(value) is dict:
                     pass
                 else:
-                    setattr(candidate, key, value)
-            candidate.save()
+                    setattr(company, key, value)
+            company.save()
 
-            return JsonResponse(model_to_dict(candidate), safe=False)
+            return JsonResponse(model_to_dict(company), safe=False)
         else:
             return HttpResponse(status=404)
 

@@ -1,15 +1,15 @@
 from json import loads
-from django.forms import model_to_dict
 from django.http import HttpResponse, JsonResponse, HttpResponseNotAllowed
 from django.views.decorators.csrf import csrf_exempt
 
 from api.v1.tasks.models import Task
+from api.v1.tasks.serializer import TaskSerializer
 
 
 @csrf_exempt
 def get_or_create(request):
     if request.method == "GET":
-        return JsonResponse(list(Task.objects.all().values()), safe=False)
+        return JsonResponse(TaskSerializer(Task.objects.all().values()), safe=False)
     elif request.method == "POST":
         newTask = Task()
         for key, value in loads(request.body).items():
@@ -21,7 +21,7 @@ def get_or_create(request):
                 setattr(newTask, key, value)
 
         newTask.save()
-        return JsonResponse(list(Task.objects.all().values()), safe=False)
+        return JsonResponse(TaskSerializer(Task.objects.all().values()), safe=False)
     else:
         return HttpResponseNotAllowed()
 
@@ -31,15 +31,15 @@ def update_or_delete(request, id):
     if request.method == "PUT":
         tasks = Task.objects.filter(id=id)
         if len(tasks) > 0:
-            candidate = tasks[0]
+            task = tasks[0]
             for key, value in loads(request.body).items():
                 if type(value) is dict:
                     pass
                 else:
-                    setattr(candidate, key, value)
-            candidate.save()
+                    setattr(task, key, value)
+            task.save()
 
-            return JsonResponse(model_to_dict(candidate), safe=False)
+            return JsonResponse(TaskSerializer(task), safe=False)
         else:
             return HttpResponse(status=404)
 

@@ -1,15 +1,15 @@
 from json import loads
-from django.forms import model_to_dict
 from django.http import HttpResponse, JsonResponse, HttpResponseNotAllowed
 from django.views.decorators.csrf import csrf_exempt
 
 from api.v1.jobs.models import Job
+from api.v1.jobs.serializer import JobSerializer
 
 
 @csrf_exempt
 def get_or_create(request):
     if request.method == "GET":
-        return JsonResponse(list(Job.objects.all().values()), safe=False)
+        return JsonResponse(JobSerializer(Job.objects.all(), many=True), safe=False)
     elif request.method == "POST":
         newJob = Job()
         for key, value in loads(request.body).items():
@@ -21,7 +21,7 @@ def get_or_create(request):
                 setattr(newJob, key, value)
 
         newJob.save()
-        return JsonResponse(list(Job.objects.all().values()), safe=False)
+        return JsonResponse(JobSerializer(Job.objects.all(), many=True), safe=False)
     else:
         return HttpResponseNotAllowed()
 
@@ -31,15 +31,15 @@ def update_or_delete(request, id):
     if request.method == "PUT":
         jobs = Job.objects.filter(id=id)
         if len(jobs) > 0:
-            candidate = jobs[0]
+            job = jobs[0]
             for key, value in loads(request.body).items():
                 if type(value) is dict:
                     pass
                 else:
-                    setattr(candidate, key, value)
-            candidate.save()
+                    setattr(job, key, value)
+            job.save()
 
-            return JsonResponse(model_to_dict(candidate), safe=False)
+            return JsonResponse(JobSerializer(job), safe=False)
         else:
             return HttpResponse(status=404)
 

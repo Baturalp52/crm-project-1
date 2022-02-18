@@ -1,8 +1,8 @@
 from django.urls import path
 
 from api.v1.candidates.views import get_or_create
-from api.v1.candidates.views import update
+from api.v1.candidates.views import update_or_delete
 
 
 urlpatterns = [path("",get_or_create),
-path("<int:id>",update)]
+path("<int:id>",update_or_delete)]

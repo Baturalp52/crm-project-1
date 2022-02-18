@@ -9,7 +9,7 @@ from api.v1.companies.serializer import CompanySerializer
 @csrf_exempt
 def get_or_create(request):
     if request.method == "GET":
-        return JsonResponse(CompanySerializer(Company.objects.all(), many=True), safe=False)
+        return JsonResponse(CompanySerializer(Company.objects.all(), many=True).data, safe=False)
     elif request.method == "POST":
         newCompany = Company()
         for key, value in loads(request.body).items():
@@ -21,7 +21,7 @@ def get_or_create(request):
                 setattr(newCompany, key, value)
 
         newCompany.save()
-        return JsonResponse(CompanySerializer(Company.objects.all(), many=True), safe=False)
+        return JsonResponse(CompanySerializer(Company.objects.all(), many=True).data, safe=False)
     else:
         return HttpResponseNotAllowed()
 
@@ -39,7 +39,7 @@ def update_or_delete(request, id):
                     setattr(company, key, value)
             company.save()
 
-            return JsonResponse(CompanySerializer(company), safe=False)
+            return JsonResponse(CompanySerializer(company).data, safe=False)
         else:
             return HttpResponse(status=404)
 

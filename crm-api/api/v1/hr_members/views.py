@@ -9,7 +9,7 @@ from api.v1.hr_members.serializer import HRMemberSerializer
 @csrf_exempt
 def get_or_create(request):
     if request.method == "GET":
-        return JsonResponse(HRMemberSerializer(HRMember.objects.all(), many=True), safe=False)
+        return JsonResponse(HRMemberSerializer(HRMember.objects.all(), many=True).data, safe=False)
     elif request.method == "POST":
         newHRMember = HRMember()
         for key, value in loads(request.body).items():
@@ -21,7 +21,7 @@ def get_or_create(request):
                 setattr(newHRMember, key, value)
 
         newHRMember.save()
-        return JsonResponse(HRMemberSerializer(HRMember.objects.all(), many=True), safe=False)
+        return JsonResponse(HRMemberSerializer(HRMember.objects.all(), many=True).data, safe=False)
     else:
         return HttpResponseNotAllowed()
 
@@ -39,7 +39,7 @@ def update_or_delete(request, id):
                     setattr(hr_member, key, value)
             hr_member.save()
 
-            return JsonResponse(HRMemberSerializer(hr_member), safe=False)
+            return JsonResponse(HRMemberSerializer(hr_member).data, safe=False)
         else:
             return HttpResponse(status=404)
 

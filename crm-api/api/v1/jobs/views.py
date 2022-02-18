@@ -9,7 +9,7 @@ from api.v1.jobs.serializer import JobSerializer
 @csrf_exempt
 def get_or_create(request):
     if request.method == "GET":
-        return JsonResponse(JobSerializer(Job.objects.all(), many=True), safe=False)
+        return JsonResponse(JobSerializer(Job.objects.all(), many=True).data, safe=False)
     elif request.method == "POST":
         newJob = Job()
         for key, value in loads(request.body).items():
@@ -21,7 +21,7 @@ def get_or_create(request):
                 setattr(newJob, key, value)
 
         newJob.save()
-        return JsonResponse(JobSerializer(Job.objects.all(), many=True), safe=False)
+        return JsonResponse(JobSerializer(Job.objects.all(), many=True).data, safe=False)
     else:
         return HttpResponseNotAllowed()
 
@@ -39,7 +39,7 @@ def update_or_delete(request, id):
                     setattr(job, key, value)
             job.save()
 
-            return JsonResponse(JobSerializer(job), safe=False)
+            return JsonResponse(JobSerializer(job).data, safe=False)
         else:
             return HttpResponse(status=404)
 

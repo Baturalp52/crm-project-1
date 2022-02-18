@@ -43,7 +43,7 @@ def update_or_delete(request, id):
                     setattr(candidate, key, value)
             candidate.save()
 
-            return JsonResponse(model_to_dict(candidate), safe=False)
+            return JsonResponse(CandidateSerializer(candidate).data, safe=False)
         else:
             return HttpResponse(status=404)
 

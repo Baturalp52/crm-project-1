@@ -1,15 +1,15 @@
 from json import loads
-from django.forms import model_to_dict
 from django.http import HttpResponse, JsonResponse, HttpResponseNotAllowed
 from django.views.decorators.csrf import csrf_exempt
 
 from api.v1.companies.models import Company
+from api.v1.companies.serializer import CompanySerializer
 
 
 @csrf_exempt
 def get_or_create(request):
     if request.method == "GET":
-        return JsonResponse(list(Company.objects.all().values()), safe=False)
+        return JsonResponse(CompanySerializer(Company.objects.all(), many=True), safe=False)
     elif request.method == "POST":
         newCompany = Company()
         for key, value in loads(request.body).items():
@@ -21,7 +21,7 @@ def get_or_create(request):
                 setattr(newCompany, key, value)
 
         newCompany.save()
-        return JsonResponse(list(Company.objects.all().values()), safe=False)
+        return JsonResponse(CompanySerializer(Company.objects.all(), many=True), safe=False)
     else:
         return HttpResponseNotAllowed()
 
@@ -39,7 +39,7 @@ def update_or_delete(request, id):
                     setattr(company, key, value)
             company.save()
 
-            return JsonResponse(model_to_dict(company), safe=False)
+            return JsonResponse(CompanySerializer(company), safe=False)
         else:
             return HttpResponse(status=404)
 

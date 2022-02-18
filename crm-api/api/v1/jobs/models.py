@@ -8,4 +8,4 @@ class Job (models.Model):
     experience = models.IntegerField(null=True)
     salaryExpectation = models.IntegerField(null=True)
     studyFields = models.JSONField()
-    company = models.ForeignKey(Company,on_delete=models.SET_NULL,null=True)
+    company = models.ForeignKey(Company,on_delete=models.SET_NULL,null=True,related_name="company")

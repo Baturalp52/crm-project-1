@@ -5,4 +5,5 @@ urlpatterns = [
     path("comments/", include("api.v1.comments.urls")),
     path("companies/", include("api.v1.companies.urls")),
     path("events/", include("api.v1.events.urls")),
+    path("hr-members/", include("api.v1.hr_members.urls")),
 ]

@@ -1,15 +1,15 @@
 from json import loads
-from django.forms import model_to_dict
 from django.http import HttpResponse, JsonResponse, HttpResponseNotAllowed
 from django.views.decorators.csrf import csrf_exempt
 
 from api.v1.hr_members.models import HRMember
+from api.v1.hr_members.serializer import HRMemberSerializer
 
 
 @csrf_exempt
 def get_or_create(request):
     if request.method == "GET":
-        return JsonResponse(list(HRMember.objects.all().values()), safe=False)
+        return JsonResponse(HRMemberSerializer(HRMember.objects.all(), many=True), safe=False)
     elif request.method == "POST":
         newHRMember = HRMember()
         for key, value in loads(request.body).items():
@@ -21,7 +21,7 @@ def get_or_create(request):
                 setattr(newHRMember, key, value)
 
         newHRMember.save()
-        return JsonResponse(list(HRMember.objects.all().values()), safe=False)
+        return JsonResponse(HRMemberSerializer(HRMember.objects.all(), many=True), safe=False)
     else:
         return HttpResponseNotAllowed()
 
@@ -39,7 +39,7 @@ def update_or_delete(request, id):
                     setattr(hr_member, key, value)
             hr_member.save()
 
-            return JsonResponse(model_to_dict(hr_member), safe=False)
+            return JsonResponse(HRMemberSerializer(hr_member), safe=False)
         else:
             return HttpResponse(status=404)
 

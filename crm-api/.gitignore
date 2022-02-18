@@ -47,4 +47,4 @@ target/
 *.sqlite3
 
 #migrations
-*/migrations
+/*/migrations

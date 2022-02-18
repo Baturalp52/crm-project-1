@@ -45,3 +45,6 @@ target/
 
 # SQLite
 *.sqlite3
+
+#migrations
+*/migrations

@@ -13,13 +13,8 @@ def get_or_create(request):
     elif request.method == "POST":
         newEvent = Event()
         for key, value in loads(request.body).items():
-            if type(value) is dict:
-                pass
-            elif key == "id":
-                pass
-            else:
+            if not (key == "id"):
                 setattr(newEvent, key, value)
-
         newEvent.save()
         return JsonResponse(list(Event.objects.all().values()), safe=False)
     else:
@@ -33,9 +28,7 @@ def update_or_delete(request, id):
         if len(events) > 0:
             event = events[0]
             for key, value in loads(request.body).items():
-                if type(value) is dict:
-                    pass
-                else:
+                if not (key == "id"):
                     setattr(event, key, value)
             event.save()
 

@@ -14,10 +14,8 @@ def get_or_create(request):
         newTask = Task()
         for key, value in loads(request.body).items():
             if type(value) is dict:
-                pass
-            elif key == "id":
-                pass
-            else:
+                setattr(newTask, key + "_id", value["id"])
+            elif not (key == "id"):
                 setattr(newTask, key, value)
 
         newTask.save()
@@ -34,8 +32,8 @@ def update_or_delete(request, id):
             task = tasks[0]
             for key, value in loads(request.body).items():
                 if type(value) is dict:
-                    pass
-                else:
+                    setattr(task, key + "_id", value["id"])
+                elif not (key == "id"):
                     setattr(task, key, value)
             task.save()
 

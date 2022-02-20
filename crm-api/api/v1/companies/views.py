@@ -13,11 +13,7 @@ def get_or_create(request):
     elif request.method == "POST":
         newCompany = Company()
         for key, value in loads(request.body).items():
-            if type(value) is dict:
-                pass
-            elif key == "id":
-                pass
-            else:
+            if not (key == "id"):
                 setattr(newCompany, key, value)
 
         newCompany.save()
@@ -33,9 +29,7 @@ def update_or_delete(request, id):
         if len(companies) > 0:
             company = companies[0]
             for key, value in loads(request.body).items():
-                if type(value) is dict:
-                    pass
-                else:
+                if not (key == "id"):
                     setattr(company, key, value)
             company.save()
 

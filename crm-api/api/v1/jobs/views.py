@@ -14,10 +14,8 @@ def get_or_create(request):
         newJob = Job()
         for key, value in loads(request.body).items():
             if type(value) is dict:
-                pass
-            elif key == "id":
-                pass
-            else:
+                setattr(newJob, key + "_id", value["id"])
+            elif not (key == "id"):
                 setattr(newJob, key, value)
 
         newJob.save()
@@ -34,8 +32,8 @@ def update_or_delete(request, id):
             job = jobs[0]
             for key, value in loads(request.body).items():
                 if type(value) is dict:
-                    pass
-                else:
+                    setattr(job, key + "_id", value["id"])
+                elif not (key == "id"):
                     setattr(job, key, value)
             job.save()
 

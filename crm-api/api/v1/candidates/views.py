@@ -18,11 +18,8 @@ def get_or_create(request):
                     setattr(newCandidate, key, value)
                 else:
                     setattr(newCandidate, key + "_id", value["id"])
-            elif key == "id":
-                pass
-            else:
+            elif not (key == "id"):
                 setattr(newCandidate, key, value)
-
         newCandidate.save()
         return JsonResponse(CandidateSerializer(Candidate.objects.all(), many=True).data, safe=False)
     else:
@@ -37,8 +34,11 @@ def update_or_delete(request, id):
             candidate = candidates[0]
             for key, value in loads(request.body).items():
                 if type(value) is dict:
-                    pass
-                else:
+                    if key == "mapsCoord":
+                        setattr(candidate, key, value)
+                    elif not (key == "id"):
+                        setattr(candidate, key + "_id", value["id"])
+                elif not (key == "id"):
                     setattr(candidate, key, value)
             candidate.save()
 

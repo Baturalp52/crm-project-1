@@ -14,12 +14,9 @@ def get_or_create(request):
         newComment = Comment()
         for key, value in loads(request.body).items():
             if type(value) is dict:
-                pass
-            elif key == "id":
-                pass
-            else:
+                setattr(newComment, key + "_id", value["id"])
+            elif not (key == "id"):
                 setattr(newComment, key, value)
-
         newComment.save()
         return JsonResponse(CommentSerializer(Comment.objects.all(), many=True).data, safe=False)
     else:
@@ -34,8 +31,8 @@ def update_or_delete(request, id):
             comment = comments[0]
             for key, value in loads(request.body).items():
                 if type(value) is dict:
-                    pass
-                else:
+                    setattr(comment, key + "_id", value["id"])
+                elif not (key == "id"):
                     setattr(comment, key, value)
             comment.save()
 

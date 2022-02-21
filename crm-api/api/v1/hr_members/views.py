@@ -9,7 +9,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 
 
-class View(APIView):
+class HRMembersView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):

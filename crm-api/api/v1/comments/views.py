@@ -1,16 +1,21 @@
 from json import loads
-from django.http import HttpResponse, JsonResponse, HttpResponseNotAllowed
-from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse, JsonResponse
 
 from api.v1.comments.models import Comment
 from api.v1.comments.serializer import CommentSerializer
 
 
-@csrf_exempt
-def get_or_create(request):
-    if request.method == "GET":
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
+
+
+class CommentsView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
         return JsonResponse(CommentSerializer(Comment.objects.all(), many=True).data, safe=False)
-    elif request.method == "POST":
+
+    def post(self, request):
         newComment = Comment()
         for key, value in loads(request.body).items():
             if type(value) is dict:
@@ -19,13 +24,8 @@ def get_or_create(request):
                 setattr(newComment, key, value)
         newComment.save()
         return JsonResponse(CommentSerializer(Comment.objects.all(), many=True).data, safe=False)
-    else:
-        return HttpResponseNotAllowed()
 
-
-@csrf_exempt
-def update_or_delete(request, id):
-    if request.method == "PUT":
+    def put(self, request, id):
         comments = Comment.objects.filter(id=id)
         if len(comments) > 0:
             comment = comments[0]
@@ -40,12 +40,10 @@ def update_or_delete(request, id):
         else:
             return HttpResponse(status=404)
 
-    elif request.method == "DELETE":
+    def delete(self, request, id):
         comments = Comment.objects.filter(id=id)
         if len(comments) > 0:
             comments[0].delete()
             return HttpResponse(status=200)
         else:
             return HttpResponse(status=404)
-    else:
-        return HttpResponseNotAllowed()

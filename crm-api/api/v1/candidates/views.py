@@ -1,6 +1,5 @@
 from json import loads
-from django.http import HttpResponse, JsonResponse, HttpResponseNotAllowed
-from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse, JsonResponse
 
 from api.v1.candidates.models import Candidate
 from api.v1.candidates.serializer import CandidateSerializer

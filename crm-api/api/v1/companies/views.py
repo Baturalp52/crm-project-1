@@ -5,12 +5,17 @@ from django.views.decorators.csrf import csrf_exempt
 from api.v1.companies.models import Company
 from api.v1.companies.serializer import CompanySerializer
 
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
 
-@csrf_exempt
-def get_or_create(request):
-    if request.method == "GET":
+
+class CompaniesView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
         return JsonResponse(CompanySerializer(Company.objects.all(), many=True).data, safe=False)
-    elif request.method == "POST":
+
+    def post(self, request):
         newCompany = Company()
         for key, value in loads(request.body).items():
             if not (key == "id"):
@@ -18,13 +23,8 @@ def get_or_create(request):
 
         newCompany.save()
         return JsonResponse(CompanySerializer(Company.objects.all(), many=True).data, safe=False)
-    else:
-        return HttpResponseNotAllowed()
 
-
-@csrf_exempt
-def update_or_delete(request, id):
-    if request.method == "PUT":
+    def put(self, request, id):
         companies = Company.objects.filter(id=id)
         if len(companies) > 0:
             company = companies[0]
@@ -37,12 +37,10 @@ def update_or_delete(request, id):
         else:
             return HttpResponse(status=404)
 
-    elif request.method == "DELETE":
+    def delete(self, request, id):
         companies = Company.objects.filter(id=id)
         if len(companies) > 0:
             companies[0].delete()
             return HttpResponse(status=200)
         else:
             return HttpResponse(status=404)
-    else:
-        return HttpResponseNotAllowed()

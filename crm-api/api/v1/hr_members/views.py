@@ -1,6 +1,5 @@
 from json import loads
-from django.http import HttpResponse, JsonResponse, HttpResponseNotAllowed
-from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.models import User
 
 from api.v1.hr_members.models import HRMember
@@ -13,9 +12,7 @@ class HRMembersView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        print(request.user)
-        if request.method == "GET":
-            return JsonResponse(HRMemberSerializer(HRMember.objects.all(), many=True).data, safe=False)
+        return JsonResponse(HRMemberSerializer(HRMember.objects.all(), many=True).data, safe=False)
 
     def post(self, request):
         body = loads(request.body)

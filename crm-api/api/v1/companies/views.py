@@ -1,6 +1,5 @@
 from json import loads
-from django.http import HttpResponse, JsonResponse, HttpResponseNotAllowed
-from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse, JsonResponse
 
 from api.v1.companies.models import Company
 from api.v1.companies.serializer import CompanySerializer

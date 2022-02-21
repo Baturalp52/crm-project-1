@@ -1,6 +1,7 @@
 from json import loads
 from django.http import HttpResponse, JsonResponse, HttpResponseNotAllowed
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.models import User
 
 from api.v1.hr_members.models import HRMember
 from api.v1.hr_members.serializer import HRMemberSerializer
@@ -11,11 +12,13 @@ def get_or_create(request):
     if request.method == "GET":
         return JsonResponse(HRMemberSerializer(HRMember.objects.all(), many=True).data, safe=False)
     elif request.method == "POST":
+        body = loads(request.body)
         newHRMember = HRMember()
-        for key, value in loads(request.body).items():
-            if not (key == "id"):
+        for key, value in body.items():
+            if not (key in ["id", "username", "password"]):
                 setattr(newHRMember, key, value)
-
+        user = User.objects.create_user(username=body["username"], email="", password=body["password"])
+        newHRMember.user = user
         newHRMember.save()
         return JsonResponse(HRMemberSerializer(HRMember.objects.all(), many=True).data, safe=False)
     else:

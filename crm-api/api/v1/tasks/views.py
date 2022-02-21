@@ -5,12 +5,17 @@ from django.views.decorators.csrf import csrf_exempt
 from api.v1.tasks.models import Task
 from api.v1.tasks.serializer import TaskSerializer
 
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
 
-@csrf_exempt
-def get_or_create(request):
-    if request.method == "GET":
+
+class TasksView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
         return JsonResponse(TaskSerializer(Task.objects.all().values()).data, safe=False)
-    elif request.method == "POST":
+
+    def post(self, request):
         newTask = Task()
         for key, value in loads(request.body).items():
             if type(value) is dict:
@@ -20,13 +25,8 @@ def get_or_create(request):
 
         newTask.save()
         return JsonResponse(TaskSerializer(Task.objects.all().values()).data, safe=False)
-    else:
-        return HttpResponseNotAllowed()
 
-
-@csrf_exempt
-def update_or_delete(request, id):
-    if request.method == "PUT":
+    def put(self, request, id):
         tasks = Task.objects.filter(id=id)
         if len(tasks) > 0:
             task = tasks[0]
@@ -41,12 +41,10 @@ def update_or_delete(request, id):
         else:
             return HttpResponse(status=404)
 
-    elif request.method == "DELETE":
+    def delete(self, request, id):
         tasks = Task.objects.filter(id=id)
         if len(tasks) > 0:
             tasks[0].delete()
             return HttpResponse(status=200)
         else:
             return HttpResponse(status=404)
-    else:
-        return HttpResponseNotAllowed()

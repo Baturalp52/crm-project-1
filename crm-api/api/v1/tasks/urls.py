@@ -1,7 +1,6 @@
 from django.urls import path
 
-from api.v1.tasks.views import get_or_create
-from api.v1.tasks.views import update_or_delete
+from api.v1.tasks.views import TasksView
 
 
-urlpatterns = [path("", get_or_create), path("<int:id>", update_or_delete)]
+urlpatterns = [path("", TasksView.as_view()), path("<int:id>", TasksView.as_view())]

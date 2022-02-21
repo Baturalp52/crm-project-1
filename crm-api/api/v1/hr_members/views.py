@@ -5,13 +5,19 @@ from django.contrib.auth.models import User
 
 from api.v1.hr_members.models import HRMember
 from api.v1.hr_members.serializer import HRMemberSerializer
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
 
 
-@csrf_exempt
-def get_or_create(request):
-    if request.method == "GET":
-        return JsonResponse(HRMemberSerializer(HRMember.objects.all(), many=True).data, safe=False)
-    elif request.method == "POST":
+class View(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        print(request.user)
+        if request.method == "GET":
+            return JsonResponse(HRMemberSerializer(HRMember.objects.all(), many=True).data, safe=False)
+
+    def post(self, request):
         body = loads(request.body)
         newHRMember = HRMember()
         for key, value in body.items():
@@ -21,13 +27,8 @@ def get_or_create(request):
         newHRMember.user = user
         newHRMember.save()
         return JsonResponse(HRMemberSerializer(HRMember.objects.all(), many=True).data, safe=False)
-    else:
-        return HttpResponseNotAllowed()
 
-
-@csrf_exempt
-def update_or_delete(request, id):
-    if request.method == "PUT":
+    def put(self, request, id):
         hr_members = HRMember.objects.filter(id=id)
         if len(hr_members) > 0:
             hr_member = hr_members[0]
@@ -40,12 +41,10 @@ def update_or_delete(request, id):
         else:
             return HttpResponse(status=404)
 
-    elif request.method == "DELETE":
+    def delete(self, request, id):
         hr_members = HRMember.objects.filter(id=id)
         if len(hr_members) > 0:
             hr_members[0].delete()
             return HttpResponse(status=200)
         else:
             return HttpResponse(status=404)
-    else:
-        return HttpResponseNotAllowed()

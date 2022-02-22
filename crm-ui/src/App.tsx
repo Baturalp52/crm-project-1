@@ -12,16 +12,14 @@ import Loading from "./components/Loading";
 import { Toolbar } from "@mui/material";
 
 import { SWRConfig } from "swr";
-
-import BaseService from "./services/index";
+import swrfetcher from "./utils/swrfetcher";
 
 function App() {
   return (
     <SWRConfig
       value={{
         refreshInterval: 3000,
-        fetcher: (resource, init) =>
-          BaseService.get(resource).then((res) => res.data),
+        fetcher: swrfetcher,
       }}
     >
       <BrowserRouter>

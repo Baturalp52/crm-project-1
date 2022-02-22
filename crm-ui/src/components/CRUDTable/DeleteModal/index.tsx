@@ -9,17 +9,21 @@ import {
 } from "@mui/material";
 import { Close } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
+import BaseService from "../../../services/index";
+import { useSWRConfig } from "swr";
 
 interface IDeleteModal {
   open: boolean;
   setOpen: (open: boolean) => void;
+  selectedIds: number[];
 }
 
 const DeleteModal = (props: IDeleteModal) => {
-  const { open, setOpen } = props;
+  const { open, setOpen, selectedIds } = props;
   const { t } = useTranslation("components", {
     keyPrefix: "crudTable.delete-modal",
   });
+  const { mutate } = useSWRConfig();
   return (
     <Modal open={open} onClose={() => setOpen(false)}>
       <Paper
@@ -52,7 +56,13 @@ const DeleteModal = (props: IDeleteModal) => {
           <Button
             variant="contained"
             color="error"
-            onClick={() => setOpen(false)}
+            onClick={async () => {
+              await selectedIds.map((id) =>
+                BaseService.delete(`${window.location.pathname}/${id}`)
+              );
+              setOpen(false);
+              mutate(window.location.pathname);
+            }}
           >
             {t("delete")}
           </Button>

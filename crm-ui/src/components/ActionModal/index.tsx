@@ -16,7 +16,7 @@ interface IActionModalProps {
   isOpen: boolean;
   setIsOpen(isOpen: boolean): any;
   title: string;
-  saveFunction: () => void;
+  saveFunction: () => Promise<any> | void;
   children: React.ReactNode;
 }
 
@@ -65,9 +65,10 @@ const ActionModal = (props: IActionModalProps) => {
               color="success"
               variant="contained"
               onClick={() => {
-                setIsOpen(false);
-                setSuccessbar(true);
-                saveFunction();
+                (saveFunction() as Promise<any>).then(() => {
+                  setIsOpen(false);
+                  setSuccessbar(true);
+                });
               }}
             >
               {t("save")}

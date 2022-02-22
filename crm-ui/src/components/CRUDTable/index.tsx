@@ -61,7 +61,11 @@ const CRUDTable = <DataType extends { id: number }>(
         boxShadow: "none",
       }}
     >
-      <DeleteModal open={openDeleteModal} setOpen={setOpenDeleteModal} />
+      <DeleteModal
+        open={openDeleteModal}
+        setOpen={setOpenDeleteModal}
+        selectedIds={selectedDatasId}
+      />
       {Boolean(searchForm) && (
         <SearchBar searchForm={searchForm} filters={filters} />
       )}

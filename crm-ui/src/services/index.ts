@@ -7,7 +7,7 @@ class BaseService {
   }
 
   post(path: string, data: any) {
-    return this.baseInstance.post(path, data);
+    return this.baseInstance.post(path + "/", data);
   }
   put(path: string, data: any) {
     return this.baseInstance.put(path, data);

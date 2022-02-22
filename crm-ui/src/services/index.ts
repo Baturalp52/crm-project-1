@@ -9,7 +9,7 @@ class BaseService {
   put(path: string, data: any) {
     return this.baseInstance.put(path, data);
   }
-  delete(path: string, data: any) {
+  delete(path: string) {
     return this.baseInstance.delete(path);
   }
 }

@@ -5,6 +5,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ASideBar from "./layouts/ASideBar";
 import HeaderBar from "./layouts/HeaderBar";
+import SignIn from "./Pages/SignIn";
 
 import pages from "./pagesIndex";
 import Loading from "./components/Loading";
@@ -14,14 +15,23 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="*" element={<ASideBar />} />
+        <Route path="login" element={<SignIn />} />
       </Routes>
       <Routes>
-        <Route path="*" element={<HeaderBar />} />
+        {pages.map((item, index) => (
+          <Route key={index} path={item.path} element={<ASideBar />} />
+        ))}
+      </Routes>
+      <Routes>
+        {pages.map((item, index) => (
+          <Route key={index} path={item.path} element={<HeaderBar />} />
+        ))}
       </Routes>
       {/* BEGIN :: Page Contents Routes */}
       <Routes>
-        <Route path="*" element={<Toolbar />} />
+        {pages.map((item, index) => (
+          <Route key={index} path={item.path} element={<Toolbar />} />
+        ))}
       </Routes>
       <Routes>
         {pages.map((item, index) => (

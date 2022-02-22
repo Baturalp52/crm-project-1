@@ -3,7 +3,7 @@
   "name": "crm-api",
   "version": "0.1.0",
   "scripts": {
-    "start": "python manage.py runserver 3000",
+    "start": "python manage.py runserver 3001",
     "migrate": "python manage.py migrate",
     "makemigrations": "python manage.py makemigrations"
   }

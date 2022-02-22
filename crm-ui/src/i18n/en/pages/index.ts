@@ -5,6 +5,7 @@ import hrMembers from "./hrMembers.json";
 import jobs from "./jobs.json";
 import tasks from "./tasks.json";
 import settings from "./settings.json";
+import signIn from "./sign-in.json";
 
 const pages = {
   calendar: calendar,
@@ -14,6 +15,7 @@ const pages = {
   jobs: jobs,
   tasks: tasks,
   settings: settings,
+  "sign-in": signIn,
 };
 
 export default pages;

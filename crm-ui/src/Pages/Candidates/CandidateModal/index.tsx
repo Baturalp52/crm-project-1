@@ -16,6 +16,9 @@ import FormDropdown from "../../../components/FormDropdown";
 import { IJob } from "../../../interfaces/Job";
 import jobs from "../../../mockData/jobs";
 import SituationSwitch from "./SituationSwitch";
+import update from "../../../services/update";
+import BaseService from "../../../services/index";
+import { useSWRConfig } from "swr";
 
 interface ICandidateModalProps {
   candidate?: ICandidate;
@@ -35,9 +38,14 @@ const multiTextInputSections = [
 const CandidateModal = (props: ICandidateModalProps) => {
   const { candidate, isOpen, setIsOpen } = props;
   const { t } = useTranslation("pages", { keyPrefix: "candidates.modal" });
+  const { mutate } = useSWRConfig();
+
   let form = useFormik({
     initialValues: candidate ? { ...candidate } : { ...emptyCandidate },
-    onSubmit: () => {},
+    onSubmit: (data) =>
+      data.id
+        ? update("candidates", data).then(() => mutate("candidates"))
+        : BaseService.post("candidates", data).then(() => mutate("candidates")),
     enableReinitialize: true,
   });
 
@@ -67,7 +75,7 @@ const CandidateModal = (props: ICandidateModalProps) => {
       isOpen={isOpen}
       setIsOpen={setIsOpen}
       title={form.values.id ? t("edit") : t("add")}
-      saveFunction={() => {}}
+      saveFunction={() => form.submitForm()}
     >
       <SendMessageModal
         isOpen={isSendMessageModalOpen}

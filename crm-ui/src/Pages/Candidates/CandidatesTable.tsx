@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import candidates from "../../mockData/candidates";
 import CandidateModal from "./CandidateModal";
@@ -9,16 +9,11 @@ import { useFormik } from "formik";
 import IFilter from "../../interfaces/Filter";
 import calculateDistance from "../../helpers/calculateDistance";
 import Loading from "../../components/Loading";
+import useSWR from "swr";
 
 const CandidatesTable = () => {
   const { t } = useTranslation("pages", { keyPrefix: "candidates.table" });
-  const [isCandidateModalOpen, setIsCandidateModalOpen] =
-    useState<boolean>(false);
-  const [candidateModalCandidate, setCandidateModalCandidate] = useState<
-    ICandidate | undefined
-  >(undefined);
-  const [candidatesData, setCandidatesData] = useState(candidates);
-
+  const { data, error } = useSWR("candidates");
   const searchForm = useFormik({
     initialValues: {
       search: {} as any,
@@ -44,6 +39,16 @@ const CandidatesTable = () => {
     },
     enableReinitialize: true,
   });
+  const [isCandidateModalOpen, setIsCandidateModalOpen] =
+    useState<boolean>(false);
+  const [candidateModalCandidate, setCandidateModalCandidate] = useState<
+    ICandidate | undefined
+  >(undefined);
+  const [candidatesData, setCandidatesData] = useState<ICandidate[]>(data);
+
+  useEffect(() => {
+    setCandidatesData(data);
+  }, [data]);
 
   const filters: IFilter[] = [
     {
@@ -62,6 +67,9 @@ const CandidatesTable = () => {
     { name: "keywords", label: t("search-filters.keywords") },
   ];
 
+  if (error) return <div>{error}</div>;
+  if (!data) return <React.Suspense fallback={<Loading />} />;
+
   return (
     <>
       <React.Suspense fallback={<Loading />}>
@@ -72,7 +80,7 @@ const CandidatesTable = () => {
         />
       </React.Suspense>
       <CRUDTable<ICandidate>
-        data={candidatesData}
+        data={candidatesData || []}
         cellNames={[t("id"), t("name"), t("surname"), t("city")]}
         keysToShow={["id", "name", "surname", "city"]}
         setModalData={setCandidateModalCandidate}

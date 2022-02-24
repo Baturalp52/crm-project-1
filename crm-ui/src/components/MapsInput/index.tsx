@@ -44,7 +44,6 @@ const MapsInput = (props: IMapsInput) => {
             callBackFn={(coords: any) => {
               if (coords) {
                 const dist = calculateDistance(mainCoords as any, coords);
-                console.log(coords, mainCoords, dist);
 
                 setDistance(dist.toFixed(3));
                 setSelectionCoords(coords);

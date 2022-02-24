@@ -20,7 +20,7 @@ class HRMembersView(APIView):
         for key, value in body.items():
             if not (key in ["id", "username", "password"]):
                 setattr(newHRMember, key, value)
-        user = User.objects.create_user(username=body["username"], email="", password=body["password"])
+        user = User.objects.create_user(body["username"], email="", password=body["password"], is_staff=True)
         newHRMember.user = user
         newHRMember.save()
         return JsonResponse(HRMemberSerializer(HRMember.objects.all(), many=True).data, safe=False)

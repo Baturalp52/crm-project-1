@@ -5,11 +5,10 @@ import { useNavigate } from "react-router-dom";
 import HeaderTitle from "./HeaderTitle";
 import { useTranslation } from "react-i18next";
 
-const personnelName = "Example Personnel";
-
-const HeaderBar = () => {
+const HeaderBar = ({ user }: { user: any }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+
   return (
     <AppBar
       position="fixed"
@@ -30,7 +29,7 @@ const HeaderBar = () => {
             navigate("profile");
           }}
         >
-          <Avatar {...stringAvatar(personnelName)} />
+          <Avatar {...stringAvatar(user.name)} />
         </Tooltip>
       </Toolbar>
     </AppBar>

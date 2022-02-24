@@ -1,34 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { Drawer, List, IconButton, ListItem, Tooltip } from "@mui/material";
 import pages from "../../pagesIndex";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { pageRedux } from "../../redux";
 import { Logout } from "@mui/icons-material";
 import { logout } from "../../services/auth";
-import BaseService from "../../services";
-import Loading from "../../components/Loading";
 
-const ASideBar = () => {
+const ASideBar = ({ user }: { user: any }) => {
   const { t } = useTranslation();
-  const { getState, dispatch, subscribe } = pageRedux;
-  const [user, setUser] = useState(getState().user);
 
-  subscribe(() => {
-    setUser(getState().user);
-  });
-
-  if (!user) {
-    BaseService.get("users").then((res) => {
-      dispatch({
-        type: "CHANGE_USER",
-        payload: { user: res.data.user },
-      });
-    });
-  }
-
-  return user ? (
+  return (
     <>
       <Drawer
         variant="permanent"
@@ -91,8 +73,6 @@ const ASideBar = () => {
         </List>
       </Drawer>
     </>
-  ) : (
-    <Loading />
   );
 };
 

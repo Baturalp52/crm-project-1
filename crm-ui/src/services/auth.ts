@@ -1,11 +1,17 @@
 import axios from "axios";
+import { pageRedux } from "../redux";
 
-export const login = (data: { username: string; password: string }) => {
-  return axios
-    .post(process.env.REACT_APP_API_ENDPOINT + "auth/login", data)
-    .then((res) => {
-      localStorage.setItem("token", res.data.token);
-      return res;
-    })
-    .catch((err) => err);
+export const login = async (data: { username: string; password: string }) => {
+  return axios.post(process.env.REACT_APP_API_ENDPOINT + "auth/login", data);
+};
+
+export const logout = () => {
+  localStorage.removeItem("token");
+  pageRedux.dispatch({
+    type: "CHANGE_USER",
+    payload: {
+      user: undefined,
+    },
+  });
+  window.location.href = "/login";
 };

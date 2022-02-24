@@ -19,9 +19,10 @@ import { useNavigate } from "react-router-dom";
 export default function SignIn() {
   const { t } = useTranslation("pages", { keyPrefix: "sign-in" });
   const navigate = useNavigate();
+  const { dispatch } = pageRedux;
 
   useEffect(() => {
-    pageRedux.dispatch({
+    dispatch({
       type: "CHANGE_TITLE",
       payload: {
         title: "sign-in",
@@ -36,7 +37,14 @@ export default function SignIn() {
       username: data.get("username")!.toString(),
       password: data.get("password")!.toString(),
     }).then((res) => {
-      if (res === 200) {
+      if (res.status === 200) {
+        localStorage.setItem("token", res.data.token);
+        dispatch({
+          type: "CHANGE_USER",
+          payload: {
+            user: res.data.user,
+          },
+        });
         navigate("/");
       }
     });

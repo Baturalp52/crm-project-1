@@ -1,5 +1,6 @@
 const initialState = {
   title: "CRM",
+  user: undefined,
 };
 
 export const pageReducer = (state: any = initialState, action?: any) => {
@@ -8,6 +9,11 @@ export const pageReducer = (state: any = initialState, action?: any) => {
       return {
         ...state,
         title: action.payload.title,
+      };
+    case "CHANGE_USER":
+      return {
+        ...state,
+        user: action.payload.user,
       };
     default:
       return state;

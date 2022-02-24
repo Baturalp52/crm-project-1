@@ -12,5 +12,6 @@
   "settings": "Settings",
   "profile": "Profile",
   "search": "Search",
-  "sign-in": "Sign In"
+  "sign-in": "Sign In",
+  "log-out": "Log Out"
 }

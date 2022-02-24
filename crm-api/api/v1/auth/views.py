@@ -19,4 +19,11 @@ class LoginView(ObtainAuthToken):
         else:
             responseUser = HRMemberSerializer(HRMember.objects.filter(user_id=user.pk)[0]).data
 
-        return Response({"token": token.key, "user": responseUser, "isAdmin": user.is_superuser})
+        responseUser["isAdmin"] = user.is_superuser
+
+        return Response(
+            {
+                "token": token.key,
+                "user": responseUser,
+            }
+        )

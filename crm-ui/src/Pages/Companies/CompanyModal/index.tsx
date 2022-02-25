@@ -9,6 +9,9 @@ import ActionModal from "../../../components/ActionModal";
 import { ICompany } from "../../../interfaces/Company";
 import { emptyCompany } from "../emptyCompany";
 import MapsInput from "../../../components/MapsInput";
+import update from "../../../services/update";
+import BaseService from "../../../services/index";
+import { useSWRConfig } from "swr";
 
 interface ICompanyModalProps {
   company?: ICompany;
@@ -19,10 +22,14 @@ interface ICompanyModalProps {
 const CompanyModal = (props: ICompanyModalProps) => {
   const { company, isOpen, setIsOpen } = props;
   const { t } = useTranslation("pages", { keyPrefix: "companies.modal" });
+  const { mutate } = useSWRConfig();
 
   let form = useFormik({
     initialValues: company ? { ...company } : { ...emptyCompany },
-    onSubmit: () => {},
+    onSubmit: (data) =>
+      data.id
+        ? update("companies", data).then(() => mutate("companies"))
+        : BaseService.post("companies", data).then(() => mutate("companies")),
     enableReinitialize: true,
   });
   return (
@@ -30,7 +37,7 @@ const CompanyModal = (props: ICompanyModalProps) => {
       isOpen={isOpen}
       setIsOpen={setIsOpen}
       title={form.values.id ? t("edit") : t("add")}
-      saveFunction={() => {}}
+      saveFunction={() => form.submitForm()}
     >
       <Grid container padding={2} spacing={2}>
         <Grid xs={12} md={6} item>

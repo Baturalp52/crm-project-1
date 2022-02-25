@@ -1,5 +1,5 @@
 from json import loads
-from django.http import HttpResponse, JsonResponse, HttpResponseNotAllowed
+from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from api.v1.tasks.models import Task
@@ -13,7 +13,7 @@ class TasksView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        return JsonResponse(TaskSerializer(Task.objects.all().values()).data, safe=False)
+        return JsonResponse(TaskSerializer(Task.objects.all(), many=True).data, safe=False)
 
     def post(self, request):
         newTask = Task()
@@ -24,7 +24,7 @@ class TasksView(APIView):
                 setattr(newTask, key, value)
 
         newTask.save()
-        return JsonResponse(TaskSerializer(Task.objects.all().values()).data, safe=False)
+        return JsonResponse(TaskSerializer(Task.objects.all(), many=True).data, safe=False)
 
     def put(self, request, id):
         tasks = Task.objects.filter(id=id)

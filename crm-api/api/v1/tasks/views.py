@@ -19,7 +19,8 @@ class TasksView(APIView):
         newTask = Task()
         for key, value in loads(request.body).items():
             if type(value) is dict:
-                setattr(newTask, key + "_id", value["id"])
+                if value["id"]:
+                    setattr(newTask, key + "_id", value["id"])
             elif not (key == "id"):
                 setattr(newTask, key, value)
 

@@ -1,4 +1,5 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Home } from "@mui/icons-material";
+import { Box, Button, Container, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 const Page404 = () => {
@@ -19,6 +20,9 @@ const Page404 = () => {
         <Typography component="h2" variant="h2">
           {t("not-found")}
         </Typography>
+        <Button variant="contained" LinkComponent="a" href="/">
+          <Home /> {t("return-home")}
+        </Button>
       </Box>
     </Container>
   );

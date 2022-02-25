@@ -8,16 +8,15 @@ import {
   People,
   WorkOutlined,
 } from "@mui/icons-material";
-import candidates from "../../mockData/candidates";
-import companies from "../../mockData/companies";
-import tasks from "../../mockData/tasks";
-import jobs from "../../mockData/jobs";
-import hrmembers from "../../mockData/hrmembers";
-import { events } from "../../mockData/events";
 import { useTranslation } from "react-i18next";
+import useSWR from "swr";
+import Loading from "../../components/Loading";
 
 const DashboardGrid = () => {
   const { t } = useTranslation();
+  const { data } = useSWR("dashboard");
+  if (!data) return <Loading />;
+  const { candidates, companies, tasks, jobs, hrmembers, events } = data.counts;
   return (
     <Grid
       container
@@ -29,42 +28,42 @@ const DashboardGrid = () => {
       <GridItem
         title={t("candidates")}
         icon={<People />}
-        data={candidates.length}
+        data={candidates}
         color="#9c27b0"
         link="/candidates"
       />
       <GridItem
         title={t("companies")}
         icon={<Apartment />}
-        data={companies.length}
+        data={companies}
         color="#0288d1"
         link="/companies"
       />
       <GridItem
         title={t("tasks")}
         icon={<ListAlt />}
-        data={tasks.length}
+        data={tasks}
         color="#2e7d32"
         link="/tasks"
       />
       <GridItem
         title={t("jobs")}
         icon={<WorkOutlined />}
-        data={jobs.length}
+        data={jobs}
         color="#ed6c02"
         link="/jobs"
       />
       <GridItem
         title={t("hrMembers")}
         icon={<People />}
-        data={hrmembers.length}
+        data={hrmembers}
         color="#9c27b0"
         link="/hr-members"
       />
       <GridItem
         title={t("events")}
         icon={<CalendarToday />}
-        data={events.length}
+        data={events}
         color="#0288d1"
         link="/calendar"
       />

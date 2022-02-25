@@ -1,9 +1,10 @@
 from json import loads
 from django.http import HttpResponse, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
 
 from api.v1.tasks.models import Task
 from api.v1.tasks.serializer import TaskSerializer
+
+from api.v1.comments.models import Comment
 
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
@@ -21,6 +22,10 @@ class TasksView(APIView):
             if type(value) is dict:
                 if value["id"]:
                     setattr(newTask, key + "_id", value["id"])
+
+            elif key == "comments":
+                print(value)
+                # Comment.objects.get_or_create()
             elif not (key == "id"):
                 setattr(newTask, key, value)
 
@@ -34,6 +39,13 @@ class TasksView(APIView):
             for key, value in loads(request.body).items():
                 if type(value) is dict:
                     setattr(task, key + "_id", value["id"])
+                elif key == "comments":
+                    for comment in value:
+                        comment["task"] = task
+                        comment["owner_id"] = comment["owner"]
+                        del comment["owner"]
+                        Comment.objects.get_or_create(comment)
+
                 elif not (key == "id"):
                     setattr(task, key, value)
             task.save()

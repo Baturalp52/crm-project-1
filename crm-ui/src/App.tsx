@@ -23,6 +23,7 @@ function App() {
   subscribe(() => {
     setUser(getState().user);
   });
+  console.log(!user && window.location.pathname === "/login");
   if (!user) {
     if (window.location.pathname !== "/login") {
       BaseService.get("users").then((res) => {
@@ -41,35 +42,69 @@ function App() {
         fetcher: swrfetcher,
       }}
     >
-      {user && (
-        <BrowserRouter>
-          <Routes>
-            <Route path="*" element={<></>} />
-            {pages.map((item, index) => (
+      <BrowserRouter>
+        {user && (
+          <>
+            <Routes>
+              <Route path="*" element={<></>} />
+              {pages.map((item, index) => (
+                <Route
+                  key={index}
+                  path={item.path}
+                  element={<ASideBar user={user} />}
+                />
+              ))}
+            </Routes>
+            <Routes>
+              <Route path="*" element={<></>} />
+              {pages.map((item, index) => (
+                <Route
+                  key={index}
+                  path={item.path}
+                  element={<HeaderBar user={user} />}
+                />
+              ))}
+            </Routes>
+            {/* BEGIN :: Page Contents Routes */}
+            <Routes>
+              <Route path="*" element={<></>} />
+              {pages.map((item, index) => (
+                <Route key={index} path={item.path} element={<Toolbar />} />
+              ))}
+            </Routes>
+            <Routes>
               <Route
-                key={index}
-                path={item.path}
-                element={<ASideBar user={user} />}
+                path="*"
+                element={
+                  <Suspense fallback={<Loading />}>
+                    <Page404 />
+                  </Suspense>
+                }
               />
-            ))}
-          </Routes>
-          <Routes>
-            <Route path="*" element={<></>} />
-            {pages.map((item, index) => (
               <Route
-                key={index}
-                path={item.path}
-                element={<HeaderBar user={user} />}
+                path="login"
+                element={
+                  <Suspense fallback={<Loading />}>
+                    <SignIn />
+                  </Suspense>
+                }
               />
-            ))}
-          </Routes>
-          {/* BEGIN :: Page Contents Routes */}
-          <Routes>
-            <Route path="*" element={<></>} />
-            {pages.map((item, index) => (
-              <Route key={index} path={item.path} element={<Toolbar />} />
-            ))}
-          </Routes>
+              {pages.map((item, index) => (
+                <Route
+                  key={index}
+                  path={item.path}
+                  element={
+                    <Suspense fallback={<Loading />}>
+                      <item.page />
+                    </Suspense>
+                  }
+                />
+              ))}
+            </Routes>
+            {/* END :: Page Contents Routes */}
+          </>
+        )}
+        {!user && window.location.pathname === "/login" && (
           <Routes>
             <Route
               path="*"
@@ -87,20 +122,9 @@ function App() {
                 </Suspense>
               }
             />
-            {pages.map((item, index) => (
-              <Route
-                key={index}
-                path={item.path}
-                element={
-                  <Suspense fallback={<Loading />}>{<item.page />}</Suspense>
-                }
-              />
-            ))}
           </Routes>
-          {/* END :: Page Contents Routes */}
-        </BrowserRouter>
-      )}
-      {!user && <Loading />}
+        )}
+      </BrowserRouter>
     </SWRConfig>
   );
 }

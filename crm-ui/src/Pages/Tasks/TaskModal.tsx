@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Grid, List, ListItem, TextField } from "@mui/material";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
@@ -18,9 +18,14 @@ import { ITask } from "../../interfaces/Task";
 
 import { emptyTask } from "./emptyTask";
 
-import hrmembers from "../../mockData/hrmembers";
-import candidates from "../../mockData/candidates";
 import ChangeSituation from "./ChangeSituation";
+import update from "../../services/update";
+import BaseService from "../../services/index";
+import useSWR, { useSWRConfig } from "swr";
+import { ICandidate } from "../../interfaces/Candidate";
+import { IHRMember } from "../../interfaces/HRMember";
+import Loading from "../../components/Loading";
+import { pageRedux } from "../../redux";
 interface ITaskModalProps {
   task?: ITask;
   isOpen: boolean;
@@ -30,18 +35,46 @@ interface ITaskModalProps {
 const TaskModal = (props: ITaskModalProps) => {
   const { task, isOpen, setIsOpen } = props;
   const { t } = useTranslation("pages", { keyPrefix: "tasks.modal" });
+  const { getState, dispatch, subscribe } = pageRedux;
+  const { mutate } = useSWRConfig();
+  const { data: candidates }: { data?: ICandidate[] } = useSWR("candidates");
+  const { data: hrmembers }: { data?: IHRMember[] } = useSWR("hr-members");
+
+  const [user, setUser] = useState(getState().user);
+
+  subscribe(() => {
+    setUser(getState().user);
+  });
+
+  if (!user) {
+    if (window.location.pathname !== "/login") {
+      BaseService.get("users").then((res) => {
+        dispatch({
+          type: "CHANGE_USER",
+          payload: { user: res.data.user },
+        });
+      });
+    }
+  }
 
   let form = useFormik({
     initialValues: task ? { ...task } : { ...emptyTask },
-    onSubmit: () => {},
+    onSubmit: (data) =>
+      data.id
+        ? update("tasks", data).then(() => mutate("tasks"))
+        : BaseService.post("tasks", data).then(() => mutate("tasks")),
     enableReinitialize: true,
   });
+
+  if (!candidates && !hrmembers)
+    return <React.Suspense fallback={<Loading />} />;
+
   return (
     <ActionModal
       title={form.values.id ? t("edit") : t("add")}
       isOpen={isOpen}
       setIsOpen={setIsOpen}
-      saveFunction={() => {}}
+      saveFunction={() => form.submitForm()}
     >
       <Grid container>
         <Grid item xs={12} md={6}>
@@ -81,12 +114,12 @@ const TaskModal = (props: ITaskModalProps) => {
                 handleChange={(e) => {
                   form.setFieldValue(
                     "assignedCandidate",
-                    candidates.filter(
+                    (candidates || []).filter(
                       (candidate) => candidate.id === e.target.value
                     )[0]
                   );
                 }}
-                datas={candidates}
+                datas={candidates || []}
                 defaultValue={t("form.dropdown-no-candidate")}
                 dataToValue={(data) =>
                   data.id + " - " + data.name + " " + data.surname
@@ -105,12 +138,12 @@ const TaskModal = (props: ITaskModalProps) => {
                 handleChange={(e) => {
                   form.setFieldValue(
                     "assignedMember",
-                    hrmembers.filter(
+                    (hrmembers || []).filter(
                       (member) => member.id === e.target.value
                     )[0]
                   );
                 }}
-                datas={hrmembers}
+                datas={hrmembers || []}
                 defaultValue={t("form.dropdown-global")}
                 dataToValue={(data) =>
                   data.id + " - " + data.name + " " + data.surname
@@ -147,6 +180,8 @@ const TaskModal = (props: ITaskModalProps) => {
               const comments = form.values.comments
                 ? [...(form.values.comments as Array<IComment>)]
                 : [];
+              data.task = form.values.id;
+              data.owner = user;
               comments.push(data);
               form.setFieldValue("comments", comments);
             }}

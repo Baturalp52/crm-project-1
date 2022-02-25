@@ -1,19 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import tasks from "../../mockData/tasks";
 import TaskModal from "./TaskModal";
 import { ITask } from "../../interfaces/Task";
 import { getChipOfSituation } from "./helpers";
 import { useTranslation } from "react-i18next";
 import CRUDTable from "../../components/CRUDTable";
+import useSWR from "swr";
+import Loading from "../../components/Loading";
 
 const TasksTable = () => {
+  const { t } = useTranslation("pages", { keyPrefix: "tasks.table" });
   const [isTaskModalOpen, setIsTaskModalOpen] = useState<boolean>(false);
   const [taskModalTask, setTaskModalTask] = useState<ITask | undefined>(
     undefined
   );
+  const { data, error } = useSWR("tasks");
 
-  const { t } = useTranslation("pages", { keyPrefix: "tasks.table" });
+  const [tasksData, setTasksData] = useState<ITask[]>(data);
+  useEffect(() => {
+    setTasksData(data);
+  }, [data]);
+
+  if (error) return <div>{error}</div>;
+  if (!data) return <React.Suspense fallback={<Loading />} />;
 
   return (
     <>
@@ -23,7 +32,7 @@ const TasksTable = () => {
         setIsOpen={setIsTaskModalOpen}
       />
       <CRUDTable<ITask>
-        data={tasks}
+        data={tasksData || []}
         cellNames={[
           t("id"),
           t("name"),

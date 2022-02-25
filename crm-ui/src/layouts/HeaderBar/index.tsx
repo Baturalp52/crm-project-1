@@ -29,7 +29,11 @@ const HeaderBar = ({ user }: { user: any }) => {
             navigate("profile");
           }}
         >
-          <Avatar {...stringAvatar(user.name)} />
+          <Avatar
+            {...stringAvatar(
+              user.name + (user.surname ? " " + user.surname : "")
+            )}
+          />
         </Tooltip>
       </Toolbar>
     </AppBar>

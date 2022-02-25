@@ -17,14 +17,14 @@ const CommentCard = (props: ICommentCardProps) => {
         avatar={
           <Avatar
             {...stringAvatar(
-              comment.owner
-                ? comment.owner.name + comment.owner.surname
-                : "Admin"
+              comment.owner.name +
+                (comment.owner.surname ? " " + comment.owner.surname : "")
             )}
           />
         }
         title={
-          comment.owner ? comment.owner.name + comment.owner.surname : "Admin"
+          comment.owner.name +
+          (comment.owner.surname ? " " + comment.owner.surname : "")
         }
         subheader={
           comment.createdDate

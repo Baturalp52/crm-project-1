@@ -30,8 +30,8 @@ const FormCommentsArea = (props: IFormCommentsAreaProps) => {
       <CardHeader title={title} />
       <CardContent sx={{ height: "30vh", maxHeight: "30vh", overflow: "auto" }}>
         {values && values?.length > 0 ? (
-          values.map((comment) => (
-            <Paper sx={{ m: 2, p: 2 }} elevation={10}>
+          values.map((comment, index) => (
+            <Paper key={index} sx={{ m: 2, p: 2 }} elevation={10}>
               <CommentCard comment={comment} />
             </Paper>
           ))

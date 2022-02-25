@@ -39,6 +39,7 @@ const TaskModal = (props: ITaskModalProps) => {
   const { mutate } = useSWRConfig();
   const { data: candidates }: { data?: ICandidate[] } = useSWR("candidates");
   const { data: hrmembers }: { data?: IHRMember[] } = useSWR("hr-members");
+  console.log(task);
 
   const [user, setUser] = useState(getState().user);
 

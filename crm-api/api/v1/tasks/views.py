@@ -24,12 +24,17 @@ class TasksView(APIView):
                     setattr(newTask, key + "_id", value["id"])
 
             elif key == "comments":
-                print(value)
-                # Comment.objects.get_or_create()
+                pass
             elif not (key == "id"):
                 setattr(newTask, key, value)
 
         newTask.save()
+
+        for comment in loads(request.body)["comments"]:
+            comment["task"] = newTask
+            comment["owner_id"] = comment["owner"]
+            del comment["owner"]
+            Comment.objects.get_or_create(comment)
         return JsonResponse(TaskSerializer(Task.objects.all(), many=True).data, safe=False)
 
     def put(self, request, id):
@@ -41,10 +46,14 @@ class TasksView(APIView):
                     setattr(task, key + "_id", value["id"])
                 elif key == "comments":
                     for comment in value:
-                        comment["task"] = task
-                        comment["owner_id"] = comment["owner"]
-                        del comment["owner"]
-                        Comment.objects.get_or_create(comment)
+                        if comment["id"] == 0:
+                            comment["task_id"] = id
+                            comment["owner_id"] = request.user.id
+                            del comment["owner"]
+                            del comment["task"]
+                            del comment["id"]
+                            com = Comment(**comment)
+                            com.save()
 
                 elif not (key == "id"):
                     setattr(task, key, value)

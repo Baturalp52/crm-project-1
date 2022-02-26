@@ -1,10 +1,13 @@
 from json import loads
+from unicodedata import name
 from django.http import HttpResponse, JsonResponse
 
 from api.v1.tasks.models import Task
 from api.v1.tasks.serializer import TaskSerializer
 
 from api.v1.comments.models import Comment
+from api.v1.hr_members.models import HRMember
+from django.contrib.auth.models import User
 
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
@@ -29,12 +32,13 @@ class TasksView(APIView):
                 setattr(newTask, key, value)
 
         newTask.save()
-
         for comment in loads(request.body)["comments"]:
             comment["task"] = newTask
-            comment["owner_id"] = comment["owner"]
-            del comment["owner"]
-            Comment.objects.get_or_create(comment)
+            owner = HRMember.objects.filter(user_id=request.user.id)[0]
+            comment["owner_id"] = owner.id
+            del comment["createdDate"]
+            del comment["id"]
+            Comment(**comment).save()
         return JsonResponse(TaskSerializer(Task.objects.all(), many=True).data, safe=False)
 
     def put(self, request, id):
@@ -48,7 +52,8 @@ class TasksView(APIView):
                     for comment in value:
                         if comment["id"] == 0:
                             comment["task_id"] = id
-                            comment["owner_id"] = request.user.id
+                            owner = HRMember.objects.filter(user_id=request.user.id)[0]
+                            comment["owner"] = owner
                             del comment["owner"]
                             del comment["task"]
                             del comment["id"]

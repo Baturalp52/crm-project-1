@@ -56,9 +56,10 @@ const DeleteModal = (props: IDeleteModal) => {
           <Button
             variant="contained"
             color="error"
-            onClick={async () => {
-              await selectedIds.map((id) =>
-                BaseService.delete(`${window.location.pathname}/${id}`)
+            onClick={() => {
+              selectedIds.map(
+                async (id) =>
+                  await BaseService.delete(`${window.location.pathname}/${id}`)
               );
               setOpen(false);
               mutate(window.location.pathname);

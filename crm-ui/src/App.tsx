@@ -23,7 +23,6 @@ function App() {
   subscribe(() => {
     setUser(getState().user);
   });
-  console.log(!user && window.location.pathname === "/login");
   if (!user) {
     if (window.location.pathname !== "/login") {
       BaseService.get("users").then((res) => {

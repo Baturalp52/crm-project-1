@@ -39,7 +39,6 @@ const TaskModal = (props: ITaskModalProps) => {
   const { mutate } = useSWRConfig();
   const { data: candidates }: { data?: ICandidate[] } = useSWR("candidates");
   const { data: hrmembers }: { data?: IHRMember[] } = useSWR("hr-members");
-  console.log(task);
 
   const [user, setUser] = useState(getState().user);
 
@@ -60,10 +59,14 @@ const TaskModal = (props: ITaskModalProps) => {
 
   let form = useFormik({
     initialValues: task ? { ...task } : { ...emptyTask },
-    onSubmit: (data) =>
+    onSubmit: (data) => {
+      data.comments?.forEach((comment: any) => {
+        delete comment.owner;
+      });
       data.id
         ? update("tasks", data).then(() => mutate("tasks"))
-        : BaseService.post("tasks", data).then(() => mutate("tasks")),
+        : BaseService.post("tasks", data).then(() => mutate("tasks"));
+    },
     enableReinitialize: true,
   });
 

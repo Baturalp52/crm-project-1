@@ -38,7 +38,7 @@ class HRMembersView(APIView):
             if len(hr_members) > 0:
                 hr_member = hr_members[0]
                 for key, value in loads(request.body).items():
-                    if not (key == "id"):
+                    if not (key == "id" or key == "user"):
                         setattr(hr_member, key, value)
                 hr_member.save()
 

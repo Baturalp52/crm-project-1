@@ -1,16 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import jobs from "../../mockData/jobs";
 import JobModal from "./JobModal";
 import { IJob } from "../../interfaces/Job";
 import { useTranslation } from "react-i18next";
 import CRUDTable from "../../components/CRUDTable";
+import useSWR from "swr";
+import Loading from "../../components/Loading";
 
 const JobsTable = () => {
+  const { t } = useTranslation("pages", { keyPrefix: "jobs.table" });
+  const { data, error } = useSWR("jobs");
+
   const [isJobModalOpen, setIsJobModalOpen] = useState<boolean>(false);
   const [jobModalJob, setJobModalJob] = useState<IJob | undefined>(undefined);
-  const { t } = useTranslation("pages", { keyPrefix: "jobs.table" });
+  const [jobsData, setJobsData] = useState<IJob[]>(data);
 
+  useEffect(() => {
+    setJobsData(data);
+  }, [data]);
+  console.log(data);
+
+  if (error) return <div>{error}</div>;
+  if (!data) return <React.Suspense fallback={<Loading />} />;
   return (
     <>
       <JobModal
@@ -19,7 +30,7 @@ const JobsTable = () => {
         setIsOpen={setIsJobModalOpen}
       />
       <CRUDTable<IJob>
-        data={jobs}
+        data={jobsData || []}
         cellNames={[
           t("id"),
           t("name"),

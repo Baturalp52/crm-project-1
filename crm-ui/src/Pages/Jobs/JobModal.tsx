@@ -6,6 +6,9 @@ import FormInput from "../../components/FormInput";
 import { IJob } from "../../interfaces/Job";
 import ActionModal from "../../components/ActionModal";
 import { useTranslation } from "react-i18next";
+import { useSWRConfig } from "swr";
+import update from "../../services/update";
+import BaseService from "../../services/index";
 
 interface IJobModalProps {
   job?: IJob;
@@ -16,10 +19,13 @@ interface IJobModalProps {
 const JobModal = (props: IJobModalProps) => {
   const { job, isOpen, setIsOpen } = props;
   const { t } = useTranslation("pages", { keyPrefix: "jobs.modal" });
-
+  const { mutate } = useSWRConfig();
   let form = useFormik({
     initialValues: job ? { ...job } : { ...emptyJob },
-    onSubmit: () => {},
+    onSubmit: (data) =>
+      data.id
+        ? update("jobs", data).then(() => mutate("jobs"))
+        : BaseService.post("jobs", data).then(() => mutate("jobs")),
     enableReinitialize: true,
   });
   return (
@@ -27,7 +33,7 @@ const JobModal = (props: IJobModalProps) => {
       title={form.values.id ? t("edit") : t("add")}
       isOpen={isOpen}
       setIsOpen={setIsOpen}
-      saveFunction={() => {}}
+      saveFunction={form.submitForm}
     >
       <List>
         <ListItem>

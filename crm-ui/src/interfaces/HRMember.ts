@@ -9,4 +9,6 @@ export interface IHRMember {
   tasks?: ITask[];
   candidatesCreated?: ICandidate[];
   comments?: IComment[];
+  username?: string;
+  password?: string;
 }

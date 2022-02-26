@@ -4,4 +4,6 @@ export const emptyHRMember = {
   surname: "",
   tasks: [],
   candidatesCreated: [],
+  username: "",
+  password: "",
 };

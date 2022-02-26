@@ -7,6 +7,9 @@ import FormInput from "../../components/FormInput";
 import { IHRMember } from "../../interfaces/HRMember";
 import ActionModal from "../../components/ActionModal";
 import { useTranslation } from "react-i18next";
+import update from "../../services/update";
+import BaseService from "../../services/index";
+import { useSWRConfig } from "swr";
 
 interface IHRMemberModalProps {
   hrmember?: IHRMember;
@@ -17,10 +20,14 @@ interface IHRMemberModalProps {
 const HRMemberModal = (props: IHRMemberModalProps) => {
   const { hrmember, isOpen, setIsOpen } = props;
   const { t } = useTranslation("pages", { keyPrefix: "hrMembers.modal" });
+  const { mutate } = useSWRConfig();
 
   let form = useFormik({
     initialValues: hrmember ? { ...hrmember } : { ...emptyHRMember },
-    onSubmit: () => {},
+    onSubmit: (data) =>
+      data.id
+        ? update("hr-members", data).then(() => mutate("hr-members"))
+        : BaseService.post("hr-members", data).then(() => mutate("hr-members")),
     enableReinitialize: true,
   });
   return (
@@ -28,7 +35,7 @@ const HRMemberModal = (props: IHRMemberModalProps) => {
       title={form.values.id ? t("edit") : t("add")}
       isOpen={isOpen}
       setIsOpen={setIsOpen}
-      saveFunction={() => {}}
+      saveFunction={form.submitForm}
     >
       <List>
         <ListItem>
@@ -52,13 +59,35 @@ const HRMemberModal = (props: IHRMemberModalProps) => {
         </ListItem>
         <ListItem>
           <FormInput
-            label={t("form.address")}
+            label={t("form.surname")}
             type="text"
             value={form.values.surname}
-            name="address"
+            name="surname"
             onChange={form.handleChange}
           />
         </ListItem>
+        {!form.values.id && (
+          <>
+            <ListItem>
+              <FormInput
+                label={t("form.username")}
+                type="text"
+                value={form.values.username}
+                name="username"
+                onChange={form.handleChange}
+              />
+            </ListItem>
+            <ListItem>
+              <FormInput
+                label={t("form.password")}
+                type="password"
+                value={form.values.password}
+                name="password"
+                onChange={form.handleChange}
+              />
+            </ListItem>
+          </>
+        )}
       </List>
     </ActionModal>
   );

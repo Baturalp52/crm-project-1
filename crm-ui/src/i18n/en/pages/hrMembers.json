@@ -10,7 +10,9 @@
     "form": {
       "id": "id",
       "name": "Name",
-      "address": "Address"
+      "surname": "Surname",
+      "password": "Password",
+      "username": "Username"
     }
   }
 }

@@ -3,7 +3,7 @@ import { FormControl, Input, InputLabel } from "@mui/material";
 
 interface IFormInputProps {
   label: string;
-  type: "text" | "email" | "number";
+  type: "text" | "email" | "number" | "password";
   value: number | string | undefined;
   name: string;
   disabled?: boolean;

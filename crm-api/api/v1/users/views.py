@@ -14,14 +14,10 @@ class UsersView(APIView):
 
     def get(self, request):
         user = request.user
-        if user.is_superuser:
-            responseUser = {
-                "name": user.username,
-            }
-        else:
-            responseUser = HRMemberSerializer(HRMember.objects.filter(user_id=user.pk)[0]).data
+        responseUser = HRMemberSerializer(user.hr_member).data
 
         responseUser["isAdmin"] = user.is_superuser
+        responseUser["username"] = user.username
 
         return JsonResponse(
             {

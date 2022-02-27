@@ -33,20 +33,21 @@ class HRMembersView(APIView):
             return HttpResponse(status=401)
 
     def put(self, request, id):
-        if request.user.is_superuser:
-            hr_members = HRMember.objects.filter(id=id)
-            if len(hr_members) > 0:
-                hr_member = hr_members[0]
-                for key, value in loads(request.body).items():
-                    if not (key == "id" or key == "user"):
-                        setattr(hr_member, key, value)
-                hr_member.save()
+        hr_members = HRMember.objects.filter(id=id)
+        if len(hr_members) > 0:
+            hr_member = hr_members[0]
+            for key, value in loads(request.body).items():
+                if not (key in ["id", "username", "user", "password"]):
+                    setattr(hr_member, key, value)
+                    print(key,value)
+                elif key in ["username"]:
+                    hr_member.user.username = value
+                    hr_member.user.save()
+            hr_member.save()
 
-                return JsonResponse(HRMemberSerializer(hr_member).data, safe=False)
-            else:
-                return HttpResponse(status=404)
+            return JsonResponse(HRMemberSerializer(hr_member).data, safe=False)
         else:
-            return HttpResponse(status=401)
+            return HttpResponse(status=404)
 
     def delete(self, request, id):
         if request.user.is_superuser:

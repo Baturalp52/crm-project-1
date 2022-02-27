@@ -12,14 +12,11 @@ class LoginView(ObtainAuthToken):
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data["user"]
         token, created = Token.objects.get_or_create(user=user)
-        if user.is_superuser:
-            responseUser = {
-                "name": user.username,
-            }
-        else:
-            responseUser = HRMemberSerializer(HRMember.objects.filter(user_id=user.pk)[0]).data
+
+        responseUser = HRMemberSerializer(user.hr_member).data
 
         responseUser["isAdmin"] = user.is_superuser
+        responseUser["username"] = user.username
 
         return Response(
             {

@@ -25,7 +25,7 @@ class DashboardView(APIView):
                     "companies": Company.objects.count(),
                     "tasks": Task.objects.count(),
                     "jobs": Job.objects.count(),
-                    "events": Event.objects.filter(owner_id=request.user.hr_members.id).count(),
+                    "events": Event.objects.filter(owner_id=request.user.hr_member.id).count(),
                     "hrmembers": HRMember.objects.count(),
                 }
             },

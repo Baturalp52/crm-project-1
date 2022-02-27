@@ -5,6 +5,7 @@ import hrMembers from "./hrMembers.json";
 import jobs from "./jobs.json";
 import tasks from "./tasks.json";
 import settings from "./settings.json";
+import profile from "./profile.json";
 import signIn from "./sign-in.json";
 import page404 from "./page-404.json";
 
@@ -16,6 +17,7 @@ const pages = {
   jobs: jobs,
   tasks: tasks,
   settings: settings,
+  profile: profile,
   "sign-in": signIn,
   "page-404": page404,
 };

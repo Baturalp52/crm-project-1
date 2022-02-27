@@ -18,7 +18,6 @@ const JobsTable = () => {
   useEffect(() => {
     setJobsData(data);
   }, [data]);
-  console.log(data);
 
   if (error) return <div>{error}</div>;
   if (!data) return <React.Suspense fallback={<Loading />} />;

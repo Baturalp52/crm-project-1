@@ -8,7 +8,6 @@ import {
   CalendarToday,
   PeopleAltRounded,
   Settings,
-  Person,
 } from "@mui/icons-material";
 
 type color =
@@ -76,15 +75,6 @@ const asidemenu = [
     icon: CalendarToday,
     color: "info" as color,
     page: lazy(() => import("./Pages/Calendar")),
-  },
-  {
-    id: 9,
-    title: "profile",
-    type: "tool-bar",
-    path: "/profile",
-    icon: Person,
-    color: "default" as color,
-    page: lazy(() => import("./Pages/Profile")),
   },
   {
     id: 10,

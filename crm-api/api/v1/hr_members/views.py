@@ -39,7 +39,6 @@ class HRMembersView(APIView):
             for key, value in loads(request.body).items():
                 if not (key in ["id", "username", "user", "password"]):
                     setattr(hr_member, key, value)
-                    print(key,value)
                 elif key in ["username"]:
                     hr_member.user.username = value
                     hr_member.user.save()

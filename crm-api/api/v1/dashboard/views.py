@@ -1,4 +1,4 @@
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 
 
 from api.v1.candidates.models import Candidate
@@ -17,6 +17,10 @@ class DashboardView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
+        members = HRMember.objects.filter(user_id=request.user.id)
+        if not len(members) > 0:
+            return HttpResponse(status=401)
+        user = members[0]
 
         return JsonResponse(
             {
@@ -25,7 +29,7 @@ class DashboardView(APIView):
                     "companies": Company.objects.count(),
                     "tasks": Task.objects.count(),
                     "jobs": Job.objects.count(),
-                    "events": Event.objects.count(),
+                    "events": Event.objects.filter(owner_id=user.id).count(),
                     "hrmembers": HRMember.objects.count(),
                 }
             },

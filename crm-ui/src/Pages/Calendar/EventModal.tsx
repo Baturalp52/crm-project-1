@@ -6,6 +6,9 @@ import { emptyEvent } from "./emptyEvent";
 import FormInput from "../../components/FormInput";
 import { useTranslation } from "react-i18next";
 import ActionModal from "../../components/ActionModal";
+import { useSWRConfig } from "swr";
+import update from "../../services/update";
+import BaseService from "../../services/index";
 
 interface IEventModalProps {
   event?: IEvent;
@@ -16,10 +19,14 @@ interface IEventModalProps {
 const EventModal = (props: IEventModalProps) => {
   const { event, isOpen, setIsOpen } = props;
   const { t } = useTranslation("pages", { keyPrefix: "calendar" });
+  const { mutate } = useSWRConfig();
 
   let form = useFormik({
     initialValues: event ? { ...event } : { ...emptyEvent },
-    onSubmit: () => {},
+    onSubmit: (data) =>
+      data.id
+        ? update("events", data).then(() => mutate("events"))
+        : BaseService.post("events", data).then(() => mutate("events")),
     enableReinitialize: true,
   });
   return (
@@ -27,7 +34,7 @@ const EventModal = (props: IEventModalProps) => {
       title={form.values.id ? t("edit") : t("add")}
       isOpen={isOpen}
       setIsOpen={setIsOpen}
-      saveFunction={() => {}}
+      saveFunction={form.submitForm}
     >
       <List>
         <ListItem>

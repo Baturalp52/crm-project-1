@@ -1,3 +1,5 @@
+import { IHRMember } from "./HRMember";
+
 export interface IEvent {
   id: number;
   title: string;
@@ -5,4 +7,5 @@ export interface IEvent {
   end: Date | number;
   desc?: string;
   allDay?: boolean;
+  owner?: IHRMember;
 }

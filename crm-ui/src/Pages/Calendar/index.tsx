@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { pageRedux } from "../../redux";
 import moment from "moment";
 
-import { events } from "../../mockData/events";
 import { IEvent } from "../../interfaces/Event";
 
 import {
@@ -12,13 +11,23 @@ import {
 } from "react-big-calendar";
 import { Box, Paper } from "@mui/material";
 import EventModal from "./EventModal";
+import useSWR from "swr";
+import Loading from "../../components/Loading";
 
 const localizer = momentLocalizer(moment);
 const Calendar = () => {
+  const { data, error } = useSWR("events");
+
   const [isEventModalOpen, setIsEventModalOpen] = useState<boolean>(false);
   const [eventModalEvent, setEventModalEvent] = useState<IEvent | undefined>(
     undefined
   );
+  const [eventsData, setEventsData] = useState<IEvent[]>(data);
+
+  useEffect(() => {
+    setEventsData(data);
+  }, [data]);
+
   useEffect(() => {
     pageRedux.dispatch({
       type: "CHANGE_TITLE",
@@ -27,6 +36,9 @@ const Calendar = () => {
       },
     });
   });
+
+  if (error) return <div>{error}</div>;
+  if (!data) return <React.Suspense fallback={<Loading />} />;
   return (
     <>
       <EventModal
@@ -47,7 +59,7 @@ const Calendar = () => {
             selectable
             popup
             localizer={localizer}
-            events={events}
+            events={eventsData}
             defaultView={Views.MONTH}
             startAccessor="start"
             endAccessor="end"

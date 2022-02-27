@@ -35,10 +35,11 @@ REST_FRAMEWORK = {
 
 INSTALLED_APPS = [
     "api.v1.candidates",
-    "api.v1.comments",
-    "api.v1.companies",
-    "api.v1.events",
     "api.v1.hr_members",
+    "api.v1.companies",
+    "api.v1.comments",
+    "api.v1.settings",
+    "api.v1.events",
     "api.v1.jobs",
     "api.v1.tasks",
     "django.contrib.admin",

@@ -43,8 +43,11 @@ class HRMembersView(APIView):
                     hr_member.user.username = value
                     hr_member.user.save()
             hr_member.save()
+            response = HRMemberSerializer(hr_member).data
+            response["isAdmin"] = hr_member.user.is_superuser
+            response["username"] = hr_member.user.username
 
-            return JsonResponse(HRMemberSerializer(hr_member).data, safe=False)
+            return JsonResponse(response, safe=False)
         else:
             return HttpResponse(status=404)
 

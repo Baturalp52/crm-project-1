@@ -34,15 +34,18 @@ class EventsView(APIView):
         return JsonResponse(EventSerializer(Event.objects.all(), many=True).data, safe=False)
 
     def put(self, request, id):
+        members = HRMember.objects.filter(user_id=request.user.id)
+        if not len(members) > 0:
+            return HttpResponse(status=401)
         events = Event.objects.filter(id=id)
         if len(events) > 0:
             event = events[0]
             for key, value in loads(request.body).items():
-                if not (key == "id"):
+                if not (key == "id" or key == "owner"):
                     setattr(event, key, value)
             event.save()
 
-            return JsonResponse(EventSerializer(event), safe=False)
+            return JsonResponse(EventSerializer(event).data, safe=False)
         else:
             return HttpResponse(status=404)
 

@@ -45,3 +45,5 @@ target/
 
 # SQLite
 *.sqlite3
+
+.secrets

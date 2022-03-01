@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-2a@l#6^p))aea91ta*9d*yp0n=9qmr=hr1we*mhfew77d7f_^v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "46.101.253.133"]
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": ("rest_framework.authentication.TokenAuthentication",),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
@@ -89,9 +89,13 @@ WSGI_APPLICATION = "api.wsgi.application"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+     'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'crm-project',
+        'USER': 'crm-project-user',
+        'PASSWORD': '3rqg_u3dSXM6CkM',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 

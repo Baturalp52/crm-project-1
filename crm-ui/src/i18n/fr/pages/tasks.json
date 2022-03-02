@@ -1,0 +1,33 @@
+{
+  "helpers": {
+    "chip-text": {
+      "on-progress": "En cours",
+      "completed": "Terminé",
+      "open": "Ouvert",
+      "closed": "Fermé"
+    }
+  },
+  "table": {
+    "id": "id",
+    "name": "Nom",
+    "description": "Description",
+    "situation": "Situation",
+    "assigned-candidate": "Candidat assigné"
+  },
+  "modal": {
+    "edit": "Modifier la tâche",
+    "add": "Ajouter nouveau",
+    "form": {
+      "id": "id",
+      "name": "Name",
+      "description": "Description",
+      "comments": "Commentaires",
+      "assigned-candidate": "Candidat assigné",
+      "assigned-member": "Membre assigné",
+      "dropdown-global": "Global",
+      "dropdown-no-candidate": "Aucun candidat",
+      "end-date": "Fin de la tâche",
+      "change-situation": "Changer la situation"
+    }
+  }
+}

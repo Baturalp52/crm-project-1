@@ -1,0 +1,10 @@
+{
+  "edit": "Modifier l'événement",
+  "add": "Ajouter un nouveau",
+  "form": {
+    "id": "id",
+    "title": "Titre",
+    "description": "Description",
+    "save": "Enregistrer"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "table": {
+    "id": "id",
+    "name": "Prénom",
+    "surname": "Nom"
+  },
+  "modal": {
+    "edit": "Modifier HRMember",
+    "add": "Ajouter nouveau",
+    "form": {
+      "id": "id",
+      "name": "Prénom",
+      "surname": "Nom",
+      "password": "Mot de passe",
+      "username": "Nom d'utilisateur"
+    }
+  }
+}

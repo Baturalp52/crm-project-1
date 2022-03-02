@@ -1,0 +1,19 @@
+{
+  "fields": [
+    {
+      "title": "Modèles",
+      "buttons": [
+        {
+          "label": "Gérer les modèles de SMS",
+          "icon": "message",
+          "component": "manage-sms-modal"
+        },
+        {
+          "label": "Gérer les modèles d'e-mails",
+          "icon": "email",
+          "component": "manage-email-modal"
+        }
+      ]
+    }
+  ]
+}

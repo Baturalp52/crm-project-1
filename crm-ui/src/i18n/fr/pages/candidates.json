@@ -1,0 +1,59 @@
+{
+  "table": {
+    "id": "id",
+    "name": "Prénom",
+    "surname": "Nom",
+    "city": "Ville",
+    "search-filters": {
+      "diploma": "Diplôme",
+      "keywords": "Mots clés",
+      "distance": "Distance",
+      "job": "Job"
+    }
+  },
+  "modal": {
+    "edit": "Modifier le candidat",
+    "add": "Ajouter un nouveau candidat",
+    "send-mail": "Envoyer un e-mail",
+    "send-sms": "Envoyer un SMS",
+    "form": {
+      "id": "id",
+      "name": "Prénom",
+      "surname": "Nom",
+      "address": "Adresse",
+      "extraAddress": "Adresse Supp.",
+      "zipCode": "Code Postal",
+      "city": "Ville",
+      "country": "Pays",
+      "comment": "Commentaire",
+      "placed-job": "Métier",
+      "salaryExpectation": "Attentes salariales",
+      "phoneNumbers": "Numéros de téléphone",
+      "emailAdresses": "Adresses e-mail",
+      "previousJobs": "Précédentes Jobs",
+      "departments": "Départements",
+      "keywords": "Mots clés",
+      "diplomas": "Diplômes",
+      "situation": "Situation",
+      "cv": {
+        "download": "Télécharger CV",
+        "upload-new": "Télécharger un nouveau CV",
+        "upload": "Télécharger CV"
+      },
+      "skills": {
+        "title": "Compétences",
+        "name": "Nom de la compétence",
+        "skill-level": "Niveau",
+        "level": "Niveau",
+        "add-new-skill": "Ajouter une nouvelle compétence",
+        "save-skill": "Enregistrer"
+      },
+      "save": "Enregistrer"
+    },
+    "send-message": {
+      "template": "Modèle",
+      "select-template": "Sélectionner un modèle",
+      "send": "Envoyer"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "table": {
+    "id": "id",
+    "name": "Nom",
+    "experience": "Expérience",
+    "salary-expectation": "Attente salariale"
+  },
+  "modal": {
+    "edit": "Modifier le Job",
+    "add": "Ajouter nouveau",
+    "form": {
+      "id": "id",
+      "name": "Nom",
+      "experience": "Expérience",
+      "salary-expectation": "Attente salariale"
+    }
+  }
+}

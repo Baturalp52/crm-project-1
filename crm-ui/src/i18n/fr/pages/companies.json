@@ -1,0 +1,20 @@
+{
+  "table": {
+    "id": "id",
+    "name": "Nom",
+    "city": "Ville"
+  },
+  "modal": {
+    "edit": "Modifier la société",
+    "add": "Ajouter nouveau",
+    "form": {
+      "id": "id",
+      "name": "Nom",
+      "address": "Adresse",
+      "city": "Ville",
+      "sector": "Secteur",
+      "jobs": "Jobs:",
+      "save": "Enregistrer"
+    }
+  }
+}

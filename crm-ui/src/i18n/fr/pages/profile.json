@@ -1,0 +1,10 @@
+{
+  "edit-profile": "Editer le profil",
+  "form": {
+    "id": "id",
+    "name": "Prénom",
+    "surname": "Nom",
+    "password": "Mot de passe",
+    "username": "Nom d'utilisateur"
+  }
+}

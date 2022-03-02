@@ -1,0 +1,17 @@
+{
+  "calendar": "Calendrier",
+  "candidates": "Candidats",
+  "companies": "Sociétés",
+  "dashboard": "Tableau de bord",
+  "hrMembers": "Membres",
+  "jobs": "Jobs",
+  "tasks": "Tâches",
+  "events": "Événements",
+  "emailService": "E-MaiL",
+  "smsService": "SMS",
+  "settings": "Paramètres",
+  "profile": "Profil",
+  "search": "Chercher",
+  "sign-in": "Connexion",
+  "log-out": "Se déconnecter"
+}

@@ -12,7 +12,8 @@
       "id": "id",
       "name": "Nom",
       "experience": "Expérience",
-      "salary-expectation": "Attente salariale"
+      "salary-expectation": "Attente salariale",
+      "studyFields": "Domaines d'étude"
     }
   }
 }

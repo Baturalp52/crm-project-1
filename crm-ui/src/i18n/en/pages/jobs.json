@@ -12,7 +12,10 @@
       "id": "id",
       "name": "Name",
       "experience": "Experience",
-      "salary-expectation": "Salary Expectation"
+      "salary-expectation": "Salary Expectation",
+      "studyFields": "Study Fields",
+      "company": "Assigned Company",
+      "dropdown-no-company": "No Company"
     }
   }
 }

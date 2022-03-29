@@ -18,6 +18,18 @@ class Singleton(models.Model):
         return obj
 
 
-class Settings(models.Model):
-    smsTemplates = models.JSONField()
-    emailTemplates = models.JSONField()
+class Settings(Singleton):
+    pageTitle = models.TextField(null=True)
+
+    def __str__(self):
+        return self.pageTitle
+
+
+class SMSTemplate(models.Model):
+    settings = models.ForeignKey(Settings, on_delete=models.CASCADE)
+    template = models.TextField()
+
+
+class EmailTemplate(models.Model):
+    settings = models.ForeignKey(Settings, on_delete=models.CASCADE)
+    template = models.TextField()

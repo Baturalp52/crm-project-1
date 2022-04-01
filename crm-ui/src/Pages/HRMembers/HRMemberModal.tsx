@@ -1,14 +1,22 @@
+// react
 import React from "react";
+// @mui
 import { List, ListItem } from "@mui/material";
-import { useFormik } from "formik";
+// formik
+import { Form, Formik } from "formik";
+// empty
 import { emptyHRMember } from "./emptyHRMember";
+// components
 import FormInput from "../../components/FormInput";
-
-import { IHRMember } from "../../interfaces/HRMember";
 import ActionModal from "../../components/ActionModal";
+// interfaces
+import { IHRMember } from "../../interfaces/HRMember";
+// react-i18next
 import { useTranslation } from "react-i18next";
+// services
 import update from "../../services/update";
 import BaseService from "../../services/index";
+// swr
 import { useSWRConfig } from "swr";
 
 interface IHRMemberModalProps {
@@ -22,74 +30,61 @@ const HRMemberModal = (props: IHRMemberModalProps) => {
   const { t } = useTranslation("pages", { keyPrefix: "hrMembers.modal" });
   const { mutate } = useSWRConfig();
 
-  let form = useFormik({
-    initialValues: hrmember ? { ...hrmember } : { ...emptyHRMember },
-    onSubmit: (data) =>
-      data.id
-        ? update("hr-members", data).then(() => mutate("hr-members"))
-        : BaseService.post("hr-members", data).then(() => mutate("hr-members")),
-    enableReinitialize: true,
-  });
   return (
-    <ActionModal
-      title={form.values.id ? t("edit") : t("add")}
-      isOpen={isOpen}
-      setIsOpen={setIsOpen}
-      saveFunction={form.submitForm}
+    <Formik
+      initialValues={hrmember ? { ...hrmember } : { ...emptyHRMember }}
+      onSubmit={(data) =>
+        data.id
+          ? update("hr-members", data).then(() => mutate("hr-members"))
+          : BaseService.post("hr-members", data).then(() =>
+              mutate("hr-members")
+            )
+      }
+      enableReinitialize
     >
-      <List>
-        <ListItem>
-          <FormInput
-            label={t("form.id")}
-            type="number"
-            value={form.values.id}
-            name="id"
-            onChange={form.handleChange}
-            disabled
-          />
-        </ListItem>
-        <ListItem>
-          <FormInput
-            label={t("form.name")}
-            type="text"
-            value={form.values.name}
-            name="name"
-            onChange={form.handleChange}
-          />
-        </ListItem>
-        <ListItem>
-          <FormInput
-            label={t("form.surname")}
-            type="text"
-            value={form.values.surname}
-            name="surname"
-            onChange={form.handleChange}
-          />
-        </ListItem>
-        {!form.values.id && (
-          <>
+      <Form>
+        <ActionModal
+          title={hrmember ? t("edit") : t("add")}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+        >
+          <List>
             <ListItem>
               <FormInput
-                label={t("form.username")}
-                type="text"
-                value={form.values.username}
-                name="username"
-                onChange={form.handleChange}
+                label={t("form.id")}
+                type="number"
+                name="id"
+                disabled
               />
             </ListItem>
             <ListItem>
-              <FormInput
-                label={t("form.password")}
-                type="password"
-                value={form.values.password}
-                name="password"
-                onChange={form.handleChange}
-              />
+              <FormInput label={t("form.name")} type="text" name="name" />
             </ListItem>
-          </>
-        )}
-      </List>
-    </ActionModal>
+            <ListItem>
+              <FormInput label={t("form.surname")} type="text" name="surname" />
+            </ListItem>
+            {!hrmember && (
+              <>
+                <ListItem>
+                  <FormInput
+                    label={t("form.username")}
+                    type="text"
+                    name="username"
+                  />
+                </ListItem>
+                <ListItem>
+                  <FormInput
+                    label={t("form.password")}
+                    type="password"
+                    name="password"
+                  />
+                </ListItem>
+              </>
+            )}
+          </List>
+        </ActionModal>
+      </Form>
+    </Formik>
   );
 };
 

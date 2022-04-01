@@ -1,4 +1,6 @@
+// react
 import React, { useState } from "react";
+// @mui
 import {
   Card,
   CardActions,
@@ -10,27 +12,46 @@ import {
   Paper,
 } from "@mui/material";
 import { Add } from "@mui/icons-material";
+// react-18next
 import { useTranslation } from "react-i18next";
-import { IComment } from "../../interfaces/Comment";
-
+// interfaces
+import { IComment } from "../../../../interfaces/Comment";
+// components
 import CommentCard from "./CommentCard";
+// formik
+import { useFormikContext } from "formik";
 
+type Values = {
+  id: number;
+  comments: IComment[];
+};
 interface IFormCommentsAreaProps {
   title: string;
-  onChange: (e: any) => void;
-  values: IComment[] | never[] | undefined;
+  user: any;
 }
 
 const FormCommentsArea = (props: IFormCommentsAreaProps) => {
-  const { title, onChange, values } = props;
-  const [commentArea, setCommentArea] = useState<string>();
+  const { title, user } = props;
+  const { values, setFieldValue } = useFormikContext();
+  const { comments, id } = values as Values;
+
+  const [commentArea, setCommentArea] = useState<string>("");
   const { t } = useTranslation("components", { keyPrefix: "formCommentsArea" });
+
+  const onChange = (data: IComment) => {
+    const newComments = comments ? [...(comments as Array<IComment>)] : [];
+    data.task = id;
+    data.owner = user;
+    newComments.push(data);
+    setFieldValue("comments", comments);
+  };
+
   return (
     <Card sx={{ width: "100%" }}>
       <CardHeader title={title} />
       <CardContent sx={{ height: "30vh", maxHeight: "30vh", overflow: "auto" }}>
-        {values && values?.length > 0 ? (
-          values.map((comment, index) => (
+        {comments && comments?.length > 0 ? (
+          comments.map((comment, index) => (
             <Paper key={index} sx={{ m: 2, p: 2 }} elevation={10}>
               <CommentCard comment={comment} />
             </Paper>

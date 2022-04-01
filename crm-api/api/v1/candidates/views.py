@@ -23,6 +23,7 @@ class CandidatesView(APIView):
                     setattr(newCandidate, key + "_id", value["id"])
             elif not (key == "id"):
                 setattr(newCandidate, key, value)
+        newCandidate.creatorMember = request.user.hr_member
         newCandidate.save()
         return JsonResponse(CandidateSerializer(Candidate.objects.all(), many=True).data, safe=False)
 

@@ -11,21 +11,23 @@ import {
 import { CloseRounded, SaveRounded } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
 import useSuccessSnackbar from "../../hooks/useSuccessSnackbar";
+import { useFormikContext } from "formik";
 
 interface IActionModalProps {
   isOpen: boolean;
   setIsOpen(isOpen: boolean): any;
   title: string;
-  saveFunction: () => Promise<any> | void;
   children: React.ReactNode;
 }
 
 const ActionModal = (props: IActionModalProps) => {
-  const { isOpen, setIsOpen, title, saveFunction, children } = props;
+  const { isOpen, setIsOpen, title, children } = props;
   const { t } = useTranslation("components", { keyPrefix: "actionModal" });
   const { setOpen: setSuccessbar, snackbar: SuccessSnack } = useSuccessSnackbar(
     t("success-snack-label")
   );
+  const a = useFormikContext();
+  const { submitForm } = a ? a : { submitForm: () => {} };
   return (
     <>
       {SuccessSnack}
@@ -65,7 +67,7 @@ const ActionModal = (props: IActionModalProps) => {
               color="success"
               variant="contained"
               onClick={() => {
-                (saveFunction() as Promise<any>).then(() => {
+                (submitForm() as Promise<any>).then(() => {
                   setIsOpen(false);
                   setSuccessbar(true);
                 });

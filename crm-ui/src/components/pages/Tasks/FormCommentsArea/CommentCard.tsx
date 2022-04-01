@@ -1,7 +1,7 @@
 import React from "react";
 import { Avatar, Card, CardContent, CardHeader } from "@mui/material";
 import { stringAvatar } from "./helpers";
-import { IComment } from "../../interfaces/Comment";
+import { IComment } from "../../../../interfaces/Comment";
 import { useTranslation } from "react-i18next";
 
 interface ICommentCardProps {
@@ -11,7 +11,7 @@ interface ICommentCardProps {
 const CommentCard = (props: ICommentCardProps) => {
   const { comment } = props;
   const { t } = useTranslation("components", { keyPrefix: "formCommentsArea" });
-  return (
+  return comment.owner ? (
     <Card>
       <CardHeader
         avatar={
@@ -34,7 +34,7 @@ const CommentCard = (props: ICommentCardProps) => {
       />
       <CardContent>{comment.content}</CardContent>
     </Card>
-  );
+  ) : null;
 };
 
 export default CommentCard;

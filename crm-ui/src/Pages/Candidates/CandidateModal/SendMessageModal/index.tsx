@@ -19,12 +19,12 @@ import { ICandidate } from "../../../../interfaces/Candidate";
 import { Close, Send } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
 import resolve from "../../../../helpers/resolve";
+import { useFormikContext } from "formik";
 
 interface ISendMessageModalProps {
   isOpen: boolean;
   setIsOpen: (val: boolean) => void;
   messageType: "sms" | "email";
-  candidate: ICandidate;
 }
 
 interface ITemplate {
@@ -33,8 +33,13 @@ interface ITemplate {
   template: string;
 }
 
+interface Formik {
+  values: ICandidate;
+}
+
 const SendMessageModal = (props: ISendMessageModalProps) => {
-  const { isOpen, setIsOpen, messageType, candidate } = props;
+  const { isOpen, setIsOpen, messageType } = props;
+  const { values: candidate }: Formik = useFormikContext();
   const [template, setTemplate] = useState<ITemplate>({
     id: 0,
     name: "",

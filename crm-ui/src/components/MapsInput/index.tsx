@@ -1,25 +1,36 @@
+// react
 import React, { useState } from "react";
-import { LatLngExpression } from "leaflet";
+// react-leaflet
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
+// components
 import LocationMarker from "./LocationMarker";
+// @mui
 import { Card, CardContent, CardHeader } from "@mui/material";
+// react-i18next
 import { useTranslation } from "react-i18next";
+// helpers
 import calculateDistance from "../../helpers/calculateDistance";
+// formik
+import { useFormikContext } from "formik";
 
 interface IMapsInput {
-  mainCoords: LatLngExpression | { lat: number; lng: number };
-  secondCoord?: LatLngExpression | { lat: number; lng: number };
-  setCoord: (coord: any) => void;
+  name: string;
   isMainMoving?: boolean;
 }
 
 const MapsInput = (props: IMapsInput) => {
-  const { mainCoords, secondCoord, isMainMoving, setCoord } = props;
+  const { name, isMainMoving } = props;
   const { t } = useTranslation("components", { keyPrefix: "mapsInput" });
-  const [selectionCoords, setSelectionCoords] = useState<any>(
-    secondCoord || mainCoords
-  );
+
+  const { values, setFieldValue } = useFormikContext();
+
+  const mainCoords = (values as any)[name];
+  const [selectionCoords, setSelectionCoords] = useState<any>(mainCoords);
   const [distance, setDistance] = useState<number | string>(0);
+
+  const setCoord = (coord: any) => {
+    setFieldValue(name, coord);
+  };
 
   return (
     <Card sx={{ m: 1 }}>

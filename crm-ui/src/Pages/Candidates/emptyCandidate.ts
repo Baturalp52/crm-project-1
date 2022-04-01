@@ -11,9 +11,6 @@ export const emptyCandidate = {
   city: "",
   country: "",
   mapsCoord: { lat: 51.509865, lng: -0.118092 },
-  creatorMember: {
-    id: 1,
-  },
   previousJobs: [],
   skills: [],
   comment: "",

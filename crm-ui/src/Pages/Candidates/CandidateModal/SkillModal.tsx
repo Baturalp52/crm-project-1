@@ -63,7 +63,7 @@ const SkillModal = (props: ISkillModalProps) => {
           type="text"
           value={modalSkill.level}
           name="skill-level"
-          onChange={(e) => {
+          onChange={(e: any) => {
             const prevSkill = { ...modalSkill };
             prevSkill.level = e.target.value;
             setModalSkill(prevSkill);

@@ -1,12 +1,19 @@
+// react
 import React from "react";
+// @mui
 import { List, ListItem } from "@mui/material";
-import { useFormik } from "formik";
-import FormInput from "../../components/FormInput";
-
-import { IHRMember } from "../../interfaces/HRMember";
+// formik
+import { Form, Formik } from "formik";
+// components
 import ActionModal from "../../components/ActionModal";
+import FormInput from "../../components/FormInput";
+// interfaces
+import { IHRMember } from "../../interfaces/HRMember";
+// react-i18next
 import { useTranslation } from "react-i18next";
+// update
 import update from "../../services/update";
+// redux
 import { pageRedux } from "../../redux";
 
 interface IProfileModalProps {
@@ -20,56 +27,45 @@ const ProfileModal = (props: IProfileModalProps) => {
   const { t } = useTranslation("pages", { keyPrefix: "profile" });
   const { dispatch } = pageRedux;
 
-  let form = useFormik({
-    initialValues: user,
-    onSubmit: (data) =>
-      update("hr-members", data).then((res) =>
-        dispatch({
-          type: "CHANGE_USER",
-          payload: {
-            user: res.data,
-          },
-        })
-      ),
-    enableReinitialize: true,
-  });
   return (
-    <ActionModal
-      title={t("edit-profile")}
-      isOpen={isOpen}
-      setIsOpen={setIsOpen}
-      saveFunction={form.submitForm}
+    <Formik
+      initialValues={user}
+      onSubmit={(data) =>
+        update("hr-members", data).then((res) =>
+          dispatch({
+            type: "CHANGE_USER",
+            payload: {
+              user: res.data,
+            },
+          })
+        )
+      }
+      enableReinitialize
     >
-      <List>
-        <ListItem>
-          <FormInput
-            label={t("form.name")}
-            type="text"
-            value={form.values.name}
-            name="name"
-            onChange={form.handleChange}
-          />
-        </ListItem>
-        <ListItem>
-          <FormInput
-            label={t("form.surname")}
-            type="text"
-            value={form.values.surname}
-            name="surname"
-            onChange={form.handleChange}
-          />
-        </ListItem>
-        <ListItem>
-          <FormInput
-            label={t("form.username")}
-            type="text"
-            value={form.values.username}
-            name="username"
-            onChange={form.handleChange}
-          />
-        </ListItem>
-      </List>
-    </ActionModal>
+      <Form>
+        <ActionModal
+          title={t("edit-profile")}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+        >
+          <List>
+            <ListItem>
+              <FormInput label={t("form.name")} type="text" name="name" />
+            </ListItem>
+            <ListItem>
+              <FormInput label={t("form.surname")} type="text" name="surname" />
+            </ListItem>
+            <ListItem>
+              <FormInput
+                label={t("form.username")}
+                type="text"
+                name="username"
+              />
+            </ListItem>
+          </List>
+        </ActionModal>
+      </Form>
+    </Formik>
   );
 };
 

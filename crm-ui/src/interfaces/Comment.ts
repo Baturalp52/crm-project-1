@@ -4,7 +4,7 @@ import { ITask } from "./Task";
 export interface IComment {
   id: number;
   content: string;
-  owner: IHRMember;
+  owner?: IHRMember;
   createdDate?: Date;
-  task?: ITask;
+  task?: ITask | number;
 }

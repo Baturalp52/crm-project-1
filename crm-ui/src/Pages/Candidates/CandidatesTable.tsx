@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-import candidates from "../../mockData/candidates";
 import CandidateModal from "./CandidateModal";
 import { ICandidate } from "../../interfaces/Candidate";
 import { useTranslation } from "react-i18next";
@@ -33,7 +32,7 @@ const CandidatesTable = () => {
             );
           }
         },
-        candidates
+        data
       );
       setCandidatesData(result);
     },

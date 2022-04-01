@@ -29,15 +29,34 @@ interface ICandidateModalProps {
   isOpen: boolean;
   setIsOpen(isOpen: boolean): any;
 }
-
+//-----------------------------------------------------------------------------
 const multiTextInputSections = [
   "phoneNumbers",
   "emailAdresses",
-  "previousJobs",
+  "jobs",
   "departments",
   "keywords",
   "diplomas",
 ];
+
+const mobilityOptions = [
+  "National",
+  "	Auvergne Rhones Alpes",
+  "Bourgogne-Franche-Comté",
+  "Bretagne",
+  "Centre Val de Loire",
+  "Grand Est ",
+  "Hauts de France",
+  "Ile de France ",
+  "Normandie",
+  "Nouvelle Aquitaine ",
+  "Occitanie",
+  "Pays de la Loire	",
+  "Provence Alpes Cotes d'Azur ",
+  "Alsace",
+];
+
+//-----------------------------------------------------------------------------
 
 const CandidateModal = (props: ICandidateModalProps) => {
   const { candidate, isOpen, setIsOpen } = props;
@@ -117,6 +136,12 @@ const CandidateModal = (props: ICandidateModalProps) => {
                   id={item}
                 />
               ))}
+              <FormMultiTextInput
+                name="mobility"
+                label={t("form.mobility")}
+                id={"mobility"}
+                options={mobilityOptions}
+              />
             </Grid>
             <Grid item xs={12} md={4}>
               <MapsInput name="mapsCoord" isMainMoving />

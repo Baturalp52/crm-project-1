@@ -16,7 +16,8 @@ export interface ICandidate {
   country: string;
   mapsCoord?: { lat: number; lng: number };
   creatorMember?: IHRMember | {};
-  previousJobs: string[];
+  jobs: string[];
+  mobility: string[];
   skills: ISkill[];
   comment: string;
   salaryExpectation: number;

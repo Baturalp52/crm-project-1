@@ -9,10 +9,11 @@ interface IFormMultiTextInputProps {
   label: string;
   id: string;
   name: string;
+  options?: string[];
 }
 
 const FormMultiTextInput = (props: IFormMultiTextInputProps) => {
-  const { label, name, id } = props;
+  const { label, name, id, options } = props;
   const { values, setFieldValue } = useFormikContext();
 
   const onChange = (event: React.SyntheticEvent, newValue: any[]) => {
@@ -21,11 +22,12 @@ const FormMultiTextInput = (props: IFormMultiTextInputProps) => {
 
   return (
     <Autocomplete
+      sx={{ width: "100%", m: 1 }}
       multiple
-      options={[]}
+      options={options || []}
       id={id}
       freeSolo
-      value={(values as any)[name]}
+      value={(values as any)[name] || []}
       onChange={onChange}
       renderInput={(params) => (
         <TextField {...params} name={name} label={label} placeholder={label} />

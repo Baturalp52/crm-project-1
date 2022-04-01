@@ -32,7 +32,7 @@ const CandidatesTable = () => {
             );
           }
         },
-        data
+        candidatesData
       );
       setCandidatesData(result);
     },

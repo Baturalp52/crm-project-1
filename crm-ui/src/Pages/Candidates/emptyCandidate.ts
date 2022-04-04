@@ -21,4 +21,5 @@ export const emptyCandidate = {
   diplomas: [],
   placedJob: undefined,
   situation: false,
+  tasks: [],
 };

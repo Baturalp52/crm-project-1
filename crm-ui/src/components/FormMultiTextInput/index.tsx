@@ -22,7 +22,6 @@ const FormMultiTextInput = (props: IFormMultiTextInputProps) => {
 
   return (
     <Autocomplete
-      sx={{ width: "100%", m: 1 }}
       multiple
       options={options || []}
       id={id}
@@ -30,7 +29,13 @@ const FormMultiTextInput = (props: IFormMultiTextInputProps) => {
       value={(values as any)[name] || []}
       onChange={onChange}
       renderInput={(params) => (
-        <TextField {...params} name={name} label={label} placeholder={label} />
+        <TextField
+          {...params}
+          sx={{ width: "100%", m: 1 }}
+          name={name}
+          label={label}
+          placeholder={label}
+        />
       )}
     />
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, List, ListItem } from "@mui/material";
+import { Grid, List, ListItem, MenuItem } from "@mui/material";
 import { Form, Formik } from "formik";
 import { emptyJob } from "./emptyJob";
 import FormInput from "../../components/FormInput";
@@ -87,11 +87,14 @@ const JobModal = (props: IJobModalProps) => {
                 <ListItem>
                   <FormDropdown<ICompany>
                     label={t("form.company")}
-                    getValue={(item) => item.id}
                     name="company"
-                    data={companies || []}
+                    options={companies || []}
                     defaultValue={t("form.dropdown-no-company")}
-                    dataToValue={(data) => data.id + " - " + data.name}
+                    renderOptions={(option) => (
+                      <MenuItem value={option.id}>
+                        {option.id + " - " + option.name}
+                      </MenuItem>
+                    )}
                   />
                 </ListItem>
               </List>

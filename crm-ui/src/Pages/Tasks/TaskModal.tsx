@@ -1,7 +1,7 @@
 // react
 import React, { useState } from "react";
 // @mui
-import { Grid, List, ListItem } from "@mui/material";
+import { Grid, List, ListItem, MenuItem } from "@mui/material";
 
 // components
 import FormInput from "../../components/FormInput";
@@ -105,25 +105,29 @@ const TaskModal = (props: ITaskModalProps) => {
                 <ListItem>
                   <FormDropdown<ICandidate>
                     label={t("form.assigned-candidate")}
-                    getValue={(item) => item.id}
-                    data={candidates || []}
+                    options={candidates || []}
                     name="assignedCandidate"
                     defaultValue={t("form.dropdown-no-candidate")}
-                    dataToValue={(data) =>
-                      data.id + " - " + data.name + " " + data.surname
-                    }
+                    getSelection={(option: any, value) => option.id === value}
+                    renderOptions={(option) => (
+                      <MenuItem value={option as any}>
+                        {option.id + " - " + option.name + " " + option.surname}
+                      </MenuItem>
+                    )}
                   />
                 </ListItem>
                 <ListItem>
                   <FormDropdown<IHRMember>
                     label={t("form.assigned-member")}
-                    getValue={(item) => item.id}
-                    data={hrmembers || []}
+                    options={hrmembers || []}
                     name="assignedMember"
                     defaultValue={t("form.dropdown-global")}
-                    dataToValue={(data) =>
-                      data.id + " - " + data.name + " " + data.surname
-                    }
+                    getSelection={(option, value) => option.id === value.id}
+                    renderOptions={(option) => (
+                      <MenuItem value={option as any}>
+                        {option.id + " - " + option.name + " " + option.surname}
+                      </MenuItem>
+                    )}
                   />
                 </ListItem>
                 <ListItem>

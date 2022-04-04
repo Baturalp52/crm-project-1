@@ -1,5 +1,5 @@
 // @mui
-import { Grid, Stack, TextField } from "@mui/material";
+import { Grid, MenuItem, Stack, TextField } from "@mui/material";
 // interfaces
 import { ICompany } from "../../../interfaces/Company";
 // components
@@ -16,7 +16,7 @@ const SearchDistance = (props: any) => {
       <Stack direction="row">
         <FormDropdown<ICompany>
           label="Select Company"
-          onChange={(e) => {
+          onChange={(e: any) => {
             const cSearch = { ...search };
             cSearch.distance = {
               company: {},
@@ -28,7 +28,7 @@ const SearchDistance = (props: any) => {
 
             setSearch(cSearch);
           }}
-          data={companies}
+          options={companies}
           defaultValue="Select Company"
           selectedValue={
             search.distance
@@ -37,8 +37,11 @@ const SearchDistance = (props: any) => {
                 : 0
               : 0
           }
-          dataToValue={(item) => `${item.id} - ${item.name}`}
-          getValue={(item) => item.id}
+          renderOptions={(option) => (
+            <MenuItem value={option.id}>
+              {option.id + " - " + option.name}
+            </MenuItem>
+          )}
         />
         <TextField
           label="Distance"

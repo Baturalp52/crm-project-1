@@ -1,6 +1,6 @@
 // @mui
 import { Check, Close } from "@mui/icons-material";
-import { Switch, FormControlLabel } from "@mui/material";
+import { Switch, FormControlLabel, MenuItem } from "@mui/material";
 // formik
 import { useFormikContext } from "formik";
 // interfaces
@@ -16,7 +16,7 @@ interface Formik {
 }
 
 const SituationSwitch = (props: any) => {
-  const { label, dropdownLabel } = props;
+  const { label, DropdownLabel, ...other } = props;
   const { values, setFieldValue }: Formik = useFormikContext();
   const { data: jobs } = useSWR("jobs");
   return (
@@ -29,7 +29,7 @@ const SituationSwitch = (props: any) => {
             onChange={() => {
               setFieldValue("situation", !values.situation);
             }}
-            {...props}
+            {...other}
             checkedIcon={
               <Check
                 sx={{
@@ -55,12 +55,15 @@ const SituationSwitch = (props: any) => {
       />{" "}
       {values.situation && jobs && (
         <FormDropdown<IJob>
-          label={dropdownLabel}
+          label={DropdownLabel}
           name="placedJob"
-          data={jobs}
-          defaultValue={dropdownLabel}
-          dataToValue={(item) => `${item.id} - ${item.name}`}
-          getValue={(item) => item.id}
+          options={jobs}
+          defaultValue={DropdownLabel}
+          renderOptions={(option) => (
+            <MenuItem value={option.id}>
+              {option.id + " - " + option.name}
+            </MenuItem>
+          )}
         />
       )}
     </>

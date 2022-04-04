@@ -22,6 +22,7 @@ class TasksView(APIView):
     def post(self, request):
         newTask = Task()
         for key, value in loads(request.body).items():
+            print(key)
             if type(value) is dict:
                 if value["id"]:
                     setattr(newTask, key + "_id", value["id"])

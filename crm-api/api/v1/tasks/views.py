@@ -49,6 +49,8 @@ class TasksView(APIView):
             for key, value in loads(request.body).items():
                 if type(value) is dict:
                     setattr(task, key + "_id", value["id"])
+                elif key == "assignedCandidate":
+                    setattr(task, key + "_id", value)
                 elif key == "comments":
                     for comment in value:
                         if comment["id"] == 0:

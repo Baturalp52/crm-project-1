@@ -14,3 +14,4 @@ class Task(models.Model):
     situation = models.CharField(max_length=255)
     createdDate = models.DateField(auto_now_add=True, null=True)
     endDate = models.DateField(null=True)
+    isAppropriate = models.BooleanField(default=False)

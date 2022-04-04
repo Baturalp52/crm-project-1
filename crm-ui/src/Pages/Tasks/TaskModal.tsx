@@ -28,6 +28,7 @@ import BaseService from "../../services/index";
 import useSWR, { useSWRConfig } from "swr";
 // redux
 import { pageRedux } from "../../redux";
+import FormCheckbox from "../../components/FormCheckbox";
 interface ITaskModalProps {
   task?: ITask;
   isOpen: boolean;
@@ -66,6 +67,7 @@ const TaskModal = (props: ITaskModalProps) => {
     <Formik
       initialValues={task ? { ...task } : { ...emptyTask }}
       onSubmit={(data) => {
+        console.log(data);
         data.comments?.forEach((comment: any) => {
           delete comment.owner;
         });
@@ -132,6 +134,12 @@ const TaskModal = (props: ITaskModalProps) => {
                 </ListItem>
                 <ListItem>
                   <FormDatePicker label={t("form.end-date")} />
+                </ListItem>
+                <ListItem>
+                  <FormCheckbox
+                    name="isAppropriate"
+                    label={t("form.is-appropriate") as string}
+                  />
                 </ListItem>
               </List>
             </Grid>

@@ -5,7 +5,7 @@ import { Form, Formik } from "formik";
 // react-i18next
 import { useTranslation } from "react-i18next";
 // @mui
-import { Box, Grid, List, ListItem, Typography } from "@mui/material";
+import { Box, Grid, List, ListItem, MenuItem, Typography } from "@mui/material";
 // components
 import FormInput from "../../../components/FormInput";
 import ActionModal from "../../../components/ActionModal";
@@ -20,6 +20,23 @@ import update from "../../../services/update";
 import BaseService from "../../../services/index";
 // swr
 import { useSWRConfig } from "swr";
+import FormDropdown from "../../../components/FormDropdown";
+
+const regionOptions = [
+  "Auvergne Rhones Alpes",
+  "	Bourgogne-Franche-Comté",
+  "Bretagne",
+  "Centre Val de Loire",
+  "	Grand Est ",
+  "	Hauts de France ",
+  "Ile de France ",
+  "Normandie",
+  "	Nouvelle Aquitaine",
+  "Occitanie",
+  "Pays de la Loire",
+  "	Provence Alpes Cotes d'Azur",
+  "Alsace",
+];
 
 interface ICompanyModalProps {
   company?: ICompany;
@@ -77,6 +94,46 @@ const CompanyModal = (props: ICompanyModalProps) => {
                     label={t("form.sector")}
                     type="text"
                     name="sector"
+                  />
+                </ListItem>
+                <ListItem>
+                  <FormInput
+                    label={t("form.clientReference")}
+                    type="text"
+                    name="clientReference"
+                  />
+                </ListItem>
+                <ListItem>
+                  <FormInput
+                    label={t("form.contact")}
+                    type="text"
+                    name="contact"
+                  />
+                </ListItem>
+                <ListItem>
+                  <FormInput label={t("form.phone")} type="text" name="phone" />
+                </ListItem>
+                <ListItem>
+                  <FormInput label={t("form.mail")} type="text" name="mail" />
+                </ListItem>
+                <ListItem>
+                  <FormDropdown<string>
+                    label={t("form.region")}
+                    name="region"
+                    options={regionOptions}
+                    defaultValue={t("form.region")}
+                    renderOptions={(option) => (
+                      <MenuItem key={option} value={option}>
+                        {option}
+                      </MenuItem>
+                    )}
+                  />
+                </ListItem>
+                <ListItem>
+                  <FormInput
+                    label={t("form.website")}
+                    type="text"
+                    name="website"
                   />
                 </ListItem>
               </List>

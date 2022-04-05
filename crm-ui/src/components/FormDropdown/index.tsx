@@ -1,23 +1,21 @@
-import {
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  SxProps,
-} from "@mui/material";
+// react
 import React from "react";
+// @mui
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+// formik
+import { useFormikContext } from "formik";
 
 interface IFormDropdownProps<DataType> {
   label: string;
-  handleChange: (e: any) => void;
-  datas: DataType[];
+  name?: string;
+  options: DataType[];
   defaultValue: string;
-  dataToValue: (data: DataType) => string;
-  selectedValue?: number | string;
-  disabled?: boolean;
-  width?: string;
-  sx?: SxProps;
-  getValue: (data: DataType) => string | number;
+  getSelection?: (option: any, value: any) => any;
+  selectedValue?: any;
+  onChange?: any;
+  renderOptions: (
+    option: DataType
+  ) => string | React.ReactElement | React.ReactChild | React.ReactChildren;
 }
 
 const FormDropdown = <DataType extends { id: number } | string>(
@@ -25,33 +23,37 @@ const FormDropdown = <DataType extends { id: number } | string>(
 ) => {
   const {
     label,
-    handleChange,
     defaultValue,
-    datas,
-    dataToValue,
+    options,
+    name,
+    getSelection,
+    renderOptions,
     selectedValue,
-    disabled,
-    width,
-    getValue,
-    sx,
+    onChange,
   } = props;
-  return (
-    <FormControl
-      variant="standard"
-      disabled={disabled}
-      sx={{ width: "100%" || width, m: 1, ...sx }}
-    >
-      <InputLabel>{label}</InputLabel>
+  const { values, handleChange } = useFormikContext();
 
-      <Select value={selectedValue || 0} label={label} onChange={handleChange}>
+  const selected = getSelection
+    ? options.filter((option) =>
+        getSelection(option, (values as any)[name || ""])
+      )[0]
+    : selectedValue
+    ? selectedValue
+    : (values as any)[name || ""];
+
+  return (
+    <FormControl variant="outlined" fullWidth sx={{ m: 1 }}>
+      <InputLabel>{label}</InputLabel>
+      <Select
+        value={selected || 0}
+        label={label}
+        onChange={onChange ? onChange : handleChange}
+        name={name}
+      >
         <MenuItem value={0}>
           <em>{defaultValue}</em>
         </MenuItem>
-        {datas.map((data: DataType, index) => (
-          <MenuItem key={index} value={getValue(data)}>
-            {dataToValue(data)}
-          </MenuItem>
-        ))}
+        {options.map((item: DataType) => renderOptions(item))}
       </Select>
     </FormControl>
   );

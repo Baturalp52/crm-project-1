@@ -1,6 +1,7 @@
 import { IHRMember } from "./HRMember";
 import { IJob } from "./Job";
 import { ISkill } from "./Skill";
+import { ITask } from "./Task";
 
 export interface ICandidate {
   id: number;
@@ -16,7 +17,8 @@ export interface ICandidate {
   country: string;
   mapsCoord?: { lat: number; lng: number };
   creatorMember?: IHRMember | {};
-  previousJobs: string[];
+  jobs: string[];
+  mobility: string[];
   skills: ISkill[];
   comment: string;
   salaryExpectation: number;
@@ -25,4 +27,5 @@ export interface ICandidate {
   diplomas: string[];
   placedJob?: IJob;
   situation: boolean;
+  tasks?: ITask[];
 }

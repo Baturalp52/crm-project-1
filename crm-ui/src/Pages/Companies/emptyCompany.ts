@@ -9,4 +9,10 @@ export const emptyCompany = {
     lat: 51.509865,
     lng: -0.118092,
   },
+  clientReference: "",
+  contact: "",
+  phone: "",
+  mail: "",
+  region: "",
+  website: "",
 };

@@ -13,19 +13,17 @@ import { useTranslation } from "react-i18next";
 import { ISkill } from "../../../interfaces/Skill";
 import { Clear, Edit } from "@mui/icons-material";
 import SkillModal from "./SkillModal";
+import { useFormikContext } from "formik";
 
-interface ISkillsProps {
-  skills: ISkill[];
-  addSkill: (skill: ISkill) => void;
-  removeSkill: (skill: ISkill) => void;
-  editSkill: (skill: ISkill) => void;
-}
-
-const Skills = (props: ISkillsProps) => {
+const Skills = () => {
   const { t } = useTranslation("pages", {
     keyPrefix: "candidates.modal.form.skills",
   });
-  const { skills, removeSkill, editSkill, addSkill } = props;
+
+  const { values, setFieldValue } = useFormikContext();
+
+  const { skills } = values as { skills: ISkill[] };
+
   const [isSkillModalOpen, setIsSkillModalOpen] = useState<boolean>(false);
   const [modalAction, setModalAction] = useState<"add" | "edit">("add");
   const [modalSkill, setModalSkill] = useState<ISkill>({
@@ -33,6 +31,25 @@ const Skills = (props: ISkillsProps) => {
     name: "",
     level: "",
   });
+
+  const addSkill = (skill: ISkill) => {
+    const prevSkills = skills ? [...skills] : [];
+    prevSkills.push(skill);
+    setFieldValue("skills", prevSkills);
+  };
+
+  const editSkill = (skill: ISkill) => {
+    let prevSkills = skills ? [...skills] : [];
+    prevSkills = prevSkills.filter((item) => item.id !== skill.id);
+    prevSkills.push(skill);
+    setFieldValue("skills", prevSkills);
+  };
+  const removeSkill = (skill: ISkill) => {
+    let prevSkills = skills ? [...skills] : [];
+    prevSkills = prevSkills.filter((item) => item.id !== skill.id);
+    setFieldValue("skills", prevSkills);
+  };
+
   return (
     <>
       <SkillModal

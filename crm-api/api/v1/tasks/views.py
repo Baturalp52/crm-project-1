@@ -22,6 +22,7 @@ class TasksView(APIView):
     def post(self, request):
         newTask = Task()
         for key, value in loads(request.body).items():
+            print(key)
             if type(value) is dict:
                 if value["id"]:
                     setattr(newTask, key + "_id", value["id"])
@@ -48,6 +49,8 @@ class TasksView(APIView):
             for key, value in loads(request.body).items():
                 if type(value) is dict:
                     setattr(task, key + "_id", value["id"])
+                elif key == "assignedCandidate":
+                    setattr(task, key + "_id", value)
                 elif key == "comments":
                     for comment in value:
                         if comment["id"] == 0:

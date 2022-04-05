@@ -7,19 +7,32 @@ import { useTranslation } from "react-i18next";
 import CRUDTable from "../../components/CRUDTable";
 import useSWR from "swr";
 import Loading from "../../components/Loading";
+import { useNavigate } from "react-router-dom";
 
-const TasksTable = () => {
+interface Props {
+  task?: string | null;
+}
+
+const TasksTable = ({ task }: Props) => {
   const { t } = useTranslation("pages", { keyPrefix: "tasks.table" });
   const [isTaskModalOpen, setIsTaskModalOpen] = useState<boolean>(false);
   const [taskModalTask, setTaskModalTask] = useState<ITask | undefined>(
     undefined
   );
+  const navigate = useNavigate();
   const { data, error } = useSWR("tasks");
 
   const [tasksData, setTasksData] = useState<ITask[]>(data);
   useEffect(() => {
     setTasksData(data);
-  }, [data]);
+    if (task && data) {
+      const filtered = data.filter((item: any) => item.id === Number(task));
+      if (filtered.length > 0) {
+        setTaskModalTask(filtered[0]);
+        setIsTaskModalOpen(true);
+      } else navigate("/tasks");
+    }
+  }, [data, task, navigate]);
 
   if (error) return <div>{error}</div>;
   if (!data) return <React.Suspense fallback={<Loading />} />;

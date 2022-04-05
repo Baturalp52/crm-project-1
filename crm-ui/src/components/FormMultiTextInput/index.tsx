@@ -1,104 +1,43 @@
-import React, { useState } from "react";
-import {
-  Button,
-  Card,
-  CardActions,
-  CardHeader,
-  CardContent,
-  IconButton,
-  InputAdornment,
-  Grid,
-  TextField,
-} from "@mui/material";
-import { Add, Remove } from "@mui/icons-material";
+// react
+import React from "react";
+// @mui
+import { TextField, Autocomplete } from "@mui/material";
+// formik
+import { useFormikContext } from "formik";
 
 interface IFormMultiTextInputProps {
   label: string;
   id: string;
-  data: string[];
-  addNew: (data: string) => void;
-  deleteItem: (index: number) => void;
+  name: string;
+  options?: string[];
 }
 
 const FormMultiTextInput = (props: IFormMultiTextInputProps) => {
-  const { label, id, data, addNew, deleteItem } = props;
-  const [hovered, setHovered] = useState(Array(data.length).fill(0));
-  const [addNewValue, setAddNewValue] = useState<string>("");
+  const { label, name, id, options } = props;
+  const { values, setFieldValue } = useFormikContext();
+
+  const onChange = (event: React.SyntheticEvent, newValue: any[]) => {
+    setFieldValue(name, newValue);
+  };
+
   return (
-    <Card sx={{ border: "none", width: "100%", m: 1 }}>
-      <CardHeader title={label} />
-      <CardContent>
-        <Grid container spacing={2} mx="auto">
-          {data.length > 0
-            ? data.map((item, index) => {
-                return (
-                  <Grid key={index} item xs={12}>
-                    <Button
-                      key={index}
-                      variant="outlined"
-                      color={hovered[index] ? "error" : "inherit"}
-                      sx={{
-                        width: "100%",
-                      }}
-                      onMouseOut={() => {
-                        let cHovered = [...hovered];
-                        cHovered[index] = 0;
-                        setHovered(cHovered);
-                      }}
-                      onMouseOver={() => {
-                        let cHovered = [...hovered];
-                        cHovered[index] = 1;
-                        setHovered(cHovered);
-                      }}
-                      onClick={() => {
-                        deleteItem(index);
-                      }}
-                    >
-                      {hovered[index] ? (
-                        <>
-                          <Remove /> Delete
-                        </>
-                      ) : (
-                        item
-                      )}
-                    </Button>
-                  </Grid>
-                );
-              })
-            : "No data"}
-        </Grid>
-      </CardContent>
-      <CardActions>
+    <Autocomplete
+      multiple
+      options={options || []}
+      id={id}
+      freeSolo
+      value={(values as any)[name] || []}
+      onChange={onChange}
+      renderInput={(params) => (
         <TextField
-          label=""
-          id={id}
-          value={addNewValue}
-          onChange={(e) => setAddNewValue(e.target.value)}
-          onKeyUpCapture={(e) => {
-            if (e.which === 13) {
-              addNew(addNewValue);
-              setAddNewValue("");
-            }
-          }}
-          sx={{ marginLeft: "auto", width: "100%" }}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  onClick={() => {
-                    addNew(addNewValue);
-                    setAddNewValue("");
-                  }}
-                >
-                  <Add />
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-          variant="standard"
+          {...params}
+          sx={{ width: "100%", m: 1 }}
+          name={name}
+          label={label}
+          placeholder={label}
         />
-      </CardActions>
-    </Card>
+      )}
+    />
   );
 };
 

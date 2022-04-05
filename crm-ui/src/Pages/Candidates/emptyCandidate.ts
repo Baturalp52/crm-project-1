@@ -11,10 +11,8 @@ export const emptyCandidate = {
   city: "",
   country: "",
   mapsCoord: { lat: 51.509865, lng: -0.118092 },
-  creatorMember: {
-    id: 1,
-  },
-  previousJobs: [],
+  jobs: [],
+  mobility: [],
   skills: [],
   comment: "",
   salaryExpectation: 0,
@@ -23,4 +21,5 @@ export const emptyCandidate = {
   diplomas: [],
   placedJob: undefined,
   situation: false,
+  tasks: [],
 };

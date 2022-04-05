@@ -1,29 +1,24 @@
+// react
 import React from "react";
-import { FormControl, Input, InputLabel } from "@mui/material";
+// @mui
+import { TextField, TextFieldProps } from "@mui/material";
+// formik
+import { useFormikContext } from "formik";
 
-interface IFormInputProps {
-  label: string;
-  type: "text" | "email" | "number" | "password";
-  value: number | string | undefined;
-  name: string;
-  disabled?: boolean;
-  onChange(e: any): void;
-}
+const FormInput = (props: TextFieldProps) => {
+  const { name, ...other } = props;
+  const { handleChange, values } = useFormikContext();
 
-const FormInput = (props: IFormInputProps) => {
-  const { label, type, value, name, onChange, disabled } = props;
   return (
-    <FormControl sx={{ width: "100%", m: 1 }}>
-      <InputLabel htmlFor={name}>{label}</InputLabel>
-      <Input
-        id={name}
-        name={name}
-        value={value}
-        type={type}
-        onChange={onChange}
-        disabled={disabled}
-      />
-    </FormControl>
+    <TextField
+      id={name}
+      name={name}
+      value={(values as any)[name!]}
+      fullWidth
+      sx={{ m: 1 }}
+      onChange={handleChange}
+      {...other}
+    />
   );
 };
 

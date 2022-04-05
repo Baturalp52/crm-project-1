@@ -43,7 +43,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "scp build/* root@46.101.253.133:/root/crm-project-1/crm-ui/build"
+    "deploy": "scp -r build/* root@46.101.253.133:/root/crm-project-1/crm-ui/build"
   },
   "eslintConfig": {
     "extends": [

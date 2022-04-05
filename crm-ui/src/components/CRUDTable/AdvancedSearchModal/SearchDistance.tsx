@@ -1,28 +1,34 @@
-import { Grid, Stack, TextField } from "@mui/material";
+// @mui
+import { Grid, MenuItem, Stack, TextField } from "@mui/material";
+// interfaces
 import { ICompany } from "../../../interfaces/Company";
-import companies from "../../../mockData/companies";
+// components
 import FormDropdown from "../../FormDropdown";
+// swr
+import useSWR from "swr";
 
 const SearchDistance = (props: any) => {
   const { search, setSearch } = props;
+  const { data: companies } = useSWR("companies");
+  if (!companies) return null;
   return (
     <Grid item xs={12} md={4}>
       <Stack direction="row">
         <FormDropdown<ICompany>
           label="Select Company"
-          handleChange={(e) => {
+          onChange={(e: any) => {
             const cSearch = { ...search };
             cSearch.distance = {
               company: {},
               value: 0,
             };
             cSearch.distance.company = companies.filter(
-              (company) => company.id === e.target.value
+              (company: ICompany) => company.id === Number(e.target.value)
             )[0];
 
             setSearch(cSearch);
           }}
-          datas={companies}
+          options={companies}
           defaultValue="Select Company"
           selectedValue={
             search.distance
@@ -31,8 +37,11 @@ const SearchDistance = (props: any) => {
                 : 0
               : 0
           }
-          dataToValue={(item) => `${item.id} - ${item.name}`}
-          getValue={(item) => item.id}
+          renderOptions={(option) => (
+            <MenuItem value={option.id}>
+              {option.id + " - " + option.name}
+            </MenuItem>
+          )}
         />
         <TextField
           label="Distance"

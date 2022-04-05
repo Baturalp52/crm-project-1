@@ -1,12 +1,21 @@
+// react
 import React from "react";
+// @mui
 import { List, ListItem } from "@mui/material";
-import { useFormik } from "formik";
+// formik
+import { Form, Formik } from "formik";
+// interfaces
 import { IEvent } from "../../interfaces/Event";
+// empty
 import { emptyEvent } from "./emptyEvent";
-import FormInput from "../../components/FormInput";
-import { useTranslation } from "react-i18next";
+// components
 import ActionModal from "../../components/ActionModal";
+import FormInput from "../../components/FormInput";
+// react-i18next
+import { useTranslation } from "react-i18next";
+// swr
 import { useSWRConfig } from "swr";
+// services
 import update from "../../services/update";
 import BaseService from "../../services/index";
 
@@ -21,52 +30,45 @@ const EventModal = (props: IEventModalProps) => {
   const { t } = useTranslation("pages", { keyPrefix: "calendar" });
   const { mutate } = useSWRConfig();
 
-  let form = useFormik({
-    initialValues: event ? { ...event } : { ...emptyEvent },
-    onSubmit: (data) =>
-      data.id
-        ? update("events", data).then(() => mutate("events"))
-        : BaseService.post("events", data).then(() => mutate("events")),
-    enableReinitialize: true,
-  });
   return (
-    <ActionModal
-      title={form.values.id ? t("edit") : t("add")}
-      isOpen={isOpen}
-      setIsOpen={setIsOpen}
-      saveFunction={form.submitForm}
+    <Formik
+      initialValues={event ? { ...event } : { ...emptyEvent }}
+      onSubmit={(data) =>
+        data.id
+          ? update("events", data).then(() => mutate("events"))
+          : BaseService.post("events", data).then(() => mutate("events"))
+      }
+      enableReinitialize
     >
-      <List>
-        <ListItem>
-          <FormInput
-            label={t("form.id")}
-            type="number"
-            value={form.values.id}
-            name="id"
-            onChange={form.handleChange}
-            disabled
-          />
-        </ListItem>
-        <ListItem>
-          <FormInput
-            label={t("form.title")}
-            type="text"
-            value={form.values.title}
-            name="title"
-            onChange={form.handleChange}
-          />
-        </ListItem>
-        <ListItem>
-          <FormInput
-            label={t("form.description")}
-            type="text"
-            value={form.values.desc}
-            name="desc"
-            onChange={form.handleChange}
-          />
-        </ListItem>
-      </List>
-    </ActionModal>
+      <Form>
+        <ActionModal
+          title={event ? t("edit") : t("add")}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+        >
+          <List>
+            <ListItem>
+              <FormInput
+                label={t("form.id")}
+                type="number"
+                name="id"
+                disabled
+              />
+            </ListItem>
+            <ListItem>
+              <FormInput label={t("form.title")} type="text" name="title" />
+            </ListItem>
+            <ListItem>
+              <FormInput
+                label={t("form.description")}
+                type="text"
+                name="desc"
+              />
+            </ListItem>
+          </List>
+        </ActionModal>
+      </Form>
+    </Formik>
   );
 };
 

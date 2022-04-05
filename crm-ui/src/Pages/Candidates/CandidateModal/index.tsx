@@ -1,53 +1,74 @@
 import React, { useState } from "react";
-import { Grid, Button, Stack } from "@mui/material";
-import { useFormik } from "formik";
-import { ICandidate } from "../../../interfaces/Candidate";
-import { emptyCandidate } from "../emptyCandidate";
-import FormInput from "../../../components/FormInput";
+// @mui
+import { Grid, Button, Stack, MenuItem } from "@mui/material";
 import { Email, FileUpload, Message, SaveRounded } from "@mui/icons-material";
+// formik
+import { Formik, Form } from "formik";
+// interfaces
+import { ICandidate } from "../../../interfaces/Candidate";
+// components
+import FormInput from "../../../components/FormInput";
 import FormMultiTextInput from "../../../components/FormMultiTextInput";
 import MapsInput from "../../../components/MapsInput";
-import ActionModal from "../../../components/ActionModal";
-import { useTranslation } from "react-i18next";
-import Skills from "./Skills";
-import { ISkill } from "../../../interfaces/Skill";
-import SendMessageModal from "./SendMessageModal";
 import FormDropdown from "../../../components/FormDropdown";
-import { IJob } from "../../../interfaces/Job";
-import jobs from "../../../mockData/jobs";
+import ActionModal from "../../../components/ActionModal";
+import FormUploadFileButton from "../../../components/FormUploadFileButton";
+import Skills from "./Skills";
 import SituationSwitch from "./SituationSwitch";
+import SendMessageModal from "./SendMessageModal";
+// react-i18next
+import { useTranslation } from "react-i18next";
+// services
 import update from "../../../services/update";
 import BaseService from "../../../services/index";
+// swr
 import { useSWRConfig } from "swr";
+// empty
+import { emptyCandidate } from "../emptyCandidate";
+// react-router-dom
+import { useNavigate } from "react-router-dom";
 
 interface ICandidateModalProps {
   candidate?: ICandidate;
   isOpen: boolean;
   setIsOpen(isOpen: boolean): any;
 }
-
+//-----------------------------------------------------------------------------
 const multiTextInputSections = [
   "phoneNumbers",
   "emailAdresses",
-  "previousJobs",
+  "jobs",
   "departments",
   "keywords",
   "diplomas",
 ];
 
+const mobilityOptions = [
+  "National",
+  "	Auvergne Rhones Alpes",
+  "Bourgogne-Franche-Comté",
+  "Bretagne",
+  "Centre Val de Loire",
+  "Grand Est ",
+  "Hauts de France",
+  "Ile de France ",
+  "Normandie",
+  "Nouvelle Aquitaine ",
+  "Occitanie",
+  "Pays de la Loire	",
+  "Provence Alpes Cotes d'Azur ",
+  "Alsace",
+];
+
+const experienceOptions = ["0-4", "5-10", "11-15", "16-20", "21-25", "26-30"];
+
+//-----------------------------------------------------------------------------
+
 const CandidateModal = (props: ICandidateModalProps) => {
   const { candidate, isOpen, setIsOpen } = props;
   const { t } = useTranslation("pages", { keyPrefix: "candidates.modal" });
   const { mutate } = useSWRConfig();
-
-  let form = useFormik({
-    initialValues: candidate ? { ...candidate } : { ...emptyCandidate },
-    onSubmit: (data) =>
-      data.id
-        ? update("candidates", data).then(() => mutate("candidates"))
-        : BaseService.post("candidates", data).then(() => mutate("candidates")),
-    enableReinitialize: true,
-  });
+  const navigate = useNavigate();
 
   const [isSendMessageModalOpen, setIsSendMessageModalOpen] =
     useState<boolean>(false);
@@ -55,228 +76,170 @@ const CandidateModal = (props: ICandidateModalProps) => {
     "sms" | "email"
   >("sms");
 
-  const addToFormArray = (data: string, key: string) => {
-    const arr: string[] = form.values[
-      key as keyof typeof form.values
-    ] as string[];
-    arr.push(data);
-    form.setFieldValue(key, arr);
-  };
-  const deleteFromArray = (index: number, key: string) => {
-    const arr: string[] = form.values[
-      key as keyof typeof form.values
-    ] as string[];
-    arr.splice(index, 1);
-    form.setFieldValue(key, arr);
+  const onSubmit = (data: ICandidate) => {
+    delete data.tasks;
+    data.id
+      ? update("candidates", data).then(() => mutate("candidates"))
+      : BaseService.post("candidates", data).then(() => mutate("candidates"));
   };
 
   return (
-    <ActionModal
-      isOpen={isOpen}
-      setIsOpen={setIsOpen}
-      title={form.values.id ? t("edit") : t("add")}
-      saveFunction={() => form.submitForm()}
+    <Formik
+      initialValues={candidate ? { ...candidate } : { ...emptyCandidate }}
+      onSubmit={onSubmit}
+      enableReinitialize
     >
-      <SendMessageModal
-        isOpen={isSendMessageModalOpen}
-        setIsOpen={setIsSendMessageModalOpen}
-        candidate={form.values}
-        messageType={sendMessageModalType}
-      />
-      <Grid container spacing={2} padding={2}>
-        <Grid item xs={12} md={4}>
-          <FormInput
-            label={t("form.id")}
-            type="number"
-            value={form.values.id}
-            name="id"
-            onChange={form.handleChange}
-            disabled
+      <Form>
+        <ActionModal
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          title={candidate ? t("edit") : t("add")}
+        >
+          <SendMessageModal
+            isOpen={isSendMessageModalOpen}
+            setIsOpen={setIsSendMessageModalOpen}
+            messageType={sendMessageModalType}
           />
-          <FormInput
-            label={t("form.name")}
-            type="text"
-            value={form.values.name}
-            name="name"
-            onChange={form.handleChange}
-          />
-          <FormInput
-            label={t("form.surname")}
-            type="text"
-            value={form.values.surname}
-            name="surname"
-            onChange={form.handleChange}
-          />
-          <FormInput
-            label={t("form.address")}
-            type="text"
-            value={form.values.address}
-            name="address"
-            onChange={form.handleChange}
-          />
-          <FormInput
-            label={t("form.extraAddress")}
-            type="text"
-            value={form.values.extraAddress}
-            name="extraAddress"
-            onChange={form.handleChange}
-          />
-          <FormInput
-            label={t("form.zipCode")}
-            type="text"
-            value={form.values.zipCode}
-            name="zipCode"
-            onChange={form.handleChange}
-          />
-          <FormInput
-            label={t("form.city")}
-            type="text"
-            value={form.values.city}
-            name="city"
-            onChange={form.handleChange}
-          />
-          <FormInput
-            label={t("form.country")}
-            type="text"
-            value={form.values.country}
-            name="country"
-            onChange={form.handleChange}
-          />
-          <FormInput
-            label={t("form.comment")}
-            type="text"
-            value={form.values.comment}
-            name="comment"
-            onChange={form.handleChange}
-          />
-          <FormInput
-            label={t("form.salaryExpectation")}
-            type="number"
-            value={form.values.salaryExpectation}
-            name="salaryExpectation"
-            onChange={form.handleChange}
-          />
+          <Grid container spacing={2} padding={2}>
+            <Grid item xs={12} md={4}>
+              <FormInput
+                label={t("form.id")}
+                type="number"
+                name="id"
+                disabled
+              />
+              <FormInput label={t("form.name")} type="text" name="name" />
+              <FormInput label={t("form.surname")} type="text" name="surname" />
+              <FormInput label={t("form.address")} type="text" name="address" />
+              <FormInput
+                label={t("form.extraAddress")}
+                type="text"
+                name="extraAddress"
+              />
+              <FormInput label={t("form.zipCode")} type="text" name="zipCode" />
+              <FormInput label={t("form.city")} type="text" name="city" />
+              <FormInput label={t("form.country")} type="text" name="country" />
 
-          <SituationSwitch
-            disableRipple
-            color="success"
-            checked={form.values.situation}
-            onChange={() => {
-              form.setFieldValue("situation", !form.values.situation);
-            }}
-            label={t("form.situation").toString()}
-          />
+              <FormInput
+                label={t("form.salaryExpectation")}
+                type="number"
+                name="salaryExpectation"
+              />
 
-          {form.values.situation && (
-            <FormDropdown<IJob>
-              label={t("form.placed-job")}
-              handleChange={(e) => {
-                form.setFieldValue(
-                  "placedJob",
-                  jobs.filter((item) => item.id === e.target.value)[0]
-                );
-              }}
-              datas={jobs}
-              defaultValue={t("form.placed-job")}
-              selectedValue={
-                form.values.placedJob ? form.values.placedJob.id : 0
-              }
-              dataToValue={(item) => `${item.id} - ${item.name}`}
-              getValue={(item) => item.id}
-            />
-          )}
+              <SituationSwitch
+                disableRipple
+                color="success"
+                label={t("form.situation").toString()}
+                DropdownLabel={t("form.placed-job")}
+              />
 
-          <Skills
-            skills={form.values.skills || []}
-            addSkill={(skill: ISkill) => {
-              const prevSkills = form.values.skills
-                ? [...form.values.skills]
-                : [];
-              prevSkills.push(skill);
-              form.setFieldValue("skills", prevSkills);
-            }}
-            editSkill={(skill: ISkill) => {
-              let prevSkills = form.values.skills
-                ? [...form.values.skills]
-                : [];
-              prevSkills = prevSkills.filter((item) => item.id !== skill.id);
-              prevSkills.push(skill);
-              form.setFieldValue("skills", prevSkills);
-            }}
-            removeSkill={(skill: ISkill) => {
-              let prevSkills = form.values.skills
-                ? [...form.values.skills]
-                : [];
-              prevSkills = prevSkills.filter((item) => item.id !== skill.id);
-              form.setFieldValue("skills", prevSkills);
-            }}
-          />
-        </Grid>
-        <Grid item xs={12} md={4}>
-          {multiTextInputSections.map((item, index) => (
-            <FormMultiTextInput
-              key={index}
-              label={t("form." + item)}
-              id={item}
-              data={form.values[item as keyof typeof form.values] as string[]}
-              addNew={(data) => {
-                addToFormArray(data, item);
-              }}
-              deleteItem={(index) => {
-                deleteFromArray(index, item);
-              }}
-            />
-          ))}
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <MapsInput
-            mainCoords={form.values.mapsCoord!}
-            isMainMoving
-            setCoord={(coord: any) => {
-              form.setFieldValue("mapsCoord", coord);
-            }}
-          />
-          {form.values.id ? (
-            <Stack sx={{ m: 1 }} direction="row" spacing={1}>
-              <Button variant="contained" color="success">
-                <SaveRounded /> {t("form.cv.download")}
-              </Button>
-              <Button variant="contained" color="secondary">
-                <FileUpload /> {t("form.cv.upload-new")}
-              </Button>
-            </Stack>
-          ) : (
-            <Button sx={{ m: 1 }} variant="contained" color="secondary">
-              <FileUpload /> {t("form.cv.upload")}
-            </Button>
-          )}
-          {Boolean(form.values.id) && (
-            <Stack sx={{ m: 1 }} direction="row" spacing={1}>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => {
-                  setSendMessageModalType("email");
-                  setIsSendMessageModalOpen(true);
-                }}
-              >
-                <Email sx={{ mr: 1 }} /> {t("send-mail")}
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => {
-                  setSendMessageModalType("sms");
-                  setIsSendMessageModalOpen(true);
-                }}
-              >
-                <Message sx={{ mr: 1 }} /> {t("send-sms")}
-              </Button>
-            </Stack>
-          )}
-        </Grid>
-      </Grid>
-    </ActionModal>
+              <Skills />
+            </Grid>
+            <Grid item xs={12} md={4}>
+              {multiTextInputSections.map((item, index) => (
+                <FormMultiTextInput
+                  key={index}
+                  name={item}
+                  label={t("form." + item)}
+                  id={item}
+                />
+              ))}
+              <FormMultiTextInput
+                name="mobility"
+                label={t("form.mobility")}
+                id={"mobility"}
+                options={mobilityOptions}
+              />
+              <FormDropdown<string>
+                name="experience"
+                label="Experience"
+                defaultValue="Select Experience"
+                options={experienceOptions}
+                renderOptions={(option) => (
+                  <MenuItem
+                    key={option}
+                    value={experienceOptions.indexOf(option)}
+                  >
+                    {option}
+                  </MenuItem>
+                )}
+              />
+              <FormInput name="experienceDetails" label="Experience Details" />
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <MapsInput name="mapsCoord" isMainMoving />
+              <FormInput
+                label={t("form.comment")}
+                multiline
+                rows={4}
+                type="text"
+                name="comment"
+              />
+              {candidate ? (
+                <Stack sx={{ m: 1 }} direction="row" spacing={1}>
+                  <Button component="label" color="success">
+                    <SaveRounded /> {t("form.cv.download")}
+                  </Button>
+                  <FormUploadFileButton
+                    label={t("form.cv.upload-new")}
+                    name="CVAddress"
+                  />
+                </Stack>
+              ) : (
+                <Button sx={{ m: 1 }} component="label" color="secondary">
+                  <FileUpload /> {t("form.cv.upload")}
+                </Button>
+              )}
+              {candidate && (
+                <>
+                  <Stack sx={{ m: 1 }} direction="row" spacing={1}>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={() => {
+                        setSendMessageModalType("email");
+                        setIsSendMessageModalOpen(true);
+                      }}
+                    >
+                      <Email sx={{ mr: 1 }} /> {t("send-mail")}
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={() => {
+                        setSendMessageModalType("sms");
+                        setIsSendMessageModalOpen(true);
+                      }}
+                    >
+                      <Message sx={{ mr: 1 }} /> {t("send-sms")}
+                    </Button>
+                  </Stack>
+                  <Stack
+                    sx={{ m: 1 }}
+                    direction="column"
+                    spacing={1}
+                    justifyContent="center"
+                  >
+                    {candidate.tasks &&
+                      candidate.tasks.length > 0 &&
+                      candidate.tasks.map((task, index) => (
+                        <Button
+                          key={index}
+                          variant="contained"
+                          color="primary"
+                          onClick={() => navigate(`/tasks?task=${task.id}`)}
+                        >
+                          Open Task {"=>"} {task.id} - {task.name}
+                        </Button>
+                      ))}
+                  </Stack>
+                </>
+              )}
+            </Grid>
+          </Grid>
+        </ActionModal>
+      </Form>
+    </Formik>
   );
 };
 

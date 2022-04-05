@@ -8,4 +8,10 @@ export interface ICompany {
   city?: string;
   sector?: string;
   jobs?: IJob[];
+  clientReference: string;
+  contact: string;
+  phone: string;
+  mail: string;
+  region: string;
+  website: string;
 }

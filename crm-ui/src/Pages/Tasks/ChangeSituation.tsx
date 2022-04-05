@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { AccessTime, AddCircle, Check, Close } from "@mui/icons-material";
 import { IconButton, Paper, Typography } from "@mui/material";
+import { useFormikContext } from "formik";
 
 interface IChangeSituationProps {
-  setFieldValue: <DataType>(field: string, data: DataType) => void;
-  situation?: "on-progress" | "completed" | "closed" | "open" | string;
   title: string;
+}
+
+interface Formik {
+  setFieldValue: <DataType>(field: string, data: DataType) => void;
+  values: any;
 }
 
 interface IStyledIconButtonProps {
@@ -49,7 +53,13 @@ const StyledIconButton = (props: IStyledIconButtonProps) => {
 };
 
 const ChangeSituation = (props: IChangeSituationProps) => {
-  const { setFieldValue, situation, title } = props;
+  const { title } = props;
+
+  const {
+    setFieldValue,
+    values: { situation },
+  }: Formik = useFormikContext();
+
   const [selected, setSelected] = useState<
     "on-progress" | "completed" | "closed" | "open" | string
   >(situation || "open");

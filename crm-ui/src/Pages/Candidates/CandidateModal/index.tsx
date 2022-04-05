@@ -12,6 +12,7 @@ import FormMultiTextInput from "../../../components/FormMultiTextInput";
 import MapsInput from "../../../components/MapsInput";
 import FormDropdown from "../../../components/FormDropdown";
 import ActionModal from "../../../components/ActionModal";
+import FormUploadFileButton from "../../../components/FormUploadFileButton";
 import Skills from "./Skills";
 import SituationSwitch from "./SituationSwitch";
 import SendMessageModal from "./SendMessageModal";
@@ -76,12 +77,10 @@ const CandidateModal = (props: ICandidateModalProps) => {
   >("sms");
 
   const onSubmit = (data: ICandidate) => {
+    delete data.tasks;
     data.id
       ? update("candidates", data).then(() => mutate("candidates"))
       : BaseService.post("candidates", data).then(() => mutate("candidates"));
-  };
-  const handleUploadNewCV = (event: any) => {
-    console.log(event.target.files);
   };
 
   return (
@@ -181,10 +180,10 @@ const CandidateModal = (props: ICandidateModalProps) => {
                   <Button component="label" color="success">
                     <SaveRounded /> {t("form.cv.download")}
                   </Button>
-                  <Button component="label" color="secondary">
-                    <FileUpload /> {t("form.cv.upload-new")}
-                    <input type="file" hidden onChange={handleUploadNewCV} />
-                  </Button>
+                  <FormUploadFileButton
+                    label={t("form.cv.upload-new")}
+                    name="CVAddress"
+                  />
                 </Stack>
               ) : (
                 <Button sx={{ m: 1 }} component="label" color="secondary">
@@ -221,7 +220,8 @@ const CandidateModal = (props: ICandidateModalProps) => {
                     spacing={1}
                     justifyContent="center"
                   >
-                    {candidate.tasks.length > 0 &&
+                    {candidate.tasks &&
+                      candidate.tasks.length > 0 &&
                       candidate.tasks.map((task, index) => (
                         <Button
                           key={index}

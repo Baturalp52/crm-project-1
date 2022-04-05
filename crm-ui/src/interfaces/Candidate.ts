@@ -27,5 +27,5 @@ export interface ICandidate {
   diplomas: string[];
   placedJob?: IJob;
   situation: boolean;
-  tasks: ITask[];
+  tasks?: ITask[];
 }

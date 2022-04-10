@@ -16,6 +16,7 @@
     "add": "Add New Candidate",
     "send-mail": "Send Mail",
     "send-sms": "Send SMS",
+    "success-snack-label": "Saved successfully.",
     "form": {
       "id": "id",
       "name": "Name",

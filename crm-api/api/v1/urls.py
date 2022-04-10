@@ -8,6 +8,7 @@ urlpatterns = [
     path("settings/", include("api.v1.settings.urls")),
     path("comments/", include("api.v1.comments.urls")),
     path("events/", include("api.v1.events.urls")),
+    path("upload/", include("api.v1.upload.urls")),
     path("users/", include("api.v1.users.urls")),
     path("tasks/", include("api.v1.tasks.urls")),
     path("jobs/", include("api.v1.jobs.urls")),

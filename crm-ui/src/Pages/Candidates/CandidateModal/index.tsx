@@ -86,9 +86,7 @@ const CandidateModal = (props: ICandidateModalProps) => {
 
   const [isSendMessageModalOpen, setIsSendMessageModalOpen] =
     useState<boolean>(false);
-  const [sendMessageModalType, setSendMessageModalType] = useState<
-    "sms" | "email"
-  >("sms");
+  const [sendMessageModalType, setSendMessageModalType] = useState<number>(1);
 
   const onSubmit = async (data: ICandidate) => {
     delete data.tasks;
@@ -280,7 +278,7 @@ const CandidateModal = (props: ICandidateModalProps) => {
                               variant="contained"
                               color="primary"
                               onClick={() => {
-                                setSendMessageModalType("email");
+                                setSendMessageModalType(2);
                                 setIsSendMessageModalOpen(true);
                               }}
                             >
@@ -290,7 +288,7 @@ const CandidateModal = (props: ICandidateModalProps) => {
                               variant="contained"
                               color="primary"
                               onClick={() => {
-                                setSendMessageModalType("sms");
+                                setSendMessageModalType(1);
                                 setIsSendMessageModalOpen(true);
                               }}
                             >

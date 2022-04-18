@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+// react
+import React, { useState, useEffect } from "react";
+// @mui
 import {
   Button,
   Card,
@@ -14,23 +16,39 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import templateDatas from "./datas";
-import { ICandidate } from "../../../../interfaces/Candidate";
 import { Close, Send } from "@mui/icons-material";
+// interfaces
+import ITemplate from "../../../../interfaces/Template";
+import { ICandidate } from "../../../../interfaces/Candidate";
+// react-i18next
 import { useTranslation } from "react-i18next";
+// helpers
 import resolve from "../../../../helpers/resolve";
+// formik
 import { useFormikContext } from "formik";
+// swr
+import useSWR from "swr";
+// components
+import Loading from "../../../../components/Loading";
+
+function createText(template: ITemplate, candidate: ICandidate) {
+  let index = 0;
+  console.log(template.template.split(/%(\w+|\w+.\w+)%/g));
+  const text = template.template
+    .split(/%(\w+|\w+.\w+)%/g)
+    .reduce((text: string, item: string) => {
+      if (index % 2 === 0) text += item;
+      else text += resolve(item, candidate);
+      index++;
+      return text;
+    }, "");
+  return text;
+}
 
 interface ISendMessageModalProps {
   isOpen: boolean;
   setIsOpen: (val: boolean) => void;
-  messageType: "sms" | "email";
-}
-
-interface ITemplate {
-  id: number;
-  name: string;
-  template: string;
+  messageType: number;
 }
 
 interface Formik {
@@ -40,14 +58,27 @@ interface Formik {
 const SendMessageModal = (props: ISendMessageModalProps) => {
   const { isOpen, setIsOpen, messageType } = props;
   const { values: candidate }: Formik = useFormikContext();
+  const { data, error } = useSWR(`settings/templates?type=${messageType}`);
+
+  const [templatesData, setTemplatesData] = useState(data);
   const [template, setTemplate] = useState<ITemplate>({
     id: 0,
     name: "",
     template: "",
+    type: 0,
   });
   const { t } = useTranslation("pages", {
     keyPrefix: "candidates.modal.send-message",
   });
+  useEffect(() => {
+    setTemplatesData(data);
+  }, [isOpen, data]);
+  const handleSend = () => {
+    console.log(createText(template, candidate));
+    setIsOpen(false);
+  };
+  if (error) return <div>{error}</div>;
+  if (!templatesData) return <React.Suspense fallback={<Loading />} />;
   return (
     <Modal
       open={isOpen}
@@ -56,6 +87,7 @@ const SendMessageModal = (props: ISendMessageModalProps) => {
           id: 0,
           name: "",
           template: "",
+          type: 0,
         });
         setIsOpen(false);
       }}
@@ -81,6 +113,7 @@ const SendMessageModal = (props: ISendMessageModalProps) => {
                 id: 0,
                 name: "",
                 template: "",
+                type: 0,
               });
               setIsOpen(false);
             }}
@@ -98,8 +131,8 @@ const SendMessageModal = (props: ISendMessageModalProps) => {
             onChange={(e) => {
               setTemplate(
                 e.target.value
-                  ? templateDatas[messageType].filter(
-                      (item: any) => item.id === e.target.value
+                  ? templatesData.filter(
+                      (item: ITemplate) => item.id === e.target.value
                     )[0]
                   : {
                       id: 0,
@@ -110,8 +143,8 @@ const SendMessageModal = (props: ISendMessageModalProps) => {
             }}
           >
             <MenuItem value={0}> {t("select-template")} </MenuItem>
-            {templateDatas[messageType].map((temp, index) => (
-              <MenuItem key={index} value={temp.id}>
+            {templatesData.map((temp: ITemplate) => (
+              <MenuItem key={temp.id} value={temp.id}>
                 {temp.name}
               </MenuItem>
             ))}
@@ -124,7 +157,7 @@ const SendMessageModal = (props: ISendMessageModalProps) => {
               <CardContent sx={{ lineHeight: 2 }}>
                 {template.template
                   .split(/%(\w+|\w+.\w+)%/g)
-                  .map((item, index) => {
+                  .map((item: string, index: number) => {
                     return index % 2 === 0 ? (
                       item
                     ) : (
@@ -152,14 +185,7 @@ const SendMessageModal = (props: ISendMessageModalProps) => {
                 sx={{ ml: "auto" }}
                 variant="contained"
                 color="primary"
-                onClick={() => {
-                  setTemplate({
-                    id: 0,
-                    name: "",
-                    template: "",
-                  });
-                  setIsOpen(false);
-                }}
+                onClick={handleSend}
               >
                 {t("send")}
               </Button>

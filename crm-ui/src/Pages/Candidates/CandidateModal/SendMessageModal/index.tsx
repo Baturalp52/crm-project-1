@@ -70,28 +70,27 @@ const SendMessageModal = (props: ISendMessageModalProps) => {
   const { t } = useTranslation("pages", {
     keyPrefix: "candidates.modal.send-message",
   });
+
   useEffect(() => {
     setTemplatesData(data);
   }, [isOpen, data]);
   const handleSend = () => {
     console.log(createText(template, candidate));
+    handleClose();
+  };
+  const handleClose = () => {
+    setTemplate({
+      id: 0,
+      name: "",
+      template: "",
+      type: 0,
+    });
     setIsOpen(false);
   };
   if (error) return <div>{error}</div>;
   if (!templatesData) return <React.Suspense fallback={<Loading />} />;
   return (
-    <Modal
-      open={isOpen}
-      onClose={() => {
-        setTemplate({
-          id: 0,
-          name: "",
-          template: "",
-          type: 0,
-        });
-        setIsOpen(false);
-      }}
-    >
+    <Modal open={isOpen} onClose={handleClose}>
       <Paper
         sx={{
           position: "absolute" as "absolute",
@@ -106,18 +105,7 @@ const SendMessageModal = (props: ISendMessageModalProps) => {
         }}
       >
         <Stack mb={5}>
-          <IconButton
-            sx={{ ml: "auto" }}
-            onClick={() => {
-              setTemplate({
-                id: 0,
-                name: "",
-                template: "",
-                type: 0,
-              });
-              setIsOpen(false);
-            }}
-          >
+          <IconButton sx={{ ml: "auto" }} onClick={handleClose}>
             <Close />
           </IconButton>
         </Stack>

@@ -54,8 +54,12 @@
     },
     "send-message": {
       "template": "Template",
+      "email": "Email Addresses",
+      "phone": "Phone Numbers",
       "select-template": "Select Template",
-      "send": "Send"
+      "send": "Send",
+      "success-snack-label": "Message is sent successfully.",
+      "error-snack-label": "Message couldn't be sent."
     }
   }
 }

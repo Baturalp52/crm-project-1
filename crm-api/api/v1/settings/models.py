@@ -25,11 +25,8 @@ class Settings(Singleton):
         return self.pageTitle
 
 
-class SMSTemplate(models.Model):
-    settings = models.ForeignKey(Settings, on_delete=models.CASCADE)
-    template = models.TextField()
-
-
-class EmailTemplate(models.Model):
-    settings = models.ForeignKey(Settings, on_delete=models.CASCADE)
+class MessageTemplate(models.Model):
+    settings = models.ForeignKey(Settings, on_delete=models.CASCADE, related_name="messageTemplate")
+    type = models.IntegerField()
+    name = models.CharField(max_length=255)
     template = models.TextField()

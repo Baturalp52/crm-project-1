@@ -1,19 +1,35 @@
 {
-  "fields": [
-    {
-      "title": "Templates",
-      "buttons": [
-        {
-          "label": "Manage SMS Templates",
-          "icon": "message",
-          "component": "manage-sms-modal"
-        },
-        {
-          "label": "Manage Email Templates",
-          "icon": "email",
-          "component": "manage-email-modal"
-        }
-      ]
+  "fields": {
+    "templates": "Templates"
+  },
+  "template": {
+    "modal": {
+      "add": "Add Template",
+      "edit": "Edit Template",
+      "save": "Save",
+      "success-snack-label": "Saved successfully."
     }
-  ]
+  },
+  "sms-templates": {
+    "title": "SMS Templates",
+    "success-snack-label": "Saved successfully.",
+    "label": "Manage SMS Templates",
+    "icon": "message",
+    "type": 1,
+    "table": {
+      "name": "Name",
+      "no-data": "No data!"
+    }
+  },
+  "email-templates": {
+    "title": "Email Templates",
+    "success-snack-label": "Saved successfully.",
+    "label": "Manage Email Templates",
+    "icon": "email",
+    "type": 2,
+    "table": {
+      "name": "Name",
+      "no-data": "No data!"
+    }
+  }
 }

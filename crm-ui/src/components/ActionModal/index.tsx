@@ -1,4 +1,6 @@
+// react
 import React from "react";
+// @mui
 import {
   Button,
   Modal,
@@ -9,8 +11,11 @@ import {
   CardActions,
 } from "@mui/material";
 import { CloseRounded, SaveRounded } from "@mui/icons-material";
+// react-i18next
 import { useTranslation } from "react-i18next";
+// hooks
 import useSuccessSnackbar from "../../hooks/useSuccessSnackbar";
+// formik
 import { useFormikContext } from "formik";
 
 interface IActionModalProps {

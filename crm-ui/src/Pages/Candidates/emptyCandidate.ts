@@ -19,7 +19,6 @@ export const emptyCandidate = {
   departments: [],
   keywords: [],
   diplomas: [],
-  placedJob: undefined,
   situation: false,
   tasks: [],
 };

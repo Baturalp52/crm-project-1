@@ -18,15 +18,14 @@ class MessageView(APIView):
     smsToken = "9a98d6559dd6428aa0e8927b94132805"
     smsSession = Session()
 
-    def send_mail(self, mailAddress, name, text):
+    def send_mail(self, mailAddress, name, text, subject):
         message = {
             "Messages": [
                 {
-                    "From": {"Email": "globaljobfrance@gmail.com", "Name": "Baran"},
+                    "From": {"Email": "globaljobfrance@gmail.com", "Name": "Global Job"},
                     "To": [{"Email": mailAddress, "Name": name}],
-                    "Subject": "Greetings from Mailjet.",
+                    "Subject": subject,
                     "TextPart": text,
-                    "CustomID": "AppGettingStartedTest",
                 }
             ]
         }
@@ -49,6 +48,6 @@ class MessageView(APIView):
             return HttpResponse(status=status)
         elif messageType == 2:
             data = loads(request.body)
-            status = self.send_mail(data["address"], data["name"], data["message"])
+            status = self.send_mail(data["address"], data["name"], data["message"], data["subject"])
             return HttpResponse(status=status)
         return HttpResponse(status=401)

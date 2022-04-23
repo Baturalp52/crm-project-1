@@ -90,15 +90,14 @@ const SendMessageModal = (props: ISendMessageModalProps) => {
   const handleSend = async () => {
     setIsSending(true);
     try {
-      const response = await BaseService.post(`message/${messageType}`, {
+      await BaseService.post(`message/${messageType}`, {
         name: candidate.name + " " + candidate.surname,
         message: createText(template, candidate),
         address: messageAddress,
+        subject: template.name,
       });
-      console.log(response);
       setSuccessbar(true);
       setIsSending(false);
-      handleClose();
     } catch (err) {
       setErrorbar(true);
       setIsSending(false);
@@ -210,6 +209,7 @@ const SendMessageModal = (props: ISendMessageModalProps) => {
                         item
                       ) : (
                         <Typography
+                          key={index}
                           variant="subtitle2"
                           component="span"
                           color="white"

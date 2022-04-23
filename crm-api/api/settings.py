@@ -85,19 +85,34 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "api.wsgi.application"
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "logfile": {
+            "class": "logging.FileHandler",
+            "filename": "server.log",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["logfile"],
+        },
+    },
+}
 
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'crm-project',
-        'USER': 'crm-project-user',
-        'PASSWORD': '3rqg_u3dSXM6CkM',
-        'HOST': 'localhost',
-        'PORT': '',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "crm-project",
+        "USER": "crm-project-user",
+        "PASSWORD": "3rqg_u3dSXM6CkM",
+        "HOST": "localhost",
+        "PORT": "",
     }
 }
 

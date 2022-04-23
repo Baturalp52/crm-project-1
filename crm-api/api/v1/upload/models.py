@@ -6,7 +6,7 @@ from django.conf import settings
 def cvUploadTo(instance, filename):
 
     fn = sha256(filename.encode()).hexdigest() + "." + filename.split(".")[-1]
-    return settings.MEDIA_ROOT + f"/cv-files/{fn}"
+    return f"cv-files/{fn}"
 
 
 class File(models.Model):

@@ -15,6 +15,10 @@ import {
 import { pageRedux } from "../../redux";
 // react-i18next
 import { useTranslation } from "react-i18next";
+// swr
+import useSWR from "swr";
+// components
+import Loading from "../../components/Loading";
 //
 import { Templates } from "./Templates";
 
@@ -31,6 +35,7 @@ const Settings = () => {
   const { t } = useTranslation("pages", { keyPrefix: "settings" });
   const [templateModalOpen, setTemplateModalOpen] = useState(false);
   const [templateType, setTemplateType] = useState(1);
+  const { data } = useSWR(`settings/`);
   useEffect(() => {
     pageRedux.dispatch({
       type: "CHANGE_TITLE",
@@ -39,6 +44,8 @@ const Settings = () => {
       },
     });
   });
+
+  if (!data) return <React.Suspense fallback={<Loading />} />;
   return (
     <>
       <Templates

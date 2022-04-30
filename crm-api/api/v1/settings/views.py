@@ -10,7 +10,8 @@ from api.v1.settings.serializer import SettingsSerializer, MessageTemplateSerial
 class SettingsView(APIView):
     def get(self, request):
         if request.user.is_superuser:
-            return JsonResponse(SettingsSerializer(Settings.objects.all()).data)
+            settings = Settings.objects.get_or_create()
+            return JsonResponse(SettingsSerializer(settings).data)
         return HttpResponse(status=401)
 
 

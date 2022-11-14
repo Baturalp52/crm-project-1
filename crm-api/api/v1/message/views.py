@@ -9,13 +9,15 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from simplejson import load
 
+import os
+
 
 class MessageView(APIView):
     permission_classes = [IsAuthenticated]
-    mail_api_key = "172690fbbb3809aa25c3b3715eb3ba3b"
-    mail_api_secret = "405710be0570435ac26871d85148f729"
+    mail_api_key = os.environ.get('MAIL_API_KEY')
+    mail_api_secret = os.environ.get('MAIL_API_SECRET')
     mailjet = Client(auth=(mail_api_key, mail_api_secret), version="v3.1")
-    smsToken = "9a98d6559dd6428aa0e8927b94132805"
+    smsToken = os.environ.get('SMS_TOKEN')
     smsSession = Session()
 
     def send_mail(self, mailAddress, name, text, subject):
